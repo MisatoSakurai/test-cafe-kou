@@ -1,0 +1,49 @@
+.Q{
+    background-color: bisque;
+    position: fixed;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 100%;
+    text-align: center;
+}
+.checkBotton{
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto ;
+}
+.closeBotton{
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.textBox{
+    position: absolute;
+    bottom: 25%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto ;
+}
+#stage1{
+    background-color: aquamarine;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#Q1st{
+    background-color: antiquewhite;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
