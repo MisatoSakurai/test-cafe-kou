@@ -14,37 +14,20 @@
             <p onclick="openQ('Q5')" class="selectQ">Q5</p>
             <p onclick="openBattle('B1')" class="selectB">BOSS1</p>
         </div>
-        <div id="Q1st" style="display:none">
-            <div id="Q1" style="display:none" class="Q">
-                <p>謎一</p>
-                <input type="text" class="anser_box">
-                <h5 onclick="checkA('Q1')" class="checkBotton">送信</h5>
-                <h5 onclick="closeQ('Q1')" class="closeBotton">閉じる</h5>
-            </div>
-            <div id="Q2" style="display:none" class="Q">
-                <p>謎二</p>
-                <input type="text" class="anser_box">
-                <h5 onclick="checkA('Q2')" class="checkBotton">送信</h5>
-                <h5 onclick="closeQ('Q2')" class="closeBotton">閉じる</h5>
-            </div>
-            <div id="Q3" style="display:none" class="Q">
-                <p>謎三</p>
-                <input type="text" class="anser_box">
-                <h5 onclick="checkA('Q3')" class="checkBotton">送信</h5>
-                <h5 onclick="closeQ('Q3')" class="closeBotton">閉じる</h5>
-            </div>
-            <div id="Q4" style="display:none" class="Q">
-                <p>謎四</p>
-                <input type="text" class="anser_box">
-                <h5 onclick="checkA('Q4')" class="checkBotton">送信</h5>
-                <h5 onclick="closeQ('Q4')" class="closeBotton">閉じる</h5>
-            </div>
-            <div id="Q5" style="display:none" class="Q">
-                <p>謎五</p>
-                <input type="text" class="anser_box">
-                <h5 onclick="checkA('Q5')" class="checkBotton">送信</h5>
-                <h5 onclick="closeQ('Q5')" class="closeBotton">閉じる</h5>
-            </div>
+        <div id="Q_back" style="display:none">
+        </div>
+        <div style="display:none" id="Q_sheet">
+            <p class="quiz_title">謎のタイトル</p>
+            <img src="" alt="謎の画像" class="quiz_image">
+            <input type="text" class="answer_box">
+            <h5 onclick="checkA()" class="checkBotton">送信</h5>
+            <h5 onclick="closeQ()" class="closeBotton">閉じる</h5>
+        </div>
+        <div id="pop_back" style="display:none" onclick="closePop()">      
+        </div>
+        <div id="pop" style="display:none">
+            <p id="pop_title">popタイトル</p>
+            <p id="pop_text">pop文章</p>
         </div>
     </body>
 </html>
