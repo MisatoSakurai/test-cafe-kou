@@ -28,6 +28,7 @@ body {
     max-width:80%;
     left: 0;
     right: 0;
+    top:20px;
     margin-left: auto;
     margin-right: auto;
     z-index: 10;
@@ -284,6 +285,8 @@ body {
     height: 50px;
     margin-left:10px;
     z-index: 10;
+    border: 2px solid rgba(255,255,255,0);
+    transition: .2s;
 }
 
 
@@ -325,7 +328,7 @@ body {
 .color_menu {
     position: absolute;
     list-style-type: none;
-    padding-top:60px;
+    padding-top:64px;
     padding-left: 0;
     margin-left: 10px;
     margin-top: 0;
@@ -345,31 +348,32 @@ body {
 
 .color_menu li{
     transition: .2s;
+    border: 2px solid rgba(255,255,255,0);
 }
 
 
-.color_menu #red{
-    transform: translateY(-60px);
+.color_menu .red{
+    transform: translateY(-64px);
     background-color: red;
 }
 
-.color_menu #blue{
-    transform: translateY(-120px);
+.color_menu .blue{
+    transform: translateY(-128px);
 }
 
-.color_menu #yellow{
-    transform: translateY(-180px);
+.color_menu .yellow{
+    transform: translateY(-192px);
     background-color: yellow;
 }
 
 
-.color_menu.open #red{
+.color_menu.open .red{
     transform: translateY(0); 
 }
-.color_menu.open #blue{
+.color_menu.open .blue{
     transform: translateY(0); 
 }
-.color_menu.open #yellow{
+.color_menu.open .yellow{
     transform: translateY(0); 
 }
 

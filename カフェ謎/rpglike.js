@@ -3,18 +3,41 @@ var player_data = {
     level:1,
 }
 
-var max_level = 5;
+var max_level = 6;
 
+const status = Object.freeze({
+    MAP: 'map',
+    QUIZ: 'quiz',
+    BATTLE: 'battle'
+});
+
+
+const magicType = Object.freeze({
+    NONE:'none',
+    CHANGE_COLOR:'change_color',
+    RED: 'red',
+    BLUE: 'blue',
+    YELLOW: 'yellow',
+    ADD_CHAR: 'add_char',
+    CHANGE_CHAR: 'change_char',
+    SCISSORS: 'scissors',
+    EXTRA:'extra'
+});
+
+
+
+let now_status = status.MAP;
 
 
 
 
 var level_list = {
-    1:{needed_point:0, enable_magic:"none"},
-    2:{needed_point:1, enable_magic:"change_color"},
-    3:{needed_point:3, enable_magic:"add_char"},
-    4:{needed_point:5, enable_magic:"change_char"},
-    5:{needed_point:6, enable_magic:"scissors"}
+    1:{needed_point:0, enable_magic:""},
+    2:{needed_point:1, enable_magic:magicType.CHANGE_COLOR},
+    3:{needed_point:3, enable_magic:magicType.ADD_CHAR},
+    4:{needed_point:5, enable_magic:magicType.CHANGE_CHAR},
+    5:{needed_point:6, enable_magic:magicType.SCISSORS},
+    6:{needed_point:10000, enable_magic:magicType.EXTRA}
 }
 
 
@@ -23,23 +46,29 @@ var level_list = {
 var quiz_list ={
     "Q1":{
         title:"謎1",
-        origin_image : "images/pro_quiz_image.png",
+        field:'Q1st',
+        //origin_image : "images/pro_quiz_image.png",
         magics:{
-            "none":{
+            [magicType.NONE]:{
                 image:"images/pro_quiz_image.png",
                 answer:"答え1",
                 hint:"ヒントです1",
                 point: 10,
-                answered:false,
+            },
+            [magicType.RED]:{
+                image:"images/pro_quiz_image.png",
+                answer:"答えred",
+                hint:"ヒントですred",
+                point: 10,
                 place:{
                     x: 10, y: 10,  // 座標%
                     w: 50, h: 50   // サイズ%
                 }
             },
-            "red":{
-                image:"images/pro_quiz_image.png",
-                answer:"答えred",
-                hint:"ヒントですred",
+            [magicType.ADD_CHAR]:{
+                image:"images/add.png",
+                answer:"答えadd",
+                hint:"ヒントですadd",
                 point: 10,
                 answered:false,
                 place:{
@@ -47,6 +76,7 @@ var quiz_list ={
                     w: 50, h: 50   // サイズ%
                 }
             },
+            /*
             "blue":{
                 image:"images/pro_quiz_image.png",
                 answer:"答えblue",
@@ -59,7 +89,38 @@ var quiz_list ={
                 }
             },
             "yellow":{},
-            "add_char":{
+            
+            "change_char":{},
+            "scissors":{}
+            */
+        },
+        /*
+        involved_magic:"none",
+        number_of_quiz:3,
+        answered_time:0,
+        */
+    },
+    "Q2":{
+        title:"謎2",
+        field:'Q1st',
+        magics:{
+            [magicType.NONE]:{
+                image:"images/pro_quiz_image.png",
+                answer:"答え1",
+                hint:"ヒントです1",
+                point: 10,
+            },
+            [magicType.RED]:{
+                image:"images/pro_quiz_image.png",
+                answer:"答えred",
+                hint:"ヒントですred",
+                point: 10,
+                place:{
+                    x: 10, y: 10,  // 座標%
+                    w: 50, h: 50   // サイズ%
+                }
+            },
+            [magicType.ADD_CHAR]:{
                 image:"images/add.png",
                 answer:"答えadd",
                 hint:"ヒントですadd",
@@ -69,37 +130,46 @@ var quiz_list ={
                     x: 10, y: 10,  // 座標%
                     w: 50, h: 50   // サイズ%
                 }
-            },
-            "change_char":{},
-            "scissors":{}
-        },
-        involved_magic:"none",
-        number_of_quiz:3,
-        answered_time:0,
-        field:'Q1st',
-    },
-    "Q2":{
-        title:"謎2",
-        origin_image : "/images/pro_quiz_image", 
-        answer:"答え2",
-        hint:"ヒントです2",
-        point: 20,
-        involved_magic:"none",
-        answered: false,
-        field:'Q1st'
+            }
+        }
         
     },
     "Q3":{
         title:"謎3",
-        origin_image : "/images/pro_quiz_image", 
-        answer:"答え3",
-        hint:"ヒントです3",
-        point: 30,
-        involved_magic:"none",
-        answered: false,
-        field:'Q1st'
+        field:'Q1st',
+        magics:{
+            [magicType.NONE]:{
+                image:"images/pro_quiz_image.png",
+                answer:"答え1",
+                hint:"ヒントです1",
+                point: 10,
+            },
+            [magicType.RED]:{
+                image:"images/pro_quiz_image.png",
+                answer:"答えred",
+                hint:"ヒントですred",
+                point: 10,
+                place:{
+                    x: 10, y: 10,  // 座標%
+                    w: 50, h: 50   // サイズ%
+                }
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/add.png",
+                answer:"答えadd",
+                hint:"ヒントですadd",
+                point: 10,
+                answered:false,
+                place:{
+                    x: 10, y: 10,  // 座標%
+                    w: 50, h: 50   // サイズ%
+                }
+            }
+        }
     }   
 }
+
+
 
 
 
@@ -110,13 +180,38 @@ var quiz_list ={
 var selected_magic = null;
 
 
-
-
-
-
-
-
 var quiz_id = null;
+
+
+
+
+
+
+
+window.onload = function(){
+    initializeQuizDataList(quiz_list);
+}
+
+
+
+
+function initializeQuizDataList(q_list){
+    for (let Q in q_list) {
+        q_list[Q].origin_image = q_list[Q].magics[magicType.NONE].image;
+        q_list[Q].involved_magic = magicType.NONE;
+        q_list[Q].number_of_quiz = Object.keys(q_list).length;
+        q_list[Q].answered_time = 0;
+        for(let m in q_list[Q].magics){
+            q_list[Q].magics[m].answered = false;
+        }
+    }
+}
+
+
+
+
+
+
 
 
 function openQ(n){
@@ -127,9 +222,10 @@ function openQ(n){
     const quiz_title = quiz_sheet.querySelector(".quiz_title");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
     const answer_box = quiz_sheet.querySelector(".answer_box");
+    const magics = document.getElementById("magics");
     quiz_title.textContent = quiz_data.title;
     quiz_image.src = quiz_data.origin_image;
-    quiz_data.involved_magic="none";
+    quiz_data.involved_magic=magicType.NONE;
     
     answer_box.disabled = (quiz_data.answered_time >= quiz_data.number_of_quiz);
     
@@ -139,7 +235,8 @@ function openQ(n){
         answer_box.value = "";
     }
     
-    
+    now_status = status.QUIZ;
+    magics.style.display = 'flex';
     quiz_sheet.style.display = 'block';
     quiz_back.style.display = 'block';
     
@@ -152,11 +249,16 @@ function openQ(n){
 function closeQ(){
     const quiz_back = document.getElementById("Q_back");
     const quiz_sheet = document.getElementById("Q_sheet");
+    const magics = document.getElementById("magics");
+    
+    now_status = status.MAP;
+    magics.style.display = 'none';
     quiz_sheet.style.display = 'none';
     quiz_back.style.display = 'none';
     const map = document.getElementById("map");
     map.style.filter = "none";
     var quiz_id = null;
+    
     checkLevel()
 }
 
@@ -302,13 +404,39 @@ function closeMenu(){
 
 
 
+function openMagic(n) {
+    selectMagic(n);
+    if (now_status == status.QUIZ){
+        openQuizMagic(n);
+        console.log("openMagic")
+    }else if(now_status==status.BATTLE){
+        openBattleMagic(n);
+    }
+}
 
+
+function selectMagic(n){
+    past_selected_magic_icon = document.querySelector("."+selected_magic);
+    if(past_selected_magic_icon != null){
+        past_selected_magic_icon.style.border = "2px solid rgba(255,255,255,0)";
+        //さっきまで選ばれていたmagicのボーダーをOFFにする
+    }
+    
+    selected_magic = n;
+    //selected_magicを更新する
+    
+    selected_magic_icon = document.querySelector("."+selected_magic);
+    
+    if(selected_magic_icon != null){
+        selected_magic_icon.style.border = "2px solid rgba(255,255,255,1)"; 
+    }
+    
+}
 
 
 
 function openQuizMagic(n){
-    if(quiz_data.involved_magic == "none"){
-        selected_magic = n;
+    if(quiz_data.involved_magic == magicType.NONE){
         magic_canvas = document.getElementById("quiz_magic_canvas");
         magic_back = document.getElementById("quiz_magic_back"); 
         magic_canvas.style.display = 'block';
@@ -360,7 +488,7 @@ function failedQuizMagic(){
     magic_canvas.style.display = 'none';
     magic_back.style.display = 'none';
     
-    selected_magic = null;
+    selectMagic(null);
 
 
     popTitling("失敗");
@@ -378,7 +506,7 @@ function successQuizMagic(){
     magic_back.style.display = 'none';
     
     quiz_data.involved_magic = selected_magic;
-    selected_magic = null;
+    selectMagic(null);
     
     const quiz_sheet = document.getElementById("Q_sheet");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
