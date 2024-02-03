@@ -6,23 +6,40 @@
         <script src="rpglike.js"></script>
     </head>
     <body>
-        <div id="stage1">
-            <p onclick="openQ('Q1')" class="selectQ">Q1</p>
-            <p onclick="openQ('Q2')" class="selectQ">Q2</p>
-            <p onclick="openQ('Q3')" class="selectQ">Q3</p>
-            <p onclick="openQ('Q4')" class="selectQ">Q4</p>
-            <p onclick="openQ('Q5')" class="selectQ">Q5</p>
-            <p onclick="openBattle('B1')" class="selectB">BOSS1</p>
+        <div id="map">
+            <div id="menuButton" onclick="openMenu()">
+            </div>
+            <ul class="slide_menu">
+              <li>メニュー</li>
+              <li>メニュー2</li>
+              <li>メニュー3</li>
+              <li>メニュー4</li>
+            </ul>
+            <div id="menu_back" style="display:none" onclick="closeMenu">
+            </div>
+            <div id="stage1" class="stage">
+                <p onclick="openQ('Q1')" class="selectQ">Q1</p>
+                <p onclick="openQ('Q2')" class="selectQ">Q2</p>
+                <p onclick="openQ('Q3')" class="selectQ">Q3</p>
+                <p onclick="openQ('Q4')" class="selectQ">Q4</p>
+                <p onclick="openQ('Q5')" class="selectQ">Q5</p>
+                <p onclick="openBattle('B1')" class="selectB">BOSS1</p>
+            </div>
         </div>
+        
         <div id="Q_back" style="display:none">
         </div>
         <div style="display:none" id="Q_sheet">
             <p class="quiz_title">謎のタイトル</p>
             <img src="" alt="謎の画像" class="quiz_image">
-            <input type="text" class="answer_box">
-            <h5 onclick="checkA()" class="checkBotton">送信</h5>
-            <h5 onclick="closeQ()" class="closeBotton">閉じる</h5>
+            <div class="text_log">
+                <p class="text_log_sentence">答えを入力：</p>
+                <input type="text" class="answer_box">
+                <p onclick="checkA()" class="checkBotton">送信</p>
+            </div>
+            <p onclick="closeQ()" class="closeBotton">▷exit</p>
         </div>
+        
         <div id="pop_back" style="display:none" onclick="closePop()">      
         </div>
         <div id="pop" style="display:none">

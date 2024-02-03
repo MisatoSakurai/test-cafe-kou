@@ -54,6 +54,9 @@ function openQ(n){
     
     quiz_sheet.style.display = 'block';
     quiz_back.style.display = 'block';
+    
+    const map = document.getElementById("map");
+    map.style.filter = "blur(10px)";
 }
 
 function closeQ(){
@@ -61,6 +64,8 @@ function closeQ(){
     const quiz_sheet = document.getElementById("Q_sheet");
     quiz_sheet.style.display = 'none';
     quiz_back.style.display = 'none';
+    const map = document.getElementById("map");
+    map.style.filter = "none";
 }
 
 
@@ -137,6 +142,26 @@ function popTitling(t) {
     const pop_text = pop.querySelector("#pop_title");
     pop_title.textContent = t;
 }
+
+
+
+
+
+
+
+
+function openMenu(){
+  document.querySelector(".slide_menu").classList.toggle('active');
+}
+
+
+
+
+
+
+
+
+
 
 
 
