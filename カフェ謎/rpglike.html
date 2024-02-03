@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="rpglike.css" />
         <script src="rpglike.js"></script>
+
+
     </head>
     <body>
         <div id="map">
@@ -15,7 +17,7 @@
               <li>メニュー3</li>
               <li>メニュー4</li>
             </ul>
-            <div id="menu_back" style="display:none" onclick="closeMenu">
+            <div id="menu_back" style="display:none" onclick="closeMenu()">
             </div>
             <div id="stage1" class="stage">
                 <p onclick="openQ('Q1')" class="selectQ">Q1</p>
@@ -30,14 +32,46 @@
         <div id="Q_back" style="display:none">
         </div>
         <div style="display:none" id="Q_sheet">
+            <div id="quiz_magic_back" style="display:none" onclick="failedQuizMagic()"></div>
+            <div id="magics">
+                <div id="change_color_magic" class="magic_icon" onclick="openQuizMagic('change_color_magic')">
+                    <p>色変化</p>
+                </div>
+                <div id="change_char_ magic" class="magic_icon" onclick="openQuizMagic('change_char')">
+                    <p>字変化</p>
+                </div>
+                <div id="add_char_magic" class="magic_icon" onclick="openQuizMagic('add_char')">
+                    <p>字足</p>
+                </div>
+                <div id="scissors_magic" class="magic_icon" onclick="openQuizMagic('scissors')">
+                    <p>ハサミ</p>
+                </div>  
+            </div>
             <p class="quiz_title">謎のタイトル</p>
-            <img src="" alt="謎の画像" class="quiz_image">
+            <div class="quiz_content">
+                
+                <img src="" alt="謎の画像" class="quiz_image">
+                <div id="quiz_magic_canvas" style="display:none">
+                </div>
+                <script>
+                    document.getElementById("quiz_magic_canvas").addEventListener("click", function(e) {
+                        console.log("キャンバス押された");
+                        const rect = this.getBoundingClientRect(); 
+                        const point = {
+                            x: (e.clientX - rect.left)*100/rect.width,
+                            y: (e.clientY - rect.top)*100/rect.height
+                        };
+                        useMagic(point);
+                    });
+                </script>
+            </div>
             <div class="text_log">
                 <p class="text_log_sentence">答えを入力：</p>
                 <input type="text" class="answer_box">
-                <p onclick="checkA()" class="checkBotton">送信</p>
+                <p onclick="hint()" class="hintButton">ヒント</p>
+                <p onclick="checkA()" class="checkButton">送信</p>
             </div>
-            <p onclick="closeQ()" class="closeBotton">▷exit</p>
+            <p onclick="closeQ()" class="closeButton">▷exit</p>
         </div>
         
         <div id="pop_back" style="display:none" onclick="closePop()">      
