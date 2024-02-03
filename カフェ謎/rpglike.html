@@ -12,10 +12,16 @@
             <div id="menuButton" onclick="openMenu()">
             </div>
             <ul class="slide_menu">
-              <li>メニュー</li>
-              <li>メニュー2</li>
-              <li>メニュー3</li>
-              <li>メニュー4</li>
+                <li id="menu_level">Lv.主人公</li>
+                <li style="display: flex">
+                    <p id="menu_point">pt</p>
+                    <progress value="0" max="100" id="menu_point_bar"></progress>
+                </li>
+                <li id="menu_explain">説明</li>
+                <li id="menu_monster">図鑑</li>
+                <li id="menu_magic_list">技一覧</li>
+                <li id="menu_map">マップ</li>
+                <li id="menu_title">タイトル</li>
             </ul>
             <div id="menu_back" style="display:none" onclick="closeMenu()">
             </div>
@@ -29,21 +35,30 @@
             </div>
         </div>
         
+        
+        
         <div id="Q_back" style="display:none">
         </div>
         <div style="display:none" id="Q_sheet">
             <div id="quiz_magic_back" style="display:none" onclick="failedQuizMagic()"></div>
+            <div id="open_color_back" style="display:none" onclick="closeColorMagic()"></div>
             <div id="magics">
-                <div id="change_color_magic" class="magic_icon" onclick="openQuizMagic('change_color_magic')">
+                <div class="change_color magic_icon" onclick="openColorMagic()" style="display:none">
                     <p>色変化</p>
                 </div>
-                <div id="change_char_ magic" class="magic_icon" onclick="openQuizMagic('change_char')">
+                <ul class="color_menu change_color" style="display:none">
+                    <li id="red" onclick="openQuizMagic('red')">赤</li>
+                    <li id="blue" onclick="openQuizMagic('blue')">青</li>
+                    <li id="yellow" onclick="openQuizMagic('yellow')">黄</li>
+                </ul>
+                
+                <div class="change_char magic_icon" onclick="openQuizMagic('change_char')" style="display:none">
                     <p>字変化</p>
                 </div>
-                <div id="add_char_magic" class="magic_icon" onclick="openQuizMagic('add_char')">
+                <div class="add_char magic_icon" onclick="openQuizMagic('add_char')" style="display:none">
                     <p>字足</p>
                 </div>
-                <div id="scissors_magic" class="magic_icon" onclick="openQuizMagic('scissors')">
+                <div class="scissors magic_icon" onclick="openQuizMagic('scissors')" style="display:none">
                     <p>ハサミ</p>
                 </div>  
             </div>
@@ -73,6 +88,8 @@
             </div>
             <p onclick="closeQ()" class="closeButton">▷exit</p>
         </div>
+        
+        
         
         <div id="pop_back" style="display:none" onclick="closePop()">      
         </div>

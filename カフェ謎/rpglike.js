@@ -1,8 +1,22 @@
 var player_data = {
     point:0,
-    
-    
+    level:1,
 }
+
+var max_level = 5;
+
+
+
+
+
+var level_list = {
+    1:{needed_point:0, enable_magic:"none"},
+    2:{needed_point:1, enable_magic:"change_color"},
+    3:{needed_point:3, enable_magic:"add_char"},
+    4:{needed_point:5, enable_magic:"change_char"},
+    5:{needed_point:6, enable_magic:"scissors"}
+}
+
 
 
 
@@ -44,7 +58,7 @@ var quiz_list ={
                     w: 50, h: 50   // サイズ%
                 }
             },
-            "yello":{},
+            "yellow":{},
             "add_char":{
                 image:"images/add.png",
                 answer:"答えadd",
@@ -143,6 +157,7 @@ function closeQ(){
     const map = document.getElementById("map");
     map.style.filter = "none";
     var quiz_id = null;
+    checkLevel()
 }
 
 
@@ -180,7 +195,7 @@ function checkA(){
         
     }else{
         pop_tl = "無効";
-        pop_tx = "この問題はすでに解いているようだ";
+        pop_tx = "この問題はすでに解いているようだ<br>正解："+quiz_data.magics[quiz_data.involved_magic].answer;
     }
     
     
@@ -238,6 +253,7 @@ function closePop(){
     const pop_back = document.getElementById("pop_back");
     pop.style.display = 'none';
     pop_back.style.display = 'none';
+    checkLevel()
 }
 
 function popTexting(s){
@@ -263,6 +279,15 @@ function openMenu(){
     document.querySelector(".slide_menu").classList.toggle('active');
     const menu_back = document.getElementById("menu_back");
     menu_back.style.display = 'block';
+    menu_level = document.getElementById("menu_level");
+    menu_point = document.getElementById("menu_point");
+    menu_point_bar = document.getElementById("menu_point_bar");
+    menu_level.textContent = "Lv." + player_data.level + " 主人公";
+    menu_point.textContent = player_data.point+"pt";
+    let now_level_point = level_list[player_data.level].needed_point
+    let bar_percentage = 
+        (player_data.point-now_level_point)*100/(level_list[player_data.level+1].needed_point-now_level_point);
+    menu_point_bar.value = player_data.point;
     
 }
 
@@ -280,6 +305,7 @@ function closeMenu(){
 
 
 
+
 function openQuizMagic(n){
     if(quiz_data.involved_magic == "none"){
         selected_magic = n;
@@ -289,12 +315,35 @@ function openQuizMagic(n){
         magic_back.style.display = 'block';
     }
     else{
-        popTitling("魔法は追加できません");
-        popTexting("1度謎を閉じてから再度開けて魔法をかけてください");
+        popTitling("技は追加できません");
+        popTexting("1度謎を閉じてから再度開けて技をかけてください");
 
         openPop();
     }
 }
+
+
+
+
+function openColorMagic(){
+    const open_color_back = document.getElementById("open_color_back");
+    if(open_color_back.style.display != 'block'){
+        document.querySelector(".color_menu").classList.toggle('open');
+        open_color_back.style.display = 'block';
+        console.log("openColorMagic")
+    }
+}
+
+function closeColorMagic(){
+    document.querySelector(".color_menu").classList.toggle('open');
+    const open_color_back = document.getElementById("open_color_back");
+    open_color_back.style.display = 'none';
+    console.log("openColorMagic")
+}
+
+
+
+
 
 
 
@@ -334,18 +383,13 @@ function successQuizMagic(){
     const quiz_sheet = document.getElementById("Q_sheet");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
     quiz_image.src = quiz_data.magics[quiz_data.involved_magic].image;
-    
-    
-    
+
 
 
     popTitling("成功！");
     popTexting("謎が変化した");
     
     
-    
-    
-
     openPop();
     
 }
@@ -366,5 +410,47 @@ function useMagic(point){
         failedQuizMagic();
     }
 }
+
+
+
+
+function checkLevel(){
+    player_point = player_data.point;
+    player_level = player_data.level;
+    
+    if(player_level<max_level){
+        next_level_point = level_list[player_level+1].needed_point;
+        if(player_point >= next_level_point){
+            player_data.level += 1;
+
+            let pop_tl = "新しい技を覚えた！";
+            let pop_tx = "メニューから技を確認しよう！";
+
+            popTitling(pop_tl);
+            popTexting(pop_tx);
+
+
+            openPop();
+
+            const enableMagic = level_list[player_data.level].enable_magic;
+            const new_magic_icon = document.querySelectorAll("." + enableMagic);
+            new_magic_icon.forEach(icon => {
+                icon.style.display = 'block';
+                console.log("blockにした");
+            });
+        }
+
+
+
+    }
+    
+}
+
+
+
+
+
+
+
 
 

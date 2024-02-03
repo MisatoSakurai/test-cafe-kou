@@ -1,5 +1,6 @@
 body {
     overflow-x: hidden;
+    font-size: 2vh;
 }
 
 
@@ -201,26 +202,27 @@ body {
 
 
 .slide_menu{
-    background-color: white;
+    background-color: #303030;
+    color:white;
     position: fixed;
     top: 0;
     right:0 ;
     width: 20%;
     height: 100%;
     text-align: left;
-    padding-top: 10px;
-    padding-left: 10px;
+    padding-top: 15px;
+    padding-left: 20px;
     list-style-type: none;
     margin: 0;
     z-index:12;
     transform: translateX(100%); 
+    transition: .2s;
 }
 
 
 .slide_menu.active {
   transform: translateX(0);
 }
-
 
 #menu_back {
     background-color: black;
@@ -232,6 +234,34 @@ body {
     height: 100%;
     z-index:11;
 }
+
+
+
+.slide_menu li {
+    margin: 20px 0;
+}
+
+
+#menu_level {
+    font-size: larger;
+}
+
+#menu_point_bar {
+    margin-top:auto;
+    margin-bottom: auto;
+    margin-left: 7px;
+    margin-right:5px;
+    background-color: blue;
+}
+
+#menu_point {
+    margin: 0;
+}
+
+
+
+
+
 
 
 
@@ -253,6 +283,7 @@ body {
     width:50px;
     height: 50px;
     margin-left:10px;
+    z-index: 10;
 }
 
 
@@ -275,6 +306,74 @@ body {
     height: 100%;
     z-index: 9;
 }
+
+
+
+
+
+#open_color_back{
+    background-color: black;
+    opacity: 0%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.color_menu {
+    position: absolute;
+    list-style-type: none;
+    padding-top:60px;
+    padding-left: 0;
+    margin-left: 10px;
+    margin-top: 0;
+    text-align: center;
+    z-index:9;
+    
+}
+
+
+.color_menu li{
+    background-color: blue;
+    width:50px;
+    height: 50px;
+    margin-bottom:10px;
+    margin-left: 0;
+}
+
+.color_menu li{
+    transition: .2s;
+}
+
+
+.color_menu #red{
+    transform: translateY(-60px);
+    background-color: red;
+}
+
+.color_menu #blue{
+    transform: translateY(-120px);
+}
+
+.color_menu #yellow{
+    transform: translateY(-180px);
+    background-color: yellow;
+}
+
+
+.color_menu.open #red{
+    transform: translateY(0); 
+}
+.color_menu.open #blue{
+    transform: translateY(0); 
+}
+.color_menu.open #yellow{
+    transform: translateY(0); 
+}
+
+
 
 
 
@@ -305,9 +404,4 @@ body {
     width: 100%;
     height: 100%;
 }
-
-
-
-210:297
-
 
