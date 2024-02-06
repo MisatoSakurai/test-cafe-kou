@@ -1,7 +1,98 @@
 body {
     overflow-x: hidden;
     font-size: 2vh;
+    font-family: 'M PLUS 2', sans-serif;
 }
+
+
+
+
+.text_log {
+    background-color: black;
+    position: fixed;
+    display: flex;
+    left: 20%;
+    top: 75%;
+    width: 60%;
+    height: 22%;
+    text-align: center;
+    border: 4px solid #f0f0f0;
+    border-radius: 20px;
+}
+
+
+.text_log p {
+    color: white;
+}
+
+.text_log_sentence {
+    position: relative;
+    text-align: left;
+    left:3%;
+    margin-right: 3%;
+    
+}
+
+
+
+.text_log_speaker {
+    width:fit-content;
+}
+
+
+#gene_text_log {
+    z-index: 12;
+}
+
+
+
+
+
+.text_log_next_button {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    margin-right:auto;
+    margin-left:auto;
+    bottom:3%;
+}
+
+
+
+
+
+
+#story_sogen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: darkseagreen;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #Q_sheet{
@@ -46,30 +137,6 @@ body {
 }
 
 
-
-.text_log {
-    background-color: black;
-    position: fixed;
-    left: 20%;
-    top: 75%;
-    width: 60%;
-    height: 22%;
-    text-align: center;
-    border: 4px solid #f0f0f0;
-    border-radius: 20px;
-}
-
-
-.text_log p {
-    color: white;
-}
-
-.text_log_sentence {
-    position: absolute;
-    text-align: left;
-    left:3%
-    
-}
 
 
 .answer_box{
@@ -128,7 +195,7 @@ body {
 }
 
 
-#Q_back{
+#QB_back{
     background-color: black;
     opacity: 30%;
     position: fixed;
@@ -137,6 +204,34 @@ body {
     width: 100%;
     height: 100%;
 }
+
+
+
+#board_content{
+    position: relative;
+    width : auto;
+    aspect-ratio:297/210;
+    max-height: 80%;
+    max-width:80%;
+    left: 0;
+    right: 0;
+    top:20px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+}
+
+
+
+#board_sheet {
+    position: fixed;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 100%;
+    text-align: center;
+}
+
 
 
 
@@ -169,7 +264,7 @@ body {
 }
 
 
-#stage1{
+#prairie{
     background-color: aquamarine;
 }
 
@@ -188,7 +283,7 @@ body {
 
 
 
-#menuButton {
+#menu_button {
     position: absolute;
     background-color: blue;
     width:10%;
@@ -290,7 +385,7 @@ body {
 }
 
 
-#quiz_magic_canvas {
+.judge_canvas {
     position:absolute;
     height: 100%;
     width: 100%;
@@ -299,15 +394,16 @@ body {
     
 }
 
-#quiz_magic_back {
-    background-color: black;
-    opacity: 30%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+
+
+
+
+#magic_canvas{
+    position:absolute;
     height: 100%;
-    z-index: 9;
+    width: 100%;
+    top:0;
+    left:0;
 }
 
 
