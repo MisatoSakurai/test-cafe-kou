@@ -1,5 +1,147 @@
-.Q{
-    background-color: bisque;
+body {
+    overflow-x: hidden;
+    font-size: 20px;
+    font-family: 'M PLUS 2', sans-serif;
+}
+
+
+h1 {
+    font-size: 50px;
+}
+
+
+#title_sheet {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: aliceblue;
+}
+
+#title_text_and_buttons {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.title_button {
+    width:20% ;
+    max-width: 200px;
+    display: block;
+    margin: 20px auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.text_log {
+    background-color: black;
+    position: fixed;
+    display: flex;
+    left: 20%;
+    top: 75%;
+    width: 60%;
+    height: 22%;
+    text-align: center;
+    border: 4px solid #f0f0f0;
+    border-radius: 20px;
+}
+
+
+.text_log p {
+    color: white;
+}
+
+.text_log_sentence {
+    position: relative;
+    text-align: left;
+    left:3%;
+    margin-right: 3%;
+    
+}
+
+
+
+.text_log_speaker {
+    width:fit-content;
+}
+
+
+#gene_text_log {
+    z-index: 12;
+}
+
+
+
+
+
+.text_log_next_button {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    margin-right:auto;
+    margin-left:auto;
+    bottom:3%;
+}
+
+
+
+
+
+
+#story_sogen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: url('images/background/草原.jpg');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Q_sheet{
+    /*background-color: bisque;*/
     position: fixed;
     top: 0;
     left: 10%;
@@ -7,35 +149,514 @@
     height: 100%;
     text-align: center;
 }
-.checkBotton{
-    position: absolute;
-    bottom: 15%;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto ;
+
+
+.quiz_title{
+    top:5%;
 }
-.closeBotton{
-    position: absolute;
-    bottom: 5%;
+
+
+.quiz_content{
+    position: relative;
+    width : auto;
+    aspect-ratio:297/210;
+    max-height: 60%;
+    max-width:80%;
     left: 0;
     right: 0;
+    top:20px;
     margin-left: auto;
     margin-right: auto;
+    z-index: 10;
 }
-.textBox{
+
+
+
+
+.quiz_image{
+    position:absolute;
+    width: 100%; /* 画像を親要素に合わせる */
+    height: 100%; /* 画像を親要素に合わせる */
+    left:0;
+    top:0;
+}
+
+
+
+
+.answer_box{
     position: absolute;
-    bottom: 25%;
-    left: 0;
-    right: 0;
+    top: 40%;
+    left: 10%;
+    right: 10%;
+    padding: 3px;
+    margin-left: auto;
+    margin-right: auto ;
+    background-color: black;
+    color: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 3px;
+}
+
+
+.checkButton{
+    position: absolute;
+    width:20%;
+    max-width: 100px;
+    bottom: 5%;
+    right: 20%;
     margin-left: auto;
     margin-right: auto ;
 }
 
-.enemy_info{
+
+.hintButton{
+    position: absolute;
+    width:20%;
+    max-width: 100px;
+    bottom: 5%;
+    left: 20%;
+    margin-left: auto;
+    margin-right: auto ;
+}
+
+.closeButton{
+    position: absolute;
+    width:20%;
+    max-width: 100px;
+    top: 5px;
+    right: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.closeButton,.checkButton,.hintButton {
+    background-color: black;
+    border: 2px solid #f0f0f0;
+    border-radius: 5px;
+    color :white;
+}
+
+
+#QB_back{
+    background-color: black;
+    opacity: 30%;
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#board_content{
+    position: relative;
+    width : auto;
+    aspect-ratio:297/210;
+    max-height: 80%;
+    max-width:80%;
+    left: 0;
+    right: 0;
+    top:20px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+}
+
+#board_image {
+    position:absolute;
+    width: 100%; /* 画像を親要素に合わせる */
+    height: 100%; /* 画像を親要素に合わせる */
+    left:0;
+    top:0;
+}
+
+
+
+#board_sheet {
+    position: fixed;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 100%;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.stage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+
+#prairie{
+    background-image: url('images/background/草原-俯瞰図.png');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: top;
+}
+
+
+.monster_icon {
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
+#board_icon{
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+    
+}
+
+
+
+#button_move_to_rocky {
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
+
+
+
+
+#quiz_icons{
+    display: flex;
+    justify-content: space-between;
+    width:70%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+}
+}
+
+
+.selectQ{
+    width:50px;
+    height:50px;
+    background-color: gray;
+    
+}
+
+
+
+
+
+
+
+
+
+#menu_button {
+    position: absolute;
+    background-color: blue;
+    width:10%;
+    height:50px;
+    max-width: 50px;
+    top: 10px;
+    right: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+}
+
+
+.slide_menu{
+    background-color: #303030;
+    color:white;
+    position: fixed;
+    top: 0;
+    right:0 ;
+    width: 20%;
+    height: 100%;
+    text-align: left;
+    padding-top: 15px;
+    padding-left: 20px;
+    list-style-type: none;
+    margin: 0;
+    z-index:12;
+    transform: translateX(100%); 
+    transition: .2s;
+}
+
+
+.slide_menu.active {
+  transform: translateX(0);
+}
+
+#menu_back {
+    background-color: black;
+    opacity: 30%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index:11;
+}
+
+
+
+.slide_menu li {
+    margin: 20px 0;
+}
+
+
+#menu_level {
+    font-size: larger;
+}
+
+#menu_point_bar {
+    margin-top:auto;
+    margin-bottom: auto;
+    margin-left: 7px;
+    margin-right:5px;
+    background-color: blue;
+}
+
+#menu_point {
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#magics {
+    position: fixed;
+    display: flex;
+    top:0;
+    left:0;
+    z-index: 12;
+    padding: 10px 0;
+}
+
+.magic_icon {
+    background-color: white;
+    width:50px;
+    height: 50px;
+    margin-left:10px;
+    z-index: 10;
+    border: 2px solid rgba(0,0,0,0);
+    transition: .2s;
+}
+
+
+.judge_canvas {
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+    
+}
+
+
+
+
+
+#magic_canvas{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+}
+
+
+
+
+#open_color_back{
+    background-color: black;
+    opacity: 0%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+.color_menu {
+    position: absolute;
+    list-style-type: none;
+    padding-top:64px;
+    padding-left: 0;
+    margin-left: 10px;
+    margin-top: 0;
+    text-align: center;
+    z-index:9;
+    
+}
+
+
+.color_menu li{
+    background-color: blue;
+    width:50px;
+    height: 50px;
+    margin-bottom:10px;
+    margin-left: 0;
+}
+
+.color_menu li{
+    transition: .2s;
+    border: 2px solid rgba(255,255,255,0);
+}
+
+
+.color_menu .red{
+    transform: translateY(-64px);
+    background-color: red;
+}
+
+.color_menu .blue{
+    transform: translateY(-128px);
+}
+
+.color_menu .yellow{
+    transform: translateY(-192px);
+    background-color: yellow;
+}
+
+
+.color_menu.open .red{
+    transform: translateY(0); 
+}
+.color_menu.open .blue{
+    transform: translateY(0); 
+}
+.color_menu.open .yellow{
+    transform: translateY(0); 
+}
+
+
+
+
+
+
+
+#pop{
+    background-color: #2b2b2b;
+    position: fixed;
+    top: 35%;
+    left: 25%;
+    width: 50%;
+    height: 30%;
+    text-align: center;
+    margin: auto;
+}
+
+#pop p {
+    color:white;
+}
+
+
+#pop_back {
+    background-color: black;
+    opacity: 30%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+/*ここから所有格さん*/
+
+
+#battle_magic{
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    right: 50%;
+    width: 50%;
+    height: 30%;
+    color: white;
+}
+
+
+
+.enemy_info{
+    position: fixed;
+    top: 5%;
+    left: 5%;
     width: 20%;
     height: 25%;
     background-color: black;
@@ -67,33 +688,6 @@
     background-color: black;
 }
 
-#stage1{
-    background-color: aquamarine;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-#battle_magic{
-    background-color: black;
-    position: fixed;
-    bottom: 0;
-    right: 50%;
-    width: 50%;
-    height: 30%;
-    color: white;
-}
-
-#Q1st{
-    background-color: antiquewhite;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 
 #B1{
     background-color: white;
