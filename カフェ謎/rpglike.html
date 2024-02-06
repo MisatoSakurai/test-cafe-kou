@@ -12,28 +12,29 @@
             <p onclick="openQ('Q3')" class="selectQ">Q3</p>
             <p onclick="openQ('Q4')" class="selectQ">Q4</p>
             <p onclick="openQ('Q5')" class="selectQ">Q5</p>
-            <p onclick="openBattle('B1')" class="selectB">BOSS1</p>
+            <p onclick="openBattle('B1')" class="selectB" id="selectB1">BOSS1</p>
+            <p onclick="openBattle('B2')" class="selectB" id="selectB2">BOSS2</p>
         </div>
-        <div id="Q1st" style="display:none">
-            <div id="Q1" style="display:none" class="Q">
+        <div id="Q1st" style="display: none">
+            <div id="Q1" style="display: none" class="Q">
                 <p>謎一</p>
                 <input type="text" class="textBox">
                 <h5 onclick="checkA('Q1')" class="checkBotton">送信</h5>
                 <h5 onclick="closeQ('Q1')" class="closeBotton">閉じる</h5>
             </div>
-            <div id="Q2" style="display:none" class="Q">
+            <div id="Q2" style="display: none" class="Q">
                 <p>謎二</p>
                 <input type="text" class="textBox">
                 <h5 onclick="checkA('Q2')" class="checkBotton">送信</h5>
                 <h5 onclick="closeQ('Q2')" class="closeBotton">閉じる</h5>
             </div>
-            <div id="Q3" style="display:none" class="Q">
+            <div id="Q3" style="display: none" class="Q">
                 <p>謎三</p>
                 <input type="text" class="textBox">
                 <h5 onclick="checkA('Q3')" class="checkBotton">送信</h5>
                 <h5 onclick="closeQ('Q3')" class="closeBotton">閉じる</h5>
             </div>
-            <div id="Q4" style="display:none" class="Q">
+            <div id="Q4" style="display: none" class="Q">
                 <p>謎四</p>
                 <input type="text" class="textBox">
                 <h5 onclick="checkA('Q4')" class="checkBotton">送信</h5>
@@ -44,6 +45,82 @@
                 <input type="text" class="textBox">
                 <h5 onclick="checkA('Q5')" class="checkBotton">送信</h5>
                 <h5 onclick="closeQ('Q5')" class="closeBotton">閉じる</h5>
+            </div>
+        </div>
+        <div id="B1" class="battle" style="display: none" onclick="fail(this.id)">
+            <div class="enemy_info">
+                <div class="enemy_name" id="B1_name" onclick="changeName('B1')">スライム</div>
+                <div class="enemy_status">
+                    <ul style="list-style-type: none;">
+                        <li>Lv:5</li>
+                        <li>HP:100</li>
+                        <li>ATK:10</li>
+                        <li>DEF:30</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="monster" id="monster1" onclick="changeColor('monster1')">ここにモンスター</p>
+            <div class="command">
+                <p onclick="openMagic()">魔法</p>
+                <p onclick="closeBattle('B1')">逃げる</p>
+            </div>
+        </div>
+        <div id="B2" class="battle" style="display: none" onclick="fail(this.id)">
+            <div class="enemy_info">
+                <div class="enemy_name" id="B2_name" onclick="changeName('B2')">ガーゴイル</div>
+                <div class="enemy_status">
+                    <ul style="list-style-type: none;">
+                        <li>Lv:10</li>
+                        <li>HP:300</li>
+                        <li>ATK:40</li>
+                        <li>DEF:60</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="monster" id="monster2" onclick="changeColor('monster2')">ここにモンスター</p>
+            <div class="command">
+                <p onclick="openMagic()">魔法</p>
+                <p onclick="closeBattle('B2')">逃げる</p>
+            </div>
+        </div>
+        <div id="battle_magic" class="battle" style="display: none;">
+            <p id="magic1" onclick="selectMagic(1)">magic1</p>
+            <div id="magic1_explain" class="explain" style="display: none;">
+                <p>色を変えます</p>
+                <p onclick="choiceMagic1()">使う</p>
+                <p onclick="closeExplain(1)">やめる</p>
+                <div id="magic1_colorchoice" style="display: none;">
+                    <p>どの色にする？</p>
+                    <p onclick="useMagic('magic1R')">赤</p>
+                    <p onclick="useMagic('magic1G')">緑</p>
+                    <p onclick="useMagic('magic1B')">青</p>
+                    <p onclick="closeChoice()">やめる</p>
+                </div>
+            </div>
+            <p id="magic2" onclick="selectMagic(2)">magic2</p>
+            <div id="magic2_explain" class="explain" style="display: none;">
+                <p>名前を変えます</p>
+                <p onclick="useMagic('magic2')">使う</p>
+                <p onclick="closeExplain(2)">やめる</p>
+            </div>
+            <p id="magic3" onclick="selectMagic(3)">magic3</p>
+            <div id="magic3_explain" class="explain" style="display: none;">
+                <p>切ります</p>
+                <p onclick="useMagic('magic3')">使う</p>
+                <p onclick="closeExplain(3)">やめる</p>
+            </div>
+            <p onclick="closeMagic()">閉じる</p>
+            <div id="using_magic" style="display: none;">
+                <p>どこに使う？</p>
+                <p onclick="stopUsing()">やめる</p>
+                <div id="failed" style="display: none;">
+                    <p>効いていないようだ</p>
+                </div>
+                <div id="victory" style="display: none;">
+                    <p id="runaway" style="display: none;">逃げだした！<br>経験値をｘ手に入れた！</p>
+                    <p id="fall" style="display: none;">落ちていった！<br>経験値をｘ手に入れた！</p>
+                    <p onclick="finishBattle()">確認</p>
+                </div>
             </div>
         </div>
     </body>

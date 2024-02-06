@@ -31,6 +31,42 @@
     margin-left: auto;
     margin-right: auto ;
 }
+
+.enemy_info{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 25%;
+    background-color: black;
+    color: white;
+}
+
+.monster{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    color: black;
+}
+
+.command{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color: black;
+    color: white;
+}
+
+.explain{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
 #stage1{
     background-color: aquamarine;
     position: fixed;
@@ -39,6 +75,17 @@
     width: 100%;
     height: 100%;
 }
+
+#battle_magic{
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    right: 50%;
+    width: 50%;
+    height: 30%;
+    color: white;
+}
+
 #Q1st{
     background-color: antiquewhite;
     position: fixed;
@@ -46,4 +93,143 @@
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+#B1{
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#B2{
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#magic1_colorchoice{
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#using_magic{
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#victory{
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes tremble{
+    10%{
+        transform: translateX(-1px);
+        transform: -webkit-translateX(-1px);
+        transform: -moz-translateX(-1px);
+        transform: -ms-translateX(-1px);
+        transform: -o-translateX(-1px);
+    }
+    20%{
+        transform: translateX(2px);
+        transform: -webkit-translateX(2px);
+        transform: -moz-translateX(2px);
+        transform: -ms-translateX(2px);
+        transform: -o-translateX(2px);
+    }
+    30%{
+        transform: translateX(-2px);
+        transform: -webkit-translateX(-2px);
+        transform: -moz-translateX(-2px);
+        transform: -ms-translateX(-2px);
+        transform: -o-translateX(-2px);
+    }
+    40%{
+        transform: translateX(3px);
+        transform: -webkit-translateX(3px);
+        transform: -moz-translateX(3px);
+        transform: -ms-translateX(3px);
+        transform: -o-translateX(3px);
+    }
+    50%{
+        transform: translateX(-3px);
+        transform: -webkit-translateX(-3px);
+        transform: -moz-translateX(-3px);
+        transform: -ms-translateX(-3px);
+        transform: -o-translateX(-3px);
+    }
+    60%{
+        transform: translateX(2px);
+        transform: -webkit-translateX(2px);
+        transform: -moz-translateX(2px);
+        transform: -ms-translateX(2px);
+        transform: -o-translateX(2px);
+    }
+    70%{
+        transform: translateX(-2px);
+        transform: -webkit-translateX(-2px);
+        transform: -moz-translateX(-2px);
+        transform: -ms-translateX(-2px);
+        transform: -o-translateX(-2px);
+    }
+    80%{
+        transform: translateX(1px);
+        transform: -webkit-translateX(1px);
+        transform: -moz-translateX(1px);
+        transform: -ms-translateX(1px);
+        transform: -o-translateX(1px);
+    }
+    90%{
+        transform: translateX(-1px);
+        transform: -webkit-translateX(-1px);
+        transform: -moz-translateX(-1px);
+        transform: -ms-translateX(-1px);
+        transform: -o-translateX(-1px);
+    }
+    100%{
+        transform: translateX(0px);
+        transform: -webkit-translateX(0px);
+        transform: -moz-translateX(0px);
+        transform: -ms-translateX(0px);
+        transform: -o-translateX(0px);
+    }
+}
+
+@keyframes runaway{
+    0%{
+    }
+    100%{
+        transform: translateX(1000px);
+        transform: -webkit-translateX(1000px);
+        transform: -moz-translateX(1000px);
+        transform: -ms-translateX(1000px);
+        transform: -0-translateX(1000px);
+    }
+}
+
+@keyframes fall{
+    0%{
+    }
+    100%{
+        transform: translateY(1000px);
+        transform: -webkit-translateY(1000px);
+        transform: -moz-translateY(1000px);
+        transform: -ms-translateY(1000px);
+        transform: -o-translateY(1000px);
+    }
 }
