@@ -4,47 +4,136 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="rpglike.css" />
         <script src="rpglike.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@300&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div id="stage1">
-            <p onclick="openQ('Q1')" class="selectQ">Q1</p>
-            <p onclick="openQ('Q2')" class="selectQ">Q2</p>
-            <p onclick="openQ('Q3')" class="selectQ">Q3</p>
-            <p onclick="openQ('Q4')" class="selectQ">Q4</p>
-            <p onclick="openQ('Q5')" class="selectQ">Q5</p>
-            <p onclick="openBattle('B1')" class="selectB">BOSS1</p>
+        <div id="title_sheet" style="display:block">
+            <h1 id="title">title</h1>
+            <p onclick="startGame()" id="start_button">はじめる</p>
+            <p onclick="quitGame()" id="quit_button">やめる</p>
+            <p onclick="doTutorial('story'')" id="story_again" style="display: none">もう一度ストーリーを見る</p>
         </div>
-        <div id="Q1st" style="display:none">
-            <div id="Q1" style="display:none" class="Q">
-                <p>謎一</p>
-                <input type="text" class="textBox">
-                <h5 onclick="checkA('Q1')" class="checkBotton">送信</h5>
-                <h5 onclick="closeQ('Q1')" class="closeBotton">閉じる</h5>
+        <div id="tutorial" style="display:none">
+            <div id="story_sogen" style="display:none"></div>
+            <div id="tutorial_back" style="display:none"></div>
+        </div>
+        
+        
+        
+        <div class="text_log" id="gene_text_log" style="display: none">
+            <p class="text_log_speaker">＊</p>
+            <p class="text_log_sentence">文章が入るところ</p>
+            <img src="images/next_arrow.png" alt="↓" class="text_log_next_button" onclick="displayNextDialog()"> 
+        </div>
+        
+        
+        
+        <div id="map" style="display:none">
+            <div id="menu_button" onclick="openMenu()">
             </div>
-            <div id="Q2" style="display:none" class="Q">
-                <p>謎二</p>
-                <input type="text" class="textBox">
-                <h5 onclick="checkA('Q2')" class="checkBotton">送信</h5>
-                <h5 onclick="closeQ('Q2')" class="closeBotton">閉じる</h5>
+            <ul class="slide_menu">
+                <li id="menu_level">Lv.主人公</li>
+                <li style="display: flex">
+                    <p id="menu_point">pt</p>
+                    <progress value="0" max="100" id="menu_point_bar"></progress>
+                </li>
+                <li id="menu_explain">説明</li>
+                <li id="menu_monster">図鑑</li>
+                <li id="menu_magic_list">技一覧</li>
+                <li id="menu_map">マップ</li>
+                <li id="menu_title">タイトル</li>
+            </ul>
+            <div id="menu_back" style="display:none" onclick="closeMenu()">
             </div>
-            <div id="Q3" style="display:none" class="Q">
-                <p>謎三</p>
-                <input type="text" class="textBox">
-                <h5 onclick="checkA('Q3')" class="checkBotton">送信</h5>
-                <h5 onclick="closeQ('Q3')" class="closeBotton">閉じる</h5>
+            <div id="prairie" class="stage">
+                <p onclick="openQ('Q1')" class="selectQ">Q1</p>
+                <p onclick="openQ('Q2')" class="selectQ">Q2</p>
+                <p onclick="openQ('Q3')" class="selectQ">Q3</p>
+                <p onclick="openQ('Q4')" class="selectQ">Q4</p>
+                <p onclick="openQ('Q5')" class="selectQ">Q5</p>
+                <p onclick="openBoard()" id="boadIcon">看板</p>
+                <p onclick="openBattle('B1')" class="selectB">BOSS1</p>
+                <img src="images/snowman.png" alt="↑" class="move_map_button" onclick="moveMap(2)">
             </div>
-            <div id="Q4" style="display:none" class="Q">
-                <p>謎四</p>
-                <input type="text" class="textBox">
-                <h5 onclick="checkA('Q4')" class="checkBotton">送信</h5>
-                <h5 onclick="closeQ('Q4')" class="closeBotton">閉じる</h5>
+        </div>
+        
+        
+        
+        <div id="QB_back" style="display:none">
+        </div>
+        <div id="Q_sheet" style="display:none">
+            
+            <h2 class="quiz_title">謎のタイトル</h2>
+            <div class="quiz_content">
+                
+                <img src="" alt="謎の画像" class="quiz_image">
+                <div id="quiz_magic_judge_canvas" class="judge_canvas">
+                </div>
             </div>
-            <div id="Q5" style="display:none" class="Q">
-                <p>謎五</p>
-                <input type="text" class="textBox">
-                <h5 onclick="checkA('Q5')" class="checkBotton">送信</h5>
-                <h5 onclick="closeQ('Q5')" class="closeBotton">閉じる</h5>
+            <div class="text_log" id="q_text_log">
+                <p class="text_log_sentence">答えを入力：</p>
+                <input type="text" class="answer_box">
+                <p onclick="hint()" class="hintButton">ヒント</p>
+                <p onclick="checkA()" class="checkButton">送信</p>
             </div>
+            <p onclick="closeQ()" class="closeButton">▷exit</p>
+        </div>
+        
+        
+        <div id="board_sheet" style="display: none">
+            <h2 id="board_title">クリア条件</h2>
+            <div id="board_content">
+                <img src="" alt="クリア条件の画像" id="board_image">
+                <div id="board_magic_judge_canvas" class="judge_canvas">
+                </div>
+            </div>
+            <p onclick="closeBoard()" class="closeButton">▷exit</p>
+            
+        </div>
+        
+    
+        
+        <div id="open_color_back" style="display:none" onclick="closeColorMagic()">
+        </div>
+        
+        <div id="magic_canvas" style="display: none">
+        </div>
+        <script>
+            document.getElementById("magic_canvas").addEventListener("click", function(e) {
+                useMagic(e);
+            });
+        </script>
+        
+        
+        <div id="magics" style="display:none">
+            <div class="change_color magic_icon" onclick="openColorMagic()" style="display:none">
+                <p>色変化</p>
+            </div>
+            <ul class="color_menu change_color" style="display:none">
+                <li class="red" onclick="openMagic('red')">赤</li>
+                <li class="blue" onclick="openMagic('blue')">青</li>
+                <li class="yellow" onclick="openMagic('yellow')">黄</li>
+            </ul>
+
+            <div class="change_char magic_icon" onclick="openMagic('change_char')" style="display:none">
+                <p>字変化</p>
+            </div>
+            <div class="add_char magic_icon" onclick="openMagic('add_char')" style="display:none">
+                <p>字足</p>
+            </div>
+            <div class="scissors magic_icon" onclick="openMagic('scissors')" style="display:none">
+                <p>ハサミ</p>
+            </div>  
+        </div>
+        
+        
+        <div id="pop_back" style="display:none" onclick="closePop()">      
+        </div>
+        <div id="pop" style="display:none">
+            <p id="pop_title">popタイトル</p>
+            <p id="pop_text">pop文章</p>
         </div>
     </body>
 </html>
