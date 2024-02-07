@@ -22,7 +22,8 @@
         </div>
         
         
-        
+        <div id="text_log_back" style="display:none" onclick="displayNextDialog()">      
+        </div>
         <div class="text_log" id="gene_text_log" style="display: none">
             <p class="text_log_speaker">＊</p>
             <p class="text_log_sentence">文章が入るところ</p>
@@ -41,8 +42,8 @@
                     <progress value="0" max="100" id="menu_point_bar"></progress>
                 </li>
                 <li id="menu_explain">説明</li>
-                <li id="menu_monster">図鑑</li>
-                <li id="menu_magic_list">技一覧</li>
+                <li id="menu_monster" onclick="openBook('monster_book')">図鑑</li>
+                <li id="menu_magic_list" onclick="openBook('magic_book')">技一覧</li>
                 <li id="menu_map">マップ</li>
                 <li id="menu_title" onclick="moveTitle()">タイトル</li>
             </ul>
@@ -57,8 +58,15 @@
                     <p onclick="openQ('Q5')" class="selectQ">Q5</p>
                 </div>
                 <p onclick="openBoard()" id="board_icon">看板</p>
-                <img src="images/mobs/スライム.PNG"onclick="openBattle('B1')" class="monster_icon">
+                <img id='B1_icon' src="images/mobs/スライム.PNG"onclick="openBattle('B1')" class="monster_icon">
                 <img src="images/icons/up_arrow.png" alt="↑" class="move_map_button" id="button_move_to_rocky" onclick="moveMap('rocky')" style="display: none">
+            </div>
+            <div id="rocky" class="stage" style="display: none">
+                <div id="quiz_icons">
+                </div>
+                <img id='B2_icon' src="images/mobs/スライム.PNG"onclick="openBattle('B2')" class="monster_icon">
+                <img src="images/icons/up_arrow.png" alt="↑" class="move_map_button" id="button_move_to_castle" onclick="moveMap('castle')" style="display: none">
+                <img src="images/icons/under_arrow.png" alt="↓" class="move_map_button" id="button_back_to_prairie" onclick="moveMap('prairie')">
             </div>
         </div>
         
@@ -95,6 +103,26 @@
             <p onclick="closeBoard()" class="closeButton">▷exit</p>
             
         </div>
+        
+        
+        
+        <div class="book_sheet" id="monster_book" style="display: none">
+            <h2 class="book_title">モンスター図鑑</h2>
+            <div class="book_content">
+                <img src="images/book/モンスター図鑑.png" alt="モンスター" class="book_image">
+            </div>
+            <p onclick="closeBook('monster_book')" class="closeButton">▷exit</p>
+        </div>
+        
+        
+        <div class="book_sheet" id="magic_book" style="display: none">
+            <h2 class="book_title">魔法図鑑</h2>
+            <div class="book_content">
+                <img src="" alt="魔法の説明" class="book_image">
+            </div>
+            <p onclick="closeBook('magic_book')" class="closeButton">▷exit</p>
+        </div>
+        
         
     
         
@@ -136,7 +164,7 @@
         
         <div id="pop_back" style="display:none" onclick="closePop()">      
         </div>
-        <div id="pop" style="display:none">
+        <div id="pop"style="display:none">
             <p id="pop_title">popタイトル</p>
             <p id="pop_text">pop文章</p>
         </div>
@@ -167,7 +195,7 @@
                     </ul>
                 </div>
             </div>
-            <p class="monster" id="monster1" onclick="changeColor('monster1')">ここにモンスター</p>
+            <img src="images/mobs/スライム.PNG" class="monster" id="monster1" onclick="changeColor('monster1')">
             <div class="command">
                 <p onclick="openBattleMagic()">魔法</p>
                 <p onclick="closeBattle('B1')">逃げる</p>

@@ -56,11 +56,12 @@ h1 {
     display: flex;
     left: 20%;
     top: 75%;
-    width: 60%;
-    height: 22%;
+    width: 55%;
+    height: 20%;
     text-align: center;
     border: 4px solid #f0f0f0;
     border-radius: 20px;
+    padding: 10px;
 }
 
 
@@ -71,8 +72,9 @@ h1 {
 .text_log_sentence {
     position: relative;
     text-align: left;
-    left:3%;
-    margin-right: 3%;
+    /*left:3%;
+    margin-right: 3%;*/
+    margin: 0;
     
 }
 
@@ -80,6 +82,8 @@ h1 {
 
 .text_log_speaker {
     width:fit-content;
+    margin: 0;
+    margin-right: 5px;
 }
 
 
@@ -100,6 +104,26 @@ h1 {
     margin-left:auto;
     bottom:3%;
 }
+
+
+
+
+
+#text_log_back {
+    background-color: blue;
+    opacity: 0%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+
+
+
+
 
 
 
@@ -304,6 +328,61 @@ h1 {
 
 
 
+.book_content{
+    position: relative;
+    width : auto;
+    aspect-ratio:297/210;
+    max-height: 80%;
+    left: 0;
+    right: 0;
+    top:20px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+    background-color: antiquewhite;
+}
+
+.book_image {
+    position:absolute;
+    width: 100%; /* 画像を親要素に合わせる */
+    height: 100%; /* 画像を親要素に合わせる */
+    left:0;
+    top:0;
+}
+
+
+
+
+.book_image_two {
+    
+    width:40%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
+
+.book_sheet {
+    position: fixed;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 100%;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -368,6 +447,19 @@ h1 {
     height: auto;
     position: absolute;
     top: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
+
+#button_back_to_prairie {
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    bottom: 10%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
     -webkit- transform: translateY(-50%) translateX(-50%);
@@ -616,11 +708,14 @@ h1 {
     height: 30%;
     text-align: center;
     margin: auto;
+    padding: 10px;
+    
 }
 
 #pop p {
     color:white;
 }
+
 
 
 #pop_back {
@@ -658,16 +753,38 @@ h1 {
     top: 5%;
     left: 5%;
     width: 20%;
-    height: 25%;
+    height: fit-content;
     background-color: black;
     color: white;
+    padding: 10px;
+    border: 4px solid #000000;
+    border-radius: 10px;
 }
+
+
+
+.enemy_name {
+    
+    border-bottom: 2px solid #f0f0f0;
+}
+
+
+.enemy_status ul {
+    padding-left: 0;
+    margin: 10px 0;
+}
+
+
 
 .monster{
     position: absolute;
-    top: 40%;
+    width:20%;
+    max-width: 200px;
+    height: auto;
+    top: 55%;
     left: 50%;
-    color: black;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
 }
 
 .command{
@@ -690,7 +807,9 @@ h1 {
 
 
 #B1{
-    background-color: white;
+    background-image: url('images/background/草原.jpg');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -699,7 +818,9 @@ h1 {
 }
 
 #B2{
-    background-color: white;
+    background-image: url('images/background/草原.jpg');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: center;
     position: fixed;
     top: 0;
     left: 0;
