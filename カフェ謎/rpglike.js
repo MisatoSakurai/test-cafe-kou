@@ -16,6 +16,7 @@ const status = Object.freeze({
     MAP: 'map',
     QUIZ: 'quiz',
     BOARD: 'board',
+    BOOK: 'monster_book',
     BATTLE: 'battle'
 });
 //存在するプレイヤーの状況を管理
@@ -75,7 +76,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/prairie/寿司-1.png",
                 answer:"カイロ",
-                hint:"3つのイラストはとある食べ物を表しています。そして、真ん中のイラストには海苔が巻かれているようです。",
+                hint:"3つのイラストはとある食べ物を表しています。<br>そして、真ん中のイラストには海苔が巻かれているようです。",
             },
             [magicType.YELLOW]:{
                 image:"images/quiz/prairie/寿司_色変え-1.png",
@@ -267,10 +268,9 @@ const tackle_quiz_tutorial_talk_list = [
 
 
 
-
 let tutorials = {
     [tutorialType.STORY]:{
-        finish:true,
+        finish:false,
         talk:story_tutorial_talk_list
     },
     [tutorialType.OPENQUIZ]:{
@@ -291,11 +291,46 @@ let tutorials = {
 
 
 
+const log_name = Object.freeze({
+    CANTQUIT:"cannot_quit_game",
+    WINMONSTER:"win_B1"
+});
+
+
+let log_list =  {
+    [log_name.CANTQUIT]:[[speaker.N,"ERROR<br>ゲームをやめることができない"]],
+    [log_name.WINMONSTER]:[[speaker.N,"次のステージへ進めるようになった！"]]
+    
+ 
+}
+
+
 let current_dialog_num = 0;
 //text_log用の
 
 let current_tutorial = "";
 //今やってるチュートリアル
+
+
+
+
+let monster_list = {
+    'B1':{
+        point:10,
+        finish:false
+    },
+    'B2':{
+        point:10,
+        finish:false
+    }
+}
+
+
+
+
+
+
+
 
 
 
@@ -367,6 +402,10 @@ function quitGame(){
         popTexting("");
         popTitling("ERROR");
         openPop();
+        
+        /*current_dialog_num = -1;
+        current_dialog_list = log_list[log_name.CANTQUIT];
+        displayNextDialog();*/
     }
 }
 
@@ -428,23 +467,24 @@ function storyTutorial(){
     tutorial_page = document.getElementById("tutorial");
     /*map = document.getElementById("map");
     map.style.display = "block";*/
-    text_log = document.getElementById("gene_text_log");
     
     
     if (!tutorials[tutorialType.STORY].finish){
         
-        text_log.style.display = "flex";
+        openGeneTextLog()
         tutorial_page.style.display="block";
         story_sogen = document.getElementById("story_sogen");
         story_sogen.style.display = "block";
         
         current_tutorial = tutorialType.STORY;
         current_dialog_num = -1;
+        current_dialog_list = tutorials[current_tutorial].talk;
         displayNextDialog();
     }
     else{
         tutorial_page.style.display="none";
-        text_log.style.display = 'none';
+        closeGeneTextLog()
+        current_tutorial ="";
         startGame();
     }
     
@@ -455,13 +495,29 @@ function storyTutorial(){
 
 
 
+function openGeneTextLog(){
+    text_log = document.getElementById("gene_text_log");
+    text_log.style.display = "flex";
+    text_log_back = document.getElementById("text_log_back");
+    text_log_back.style.display = "block";
+}
+
+function closeGeneTextLog(){
+    text_log = document.getElementById("gene_text_log");
+    text_log.style.display = "none";
+    text_log_back = document.getElementById("text_log_back");
+    text_log_back.style.display = "none";
+}
+
+
 
 
 function displayNextDialog(){
-    current_dialog_list = tutorials[current_tutorial].talk;
+    openGeneTextLog();
     text_log = document.getElementById("gene_text_log");
     text_log_speaker = text_log.querySelector(".text_log_speaker");
     text_log_sentence = text_log.querySelector(".text_log_sentence");
+    console.log(current_dialog_list);
     if (current_dialog_num < current_dialog_list.length-1){
         
         current_dialog_num += 1;
@@ -487,9 +543,12 @@ function displayNextDialog(){
         }
     }
     else{
-        tutorials[current_tutorial].finish = true;
-        document.getElementById("gene_text_log").style.display = 'none';
-        console.log("noneにした");
+        current_dialog_num = -1;
+        current_dialog_list =[];
+        if (current_tutorial != "") {
+            tutorials[current_tutorial].finish = true;
+        }
+        closeGeneTextLog();
         if(current_tutorial == tutorialType.STORY){
             storyTutorial();
         }
@@ -1079,10 +1138,32 @@ function closeBoard(){
 
 
 
-
-
-function moveMap(n){
+function openBook(n){
+    const book_back = document.getElementById("QB_back");
+    console.log(n);
+    const book_sheet = document.getElementById(n);
+    console.log(book_sheet);
+    const book_image = book_sheet.querySelector(".book_content .book_image");
+    const book_title = book_sheet.querySelector(".book_title");
     
+    now_status = status.BOOK;
+    book_sheet.style.display = 'block';
+    book_back.style.display = 'block';
+    const map = document.getElementById("map");
+    map.style.filter = "blur(10px)";
+}
+
+
+
+
+function closeBook(n){
+    const book_back = document.getElementById("QB_back");
+    const book_sheet = document.getElementById(n);
+    now_status = status.MAP;
+    book_sheet.style.display = 'none';
+    book_back.style.display = 'none';
+    const map = document.getElementById("map");
+    map.style.filter = "none";
 }
 
 
@@ -1094,13 +1175,50 @@ function moveMap(n){
 
 
 
+function moveMap(n){
+    current_stage = document.getElementById(now_place);
+    next_stage = document.getElementById(n);
+    current_stage.style.display = 'none';
+    next_stage.style.display = 'block'
+    
+    now_place = n;
+    
+}
 
 
 
 
 
 
-//ここから所有格さん。mergeやばそう
+
+
+
+function removeMapMonster(n){
+    if(n=='B1'){
+        b1_icon = document.getElementById("B1_icon");
+        b1_icon.style.display= 'none';
+        move_button = document.getElementById("button_move_to_rocky");
+        move_button.style.display = 'block';
+    }
+    if(n=="B2") {
+        b2_icon = document.getElementById("B2_icon");
+        b2_icon.style.display= 'none';
+        move_button = document.getElementById("button_move_to_castle");
+        move_button.style.display = 'block';
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+//ここから所有格さん
 
 
 function openBattle(n){
@@ -1166,6 +1284,9 @@ function stopBattleUsing(){
 
 
 
+
+
+
 function changeName(n){
     if(using === 'magic2'){
         if(n ==='B1'){
@@ -1203,12 +1324,11 @@ function changeColor(n){
             monster = document.getElementById('monster1')
             victory = document.getElementById('victory')
             runaway = document.getElementById('runaway')
-            B1 = document.getElementById('selectB1')
             monster.style.color = 'blue'
             monster.style.animation = 'tremble 1s ease-in-out 0s forwards, runaway 0.5s ease-in-out 1s forwards'
             victory.style.display = 'block'
             runaway.style.display = 'block'
-            B1.style.display = 'none'
+            removeMapMonster('B1');
         }
     }
 }
@@ -1221,7 +1341,7 @@ function finishBattle(){
     runaway.style.display = 'none'
     fall.style.display = 'none'
     if((using != 2) && (using != 3)){
-        closeChoice()
+        closeBattleChoice()
     }
     stopBattleUsing()
     closeBattleMagic()
