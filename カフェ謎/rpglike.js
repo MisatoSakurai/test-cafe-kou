@@ -285,7 +285,7 @@ let tutorials = {
     },
     [tutorialType.MAGIC]:{
         finish:true,
-    },
+    }
 }
 //各チュートリアルを終えているかどうか、各チュートリアルの会話list
 
@@ -364,7 +364,9 @@ function quitGame(){
         clearGame();
     }
     else{
-        
+        popTexting("");
+        popTitling("ERROR");
+        openPop();
     }
 }
 
@@ -372,7 +374,22 @@ function quitGame(){
 
 
 function clearGame(){
-    
+    popTexting("クリアの条件を満たした！");
+    popTitling("CLEAR");
+    openPop();
+}
+
+
+
+
+
+function moveTitle(){
+    title_sheet = document.getElementById("title_sheet");
+    map = document.getElementById("map");
+    title_sheet.style.display = 'block';
+    map.style.display = 'none';
+    closeMenu();
+    now_status = status.TITLE;
 }
 
 
@@ -473,7 +490,9 @@ function displayNextDialog(){
         tutorials[current_tutorial].finish = true;
         document.getElementById("gene_text_log").style.display = 'none';
         console.log("noneにした");
-        storyTutorial();
+        if(current_tutorial == tutorialType.STORY){
+            storyTutorial();
+        }
     }
 }
 
