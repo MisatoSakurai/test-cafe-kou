@@ -1,8 +1,51 @@
 body {
     overflow-x: hidden;
-    font-size: 2vh;
+    font-size: 20px;
     font-family: 'M PLUS 2', sans-serif;
 }
+
+
+h1 {
+    font-size: 50px;
+}
+
+
+#title_sheet {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: aliceblue;
+}
+
+#title_text_and_buttons {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.title_button {
+    width:20% ;
+    max-width: 200px;
+    display: block;
+    margin: 20px auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -70,7 +113,9 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-color: darkseagreen;
+    background-image: url('images/background/草原.jpg');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: center;
 }
 
 
@@ -207,6 +252,17 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 #board_content{
     position: relative;
     width : auto;
@@ -219,6 +275,14 @@ body {
     margin-left: auto;
     margin-right: auto;
     z-index: 10;
+}
+
+#board_image {
+    position:absolute;
+    width: 100%; /* 画像を親要素に合わせる */
+    height: 100%; /* 画像を親要素に合わせる */
+    left:0;
+    top:0;
 }
 
 
@@ -265,20 +329,81 @@ body {
 
 
 #prairie{
-    background-color: aquamarine;
+    background-image: url('images/background/草原-俯瞰図.png');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: top;
 }
 
+
+.monster_icon {
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
+#board_icon{
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+    
+}
+
+
+
+#button_move_to_rocky {
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
+
+
+
+
+#quiz_icons{
+    display: flex;
+    justify-content: space-between;
+    width:70%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+}
+}
 
 
 .selectQ{
-    width:10%;
+    width:50px;
     height:50px;
-    max-width: 50px;
-    margin-left: auto;
-    margin-right: auto;
     background-color: gray;
     
 }
+
+
+
+
+
 
 
 
@@ -375,12 +500,12 @@ body {
 }
 
 .magic_icon {
-    background-color: blue;
+    background-color: white;
     width:50px;
     height: 50px;
     margin-left:10px;
     z-index: 10;
-    border: 2px solid rgba(255,255,255,0);
+    border: 2px solid rgba(0,0,0,0);
     transition: .2s;
 }
 
@@ -409,7 +534,6 @@ body {
 
 
 
-
 #open_color_back{
     background-color: black;
     opacity: 0%;
@@ -419,6 +543,10 @@ body {
     width: 100%;
     height: 100%;
 }
+
+
+
+
 
 
 .color_menu {
@@ -505,3 +633,197 @@ body {
     height: 100%;
 }
 
+
+
+
+
+
+/*ここから所有格さん*/
+
+
+#battle_magic{
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    right: 50%;
+    width: 50%;
+    height: 30%;
+    color: white;
+}
+
+
+
+.enemy_info{
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    width: 20%;
+    height: 25%;
+    background-color: black;
+    color: white;
+}
+
+.monster{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    color: black;
+}
+
+.command{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color: black;
+    color: white;
+}
+
+.explain{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+
+#B1{
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#B2{
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#magic1_colorchoice{
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#using_magic{
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#victory{
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes tremble{
+    10%{
+        transform: translateX(-1px);
+        transform: -webkit-translateX(-1px);
+        transform: -moz-translateX(-1px);
+        transform: -ms-translateX(-1px);
+        transform: -o-translateX(-1px);
+    }
+    20%{
+        transform: translateX(2px);
+        transform: -webkit-translateX(2px);
+        transform: -moz-translateX(2px);
+        transform: -ms-translateX(2px);
+        transform: -o-translateX(2px);
+    }
+    30%{
+        transform: translateX(-2px);
+        transform: -webkit-translateX(-2px);
+        transform: -moz-translateX(-2px);
+        transform: -ms-translateX(-2px);
+        transform: -o-translateX(-2px);
+    }
+    40%{
+        transform: translateX(3px);
+        transform: -webkit-translateX(3px);
+        transform: -moz-translateX(3px);
+        transform: -ms-translateX(3px);
+        transform: -o-translateX(3px);
+    }
+    50%{
+        transform: translateX(-3px);
+        transform: -webkit-translateX(-3px);
+        transform: -moz-translateX(-3px);
+        transform: -ms-translateX(-3px);
+        transform: -o-translateX(-3px);
+    }
+    60%{
+        transform: translateX(2px);
+        transform: -webkit-translateX(2px);
+        transform: -moz-translateX(2px);
+        transform: -ms-translateX(2px);
+        transform: -o-translateX(2px);
+    }
+    70%{
+        transform: translateX(-2px);
+        transform: -webkit-translateX(-2px);
+        transform: -moz-translateX(-2px);
+        transform: -ms-translateX(-2px);
+        transform: -o-translateX(-2px);
+    }
+    80%{
+        transform: translateX(1px);
+        transform: -webkit-translateX(1px);
+        transform: -moz-translateX(1px);
+        transform: -ms-translateX(1px);
+        transform: -o-translateX(1px);
+    }
+    90%{
+        transform: translateX(-1px);
+        transform: -webkit-translateX(-1px);
+        transform: -moz-translateX(-1px);
+        transform: -ms-translateX(-1px);
+        transform: -o-translateX(-1px);
+    }
+    100%{
+        transform: translateX(0px);
+        transform: -webkit-translateX(0px);
+        transform: -moz-translateX(0px);
+        transform: -ms-translateX(0px);
+        transform: -o-translateX(0px);
+    }
+}
+
+@keyframes runaway{
+    0%{
+    }
+    100%{
+        transform: translateX(1000px);
+        transform: -webkit-translateX(1000px);
+        transform: -moz-translateX(1000px);
+        transform: -ms-translateX(1000px);
+        transform: -0-translateX(1000px);
+    }
+}
+
+@keyframes fall{
+    0%{
+    }
+    100%{
+        transform: translateY(1000px);
+        transform: -webkit-translateY(1000px);
+        transform: -moz-translateY(1000px);
+        transform: -ms-translateY(1000px);
+        transform: -o-translateY(1000px);
+    }
+}

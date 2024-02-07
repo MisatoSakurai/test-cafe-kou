@@ -10,10 +10,11 @@
     </head>
     <body>
         <div id="title_sheet" style="display:block">
-            <h1 id="title">title</h1>
-            <p onclick="startGame()" id="start_button">はじめる</p>
-            <p onclick="quitGame()" id="quit_button">やめる</p>
-            <p onclick="doTutorial('story'')" id="story_again" style="display: none">もう一度ストーリーを見る</p>
+            <div id="title_text_and_buttons">
+                <h1 id="title">TITLE</h1>
+                <img src="images/title/スタートボタン-1.png" onclick="startGame()" id="start_button" class="title_button">
+                <img src="images/title/止めるボタン-1.png" onclick="quitGame()" id="quit_button" class="title_button">
+            </div>
         </div>
         <div id="tutorial" style="display:none">
             <div id="story_sogen" style="display:none"></div>
@@ -25,7 +26,7 @@
         <div class="text_log" id="gene_text_log" style="display: none">
             <p class="text_log_speaker">＊</p>
             <p class="text_log_sentence">文章が入るところ</p>
-            <img src="images/next_arrow.png" alt="↓" class="text_log_next_button" onclick="displayNextDialog()"> 
+            <img src="images/icons/under_arrow.png" alt="↓" class="text_log_next_button" onclick="displayNextDialog()"> 
         </div>
         
         
@@ -43,19 +44,21 @@
                 <li id="menu_monster">図鑑</li>
                 <li id="menu_magic_list">技一覧</li>
                 <li id="menu_map">マップ</li>
-                <li id="menu_title">タイトル</li>
+                <li id="menu_title" onclick="moveTitle()">タイトル</li>
             </ul>
             <div id="menu_back" style="display:none" onclick="closeMenu()">
             </div>
             <div id="prairie" class="stage">
-                <p onclick="openQ('Q1')" class="selectQ">Q1</p>
-                <p onclick="openQ('Q2')" class="selectQ">Q2</p>
-                <p onclick="openQ('Q3')" class="selectQ">Q3</p>
-                <p onclick="openQ('Q4')" class="selectQ">Q4</p>
-                <p onclick="openQ('Q5')" class="selectQ">Q5</p>
-                <p onclick="openBoard()" id="boadIcon">看板</p>
-                <p onclick="openBattle('B1')" class="selectB">BOSS1</p>
-                <img src="images/snowman.png" alt="↑" class="move_map_button" onclick="moveMap(2)">
+                <div id="quiz_icons">
+                    <p onclick="openQ('Q1')" class="selectQ">Q1</p>
+                    <p onclick="openQ('Q2')" class="selectQ">Q2</p>
+                    <p onclick="openQ('Q3')" class="selectQ">Q3</p>
+                    <p onclick="openQ('Q4')" class="selectQ">Q4</p>
+                    <p onclick="openQ('Q5')" class="selectQ">Q5</p>
+                </div>
+                <p onclick="openBoard()" id="board_icon">看板</p>
+                <img src="images/mobs/スライム.PNG"onclick="openBattle('B1')" class="monster_icon">
+                <img src="images/icons/up_arrow.png" alt="↑" class="move_map_button" id="button_move_to_rocky" onclick="moveMap('rocky')" style="display: none">
             </div>
         </div>
         
@@ -116,13 +119,15 @@
                 <li class="blue" onclick="openMagic('blue')">青</li>
                 <li class="yellow" onclick="openMagic('yellow')">黄</li>
             </ul>
+            
+            <div class="add_char magic_icon" onclick="openMagic('add_char')" style="display:none">
+                <p>字足</p>
+            </div>
 
             <div class="change_char magic_icon" onclick="openMagic('change_char')" style="display:none">
                 <p>字変化</p>
             </div>
-            <div class="add_char magic_icon" onclick="openMagic('add_char')" style="display:none">
-                <p>字足</p>
-            </div>
+    
             <div class="scissors magic_icon" onclick="openMagic('scissors')" style="display:none">
                 <p>ハサミ</p>
             </div>  
@@ -134,6 +139,100 @@
         <div id="pop" style="display:none">
             <p id="pop_title">popタイトル</p>
             <p id="pop_text">pop文章</p>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--ここから所有格さん-->
+        
+        
+        
+        <div id="B1" class="battle" style="display: none" onclick="fail(this.id)">
+            <div class="enemy_info">
+                <div class="enemy_name" id="B1_name" onclick="changeName('B1')">スライム</div>
+                <div class="enemy_status">
+                    <ul style="list-style-type: none;">
+                        <li>Lv:5</li>
+                        <li>HP:100</li>
+                        <li>ATK:10</li>
+                        <li>DEF:30</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="monster" id="monster1" onclick="changeColor('monster1')">ここにモンスター</p>
+            <div class="command">
+                <p onclick="openBattleMagic()">魔法</p>
+                <p onclick="closeBattle('B1')">逃げる</p>
+            </div>
+        </div>
+        <div id="B2" class="battle" style="display: none" onclick="fail(this.id)">
+            <div class="enemy_info">
+                <div class="enemy_name" id="B2_name" onclick="changeName('B2')">ガーゴイル</div>
+                <div class="enemy_status">
+                    <ul style="list-style-type: none;">
+                        <li>Lv:10</li>
+                        <li>HP:300</li>
+                        <li>ATK:40</li>
+                        <li>DEF:60</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="monster" id="monster2" onclick="changeColor('monster2')">ここにモンスター</p>
+            <div class="command">
+                <p onclick="openBattleMagic()">魔法</p>
+                <p onclick="closeBattle('B2')">逃げる</p>
+            </div>
+        </div>
+        <div id="battle_magic" class="battle" style="display: none;">
+            <p id="magic1" onclick="selectBattleMagic(1)">色変え魔法</p>
+            <p id="magic2" onclick="selectBattleMagic(2)">文字変え魔法</p>
+            <p id="magic3" onclick="selectBattleMagic(3)">文字足し魔法</p>
+            <p id="magic3" onclick="selectBattleMagic(3)">ハサミ魔法</p>
+            <div id="magic1_explain" class="explain" style="display: none;">
+                <p>色を変えます</p>
+                <p onclick="choiceBattleMagic1()">使う</p>
+                <p onclick="closeBattleMagicExplain(1)">やめる</p>
+                <div id="magic1_colorchoice" style="display: none;">
+                    <p>どの色にする？</p>
+                    <p onclick="useBattleMagic('magic1R')">赤</p>
+                    <p onclick="useBattleMagic('magic1G')">緑</p>
+                    <p onclick="useBattleMagic('magic1B')">青</p>
+                    <p onclick="closeBattleChoice()">やめる</p>
+                </div>
+            </div>
+            
+            <div id="magic2_explain" class="explain" style="display: none;">
+                <p>文字を変えます</p>
+                <p onclick="useBattleMagic('magic2')">使う</p>
+                <p onclick="closeBattleMagicExplain(2)">やめる</p>
+            </div>
+        
+            <div id="magic3_explain" class="explain" style="display: none;">
+                <p>切ります</p>
+                <p onclick="useBattleMagic('magic3')">使う</p>
+                <p onclick="closeBattleMagicExplain(3)">やめる</p>
+            </div>
+            <p onclick="closeBattleMagic()">閉じる</p>
+            <div id="using_magic" style="display: none;">
+                <p>どこに使う？</p>
+                <p onclick="stopBattleUsing()">やめる</p>
+                <div id="failed" style="display: none;">
+                    <p>効いていないようだ</p>
+                </div>
+                <div id="victory" style="display: none;">
+                    <p id="runaway" style="display: none;">逃げだした！<br>経験値をｘ手に入れた！</p>
+                    <p id="fall" style="display: none;">落ちていった！<br>経験値をｘ手に入れた！</p>
+                    <p onclick="finishBattle()">確認</p>
+                </div>
+            </div>
         </div>
     </body>
 </html>

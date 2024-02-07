@@ -71,55 +71,22 @@ var quiz_list ={
     "Q1":{
         title:"謎1",
         field:stage.PRAIRIE,
-        //origin_image : "images/pro_quiz_image.png",
         magics:{
             [magicType.NONE]:{
-                image:"images/pro_quiz_image.png",
-                answer:"答え1",
-                hint:"ヒントです1",
+                image:"images/quiz/prairie/寿司-1.png",
+                answer:"カイロ",
+                hint:"3つのイラストはとある食べ物を表しています。そして、真ん中のイラストには海苔が巻かれているようです。",
             },
-            [magicType.RED]:{
-                image:"images/pro_quiz_image.png",
-                answer:"答えred",
-                hint:"ヒントですred",
+            [magicType.YELLOW]:{
+                image:"images/quiz/prairie/寿司_色変え-1.png",
+                answer:"カイゴ",
+                hint:"3つのイラストはとある食べ物を表しています。そして、真ん中のイラストには海苔が巻かれているようです。",
                 place:{
-                    x: 10, y: 10,  // 座標%
-                    w: 50, h: 50   // サイズ%
+                    x: 16, y: 15,  // 座標%
+                    w: 16, h: 5   // サイズ%
                 }
-            },
-            [magicType.ADD_CHAR]:{
-                image:"images/add.png",
-                answer:"答えadd",
-                hint:"ヒントですadd",
-                answered:false,
-                place:{
-                    x: 10, y: 10,  // 座標%
-                    w: 50, h: 50   // サイズ%
-                }
-            },
-            /*
-            "blue":{
-                image:"images/pro_quiz_image.png",
-                answer:"答えblue",
-                hint:"ヒントですblue",
-                point: 10,
-                answered:false,
-                place:{
-                    x: 10, y: 10,  // 座標%
-                    w: 50, h: 50   // サイズ%
-                }
-            },
-            "yellow":{},
-            
-            "change_char":{},
-            "scissors":{}
-            */
-        },
-        /*
-        involved_magic:"none",
-        number_of_quiz:3,
-        answered_time:0,
-        */
+            }
+        }
     },
     "Q2":{
         title:"謎2",
@@ -188,13 +155,13 @@ var quiz_list ={
 const board_data = {
     magics:{
         [magicType.NONE]:{
-            image:"images/snowman.png",
+            image:"images/board/導入看板-1.png",
         },
         [magicType.SCISSORS]:{
-            image:"images/snowman_toketa.png",
+            image:"images/board/導入看板_ハサミ-1.png",
             place:{
-                    x: 10, y: 10,  // 座標%
-                    w: 50, h: 50   // サイズ%
+                    x: 50, y: 23,  // 座標%
+                    w: 6, h: 7   // サイズ%
                 },
         }
     }
@@ -318,7 +285,7 @@ let tutorials = {
     },
     [tutorialType.MAGIC]:{
         finish:true,
-    },
+    }
 }
 //各チュートリアルを終えているかどうか、各チュートリアルの会話list
 
@@ -397,7 +364,9 @@ function quitGame(){
         clearGame();
     }
     else{
-        
+        popTexting("");
+        popTitling("ERROR");
+        openPop();
     }
 }
 
@@ -405,7 +374,22 @@ function quitGame(){
 
 
 function clearGame(){
-    
+    popTexting("クリアの条件を満たした！");
+    popTitling("CLEAR");
+    openPop();
+}
+
+
+
+
+
+function moveTitle(){
+    title_sheet = document.getElementById("title_sheet");
+    map = document.getElementById("map");
+    title_sheet.style.display = 'block';
+    map.style.display = 'none';
+    closeMenu();
+    now_status = status.TITLE;
 }
 
 
@@ -459,8 +443,6 @@ function storyTutorial(){
         displayNextDialog();
     }
     else{
-        story_button = document.getElementById("story_again");
-        story_button.style.display = "block";
         tutorial_page.style.display="none";
         text_log.style.display = 'none';
         startGame();
@@ -508,7 +490,9 @@ function displayNextDialog(){
         tutorials[current_tutorial].finish = true;
         document.getElementById("gene_text_log").style.display = 'none';
         console.log("noneにした");
-        storyTutorial();
+        if(current_tutorial == tutorialType.STORY){
+            storyTutorial();
+        }
     }
 }
 
@@ -635,6 +619,7 @@ function closeQ(){
     
     checkLevel()
 }
+
 
 
 function checkA(){
@@ -828,7 +813,7 @@ function selectMagic(n){
     selected_magic_icon = document.querySelector("."+selected_magic);
     
     if(selected_magic_icon != null){
-        selected_magic_icon.style.border = "2px solid rgba(255,255,255,1)"; 
+        selected_magic_icon.style.border = "2px solid rgba(0,0,0,1)"; 
     }
     
 }
@@ -871,7 +856,6 @@ function openMagic(n) {
         
     }
 }
-
 
 
 
@@ -1101,5 +1085,150 @@ function moveMap(n){
     
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//ここから所有格さん。mergeやばそう
+
+
+function openBattle(n){
+    const battle = document.getElementById(n)
+    battle.style.display = 'block';
+}
+
+function closeBattle(n){
+    const battle = document.getElementById(n)
+    battle.style.display = 'none';
+}
+
+function openBattleMagic(){
+    const magic = document.getElementById('battle_magic')
+    magic.style.display = 'block';
+}
+
+function closeBattleMagic(){
+    const magic = document.getElementById('battle_magic')
+    magic.style.display = 'none';
+}
+
+function selectBattleMagic(n){
+    const magic = document.getElementById("magic" + n + "_explain")
+    magic.style.display = 'block';
+}
+
+function closeBattleMagicExplain(n){
+    const magic = document.getElementById("magic" + n + "_explain")
+    magic.style.display = 'none';
+}
+
+function choiceBattleMagic1(){
+    const magic = document.getElementById('magic1_colorchoice')
+    magic.style.display = 'block';
+}
+
+function closeBattleChoice(){
+    const magic = document.getElementById('magic1_colorchoice')
+    const explain = magic.parentElement
+    magic.style.display = 'none';
+    explain.style.display = 'none';
+}
+
+var using = 0
+
+function useBattleMagic(n){
+    const dialog = document.getElementById('using_magic')
+    dialog.style.display = 'block'
+    using = n
+}
+
+function stopBattleUsing(){
+    const dialog = document.getElementById('using_magic')
+    const explain = document.getElementById(using + '_explain')
+    dialog.style.display = 'none'
+    if ((using === 2) || (using === 3)){
+        explain.style.display = 'none'
+    }
+    using = 0
+}
+
+
+
+
+function changeName(n){
+    if(using === 'magic2'){
+        if(n ==='B1'){
+            document.getElementById('B1_name').textContent = 'ドラゴン';
+        }
+        if(n ==='B2'){
+            document.getElementById('B2_name').textContent = '翼の折れたガーゴイル';
+            monster = document.getElementById('monster2')
+            victory = document.getElementById('victory')
+            runaway = document.getElementById('fall')
+            B2 = document.getElementById('selectB2')
+            monster.style.animation = 'tremble 1s ease-in-out 0s forwards, fall 0.5s ease-in-out 2s forwards'
+            victory.style.display = 'block'
+            runaway.style.display = 'block'
+            B2.style.display = 'none'
+        }
+    }
+}
+
+function changeColor(n){
+    if(using === 'magic1R'){
+        if(n ==='monster1'){
+            monster = document.getElementById('monster1')
+            monster.style.color = 'red'
+        }
+    }
+    if(using === 'magic1G'){
+        if(n ==='monster1'){
+            monster = document.getElementById('monster1')
+            monster.style.color = 'green'
+        }
+    }
+    if(using === 'magic1B'){
+        if(n ==='monster1'){
+            monster = document.getElementById('monster1')
+            victory = document.getElementById('victory')
+            runaway = document.getElementById('runaway')
+            B1 = document.getElementById('selectB1')
+            monster.style.color = 'blue'
+            monster.style.animation = 'tremble 1s ease-in-out 0s forwards, runaway 0.5s ease-in-out 1s forwards'
+            victory.style.display = 'block'
+            runaway.style.display = 'block'
+            B1.style.display = 'none'
+        }
+    }
+}
+
+function finishBattle(){
+    const victory = document.getElementById('victory')
+    const runaway = document.getElementById('runaway')
+    const fall = document.getElementById('fall')
+    victory.style.display = 'none'
+    runaway.style.display = 'none'
+    fall.style.display = 'none'
+    if((using != 2) && (using != 3)){
+        closeChoice()
+    }
+    stopBattleUsing()
+    closeBattleMagic()
+    closeBattle('B1')
+    closeBattle('B2')
+}
+
+//ここまで所有格さん
 
 
