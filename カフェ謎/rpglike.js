@@ -6,7 +6,7 @@ var player_data = {
     level:1,
 }
 
-var max_level = 6;
+var max_level = 4;
 //maxのレベルを保管する
 
 
@@ -57,12 +57,19 @@ let now_place = stage.PRAIRIE;
 
 
 var level_list = {
-    1:{needed_point:0, enable_magic:""},
-    2:{needed_point:1, enable_magic:magicType.CHANGE_COLOR},
-    3:{needed_point:1, enable_magic:magicType.ADD_CHAR},
-    4:{needed_point:1, enable_magic:magicType.CHANGE_CHAR},
-    5:{needed_point:1, enable_magic:magicType.SCISSORS},
-    6:{needed_point:10, enable_magic:magicType.EXTRA}
+    1:{needed_point:0, enable_magic:magicType.ADD_CHAR},
+    2:{needed_point:5, enable_magic:magicType.CHANGE_COLOR},
+    3:{needed_point:50, enable_magic:magicType.CHANGE_CHAR},
+    4:{needed_point:500, enable_magic:magicType.SCISSORS},
+}
+
+
+
+var point_list = {
+    1:5,
+    2:7,
+    3:8,
+    4:8
 }
 
 
@@ -70,7 +77,7 @@ var level_list = {
 
 var quiz_list ={
     "Q1":{
-        title:"謎1",
+        title:"★☆☆",
         field:stage.PRAIRIE,
         magics:{
             [magicType.NONE]:{
@@ -161,7 +168,7 @@ const board_data = {
         [magicType.SCISSORS]:{
             image:"images/board/導入看板_ハサミ-1.png",
             place:{
-                    x: 50, y: 23,  // 座標%
+                    x: 59, y: 16,  // 座標%
                     w: 6, h: 7   // サイズ%
                 },
         }
@@ -214,34 +221,34 @@ const story_tutorial_talk_list = [
     [speaker.P,"「……ここは…一体…？」"],
     [speaker.N,"ゲームを始めようとボタンを押したあなたは気づくと広い草原の中にいました"],
     [speaker.G,"——ようやく目覚めたのですね"],
-    [speaker.N,"突如頭の中に語りかける声が聞こえてきました<br>しかし辺りを見回しても姿は見えませんでした"],
-    [speaker.G,"——これはあなたの頭に直接語りかけているから周りにはいませんよ"],
+    [speaker.N,"突如頭の中に語りかける声が聞こえてきました<br>しかし辺りを見回しても姿は見えません"],
+    [speaker.G,"——周りにはいませんよ<br>これはあなたの頭に直接語りかけていますので"],
     [speaker.P,"「ど、どういうことだ！<br>そんなことはゲームの世界でしか起こらないだろ！」"],
     [speaker.G,"——いやここゲームの世界なんだけど"],
     [speaker.P,"「え…？」"],
     [speaker.N,"ありえない事実にあなたは驚きを隠せませんでした"],
     [speaker.P,"「ゲームの世界にいる…？」"],
     [speaker.G,"——はい、その通りです"],
-    [speaker.P,"「あ、そうなんだ」"],
-    [speaker.N,"あなたは意外とあっさり受け入れることができました"],
-    [speaker.G,"——あなたはどうやらこのゲームの世界に迷いこんでしまったみたいですね"],
+    [speaker.N,"あなたはどうやらこのゲームの世界に迷いこんでしまったみたいです"],
+    ["action",[tutorial_move.SHOWIMG,"tutorial_image","images/board/導入看板-1.png"]],
     [speaker.G,"——このゲームの世界は、ゲームをクリアすることで抜け出せるので、抜け出したいならば看板に書かれたクリア条件を達成してください"],
     [speaker.N,"あなたは目の前に置かれた看板を見ました<br>そこには確かにゲームクリア条件のようなものが書いてありました"],
-    [speaker.P,"「これを達成すればいいということか！<br>頑張るぞ～」"],
+    [speaker.P,"「これを達成すれば元の世界に戻れるということか！<br>頑張るぞ～」"],
     [speaker.G,"——ちょっと待ってください<br>あなたって普通の現代人ですよね？"],
-    [speaker.P,"「確かにそうです」"],
+    [speaker.P,"「ああ、そうです」"],
     [speaker.G,"——しかも謎解きとかいう机に向かってやるような趣味を普段からやられている方ですよね？"],
-    [speaker.P,"「…まあ、確かに」"],
+    [speaker.P,"「…まあ、そうですけど」"],
     [speaker.G,"——あなたのような貧弱な人間には力でモンスターを倒すことはできないと思いますよ"],
     [speaker.P,"「え～そんな～」"],
     [speaker.N,"絶望的な状況にあなたは落胆してしまいました"],
+    ["action",[tutorial_move.HIDEIMG,"tutorial_image"]],
     [speaker.G,"——しかしあなたにも希望はあります<br>それは、”魔法”を使って敵を倒すことです！"],
     [speaker.P,"「魔法…？」"],
-    [speaker.G,"——ゲームの世界に今入り込んだということは、あなたはレベル1の状態ですよね？<br>実はレベルが1つ上がると新たな魔法を使うことができるようになります"],
+    [speaker.G,"——ゲームの世界に今入り込んだあなたはレベル1の状態ですね<br>実はレベルが1つ上がると新たな魔法を使うことができるようになります"],
     [speaker.G,"——魔法をうまく使うことで敵を倒すことができるかもしれません<br>特にあなたのようなひらめきで世界を変えられるような方ならば"],
     [speaker.P,"「そうか、それで得た魔法を使って敵を倒すことはできるかもしれないのか<br>レベルを上げるにはどうしたらいいんだ？」"],
     [speaker.G,"——それはもちろん、あなたの得意な謎解きに正解することで上げることができます"],
-    [speaker.P,"「そうしたら謎を解いてレベルを上げて魔法を手にして敵を倒してクリアしよう！」"],
+    [speaker.P,"「そうしたら謎を解いて早くクリアしよう！」"],
     [speaker.N,"あなたは勇んでゲームを始めることにしたのでした……"]
     
 ]
@@ -261,6 +268,10 @@ const tackle_quiz_tutorial_talk_list = [
     [speaker.N,"——答えがわかったら四角に入力して送信してみましょう<br>わからないときはヒントを活用してくださいね"]
 ]
 
+const clear_talk_list = [
+    [speaker.N,"——問題が出てきましたね、これを解き明かしていくことでレベルが上がります"],
+    [speaker.N,"——答えがわかったら四角に入力して送信してみましょう<br>わからないときはヒントを活用してくださいね"]
+]
 
 
 
@@ -270,7 +281,7 @@ const tackle_quiz_tutorial_talk_list = [
 
 let tutorials = {
     [tutorialType.STORY]:{
-        finish:false,
+        finish:true,
         talk:story_tutorial_talk_list
     },
     [tutorialType.OPENQUIZ]:{
@@ -399,10 +410,14 @@ function quitGame(){
         clearGame();
     }
     else{
+        
+        moveTitle();
+        
+        /*
         popTexting("");
         popTitling("ERROR");
         openPop();
-        
+        */
         /*current_dialog_num = -1;
         current_dialog_list = log_list[log_name.CANTQUIT];
         displayNextDialog();*/
@@ -517,12 +532,11 @@ function displayNextDialog(){
     text_log = document.getElementById("gene_text_log");
     text_log_speaker = text_log.querySelector(".text_log_speaker");
     text_log_sentence = text_log.querySelector(".text_log_sentence");
-    console.log(current_dialog_list);
     if (current_dialog_num < current_dialog_list.length-1){
         
         current_dialog_num += 1;
         scene = current_dialog_list[current_dialog_num];
-        
+        console.log(scene);
         if(scene[0] != "action") {
             
             text_log_sentence.innerHTML = scene[1];
@@ -540,6 +554,24 @@ function displayNextDialog(){
                 text_log_speaker.textContent = "";
                 text_log_speaker.style.marginLeft = "0";
             } 
+        }
+        else{
+            
+            if(scene[1][0] == tutorial_move.SHOWIMG){
+                image = document.getElementById(scene[1][1]);
+                image.src = scene[1][2];
+                image.style.display = "block";
+            }
+            else if(scene[1][0] == tutorial_move.HIDEIMG){
+                image = document.getElementById(scene[1][1]);
+                image.style.display = "none";
+            }
+            
+            
+            
+            
+            
+            displayNextDialog();
         }
     }
     else{
@@ -631,11 +663,11 @@ function openQ(n){
     quiz_data = quiz_list[quiz_id];
     const quiz_back = document.getElementById("QB_back");
     const quiz_sheet = document.getElementById("Q_sheet");
-    const quiz_title = quiz_sheet.querySelector(".quiz_title");
+    const quiz_star = quiz_sheet.querySelector(".quiz_star");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
     const answer_box = quiz_sheet.querySelector(".answer_box");
     const magics = document.getElementById("magics");
-    quiz_title.textContent = quiz_data.title;
+    quiz_star.textContent = quiz_data.title;
     quiz_image.src = quiz_data.origin_image;
     quiz_data.involved_magic=magicType.NONE;
     
@@ -675,8 +707,6 @@ function closeQ(){
     const map = document.getElementById("map");
     map.style.filter = "none";
     var quiz_id = null;
-    
-    checkLevel()
 }
 
 
@@ -697,12 +727,13 @@ function checkA(){
             console.log("正解！："+ quiz_data.magics[quiz_data.involved_magic].answer + "\n獲得経験値：" + quiz_data.point);
             quiz_data.answered = true;
             pop_tl = "正解!!";
-            pop_tx = "A："+quiz_data.magics[quiz_data.involved_magic].answer +"<br>"+"獲得経験値：" + quiz_data.magics[quiz_data.involved_magic].point + "pt";
+            pop_tx = "A："+quiz_data.magics[quiz_data.involved_magic].answer +"<br>"+"獲得経験値：" + point_list[player_data.level] + "pt";
             quiz_data.magics[quiz_data.involved_magic].answered = true;
             quiz_data.answered_time += 1;
-            player_data.point += quiz_data.magics[quiz_data.involved_magic].point;
+            player_data.point += point_list[player_data.level];
             
             players_answer_box.value = "";
+            closeQ();
             
             if(!tutorials[tutorialType.ANSWEREDQUIZ].finish){
                 doTutorial(tutorialType.ANSWEREDQUIZ);
@@ -808,24 +839,35 @@ function popTitling(t) {
 
 
 function openMenu(){
-    document.querySelector(".slide_menu").classList.toggle('active');
     const menu_back = document.getElementById("menu_back");
-    menu_back.style.display = 'block';
-    menu_level = document.getElementById("menu_level");
-    menu_point = document.getElementById("menu_point");
-    menu_point_bar = document.getElementById("menu_point_bar");
-    menu_level.textContent = "Lv." + player_data.level + " 主人公";
-    menu_point.textContent = player_data.point+"pt";
-    let now_level_point = level_list[player_data.level].needed_point
-    let bar_percentage = 
-        (player_data.point-now_level_point)*100/(level_list[player_data.level+1].needed_point-now_level_point);
-    menu_point_bar.value = player_data.point;
     
+    if(menu_back.style.display == 'block'){
+        closeMenu();
+    }
+    else{
+        document.querySelector(".slide_menu").classList.toggle('active');
+        document.querySelector(".menu_button").classList.toggle('active');
+
+        menu_back.style.display = 'block';
+        menu_level = document.getElementById("menu_level");
+        menu_point = document.getElementById("menu_point");
+        menu_point_bar = document.getElementById("menu_point_bar");
+        menu_level.textContent = "Lv." + player_data.level + " 主人公";
+        if(player_data.level == max_level){
+                menu_level.textContent = "Lv.MAX 主人公";
+        }
+        menu_point.textContent = player_data.point+"pt";
+        let now_level_point = level_list[player_data.level].needed_point
+        let bar_percentage = 
+            (player_data.point-now_level_point)*100/(level_list[player_data.level+1].needed_point-now_level_point);
+        menu_point_bar.value = player_data.point;
+    }
 }
 
 
 function closeMenu(){
     document.querySelector(".slide_menu").classList.toggle('active');
+    document.querySelector(".menu_button").classList.toggle('active');
     const menu_back = document.getElementById("menu_back");
     menu_back.style.display = 'none';
 }
@@ -1207,6 +1249,8 @@ function removeMapMonster(n){
         move_button.style.display = 'block';
         
     }
+    
+    
 }
 
 
@@ -1297,11 +1341,12 @@ function changeName(n){
             monster = document.getElementById('monster2')
             victory = document.getElementById('victory')
             runaway = document.getElementById('fall')
-            B2 = document.getElementById('selectB2')
             monster.style.animation = 'tremble 1s ease-in-out 0s forwards, fall 0.5s ease-in-out 2s forwards'
             victory.style.display = 'block'
             runaway.style.display = 'block'
-            B2.style.display = 'none'
+            removeMapMonster('B2');
+            player_data.point += 492;
+            
         }
     }
 }
@@ -1310,25 +1355,26 @@ function changeColor(n){
     if(using === 'magic1R'){
         if(n ==='monster1'){
             monster = document.getElementById('monster1')
-            monster.style.color = 'red'
+            victory = document.getElementById('victory')
+            runaway = document.getElementById('runaway')
+            monster.src = "images/mobs/スライム_赤.png";
+            monster.style.animation = 'tremble 1s ease-in-out 0s forwards, runaway 0.5s ease-in-out 1s forwards'
+            victory.style.display = 'block'
+            runaway.style.display = 'block'
+            removeMapMonster('B1');
+            player_data.point += 43;
         }
     }
     if(using === 'magic1G'){
         if(n ==='monster1'){
             monster = document.getElementById('monster1')
-            monster.style.color = 'green'
+            //monster.style.color = 'green'
         }
     }
     if(using === 'magic1B'){
         if(n ==='monster1'){
             monster = document.getElementById('monster1')
-            victory = document.getElementById('victory')
-            runaway = document.getElementById('runaway')
-            monster.style.color = 'blue'
-            monster.style.animation = 'tremble 1s ease-in-out 0s forwards, runaway 0.5s ease-in-out 1s forwards'
-            victory.style.display = 'block'
-            runaway.style.display = 'block'
-            removeMapMonster('B1');
+            //monster.style.color = 'blue'
         }
     }
 }
@@ -1347,8 +1393,14 @@ function finishBattle(){
     closeBattleMagic()
     closeBattle('B1')
     closeBattle('B2')
+    
+    
+    //以下text_logを出すものです
+    current_dialog_num = -1;
+    current_dialog_list = log_list[log_name.WINMONSTER];
+    displayNextDialog();
+    
+    
 }
 
 //ここまで所有格さん
-
-

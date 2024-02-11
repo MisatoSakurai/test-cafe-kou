@@ -147,6 +147,23 @@ h1 {
 
 
 
+#tutorial_image {
+    position: absolute;
+    width : auto;
+    max-height: 60%;
+    max-width:80%;
+    left: 0;
+    right: 0;
+    top:20%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+}
+
+
+
+
+
 
 
 
@@ -175,7 +192,7 @@ h1 {
 }
 
 
-.quiz_title{
+.quiz_star{
     top:5%;
 }
 
@@ -184,7 +201,7 @@ h1 {
     position: relative;
     width : auto;
     aspect-ratio:297/210;
-    max-height: 60%;
+    max-height: 55%;
     max-width:80%;
     left: 0;
     right: 0;
@@ -342,7 +359,7 @@ h1 {
     background-color: antiquewhite;
 }
 
-.book_image {
+.book_image_ {
     position:absolute;
     width: 100%; /* 画像を親要素に合わせる */
     height: 100%; /* 画像を親要素に合わせる */
@@ -353,7 +370,7 @@ h1 {
 
 
 
-.book_image_two {
+.book_image {
     
     width:40%;
     height: auto;
@@ -414,7 +431,7 @@ h1 {
 }
 
 
-.monster_icon {
+#B1_icon {
     width:10%;
     max-width: 80px;
     height: auto;
@@ -424,6 +441,31 @@ h1 {
     transform: translateY(-50%) translateX(-50%);
     -webkit- transform: translateY(-50%) translateX(-50%);
 }
+
+
+
+
+
+#B2_icon {
+    width:20%;
+    max-width: 160px;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
+
+
+
+
+
+
+
+
 
 
 #board_icon{
@@ -500,18 +542,48 @@ h1 {
 
 
 
-#menu_button {
+.menu_button {
     position: absolute;
-    background-color: blue;
-    width:10%;
-    height:50px;
-    max-width: 50px;
-    top: 10px;
-    right: 10px;
+    aspect-ratio:1/1;
+    height:10%;
+    max-height: 40px;
+    top: 20px;
+    right: 20px;
     margin-left: auto;
     margin-right: auto;
-    z-index: 10;
+    z-index: 12;
 }
+
+.menu_button span{
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+}
+.menu_button span:first-of-type{/* ハンバーガーメニューの1番目の線 */
+  top: 10%;
+}
+.menu_button span:nth-of-type(2){/* ハンバーガーメニューの2番目の線 */
+  top: 50%;
+}
+.menu_button span:last-of-type{/* ハンバーガーメニューの3番目の線 */
+  top: 90%;
+}
+
+.menu_button.active span:first-of-type{/* ハンバーガーメニューの1番目の線 */
+  top: 50%;
+  transform: rotate(45deg);
+}
+.menu_button.active span:nth-of-type(2){/* ハンバーガーメニューの2番目の線 */
+  opacity: 0;/* 透明にする */
+}
+.menu_button.active span:last-of-type{/* ハンバーガーメニューの3番目の線 */
+  top: 50%;
+  transform: rotate(-45deg);
+}
+
+
+
 
 
 .slide_menu{
@@ -527,7 +599,7 @@ h1 {
     padding-left: 20px;
     list-style-type: none;
     margin: 0;
-    z-index:12;
+    z-index:11;
     transform: translateX(100%); 
     transition: .2s;
 }
@@ -545,18 +617,19 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index:11;
+    z-index:10;
 }
 
 
 
 .slide_menu li {
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 
 #menu_level {
     font-size: larger;
+    margin-top: 40px;
 }
 
 #menu_point_bar {
@@ -731,12 +804,38 @@ h1 {
 
 
 
+.command{
+    position: fixed;
+    /*bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;*/
+    background-color: black;
+    color: white;
+    
+    background-color: black;
+    position: fixed;
+    left: 10%;
+    bottom: 2%;
+    width: 80%;
+    height: 25%;
+    text-align: left;
+    border: 4px solid #f0f0f0;
+    border-radius: 20px;
+}
+
+
+.command p {
+    margin: 10px;
+    
+}
+
 
 
 /*ここから所有格さん*/
 
 
-#battle_magic{
+/*#battle_magic{
     background-color: black;
     position: fixed;
     bottom: 0;
@@ -744,7 +843,7 @@ h1 {
     width: 50%;
     height: 30%;
     color: white;
-}
+}*/
 
 
 
@@ -776,7 +875,7 @@ h1 {
 
 
 
-.monster{
+#monster1{
     position: absolute;
     width:20%;
     max-width: 200px;
@@ -787,23 +886,36 @@ h1 {
     -webkit- transform: translateY(-50%) translateX(-50%);
 }
 
-.command{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30%;
-    background-color: black;
-    color: white;
+
+#monster2{
+    position: absolute;
+    width:40%;
+    max-width: 400px;
+    height: auto;
+    top: 35%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
 }
+
+
+
+
 
 .explain{
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 90%;
     height: 100%;
     background-color: black;
+    border-radius: 20px;
+    
 }
+
+.explain p{
+    margin: 10px;
+}
+
 
 
 #B1{
@@ -818,7 +930,7 @@ h1 {
 }
 
 #B2{
-    background-image: url('images/background/草原.jpg');
+    background-image: url('images/background/絶壁の拾ってきた素材.jpeg');
     background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
     background-position: center;
     position: fixed;
@@ -834,6 +946,8 @@ h1 {
     top: 0;
     width: 100%;
     height: 100%;
+    border-radius: 20px;
+    
 }
 
 #using_magic{
@@ -842,6 +956,7 @@ h1 {
     top: 0;
     width: 100%;
     height: 100%;
+    border-radius: 20px;
 }
 
 #victory{
