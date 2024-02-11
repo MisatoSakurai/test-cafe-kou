@@ -1,4 +1,14 @@
 
+/*window.onbeforeunload = function(e) {
+    var confirmationMessage = "本当にページを閉じますか？";
+    e.returnValue = confirmationMessage;
+    return confirmationMessage; // 必要に応じてメッセージを返すことも可能ですが、新しいブラウザでは無視されることがあります
+};
+*/
+
+
+
+
 //--data&variable-------
 
 var player_data = {
@@ -66,11 +76,12 @@ var level_list = {
 
 
 var point_list = {
-    1:5,
-    2:7,
-    3:8,
-    4:8
+    1:1,
+    2:1,
+    3:1,
+    4:1
 }
+
 
 
 
@@ -193,6 +204,8 @@ const tutorialType = Object.freeze({
     TACKLEQUIZ:"how_to_tackle_quiz",
     ANSWEREDQUIZ:"answered_quiz_tutorial",
     MAGIC:"magic_tutorial",
+    USEMAGICTOQUIZ:"let_use_magic_to_quiz",
+    MONSTER:"monster_tutorial",
 });
 //tutorialの種類を管理
 
@@ -209,16 +222,12 @@ const speaker = Object.freeze({
     G:"god"
 });
 
-const tutorial_move = Object.freeze({
-    SHOWIMG:"show_image",
-    HIDEIMG:"hide_image",
-    LIMIT:"limit_action"
-});
 
 
 
-const story_tutorial_talk_list = [
-    [speaker.P,"「……ここは…一体…？」"],
+const story_tutorial_list = [
+    ["action",{ func: showBack, subject: "story_sogen"}],
+    [speaker.P,"「……ここは…一体…？」"],/*
     [speaker.N,"ゲームを始めようとボタンを押したあなたは気づくと広い草原の中にいました"],
     [speaker.G,"——ようやく目覚めたのですね"],
     [speaker.N,"突如頭の中に語りかける声が聞こえてきました<br>しかし辺りを見回しても姿は見えません"],
@@ -230,7 +239,7 @@ const story_tutorial_talk_list = [
     [speaker.P,"「ゲームの世界にいる…？」"],
     [speaker.G,"——はい、その通りです"],
     [speaker.N,"あなたはどうやらこのゲームの世界に迷いこんでしまったみたいです"],
-    ["action",[tutorial_move.SHOWIMG,"tutorial_image","images/board/導入看板-1.png"]],
+    ["action",{ func: showImg, subject: "images/board/導入看板-1.png" }],
     [speaker.G,"——このゲームの世界は、ゲームをクリアすることで抜け出せるので、抜け出したいならば看板に書かれたクリア条件を達成してください"],
     [speaker.N,"あなたは目の前に置かれた看板を見ました<br>そこには確かにゲームクリア条件のようなものが書いてありました"],
     [speaker.P,"「これを達成すれば元の世界に戻れるということか！<br>頑張るぞ～」"],
@@ -241,38 +250,59 @@ const story_tutorial_talk_list = [
     [speaker.G,"——あなたのような貧弱な人間には力でモンスターを倒すことはできないと思いますよ"],
     [speaker.P,"「え～そんな～」"],
     [speaker.N,"絶望的な状況にあなたは落胆してしまいました"],
-    ["action",[tutorial_move.HIDEIMG,"tutorial_image"]],
+    ["action",{ func: hideImg, subject: "images/board/導入看板-1.png" }],
     [speaker.G,"——しかしあなたにも希望はあります<br>それは、”魔法”を使って敵を倒すことです！"],
     [speaker.P,"「魔法…？」"],
     [speaker.G,"——ゲームの世界に今入り込んだあなたはレベル1の状態ですね<br>実はレベルが1つ上がると新たな魔法を使うことができるようになります"],
     [speaker.G,"——魔法をうまく使うことで敵を倒すことができるかもしれません<br>特にあなたのようなひらめきで世界を変えられるような方ならば"],
     [speaker.P,"「そうか、それで得た魔法を使って敵を倒すことはできるかもしれないのか<br>レベルを上げるにはどうしたらいいんだ？」"],
     [speaker.G,"——それはもちろん、あなたの得意な謎解きに正解することで上げることができます"],
-    [speaker.P,"「そうしたら謎を解いて早くクリアしよう！」"],
-    [speaker.N,"あなたは勇んでゲームを始めることにしたのでした……"]
-    
+    [speaker.P,"「そうしたら謎を解いて早くクリアしよう！」"],*/
+    [speaker.N,"あなたは勇んでゲームを始めることにしたのでした……"],
+    ["action",{ func: hideBack, subject: "story_sogen"}]
 ]
 
 
 
-const open_quiz_tutorial_talk_list =[
-    [speaker.N,"——それではこのゲームの進め方を説明しますね<br>謎の解き方について説明します"],
-    [speaker.N,"——このアイコンがついている場所には謎があります。試しにこのアイコンをタップしてみましょう"]
+const open_quiz_tutorial_list =[
+    [speaker.G,"——それではこのゲームの進め方を説明しますね<br>謎の解き方について説明します"],
+    ["action",{ func: pointOut, subject: "Q1_icon"}],
+    [speaker.G,"——このアイコンがついている場所には謎があります。試しにこのアイコンをタップしてみましょう"], 
+    ["action",{ func: finishPoint, subject: "なし"}]
 ]
 
 
 
 
-const tackle_quiz_tutorial_talk_list = [
-    [speaker.N,"——問題が出てきましたね、これを解き明かしていくことでレベルが上がります"],
-    [speaker.N,"——答えがわかったら四角に入力して送信してみましょう<br>わからないときはヒントを活用してくださいね"]
+const tackle_quiz_tutorial_list = [
+    [speaker.G,"——問題が出てきましたね、これを解き明かしていくことでレベルが上がります"],
+    [speaker.G,"——答えがわかったら四角に入力して送信してみましょう<br>わからないときはヒントを活用してくださいね"]
 ]
 
-const clear_talk_list = [
-    [speaker.N,"——問題が出てきましたね、これを解き明かしていくことでレベルが上がります"],
-    [speaker.N,"——答えがわかったら四角に入力して送信してみましょう<br>わからないときはヒントを活用してくださいね"]
+
+
+const use_magic_list = [
+    [speaker.G,"——魔法を謎に対して使うことで、謎を解き直すこともできますよ"]
 ]
 
+const answered_quiz_list = [
+    [speaker.G,"——正解です！経験値が溜まりましたね<br>この調子で問題を解いていきましょう！"]
+]
+
+const got_magic_list = [
+    [speaker.G,"——レベルが上がったので、新しい魔法をゲットしました！魔法はモンスターに対して使うことができます！<br>早速新しい魔法を使ってモンスターを倒してみましょう"]
+]
+
+
+const monster_tutorial_list = [
+    [speaker.G,"——最後にモンスターについて説明します"],
+    ["action",{func: hideObj, subject:"B1_command"}],
+    ["action",{func: openBattle, subject:'B1'}],
+    [speaker.G,"——モンスターはかくかくしかじか"],
+    [speaker.G,"——以上"],
+    ["action",{func: closeBattle, subject:'B1'}],
+    ["action",{func: finishHide, subject:"B1_command"}],
+]
 
 
 
@@ -281,21 +311,32 @@ const clear_talk_list = [
 
 let tutorials = {
     [tutorialType.STORY]:{
-        finish:true,
-        talk:story_tutorial_talk_list
+        finish:false,
+        talk:story_tutorial_list
     },
     [tutorialType.OPENQUIZ]:{
-        finish:true,
-        talk:open_quiz_tutorial_talk_list
+        finish:false,
+        talk:open_quiz_tutorial_list
+    },
+    [tutorialType.USEMAGICTOQUIZ]:{
+        finish:false,
+        talk:use_magic_list
     },
     [tutorialType.TACKLEQUIZ]:{
-        finish:true,
+        finish:false,
+        talk:tackle_quiz_tutorial_list
     },
     [tutorialType.ANSWEREDQUIZ]:{
-        finish:true,
+        finish:false,
+        talk:answered_quiz_list
     },
     [tutorialType.MAGIC]:{
         finish:true,
+        talk:got_magic_list
+    },
+    [tutorialType.MONSTER]:{
+        finish:false,
+        talk:monster_tutorial_list
     }
 }
 //各チュートリアルを終えているかどうか、各チュートリアルの会話list
@@ -304,13 +345,13 @@ let tutorials = {
 
 const log_name = Object.freeze({
     CANTQUIT:"cannot_quit_game",
-    WINMONSTER:"win_B1"
+    WINMONSTER:"win_B1",
 });
 
 
 let log_list =  {
     [log_name.CANTQUIT]:[[speaker.N,"ERROR<br>ゲームをやめることができない"]],
-    [log_name.WINMONSTER]:[[speaker.N,"次のステージへ進めるようになった！"]]
+    [log_name.WINMONSTER]:[[speaker.N,"次のステージへ進めるようになった！"]],
     
  
 }
@@ -391,6 +432,9 @@ function startGame(){
         map.style.display = 'block';
         now_status = status.MAP;
         console.log("チュートリアルは終わっているのでマップに移動");
+        if(!tutorials[tutorialType.OPENQUIZ].finish){
+            doTutorial(tutorialType.OPENQUIZ);
+        }
         
         
     }else{
@@ -400,7 +444,6 @@ function startGame(){
         doTutorial(tutorialType.STORY);
     }
 }
-
 
 
 
@@ -418,9 +461,7 @@ function quitGame(){
         popTitling("ERROR");
         openPop();
         */
-        /*current_dialog_num = -1;
-        current_dialog_list = log_list[log_name.CANTQUIT];
-        displayNextDialog();*/
+        /*showLog(log_name.CANTQUIT)*/
     }
 }
 
@@ -451,47 +492,81 @@ function moveTitle(){
 
 
 
+function showBack(subject){
+    back = document.getElementById(subject);
+    back.style.display = "block";
+}
 
-function doTutorial(n){
-    
-    
-    
-    if(n == tutorialType.STORY){
-        console.log("ストーリーチュートリアルをします");
-        storyTutorial();
-    }
-    if(n == tutorialType.OPENQUIZ){
-        openQuizTutorial();
-    }
-    if(n == tutorialType.TACKLEQUIZ){
-        tackleQuizTutorial();
-    }
-    if(n == tutorialType.ANSWEREDQUIZ){
-        answeredQuizTutorial();
-    }
-    if(n == tutorialType.MAGIC){
-        magicTutorial();
-    }
 
+function hideBack(subject){
+    back = document.getElementById(subject);
+    back.style.display = "none";
 }
 
 
 
 
-function storyTutorial(){
+function showImg(subject){
+    image = document.getElementById("tutorial_image");
+    image.src = subject;
+    image.style.display = "block";
+}
+
+function hideImg(subject){
+    image = document.getElementById("tutorial_image");
+    image.src = subject;
+    image.style.display = "none";
+}
+
+function pointOut(subject){
+    target = document.getElementById(subject);
+    console.log("pointOutするよ");
+    if (target == null) {
+        target = document.querySelector(subject);
+    }
+    rect = target.getBoundingClientRect();
+    style = window.getComputedStyle(target);
+    margintop= parseInt(style.getPropertyValue("margin-top"), 10);
+    pointer = document.getElementById("pointer");
+    pointer.style.top = rect.top + rect.height + margintop + "px";
+    pointer.style.left = rect.left + rect.width/2 + "px";
+    pointer.style.display = "block";
+    console.log(pointer.style.top);
+}
+
+
+function finishPoint(subject) {
+    pointer = document.getElementById("pointer");
+    pointer.style.display = "none";
+}
+
+
+function hideObj(subject){
+    obj = document.getElementById(subject);
+    obj.style.display = "none";
+}
+
+function finishHide(subject){
+    sub = document.getElementById(subject);
+    sub.style.display = "block";
+}
+
+
+
+
+
+
+function doTutorial(n){
     tutorial_page = document.getElementById("tutorial");
-    /*map = document.getElementById("map");
-    map.style.display = "block";*/
+    console.log(n + "のチュートリアルする")
     
     
-    if (!tutorials[tutorialType.STORY].finish){
+    if (!tutorials[n].finish){
         
         openGeneTextLog()
         tutorial_page.style.display="block";
-        story_sogen = document.getElementById("story_sogen");
-        story_sogen.style.display = "block";
         
-        current_tutorial = tutorialType.STORY;
+        current_tutorial = n;
         current_dialog_num = -1;
         current_dialog_list = tutorials[current_tutorial].talk;
         displayNextDialog();
@@ -500,12 +575,21 @@ function storyTutorial(){
         tutorial_page.style.display="none";
         closeGeneTextLog()
         current_tutorial ="";
-        startGame();
+        
+        if (n==tutorialType.STORY){
+            startGame();
+        }
+        
+        if (n==tutorialType.ANSWEREDQUIZ){
+            if(!tutorials[tutorialType.MONSTER].finish){
+                doTutorial(tutorialType.MONSTER);
+            }
+        }
     }
     
-
-    
 }
+
+
 
 
 
@@ -528,6 +612,7 @@ function closeGeneTextLog(){
 
 
 function displayNextDialog(){
+    console.log(current_dialog_num);
     openGeneTextLog();
     text_log = document.getElementById("gene_text_log");
     text_log_speaker = text_log.querySelector(".text_log_speaker");
@@ -557,89 +642,22 @@ function displayNextDialog(){
         }
         else{
             
-            if(scene[1][0] == tutorial_move.SHOWIMG){
-                image = document.getElementById(scene[1][1]);
-                image.src = scene[1][2];
-                image.style.display = "block";
-            }
-            else if(scene[1][0] == tutorial_move.HIDEIMG){
-                image = document.getElementById(scene[1][1]);
-                image.style.display = "none";
-            }
-            
-            
-            
-            
-            
+            scene[1].func(scene[1].subject);
             displayNextDialog();
         }
     }
+    
+    
     else{
         current_dialog_num = -1;
         current_dialog_list =[];
+        closeGeneTextLog();
         if (current_tutorial != "") {
             tutorials[current_tutorial].finish = true;
-        }
-        closeGeneTextLog();
-        if(current_tutorial == tutorialType.STORY){
-            storyTutorial();
+            doTutorial(current_tutorial);
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function openQuizTutorial(){
-    tutorial_page = document.getElementById("tutorial");
-    tutorial_page.style.display="block";
-    
-    tutorials[tutorialType.OPENQUIZ].finish = true;
-}
-
-
-
-function tackleQuizTutorial(){
-    tutorial_page = document.getElementById("tutorial");
-    tutorial_page.style.display="block";
-    
-    
-    tutorials[tutorialType.TACKLEQUIZ].finish = true;
-    
-}
-
-
-function answeredQuizTutorial(){
-    tutorial_page = document.getElementById("tutorial");
-    tutorial_page.style.display="block";
-    
-    
-    
-    tutorials[tutorialType.ANSWEREDQUIZ].finish = true;
-    
-}
-
-
-function magicTutorial(){
-    tutorial_page = document.getElementById("tutorial");
-    tutorial_page.style.display="block";
-    
-    
-    tutorials[tutorialType.MAGIC].finish = true;
-}
-
 
 
 
@@ -980,9 +998,6 @@ function useMagic(e){
             square = board_data.magics[selected_magic].place;
         }
     }
-    else if(now_status == status.BATTLE){
-        rect = document.getElementById("battle_magic_canvas").getBoundingClientRect(); 
-    }
     
     const point = {
         x: (e.clientX - rect.left)*100/rect.width,
@@ -1093,6 +1108,7 @@ function successBoardMagic(){
 
 
 
+
 function checkLevel(){
     player_point = player_data.point;
     player_level = player_data.level;
@@ -1117,6 +1133,10 @@ function checkLevel(){
                 icon.style.display = 'block';
                 console.log("blockにした");
             });
+            
+            
+            
+            
             if(!tutorials[tutorialType.MAGIC].finish){
                 doTutorial(tutorialType.MAGIC);
             }
@@ -1254,6 +1274,17 @@ function removeMapMonster(n){
 }
 
 
+
+
+
+
+
+
+function showLog(n){
+    current_dialog_num = -1;
+    current_dialog_list = log_list[n];
+    displayNextDialog();
+}
 
 
 
