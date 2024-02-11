@@ -192,7 +192,7 @@ h1 {
 }
 
 
-.quiz_title{
+.quiz_star{
     top:5%;
 }
 
@@ -201,7 +201,7 @@ h1 {
     position: relative;
     width : auto;
     aspect-ratio:297/210;
-    max-height: 60%;
+    max-height: 55%;
     max-width:80%;
     left: 0;
     right: 0;
@@ -359,7 +359,7 @@ h1 {
     background-color: antiquewhite;
 }
 
-.book_image {
+.book_image_ {
     position:absolute;
     width: 100%; /* 画像を親要素に合わせる */
     height: 100%; /* 画像を親要素に合わせる */
@@ -370,7 +370,7 @@ h1 {
 
 
 
-.book_image_two {
+.book_image {
     
     width:40%;
     height: auto;
@@ -623,7 +623,7 @@ h1 {
 
 
 .slide_menu li {
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 

@@ -13,7 +13,7 @@
             <div id="title_text_and_buttons">
                 <h1 id="title">TITLE</h1>
                 <img src="images/title/スタートボタン-1.png" onclick="startGame()" id="start_button" class="title_button">
-                <img src="images/title/止めるボタン-1.png" onclick="quitGame()" id="quit_button" class="title_button">
+                <!--<img src="images/title/止めるボタン-1.png" onclick="quitGame()" id="quit_button" class="title_button">-->
             </div>
         </div>
         <div id="tutorial" style="display:none">
@@ -50,7 +50,7 @@
                 <li id="menu_monster" onclick="openBook('monster_book')">図鑑</li>
                 <li id="menu_magic_list" onclick="openBook('magic_book')">技一覧</li>
                 <li id="menu_map">マップ</li>
-                <li id="menu_title" onclick="moveTitle()">タイトル</li>
+                <li id="menu_title" onclick="quitGame()" >ゲームをやめる</li>
             </ul>
             <div id="menu_back" style="display:none" onclick="closeMenu()">
             </div>
@@ -70,13 +70,6 @@
             
             <div id="rocky" class="stage" style="display: none">
                 <div id="quiz_icons">
-                    <p onclick="openQ('Q6')" class="selectQ">Q6</p>
-                    <p onclick="openQ('Q7')" class="selectQ">Q7</p>
-                    <p onclick="openQ('Q8')" class="selectQ">Q8</p>
-                    <p onclick="openQ('Q9')" class="selectQ">Q9</p>
-                    <p onclick="openQ('Q10')" class="selectQ">Q10</p>
-                </div>
-                <div id="quiz_icons">
                 </div>
                 <img id='B2_icon' src="images/mobs/飛ぶ.PNG"onclick="openBattle('B2')" class="monster_icon">
                 <img src="images/icons/up_arrow.png" alt="↑" class="move_map_button" id="button_move_to_castle" onclick="moveMap('castle')" style="display: none">
@@ -90,7 +83,7 @@
         </div>
         <div id="Q_sheet" style="display:none">
             
-            <h2 class="quiz_title">謎のタイトル</h2>
+            <h2 class="quiz_star">謎のタイトル</h2>
             <div class="quiz_content">
                 
                 <img src="" alt="謎の画像" class="quiz_image">
@@ -153,6 +146,7 @@
         
         
         <div id="magics" style="display:none">
+            
             <div class="change_color magic_icon" onclick="openColorMagic()" style="display:none">
                 <p>色変化</p>
             </div>
@@ -162,9 +156,10 @@
                 <li class="yellow" onclick="openMagic('yellow')">黄</li>
             </ul>
             
-            <div class="add_char magic_icon" onclick="openMagic('add_char')" style="display:none">
+            <div class="add_char magic_icon" onclick="openMagic('add_char')">
                 <p>字足</p>
             </div>
+            
 
             <div class="change_char magic_icon" onclick="openMagic('change_char')" style="display:none">
                 <p>字変化</p>
@@ -236,10 +231,9 @@
             </div>
         </div>
         <div id="battle_magic" class="battle command" style="display: none;">
-            <p id="no_magic">まだ使える魔法がないようだ</p>
             <p id="magic1" class="change_color" onclick="selectBattleMagic(1)" style="display: none">色変え魔法</p>
             <p id="magic2" class="change_char" onclick="selectBattleMagic(2)" style="display: none">文字変え魔法</p>
-            <p id="magic3" class="add_char" onclick="selectBattleMagic(3)" style="display: none">文字足し魔法</p>
+            <p id="magic3" class="add_char" onclick="selectBattleMagic(3)">文字足し魔法</p>
             <p id="magic3" class="scissors" onclick="selectBattleMagic(4)" style="display: none">ハサミ魔法</p>
             <div id="magic1_explain" class="explain" style="display: none;">
                 <p>色を変えます</p>
@@ -273,8 +267,8 @@
                     <p>効いていないようだ</p>
                 </div>
                 <div id="victory" style="display: none;">
-                    <p id="runaway" style="display: none;">逃げだした！<br>経験値をｘ手に入れた！</p>
-                    <p id="fall" style="display: none;">落ちていった！<br>経験値をｘ手に入れた！</p>
+                    <p id="runaway" style="display: none;">逃げだした！<br>経験値を43pt手に入れた！</p>
+                    <p id="fall" style="display: none;">落ちていった！<br>経験値を492pt手に入れた！</p>
                     <p onclick="finishBattle()">確認</p>
                 </div>
             </div>

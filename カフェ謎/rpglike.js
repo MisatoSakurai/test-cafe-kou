@@ -6,7 +6,7 @@ var player_data = {
     level:1,
 }
 
-var max_level = 6;
+var max_level = 4;
 //maxのレベルを保管する
 
 
@@ -57,12 +57,19 @@ let now_place = stage.PRAIRIE;
 
 
 var level_list = {
-    1:{needed_point:0, enable_magic:""},
-    2:{needed_point:1, enable_magic:magicType.CHANGE_COLOR},
-    3:{needed_point:1, enable_magic:magicType.ADD_CHAR},
-    4:{needed_point:1, enable_magic:magicType.CHANGE_CHAR},
-    5:{needed_point:1, enable_magic:magicType.SCISSORS},
-    6:{needed_point:10, enable_magic:magicType.EXTRA}
+    1:{needed_point:0, enable_magic:magicType.ADD_CHAR},
+    2:{needed_point:5, enable_magic:magicType.CHANGE_COLOR},
+    3:{needed_point:50, enable_magic:magicType.CHANGE_CHAR},
+    4:{needed_point:500, enable_magic:magicType.SCISSORS},
+}
+
+
+
+var point_list = {
+    1:5,
+    2:7,
+    3:8,
+    4:8
 }
 
 
@@ -70,7 +77,7 @@ var level_list = {
 
 var quiz_list ={
     "Q1":{
-        title:"謎1",
+        title:"★☆☆",
         field:stage.PRAIRIE,
         magics:{
             [magicType.NONE]:{
@@ -261,6 +268,10 @@ const tackle_quiz_tutorial_talk_list = [
     [speaker.N,"——答えがわかったら四角に入力して送信してみましょう<br>わからないときはヒントを活用してくださいね"]
 ]
 
+const clear_talk_list = [
+    [speaker.N,"——問題が出てきましたね、これを解き明かしていくことでレベルが上がります"],
+    [speaker.N,"——答えがわかったら四角に入力して送信してみましょう<br>わからないときはヒントを活用してくださいね"]
+]
 
 
 
@@ -399,10 +410,14 @@ function quitGame(){
         clearGame();
     }
     else{
+        
+        moveTitle();
+        
+        /*
         popTexting("");
         popTitling("ERROR");
         openPop();
-        
+        */
         /*current_dialog_num = -1;
         current_dialog_list = log_list[log_name.CANTQUIT];
         displayNextDialog();*/
@@ -648,11 +663,11 @@ function openQ(n){
     quiz_data = quiz_list[quiz_id];
     const quiz_back = document.getElementById("QB_back");
     const quiz_sheet = document.getElementById("Q_sheet");
-    const quiz_title = quiz_sheet.querySelector(".quiz_title");
+    const quiz_star = quiz_sheet.querySelector(".quiz_star");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
     const answer_box = quiz_sheet.querySelector(".answer_box");
     const magics = document.getElementById("magics");
-    quiz_title.textContent = quiz_data.title;
+    quiz_star.textContent = quiz_data.title;
     quiz_image.src = quiz_data.origin_image;
     quiz_data.involved_magic=magicType.NONE;
     
@@ -692,8 +707,6 @@ function closeQ(){
     const map = document.getElementById("map");
     map.style.filter = "none";
     var quiz_id = null;
-    
-    checkLevel()
 }
 
 
@@ -714,10 +727,10 @@ function checkA(){
             console.log("正解！："+ quiz_data.magics[quiz_data.involved_magic].answer + "\n獲得経験値：" + quiz_data.point);
             quiz_data.answered = true;
             pop_tl = "正解!!";
-            pop_tx = "A："+quiz_data.magics[quiz_data.involved_magic].answer +"<br>"+"獲得経験値：" + quiz_data.magics[quiz_data.involved_magic].point + "pt";
+            pop_tx = "A："+quiz_data.magics[quiz_data.involved_magic].answer +"<br>"+"獲得経験値：" + point_list[player_data.level] + "pt";
             quiz_data.magics[quiz_data.involved_magic].answered = true;
             quiz_data.answered_time += 1;
-            player_data.point += quiz_data.magics[quiz_data.involved_magic].point;
+            player_data.point += point_list[player_data.level];
             
             players_answer_box.value = "";
             closeQ();
@@ -840,6 +853,9 @@ function openMenu(){
         menu_point = document.getElementById("menu_point");
         menu_point_bar = document.getElementById("menu_point_bar");
         menu_level.textContent = "Lv." + player_data.level + " 主人公";
+        if(player_data.level == max_level){
+                menu_level.textContent = "Lv.MAX 主人公";
+        }
         menu_point.textContent = player_data.point+"pt";
         let now_level_point = level_list[player_data.level].needed_point
         let bar_percentage = 
@@ -1101,8 +1117,6 @@ function checkLevel(){
                 icon.style.display = 'block';
                 console.log("blockにした");
             });
-            const no_magic_p = document.getElementById("no_magic");
-            no_magic_p.style.display = "none";
             if(!tutorials[tutorialType.MAGIC].finish){
                 doTutorial(tutorialType.MAGIC);
             }
@@ -1327,11 +1341,12 @@ function changeName(n){
             monster = document.getElementById('monster2')
             victory = document.getElementById('victory')
             runaway = document.getElementById('fall')
-            B2 = document.getElementById('selectB2')
             monster.style.animation = 'tremble 1s ease-in-out 0s forwards, fall 0.5s ease-in-out 2s forwards'
             victory.style.display = 'block'
             runaway.style.display = 'block'
-            B2.style.display = 'none'
+            removeMapMonster('B2');
+            player_data.point += 492;
+            
         }
     }
 }
@@ -1347,6 +1362,7 @@ function changeColor(n){
             victory.style.display = 'block'
             runaway.style.display = 'block'
             removeMapMonster('B1');
+            player_data.point += 43;
         }
     }
     if(using === 'magic1G'){
