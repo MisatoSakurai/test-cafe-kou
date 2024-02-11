@@ -18,8 +18,9 @@
         </div>
         <div id="tutorial" style="display:none">
             <div id="story_sogen" style="display:none"></div>
-            <div id="tutorial_back" style="display:none"></div>
+            
             <img id="tutorial_image" src="">
+            <img id="pointer" src ="images/icons/up_arrow.png" style="display: none">
         </div>
         
         
@@ -57,7 +58,7 @@
             
             <div id="prairie" class="stage">
                 <div id="quiz_icons">
-                    <p onclick="openQ('Q1')" class="selectQ">Q1</p>
+                    <p onclick="openQ('Q1')" class="selectQ" id="Q1_icon">Q1</p>
                     <p onclick="openQ('Q2')" class="selectQ">Q2</p>
                     <p onclick="openQ('Q3')" class="selectQ">Q3</p>
                     <p onclick="openQ('Q4')" class="selectQ">Q4</p>
@@ -76,6 +77,12 @@
                 <img src="images/icons/under_arrow.png" alt="↓" class="move_map_button" id="button_back_to_prairie" onclick="moveMap('prairie')">
             </div>
         </div>
+        
+        <script>
+            document.getElementById("map").addEventListener("click", function(e) {
+                console.log(e.clientY);
+            });
+        </script>
         
         
         
@@ -205,9 +212,11 @@
                 </div>
             </div>
             <img src="images/mobs/スライム.PNG" class="monster" id="monster1" onclick="changeColor('monster1')">
-            <div class="command">
+            <div class="command" id="B1_command">
                 <p onclick="openBattleMagic()">魔法</p>
                 <p onclick="closeBattle('B1')">逃げる</p>
+                <p onclick="" style="display: none" id="battle1_hint">倒し方のヒント</p>
+                <!-- ↑倒し方のヒントについて決まったら表示非表示の実装をするので、中身の実装をお願いしたいです！-->
             </div>
         </div>
         
@@ -228,6 +237,8 @@
             <div class="command">
                 <p onclick="openBattleMagic()">魔法</p>
                 <p onclick="closeBattle('B2')">逃げる</p>
+                <p onclick="" style="display: none" id="battle2_hint">倒し方のヒント</p>
+                <!-- ↑倒し方のヒントについて決まったら表示非表示の実装をするので、中身の実装をお願いしたいです！-->
             </div>
         </div>
         <div id="battle_magic" class="battle command" style="display: none;">
