@@ -1,3 +1,26 @@
+:root {
+    --red: #E60033;
+    --blue: #0072EF;
+    --yellow: #F4E21D;
+    --green: #00C917;
+    --purple: #884898;
+    --orange: #FF9123;
+    --gray: #666;
+    --pink: #FF7BAC;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 body {
     overflow-x: hidden;
     font-size: 20px;
@@ -6,7 +29,9 @@ body {
 
 
 h1 {
-    font-size: 50px;
+    font-size: 150px;
+    margin-block-start: 0.3em;
+    margin-block-end: 0.3em;
 }
 
 
@@ -16,12 +41,13 @@ h1 {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: aliceblue;
+    background-color: white;
 }
 
 #title_text_and_buttons {
     text-align: center;
     width: 100%;
+    padding: 20% 0;
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
@@ -34,6 +60,15 @@ h1 {
     margin: 20px auto;
 }
 
+
+
+#quit_button {
+    position: fixed;
+    width: 10%;
+    height: auto;
+    right: 5%;
+    bottom: 5%;
+}
 
 
 
@@ -110,14 +145,14 @@ h1 {
 
 
 #text_log_back {
-    background-color: blue;
+    background-color: white;
     opacity: 0%;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 11;
+    z-index: 10;
 }
 
 
@@ -145,7 +180,7 @@ h1 {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-image: url('images/background/草原.jpg');
+    background-image: url('images/background/草原_戦闘画面.jpg');
     background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
     background-position: center;
 }
@@ -201,7 +236,6 @@ h1 {
 
 
 #Q_sheet{
-    /*background-color: bisque;*/
     position: fixed;
     top: 0;
     left: 10%;
@@ -211,9 +245,36 @@ h1 {
 }
 
 
-.quiz_star{
-    top:5%;
+
+#quiz_stars {
+    display: flex;
+    margin-top:5%;
+    height: 6%;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
+
+.star {
+    aspect-ratio:1/1;
+    height: 100%; /* 星の高さ */
+    width:auto;
+    background-size: contain; /* 星の画像を要素内に収める */
+    background-repeat: no-repeat; /* 背景画像を繰り返し無しに設定 */
+}
+
+.light_star {
+    background-image: url("images/icons/正解数アイコン（明）.png"); /* 明るい星の画像 */
+}
+
+.dark_star {
+    background-image: url('images/icons/正解数アイコン（暗）.png'); /* 暗い星の画像 */
+}
+
+
+
+
 
 
 .quiz_content{
@@ -375,7 +436,7 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     z-index: 10;
-    background-color: antiquewhite;
+    background-color: white;
 }
 
 .book_image_ {
@@ -476,6 +537,17 @@ h1 {
     -webkit- transform: translateY(-50%) translateX(-50%);
 }
 
+#B3_icon {
+    width:20%;
+    max-width: 160px;
+    height: auto;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit- transform: translateX(-50%);
+}
+
 
 
 
@@ -527,6 +599,29 @@ h1 {
 }
 
 
+#button_move_to_castle {
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+#button_back_to_rocky {
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
 
 
 
@@ -535,7 +630,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     width:70%;
-    height: auto;
+    height:70px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -543,15 +638,7 @@ h1 {
     -webkit- transform: translateY(-50%) translateX(-50%);
     text-align: center;
 }
-}
 
-
-.selectQ{
-    width:50px;
-    height:50px;
-    background-color: gray;
-    
-}
 
 
 
@@ -606,7 +693,7 @@ h1 {
 
 
 .slide_menu{
-    background-color: #303030;
+    background-color: var(--gray);
     color:white;
     position: fixed;
     top: 0;
@@ -642,7 +729,8 @@ h1 {
 
 
 .slide_menu li {
-    margin: 30px 0;
+    margin: 30px 0 0 0;
+    width: fit-content;
 }
 
 
@@ -656,7 +744,7 @@ h1 {
     margin-bottom: auto;
     margin-left: 7px;
     margin-right:5px;
-    background-color: blue;
+    background-color: var(--gray);
 }
 
 #menu_point {
@@ -684,13 +772,15 @@ h1 {
 }
 
 .magic_icon {
-    background-color: white;
-    width:50px;
-    height: 50px;
+    width:60px;
+    height: 60px;
     margin-left:10px;
     z-index: 10;
     border: 2px solid rgba(0,0,0,0);
     transition: .2s;
+    background-size: contain; /* 星の画像を要素内に収める */
+    background-repeat: no-repeat; /* 背景画像を繰り返し無しに設定 */
+    
 }
 
 
@@ -747,11 +837,11 @@ h1 {
 
 
 .color_menu li{
-    background-color: blue;
-    width:50px;
-    height: 50px;
+    width:60px;
+    height: 60px;
     margin-bottom:10px;
     margin-left: 0;
+    border-radius: 15px;
 }
 
 .color_menu li{
@@ -762,27 +852,34 @@ h1 {
 
 .color_menu .red{
     transform: translateY(-64px);
-    background-color: red;
+    background-color: var(--red);
+    opacity: 0%;
 }
 
 .color_menu .blue{
     transform: translateY(-128px);
+    opacity: 0%;
+    background-color: var(--blue);
 }
 
 .color_menu .yellow{
     transform: translateY(-192px);
-    background-color: yellow;
+    background-color: var(--yellow);
+    opacity: 0%;
 }
 
 
 .color_menu.open .red{
     transform: translateY(0); 
+    opacity: 100%;
 }
 .color_menu.open .blue{
-    transform: translateY(0); 
+    transform: translateY(0);
+    opacity: 100%;
 }
 .color_menu.open .yellow{
     transform: translateY(0); 
+    opacity: 100%;
 }
 
 
@@ -792,7 +889,7 @@ h1 {
 
 
 #pop{
-    background-color: #2b2b2b;
+    background-color: var(--gray);
     position: fixed;
     top: 35%;
     left: 25%;
@@ -920,6 +1017,18 @@ h1 {
 }
 
 
+#monster3{
+    position: absolute;
+    width:40%;
+    max-width: 400px;
+    height: auto;
+    bottom: 20%;
+    left: 50%;
+    transform:translateX(-50%);
+    -webkit- transform:translateX(-50%);
+}
+
+
 
 
 
@@ -940,7 +1049,7 @@ h1 {
 
 
 #B1{
-    background-image: url('images/background/草原.jpg');
+    background-image: url('images/background/草原_戦闘画面.jpg');
     background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
     background-position: center;
     position: fixed;
@@ -951,7 +1060,7 @@ h1 {
 }
 
 #B2{
-    background-image: url('images/background/絶壁の拾ってきた素材.jpeg');
+    background-image: url('images/background/つり橋_戦闘画面.jpg');
     background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
     background-position: center;
     position: fixed;
@@ -960,6 +1069,19 @@ h1 {
     width: 100%;
     height: 100%;
 }
+
+#B3{
+    background-image: url('images/background/祭壇_戦闘画面.jpg');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: bottom;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
 
 #magic1_colorchoice{
     background-color: black;
@@ -986,6 +1108,7 @@ h1 {
     top: 0;
     width: 100%;
     height: 100%;
+    border-radius: 20px;
 }
 
 @keyframes tremble{
