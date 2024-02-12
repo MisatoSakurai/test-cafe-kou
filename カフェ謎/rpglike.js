@@ -1,10 +1,4 @@
 
-/*window.onbeforeunload = function(e) {
-    var confirmationMessage = "本当にページを閉じますか？";
-    e.returnValue = confirmationMessage;
-    return confirmationMessage; // 必要に応じてメッセージを返すことも可能ですが、新しいブラウザでは無視されることがあります
-};
-*/
 
 
 
@@ -27,7 +21,8 @@ const status = Object.freeze({
     QUIZ: 'quiz',
     BOARD: 'board',
     BOOK: 'monster_book',
-    BATTLE: 'battle'
+    BATTLE: 'battle',
+    CLEAR:"clear"
 });
 //存在するプレイヤーの状況を管理
 
@@ -205,6 +200,34 @@ var quiz_list ={
         }
         
     },
+    "Q11":{
+        field:stage.CASTLE,
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/castle/4_干支.png",
+                answer:"マル",
+                hint:"ヒントなし",
+            },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/castle/4_干支_文字変え.png",
+                answer:"シル",
+                hint:"ヒントなし",
+                place:{
+                    x: 32, y: 57,  // 座標%
+                    w: 7, h: 7   // サイズ%
+                }
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/castle/4_干支_ハサミ.png",
+                answer:"マリ",
+                hint:"ヒントなし",
+                place:{
+                    x: 79, y: 0,  // 座標%
+                    w: 10, h: 10   // サイズ%
+                }
+            }
+        }
+    },
 }
 
 
@@ -216,8 +239,8 @@ const board_data = {
         [magicType.SCISSORS]:{
             image:"images/board/導入看板_ハサミ.png",
             place:{
-                    x: 59, y: 16,  // 座標%
-                    w: 6, h: 7   // サイズ%
+                    x: 56, y: 16,  // 座標%
+                    w: 6, h: 10   // サイズ%
                 },
         }
     }
@@ -320,9 +343,13 @@ const tackle_quiz_tutorial_list = [
 
 
 const use_magic_list = [
-    [speaker.G,"——ひとつ余談ですが、どうやら魔法は問題に対しても使うことができるようです"],
-    [speaker.G,"——魔法を使って新しくなった問題にも、解答することができます"],
-    [speaker.G,"——もしレベルを上げるために解く問題が無くなった時は、活用してみてください！"],
+    [speaker.G,"——どうやらここには謎がないみたいですね"],
+    [speaker.G,"——ああ、そうだ、ひとつ言い忘れていたことがあるんですが"],
+    [speaker.G,"——実はあなたが手に入れた魔法は謎に使うこともできるんです"],
+    [speaker.G,"——謎を解く画面で左上に表示されるアイコンをタップし、使う場所を正しく選択すると謎に対して魔法を使うことができます"],
+    [speaker.G,"——魔法が使える場所にはそれぞれルールがあるので注意してください"],
+    [speaker.G,"——魔法を使うことで導かれた新たな答えも経験値を上げるのに使うことができるのでぜひ活用してください"],
+    [speaker.G,"——それでは、健闘を祈ります"]
     
 ]
 
@@ -349,8 +376,7 @@ const monster_tutorial_list = [
     [speaker.G,"——直接戦うこともできますが……確実にやられてしまうでしょう"],
     [speaker.G,"——そしてあなたの行動が終わると敵からの攻撃が来ます"],
     [speaker.G,"——普通の体であるあなたはほぼ確実にやられてしまうのでこの攻撃の前に敵を倒さなければなりません"],
-    [speaker.G,"——魔法を手に入れると、モンスターに対して魔法を使うことができます"],
-    [speaker.G,"——この魔法を用いて敵を倒しましょう<br>ちょっとしたひらめきで道を切り開くことができるかもしれません"],
+    [speaker.G,"——｢魔法｣から選択して用いることで敵を倒しましょう<br>ちょっとしたひらめきで道を切り開くことができるかもしれません"],
     ["action",{func: closeBattle, subject:'B1'}],
     ["action",{func: finishHide, subject:"B1_command"}],
 ]
@@ -388,7 +414,7 @@ let tutorials = {
         talk:story_tutorial_list
     },
     [tutorialType.OPENQUIZ]:{
-        finish:false,
+        finish:true,
         talk:open_quiz_tutorial_list
     },
     [tutorialType.USEMAGICTOQUIZ]:{
@@ -474,8 +500,8 @@ let meet_clear_condition = false;
 //-- initialize --------
 
 window.onload = function(){
-    initializeQuizDataList(quiz_list);
     initializeMagicIcons();
+    initializeQuizDataList(quiz_list);
 }
 
 
@@ -485,10 +511,12 @@ function initializeQuizDataList(q_list){
     for (let Q in q_list) {
         q_list[Q].origin_image = q_list[Q].magics[magicType.NONE].image;
         q_list[Q].involved_magic = magicType.NONE;
-        q_list[Q].number_of_quiz = Object.keys(q_list).length;
+        q_list[Q].number_of_quiz = Object.keys(q_list[Q].magics).length;
         q_list[Q].answered_time = 0;
+        q_list[Q].enable_num_of_quiz = 1;
         q_list[Q].icon_id = Q + "_icon";
         q_icon = document.getElementById(q_list[Q].icon_id);
+        console.log(q_icon);
         q_icon.src = images.QICON;
         for(let m in q_list[Q].magics){
             q_list[Q].magics[m].answered = false;
@@ -502,16 +530,12 @@ function initializeQuizDataList(q_list){
 function initializeMagicIcons(){
     for (let M in magicType){
         magic_id = magicType[M];
-        console.log(magic_id + "_icon");
         magic_icon = document.getElementById(magic_id + "_icon");
         if(magic_icon == null){
             continue;
         }
-        console.log(magic_icon)
-        console.log(magic_info[magic_id]);
-        console.log(magic_info[magic_id].image);
-        magic_icon.style.backgroundImage = "url(" + magic_info[magic_id].image + ")"
-        console.log(magic_icon.style.backgroundImage);
+        console.log("url(" + magic_info[magic_id].image + ")");
+        magic_icon.style.backgroundImage = "url(" + magic_info[magic_id].image + ")";
     }
 }
 
@@ -529,14 +553,12 @@ function startGame(){
         title_sheet.style.display = 'none';
         map.style.display = 'block';
         now_status = status.MAP;
-        console.log("チュートリアルは終わっているのでマップに移動");
         if(!tutorials[tutorialType.OPENQUIZ].finish){
             doTutorial(tutorialType.OPENQUIZ);
         }
         
         
     }else{
-        console.log("今からチュートリアル");
         title_sheet.style.display = 'none';
         now_status = status.STORY;
         doTutorial(tutorialType.STORY);
@@ -552,13 +574,11 @@ function quitGame(){
     }
     else{
         
-        moveTitle();
         
-        /*
         popTexting("");
         popTitling("ERROR");
         openPop();
-        */
+        
         /*showLog(log_name.CANTQUIT)*/
     }
 }
@@ -567,9 +587,17 @@ function quitGame(){
 
 
 function clearGame(){
-    popTexting("クリアの条件を満たした！");
+    /*popTexting("クリアの条件を満たした！");
     popTitling("CLEAR");
-    openPop();
+    openPop();*/
+
+    clear_sheet = document.getElementById("clear_sheet");
+    title_sheet = document.getElementById("title_sheet");
+    clear_sheet.style.display = 'block';
+    title_sheet.style.display = 'none';
+    now_status = status.CLEAR;
+
+
 }
 
 
@@ -618,7 +646,6 @@ function hideImg(subject){
 
 function pointOut(subject){
     target = document.getElementById(subject);
-    console.log("pointOutするよ");
     if (target == null) {
         target = document.querySelector(subject);
     }
@@ -629,7 +656,6 @@ function pointOut(subject){
     pointer.style.top = rect.top + rect.height + marginbottom + 5 +  "px";
     pointer.style.left = rect.left + rect.width/2 + "px";
     pointer.style.display = "block";
-    console.log(pointer.style.top);
 }
 
 
@@ -656,7 +682,6 @@ function finishHide(subject){
 
 function doTutorial(n){
     tutorial_page = document.getElementById("tutorial");
-    console.log(n + "のチュートリアルする")
     
     
     if (!tutorials[n].finish){
@@ -715,7 +740,6 @@ function closeGeneTextLog(){
 
 
 function displayNextDialog(){
-    console.log(current_dialog_num);
     text_log = document.getElementById("gene_text_log");
     text_log_speaker = text_log.querySelector(".text_log_speaker");
     text_log_sentence = text_log.querySelector(".text_log_sentence");
@@ -738,7 +762,6 @@ function displayNextDialog(){
     if (current_dialog_num < current_dialog_list.length-1){
         current_dialog_num += 1;
         scene = current_dialog_list[current_dialog_num];
-        console.log(scene);
         if(scene[0] != "action") {
             
             text_log_sentence.innerHTML = scene[1];
@@ -845,13 +868,7 @@ function openQ(n){
     removeAllStars();
     
     
-    now_num_ans = 1;
-    for(var magic of enable_magic_list){
-        if(quiz_data.magics[magic] != null){
-            now_num_ans += 1;
-        }
-    }
-    
+    now_num_ans = quiz_data.enable_num_of_quiz;
     
     let stars = "★".repeat(quiz_data.answered_time);
     stars += "☆".repeat(now_num_ans - quiz_data.answered_time);
@@ -891,22 +908,27 @@ function closeQ(){
     var quiz_id = null;
 }
 
-
+function kataToHira(text) {
+    return text.replace(/[\u30a1-\u30f6]/g, function(match) {
+        var chr = match.charCodeAt(0) - 0x60;
+        return String.fromCharCode(chr);
+    });
+}
 
 function checkA(){
     const quiz_data = quiz_list[quiz_id]
     const quiz_sheet = document.getElementById("Q_sheet");
     const players_answer_box = quiz_sheet.querySelector(".answer_box");
     const players_answer = players_answer_box.value;
-    console.log(players_answer);
-    console.log(quiz_data.magics[quiz_data.involved_magic].answer);
-    console.log(players_answer == quiz_data.magics[quiz_data.involved_magic].answer);
     let pop_tl = "";
     let pop_tx = "";
     
+    collect = (players_answer == quiz_data.magics[quiz_data.involved_magic].answer || 
+               players_answer == kataToHira(quiz_data.magics[quiz_data.involved_magic].answer));
+    
     if(quiz_data.magics[quiz_data.involved_magic].answered == false){
-        if(players_answer == quiz_data.magics[quiz_data.involved_magic].answer){
-            console.log("正解！："+ quiz_data.magics[quiz_data.involved_magic].answer + "\n獲得経験値：" + quiz_data.point);
+        if(collect){
+            
             quiz_data.answered = true;
             pop_tl = "正解!!";
             pop_tx = "A："+quiz_data.magics[quiz_data.involved_magic].answer +"<br>"+"獲得経験値：" + point_list[player_data.level] + "pt";
@@ -917,13 +939,17 @@ function checkA(){
             players_answer_box.value = "";
             closeQ();
             
+            if(quiz_data.answered_time >= quiz_data.enable_num_of_quiz){
+                q_icon = document.getElementById(quiz_data.icon_id);
+                q_icon.style.filter = "grayscale(100%)";
+            }
+            
             if(!tutorials[tutorialType.ANSWEREDQUIZ].finish){
                 doTutorial(tutorialType.ANSWEREDQUIZ);
             }
 
         }else{
             players_answer_box.value = "";
-            console.log("不正解");
             pop_tl = "不正解";
             pop_tx = "答えが違うようだ...";
         }
@@ -954,7 +980,6 @@ function hint(){
     let pop_tl = "";
     let pop_tx = "";
     if(quiz_data.magics[quiz_data.involved_magic].answered == false){
-        console.log("ヒント");
         pop_tl = "ヒント";
         pop_tx = quiz_data.magics[quiz_data.involved_magic].hint;
         
@@ -1040,9 +1065,10 @@ function openMenu(nashi){
         }
         menu_point.textContent = player_data.point+"pt";
         let now_level_point = level_list[player_data.level].needed_point
+        
         let bar_percentage = 
             (player_data.point-now_level_point)*100/(level_list[player_data.level+1].needed_point-now_level_point);
-        menu_point_bar.value = player_data.point;
+        menu_point_bar.value = bar_percentage;
     }
 }
 
@@ -1069,7 +1095,6 @@ function openColorMagic(){
     if(open_color_back.style.display != 'block'){
         document.querySelector(".color_menu").classList.toggle('open');
         open_color_back.style.display = 'block';
-        console.log("openColorMagic")
     }else{
         closeColorMagic();
     }
@@ -1146,7 +1171,6 @@ function openMagic(n) {
 
 
 function useMagic(e){
-    console.log("use magic")
     var rect = null;
     let square = {
         x: 0, y: 0,  // 座標%
@@ -1177,10 +1201,8 @@ function useMagic(e){
     
     console.log(point);
     if (hit) {
-        console.log('hit!');
         successMagic();
     }else{
-        console.log('not hit');
         failedMagic();
     }
     closeColorMagic();
@@ -1188,6 +1210,22 @@ function useMagic(e){
 
 
 
+
+
+
+function makeBook(e){
+    
+    
+    rect = document.querySelector(".book_content").getBoundingClientRect(); 
+    
+    const point = {
+        x: (e.clientX - rect.left)*100/rect.width,
+        y: (e.clientY - rect.top)*100/rect.height
+    };
+    
+    
+    console.log(point);
+}
 
 
 
@@ -1289,7 +1327,6 @@ function checkLevel(){
             const new_magic_icon = document.querySelectorAll("." + enableMagic);
             new_magic_icon.forEach(icon => {
                 icon.style.display = 'block';
-                console.log("blockにした");
             });
             
             if(enableMagic == magicType.CHANGE_COLOR){
@@ -1309,6 +1346,25 @@ function checkLevel(){
 
 
             openPop();
+            
+            for (Q in quiz_list){
+                quiz_data  = quiz_list[Q];
+                now_num_ans = 1;
+                for(var magic of enable_magic_list){
+                    if(quiz_data.magics[magic] != null){
+                        now_num_ans += 1;
+                    }
+                }
+                
+                quiz_data.enable_num_of_quiz = now_num_ans;
+                
+                if(quiz_data.answered_time < quiz_data.enable_num_of_quiz){
+                    q_icon = document.getElementById(quiz_data.icon_id);
+                    if(q_icon != null){
+                        q_icon.style.filter = "grayscale(0%)";
+                    }
+                }
+            }
 
             
             
@@ -1380,9 +1436,7 @@ function closeBoard(){
 
 function openBook(n){
     const book_back = document.getElementById("QB_back");
-    console.log(n);
     const book_sheet = document.getElementById(n);
-    console.log(book_sheet);
     const book_image = book_sheet.querySelector(".book_content .book_image");
     const book_title = book_sheet.querySelector(".book_title");
     
@@ -1411,7 +1465,7 @@ function closeBook(n){
 
 function magicBookShowImg(n){
     const book_img = document.getElementById("magic_book_image");
-    book_img.src = "images/book/magic/" + n;
+    //book_img.src = "images/book/magic/" + n;
     
 }
 
@@ -1419,7 +1473,7 @@ function magicBookShowImg(n){
 
 function monsterBookShowImg(n){
     const book_img = document.getElementById("monster_book_image");
-    book_img.src = "images/book/monster/" + n;
+    //book_img.src = "images/book/monster/" + n;
     
 }
 
@@ -1440,7 +1494,7 @@ function moveMap(n){
     next_stage.style.display = 'block'
     
     now_place = n;
-    if(n=='prairie' && tutorials[tutorialType.USEMAGICTOQUIZ].finish == false){
+    if(n=='rocky' && tutorials[tutorialType.USEMAGICTOQUIZ].finish == false){
         doTutorial(tutorialType.USEMAGICTOQUIZ);
     }
     
