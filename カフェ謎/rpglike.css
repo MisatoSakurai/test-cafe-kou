@@ -1,3 +1,27 @@
+:root {
+    --red: #E60033;
+    --blue: #0072EF;
+    --yellow: #F4E21D;
+    --green: #00C917;
+    --purple: #884898;
+    --orange: #FF9123;
+    --gray: #666;
+    --dark_gray: #525252;
+    --pink: #FF7BAC;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 body {
     overflow-x: hidden;
     font-size: 20px;
@@ -6,7 +30,9 @@ body {
 
 
 h1 {
-    font-size: 50px;
+    font-size: 150px;
+    margin-block-start: 0.3em;
+    margin-block-end: 0.3em;
 }
 
 
@@ -16,12 +42,13 @@ h1 {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: aliceblue;
+    background-color: white;
 }
 
 #title_text_and_buttons {
     text-align: center;
     width: 100%;
+    padding: 20% 0;
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
@@ -36,8 +63,42 @@ h1 {
 
 
 
+#quit_button {
+    position: fixed;
+    width: 10%;
+    height: auto;
+    right: 5%;
+    bottom: 5%;
+}
 
 
+
+
+
+
+
+#clear_sheet {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+}
+
+
+
+
+
+
+#clear_text_and_buttons {
+    text-align: center;
+    width: 100%;
+    padding: 20% 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
 
 
 
@@ -56,11 +117,12 @@ h1 {
     display: flex;
     left: 20%;
     top: 75%;
-    width: 60%;
-    height: 22%;
+    width: 55%;
+    height: 20%;
     text-align: center;
     border: 4px solid #f0f0f0;
     border-radius: 20px;
+    padding: 10px;
 }
 
 
@@ -71,8 +133,9 @@ h1 {
 .text_log_sentence {
     position: relative;
     text-align: left;
-    left:3%;
-    margin-right: 3%;
+    /*left:3%;
+    margin-right: 3%;*/
+    margin: 0;
     
 }
 
@@ -80,6 +143,8 @@ h1 {
 
 .text_log_speaker {
     width:fit-content;
+    margin: 0;
+    margin-right: 5px;
 }
 
 
@@ -93,6 +158,7 @@ h1 {
 
 .text_log_next_button {
     position: absolute;
+    height: 30px;
     left: 0;
     right: 0;
     padding: 10px;
@@ -100,6 +166,34 @@ h1 {
     margin-left:auto;
     bottom:3%;
 }
+
+
+
+
+
+#text_log_back {
+    background-color: white;
+    opacity: 0%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+
+
+
+#tutorial {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
 
 
 
@@ -113,7 +207,7 @@ h1 {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-image: url('images/background/草原.jpg');
+    background-image: url('images/background/草原_戦闘画面.jpg');
     background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
     background-position: center;
 }
@@ -121,6 +215,34 @@ h1 {
 
 
 
+
+
+#tutorial_image {
+    position: absolute;
+    width : auto;
+    max-height: 60%;
+    max-width:80%;
+    left: 0;
+    right: 0;
+    top:20%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+}
+
+
+
+#pointer {
+    position: absolute;
+    width:10%;
+    max-width: 50px;
+    height: auto;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit- transform: translateX(-50%);
+    z-index: 10;
+}
 
 
 
@@ -141,7 +263,6 @@ h1 {
 
 
 #Q_sheet{
-    /*background-color: bisque;*/
     position: fixed;
     top: 0;
     left: 10%;
@@ -151,17 +272,42 @@ h1 {
 }
 
 
-.quiz_title{
-    top:5%;
+
+#quiz_stars {
+    display: flex;
+    margin-top:5%;
+    height: 6%;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
+
+.star {
+    aspect-ratio:1/1;
+    height: 100%; /* 星の高さ */
+    width:auto;
+    background-size: contain; /* 星の画像を要素内に収める */
+    background-repeat: no-repeat; /* 背景画像を繰り返し無しに設定 */
+}
+
+.light_star {
+    background-image: url("images/icons/正解数アイコン（明）.png"); /* 明るい星の画像 */
+}
+
+.dark_star {
+    background-image: url('images/icons/正解数アイコン（暗）.png'); /* 暗い星の画像 */
+}
+
+
+
+
 
 
 .quiz_content{
     position: relative;
-    width : auto;
     aspect-ratio:297/210;
-    max-height: 60%;
-    max-width:80%;
+    max-height: 55%;
     left: 0;
     right: 0;
     top:20px;
@@ -184,9 +330,9 @@ h1 {
 
 
 
-.answer_box{
+#answer_box{
     position: absolute;
-    top: 40%;
+    top: 45%;
     left: 10%;
     right: 10%;
     padding: 3px;
@@ -196,6 +342,10 @@ h1 {
     color: white;
     border: 2px solid #f0f0f0;
     border-radius: 3px;
+    font-size: 20px;
+    transform: translateY(-50%);
+    -webkit- transform: translateY(-50%);
+    text-align: left;
 }
 
 
@@ -267,14 +417,18 @@ h1 {
     position: relative;
     width : auto;
     aspect-ratio:297/210;
-    max-height: 80%;
-    max-width:80%;
+    max-height: 90%;
+    max-width:90%;
     left: 0;
     right: 0;
     top:20px;
     margin-left: auto;
     margin-right: auto;
     z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit- transform: translateY(-50%);
+    text-align: center;
 }
 
 #board_image {
@@ -288,6 +442,83 @@ h1 {
 
 
 #board_sheet {
+    position: fixed;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 100%;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+.book_content{
+    position: relative;
+    width : auto;
+    aspect-ratio:297/210;
+    max-height: 80%;
+    left: 0;
+    right: 0;
+    top:20px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+    background-color: white;
+}
+
+.book_base_image {
+    position:absolute;
+    width: 100%; /* 画像を親要素に合わせる */
+    height: 100%; /* 画像を親要素に合わせる */
+    left:0;
+    top:0;
+    z-index: 1;
+}
+
+
+
+
+.book_image_ {
+    width:40%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
+
+
+
+.book_link_list {
+    position:absolute;
+    width: 37.5%;
+    height: 74.5%;
+    left : 57.5%;
+    top:15.5%;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+    list-style-type: none;
+    z-index: 3;
+}
+
+.book_link {
+    margin: 10px 0;
+}
+
+
+
+
+.book_sheet {
     position: fixed;
     top: 0;
     left: 10%;
@@ -329,13 +560,26 @@ h1 {
 
 
 #prairie{
-    background-image: url('images/background/草原-俯瞰図.png');
+    background-image: url('images/background/草原_俯瞰図.png');
     background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
     background-position: top;
 }
 
 
-.monster_icon {
+#rocky{
+    background-image: url('images/background/岩場_俯瞰図.png');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: top;
+}
+
+#castle{
+    background-image: url('images/background/祭壇_俯瞰図.png');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: top;
+}
+
+
+#B1_icon {
     width:10%;
     max-width: 80px;
     height: auto;
@@ -347,12 +591,48 @@ h1 {
 }
 
 
-#board_icon{
-    width:10%;
-    max-width: 80px;
+
+
+
+#B2_icon {
+    width:20%;
+    max-width: 160px;
     height: auto;
     position: absolute;
-    bottom: 10%;
+    top: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+#B3_icon {
+    width:20%;
+    max-width: 160px;
+    height: auto;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit- transform: translateX(-50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#board_icon{
+    width:15%;
+    max-width: 100px;
+    height: auto;
+    position: absolute;
+    bottom: 5%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
     -webkit- transform: translateY(-50%) translateX(-50%);
@@ -375,14 +655,52 @@ h1 {
 
 
 
-
-
-
-#quiz_icons{
-    display: flex;
-    justify-content: space-between;
-    width:70%;
+#button_back_to_prairie {
+    width:10%;
+    max-width: 80px;
     height: auto;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
+#button_move_to_castle {
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+#button_back_to_rocky {
+    width:10%;
+    max-width: 80px;
+    height: auto;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+
+
+
+
+
+.quiz_icons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    grid-row-gap: 50px;
+    width:70%;
+    /*height:70px;*/
     position: absolute;
     top: 50%;
     left: 50%;
@@ -390,14 +708,11 @@ h1 {
     -webkit- transform: translateY(-50%) translateX(-50%);
     text-align: center;
 }
-}
 
 
 .selectQ{
-    width:50px;
-    height:50px;
-    background-color: gray;
-    
+    width:70px;
+    margin: 0 calc(calc(100% - 70 * 5px) / 10);
 }
 
 
@@ -405,25 +720,52 @@ h1 {
 
 
 
-
-
-
-#menu_button {
+.menu_button {
     position: absolute;
-    background-color: blue;
-    width:10%;
-    height:50px;
-    max-width: 50px;
-    top: 10px;
-    right: 10px;
+    aspect-ratio:1/1;
+    height:10%;
+    max-height: 40px;
+    top: 20px;
+    right: 20px;
     margin-left: auto;
     margin-right: auto;
-    z-index: 10;
+    z-index: 12;
 }
+
+.menu_button span{
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+}
+.menu_button span:first-of-type{/* ハンバーガーメニューの1番目の線 */
+  top: 10%;
+}
+.menu_button span:nth-of-type(2){/* ハンバーガーメニューの2番目の線 */
+  top: 50%;
+}
+.menu_button span:last-of-type{/* ハンバーガーメニューの3番目の線 */
+  top: 90%;
+}
+
+.menu_button.active span:first-of-type{/* ハンバーガーメニューの1番目の線 */
+  top: 50%;
+  transform: rotate(45deg);
+}
+.menu_button.active span:nth-of-type(2){/* ハンバーガーメニューの2番目の線 */
+  opacity: 0;/* 透明にする */
+}
+.menu_button.active span:last-of-type{/* ハンバーガーメニューの3番目の線 */
+  top: 50%;
+  transform: rotate(-45deg);
+}
+
+
+
 
 
 .slide_menu{
-    background-color: #303030;
+    background-color: var(--dark_gray);
     color:white;
     position: fixed;
     top: 0;
@@ -435,7 +777,7 @@ h1 {
     padding-left: 20px;
     list-style-type: none;
     margin: 0;
-    z-index:12;
+    z-index:11;
     transform: translateX(100%); 
     transition: .2s;
 }
@@ -453,18 +795,20 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index:11;
+    z-index:10;
 }
 
 
 
 .slide_menu li {
-    margin: 20px 0;
+    margin: 30px 0 0 0;
+    width: 100%;
 }
 
 
 #menu_level {
     font-size: larger;
+    margin-top: 40px;
 }
 
 #menu_point_bar {
@@ -472,7 +816,7 @@ h1 {
     margin-bottom: auto;
     margin-left: 7px;
     margin-right:5px;
-    background-color: blue;
+    background-color: var(--dark_gray);
 }
 
 #menu_point {
@@ -500,13 +844,15 @@ h1 {
 }
 
 .magic_icon {
-    background-color: white;
-    width:50px;
-    height: 50px;
+    width:60px;
+    height: 60px;
     margin-left:10px;
     z-index: 10;
     border: 2px solid rgba(0,0,0,0);
     transition: .2s;
+    background-size: contain; /* 星の画像を要素内に収める */
+    background-repeat: no-repeat; /* 背景画像を繰り返し無しに設定 */
+    
 }
 
 
@@ -563,11 +909,11 @@ h1 {
 
 
 .color_menu li{
-    background-color: blue;
-    width:50px;
-    height: 50px;
+    width:60px;
+    height: 60px;
     margin-bottom:10px;
     margin-left: 0;
+    border-radius: 15px;
 }
 
 .color_menu li{
@@ -578,27 +924,34 @@ h1 {
 
 .color_menu .red{
     transform: translateY(-64px);
-    background-color: red;
+    background-color: var(--red);
+    opacity: 0%;
 }
 
 .color_menu .blue{
     transform: translateY(-128px);
+    opacity: 0%;
+    background-color: var(--blue);
 }
 
 .color_menu .yellow{
     transform: translateY(-192px);
-    background-color: yellow;
+    background-color: var(--yellow);
+    opacity: 0%;
 }
 
 
 .color_menu.open .red{
     transform: translateY(0); 
+    opacity: 100%;
 }
 .color_menu.open .blue{
-    transform: translateY(0); 
+    transform: translateY(0);
+    opacity: 100%;
 }
 .color_menu.open .yellow{
     transform: translateY(0); 
+    opacity: 100%;
 }
 
 
@@ -608,7 +961,7 @@ h1 {
 
 
 #pop{
-    background-color: #2b2b2b;
+    background-color: var(--dark_gray);
     position: fixed;
     top: 35%;
     left: 25%;
@@ -616,11 +969,15 @@ h1 {
     height: 30%;
     text-align: center;
     margin: auto;
+    padding: 10px;
+    z-index: 13;
+    
 }
 
 #pop p {
     color:white;
 }
+
 
 
 #pop_back {
@@ -631,17 +988,44 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 12;
 }
 
 
 
+
+.command{
+    position: fixed;
+    /*bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;*/
+    background-color: black;
+    color: white;
+    
+    background-color: black;
+    position: fixed;
+    left: 10%;
+    bottom: 2%;
+    width: 80%;
+    height: 25%;
+    text-align: left;
+    border: 4px solid #f0f0f0;
+    border-radius: 20px;
+}
+
+
+.command p {
+    margin: 10px;
+    
+}
 
 
 
 /*ここから所有格さん*/
 
 
-#battle_magic{
+/*#battle_magic{
     background-color: black;
     position: fixed;
     bottom: 0;
@@ -649,7 +1033,7 @@ h1 {
     width: 50%;
     height: 30%;
     color: white;
-}
+}*/
 
 
 
@@ -658,39 +1042,88 @@ h1 {
     top: 5%;
     left: 5%;
     width: 20%;
-    height: 25%;
+    height: fit-content;
     background-color: black;
     color: white;
+    padding: 10px;
+    border: 4px solid #000000;
+    border-radius: 10px;
 }
 
-.monster{
+
+
+.enemy_name {
+    
+    border-bottom: 2px solid #f0f0f0;
+}
+
+
+.enemy_status ul {
+    padding-left: 0;
+    margin: 10px 0;
+}
+
+
+
+#monster1{
     position: absolute;
-    top: 40%;
+    width:20%;
+    max-width: 200px;
+    height: auto;
+    top: 55%;
     left: 50%;
-    color: black;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
 }
 
-.command{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30%;
-    background-color: black;
-    color: white;
+
+#monster2{
+    position: absolute;
+    width:40%;
+    max-width: 400px;
+    height: auto;
+    top: 35%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
 }
+
+
+#monster3{
+    position: absolute;
+    width:40%;
+    max-width: 400px;
+    height: auto;
+    bottom: 20%;
+    left: 50%;
+    transform:translateX(-50%);
+    -webkit- transform:translateX(-50%);
+}
+
+
+
+
 
 .explain{
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 90%;
     height: 100%;
     background-color: black;
+    border-radius: 20px;
+    
+}
+
+.explain p{
+    margin: 10px;
 }
 
 
+
 #B1{
-    background-color: white;
+    background-image: url('images/background/草原_戦闘画面.jpg');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -699,7 +1132,9 @@ h1 {
 }
 
 #B2{
-    background-color: white;
+    background-image: url('images/background/つり橋_戦闘画面.jpg');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -707,12 +1142,27 @@ h1 {
     height: 100%;
 }
 
+#B3{
+    background-image: url('images/background/祭壇_戦闘画面.jpg');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: bottom;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
 #magic1_colorchoice{
     background-color: black;
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
+    border-radius: 20px;
+    
 }
 
 #using_magic{
@@ -721,6 +1171,7 @@ h1 {
     top: 0;
     width: 100%;
     height: 100%;
+    border-radius: 20px;
 }
 
 #victory{
@@ -729,6 +1180,7 @@ h1 {
     top: 0;
     width: 100%;
     height: 100%;
+    border-radius: 20px;
 }
 
 @keyframes tremble{
