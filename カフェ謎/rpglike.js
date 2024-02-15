@@ -5,6 +5,42 @@
 
 //--data&variable-------
 
+
+
+var level_list = {
+    1:{needed_point:0, enable_magic:magicType.ADD_CHAR},
+    2:{needed_point:5, enable_magic:magicType.CHANGE_COLOR},
+    3:{needed_point:50, enable_magic:magicType.CHANGE_CHAR},
+    4:{needed_point:500, enable_magic:magicType.SCISSORS},
+}
+
+//本当は、0,5,50,500
+
+
+var point_list = {
+    1:2.5,
+    2:7,
+    3:8,
+    4:1
+}
+
+
+var quiz_place_list = {
+    prairie:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+    castle:[]
+}
+
+
+
+
+
+
+
+
+
+
+
+
 var player_data = {
     point:0,
     level:1,
@@ -115,101 +151,203 @@ let now_place = stage.PRAIRIE;
 
 
 
-var level_list = {
-    1:{needed_point:0, enable_magic:magicType.ADD_CHAR},
-    2:{needed_point:5, enable_magic:magicType.CHANGE_COLOR},
-    3:{needed_point:50, enable_magic:magicType.CHANGE_CHAR},
-    4:{needed_point:500, enable_magic:magicType.SCISSORS},
-}
-
-//本当は、0,5,50,500
-
-
-
-var point_list = {
-    1:2.5,
-    2:7,
-    3:8,
-    4:1
-}
-
-
 
 
 
 var quiz_list ={
-    "Q1":{
-        field:stage.PRAIRIE,
+    1:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/prairie/1_寿司.png",
+                image:"images/quiz/31_寿司.png",
                 answer:"カイロ",
                 hint:"3つのイラストはとある食べ物を表しています。<br>そして、真ん中のイラストには海苔が巻かれているようです。",
             },
             [magicType.YELLOW]:{
-                image:"images/quiz/prairie/1_寿司_色変え.png",
+                image:"images/quiz/31_寿司_色.png",
                 answer:"カイゴ",
-                hint:"3つのイラストはとある食べ物を表しています。そして、真ん中のイラストには海苔が巻かれているようです。",
                 place:{
-                    x: 16, y: 15,  // 座標%
+                    x: 16, y: 12,  // 座標%
                     w: 16, h: 5   // サイズ%
                 }
             }
         }
     },
-    "Q2":{
-        field:stage.PRAIRIE,
+    
+    2:{
         magics:{
             [magicType.NONE]:{
-                image:"images/pro_quiz_image.png",
-                answer:"答え2",
-                hint:"ヒントです2",
-            }
-        }
-        
-    },
-    "Q3":{
-        field:stage.PRAIRIE,
-        magics:{
-            [magicType.NONE]:{
-                image:"images/quiz/prairie/3_ハンガー傘.png",
+                image:"images/quiz/3_ハンガー傘.png",
                 answer:"サンカク",
-                hint:"ヒントはありません",
-            }
+                hint:"",
+            },
         }
+        
     },
-    "Q4":{
-        field:stage.PRAIRIE,
+    
+    3:{
         magics:{
             [magicType.NONE]:{
-                image:"images/pro_quiz_image.png",
-                answer:"答え4",
-                hint:"ヒントです",
+                image:"images/quiz/14_色付き英字.png",
+                answer:["ラック","LUCK"],
+                hint:"",
+            },
+            [magicType.RED]:{
+                image:"images/quiz/14_色付き英字_色.png",
+                answer:["ロック","LOCK"],
+                place:{
+                    x: 41, y: 41,  // 座標%
+                    w: 5, h: 5   // サイズ%
+                }
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/14_色付き英字_鋏.png",
+                answer:["スター","STAR"],
+                place:{
+                    x: 20, y: 0,  // 座標%
+                    w: 10, h: 10   // サイズ%
+                }
             }
         }
         
     },
-    "Q5":{
-        field:stage.PRAIRIE,
+    
+    4:{
         magics:{
             [magicType.NONE]:{
-                image:"images/pro_quiz_image.png",
-                answer:"答え5",
-                hint:"ヒントです",
+                image:"images/quiz/5_語呂ろくろ.png",
+                answer:"ゴロ",
+                hint:"",
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/5_語呂ろくろ_□.png",
+                answer:"ロクロ",
+                place:{
+                    x: 65, y: 14,  // 座標%
+                    w: 25, h: 29   // サイズ%
+                }
             }
         }
         
     },
-    "Q11":{
-        field:stage.CASTLE,
+    
+    5:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/castle/4_干支.png",
+                image:"images/quiz/9_剣盾_v3.png",
+                answer:"ソンラク",
+                hint:"",
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/9_剣盾_v3_□.png",
+                answer:"レンラク",
+                place:{
+                    x: 50, y: 54,  // 座標%
+                    w: 12, h: 10   // サイズ%
+                }
+            },
+        }
+        
+    },
+    6:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/12_★迷路.png",
+                answer:"サイン",
+                hint:"",
+            },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/12_★迷路_字.png",
+                answer:"サイテキカイ",
+                place:{
+                    x: 36, y: 9,  // 座標%
+                    w: 4, h: 6   // サイズ%
+                }
+            },
+        }
+        
+    },
+    7:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/13_反転文字.png",
+                answer:"ニモノ",
+                hint:"",
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/13_反転文字_□.png",
+                answer:"エモノ",
+                place:{
+                    x: 36, y: 23,  // 座標%
+                    w: 10, h: 14   // サイズ%
+                }
+            }
+        }
+        
+    },
+    8:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/11_26分数.png",
+                answer:"ハード",
+                hint:"",
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/11_26分数_鋏.png",
+                answer:"カード",
+                place:{
+                    x: 21, y: -2,  // 座標%
+                    w: 10, h: 11   // サイズ%
+                }
+            }
+        }
+        
+    },
+    9:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/20_部首の名前.png",
+                answer:"シカク",
+                hint:"",
+            },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/20_部首の名前_字.png",
+                answer:"シズク",
+                place:{
+                    x: 18, y: 64,  // 座標%
+                    w: 7, h: 10   // サイズ%
+                }
+            }
+        }
+        
+    },
+    10:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/23_ピースはめ.png",
+                answer:"カタチ",
+                hint:"",
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/23_ピースはめ_鋏.png",
+                answer:"クウキ",
+                place:{
+                    x: 42, y: -2,  // 座標%
+                    w: 5, h: 12   // サイズ%
+                }
+            }
+        }
+        
+    },
+    
+    11:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/4_干支.png",
                 answer:"マル",
                 hint:"ヒントなし",
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/castle/4_干支_文字変え.png",
+                image:"images/quiz/4_干支_字.png",
                 answer:"シル",
                 hint:"ヒントなし",
                 place:{
@@ -218,16 +356,162 @@ var quiz_list ={
                 }
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/castle/4_干支_ハサミ.png",
+                image:"images/quiz/4_干支_ハサミ.png",
                 answer:"マリ",
                 hint:"ヒントなし",
                 place:{
-                    x: 79, y: 0,  // 座標%
-                    w: 10, h: 10   // サイズ%
+                    x: 79, y: -2,  // 座標%
+                    w: 10, h: 12   // サイズ%
                 }
             }
         }
     },
+    12:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/24_じゃんけん.png",
+                answer:"マカイ",
+                hint:"",
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/24_じゃんけん_鋏.png",
+                answer:"カイキ",
+                place:{
+                    x: 40, y: -2,  // 座標%
+                    w: 10, h: 12   // サイズ%
+                }
+            }
+        }
+        
+    },
+    13:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/26_一口.png",
+                answer:"ダシン",
+                hint:"",
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/26_一口_鋏.png",
+                answer:"カクチ",
+                place:{
+                    x: 21, y: -2,  // 座標%
+                    w: 10, h: 12   // サイズ%
+                }
+            }
+        }
+        
+    },
+    14:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/29_上下文字つなぎ.png",
+                answer:"アナログ",
+                hint:"",
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/29_上下文字つなぎ_□.png",
+                answer:"アクセス",
+                place:{
+                    x: 68, y: 77,  // 座標%
+                    w: 10, h: 10   // サイズ%
+                }
+            }
+        }
+        
+    },
+    15:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/30_サイコロ.png",
+                answer:"プロジェクト",
+                hint:"",
+            },
+            [magicType.RED]:{
+                image:"images/quiz/30_サイコロ_色.png",
+                answer:"プライド",
+                place:{
+                    x: 23, y: 33,  // 座標%
+                    w: 53, h: 31   // サイズ%
+                }
+            }
+        }
+        
+    },
+    16:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/33_オセロ.png",
+                answer:"イノリ",
+                hint:"",
+            },
+            [magicType.BLUE]:{
+                image:"images/quiz/33_オセロ_色.png",
+                answer:"コイノボリ",
+                place:{
+                    x: 31, y: 46,  // 座標%
+                    w: 7, h: 10   // サイズ%
+                }
+            },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/33_オセロ_字.png",
+                answer:"サツキ",
+                place:{
+                    x: 18, y: 74,  // 座標%
+                    w: 5, h: 5   // サイズ%
+                }
+            }
+        }
+        
+    },
+    17:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/35_道路.png",
+                answer:"ウーロン",
+                hint:"",
+            }
+        }
+        
+    },
+    18:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/36_v.png",
+                answer:"エール",
+                hint:"",
+            },
+        }
+        
+    },
+    19:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/40_間.png",
+                answer:"ヤミ",
+                hint:"",
+            },
+        }
+        
+    },
+    20:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/25_数字埋め.png",
+                answer:["オーブン","OVEN"],
+                hint:"",
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/25_数字埋め_□.png",
+                answer:["ツリー","TREE"],
+                place:{
+                    x: 77, y: 35,  // 座標%
+                    w: 8, h: 10   // サイズ%
+                }
+            }
+        }
+        
+    }
 }
 
 
@@ -418,27 +702,27 @@ let tutorials = {
         talk:open_quiz_tutorial_list
     },
     [tutorialType.USEMAGICTOQUIZ]:{
-        finish:false,
+        finish:true,
         talk:use_magic_list
     },
     [tutorialType.TACKLEQUIZ]:{
-        finish:false,
+        finish:true,
         talk:tackle_quiz_tutorial_list
     },
     [tutorialType.ANSWEREDQUIZ]:{
-        finish:false,
+        finish:true,
         talk:answered_quiz_list
     },
     [tutorialType.MAGIC]:{
-        finish:false,
+        finish:true,
         talk:got_magic_list
     },
     [tutorialType.MONSTER]:{
-        finish:false,
+        finish:true,
         talk:monster_tutorial_list
     },
     [tutorialType.MENU]:{
-        finish:false,
+        finish:true,
         talk:menu_tutorial_list
     },
 }
@@ -506,21 +790,54 @@ window.onload = function(){
 
 
 
+function make_q_icon(n,place) {
+    var parent_id = place + "_q_icons";
+    var parent = document.getElementById(parent_id);
+    var q_icon = document.createElement("img");
+    q_icon.classList.add("selectQ");
+    q_icon.id = "Q" + n + "_icon";
+    q_icon.src = images.QICON;
+    q_icon.alt = "Q";
+    q_icon.setAttribute('onclick', "openQ('"+ n + "')");
+    parent.appendChild(q_icon);
+}
+
+
+
+
+
 
 function initializeQuizDataList(q_list){
-    for (let Q in q_list) {
-        q_list[Q].origin_image = q_list[Q].magics[magicType.NONE].image;
-        q_list[Q].involved_magic = magicType.NONE;
-        q_list[Q].number_of_quiz = Object.keys(q_list[Q].magics).length;
-        q_list[Q].answered_time = 0;
-        q_list[Q].enable_num_of_quiz = 1;
-        q_list[Q].icon_id = Q + "_icon";
-        q_icon = document.getElementById(q_list[Q].icon_id);
-        console.log(q_icon);
-        q_icon.src = images.QICON;
-        for(let m in q_list[Q].magics){
-            q_list[Q].magics[m].answered = false;
-            q_list[Q].magics[m].point = 1;
+    for (let n in q_list) {
+        q_list[n].origin_image = q_list[n].magics[magicType.NONE].image;
+        q_list[n].involved_magic = magicType.NONE;
+        q_list[n].number_of_quiz = Object.keys(q_list[n].magics).length;
+        q_list[n].answered_time = 0;
+        q_list[n].icon_id = "Q" + n + "_icon";
+        q_list[n].enable_num_of_quiz = 1;
+        place = "";
+        n = parseInt(n);
+        if(quiz_place_list.prairie.includes(n)){
+            place = "prairie";
+            q_list[n].field = stage.PRAIRIE;
+        }
+        else if(quiz_place_list.castle.includes(n)){
+            place = "castle";
+            q_list[n].field = stage.CASTLE;
+        }
+        
+        
+        make_q_icon(n,place);
+        
+        if(q_list[n].magics[magicType.NONE].hint == null || q_list[n].magics[magicType.NONE].hint == ""){
+            q_list[n].magics[magicType.NONE].hint == "ヒントはありません";
+        }
+        for(let m in q_list[n].magics){
+            q_list[n].magics[m].answered = false;
+            q_list[n].magics[m].point = 1;
+            if(q_list[n].magics[m].hint == null || q_list[n].magics[m].hint == ""){
+                q_list[n].magics[m].hint = q_list[n].magics[magicType.NONE].hint;
+            }
         }
     }
 }
@@ -534,7 +851,6 @@ function initializeMagicIcons(){
         if(magic_icon == null){
             continue;
         }
-        console.log("url(" + magic_info[magic_id].image + ")");
         magic_icon.style.backgroundImage = "url(" + magic_info[magic_id].image + ")";
     }
 }
@@ -846,10 +1162,12 @@ function removeAllStars() {
 function openQ(n){
     quiz_id = n;
     quiz_data = quiz_list[quiz_id];
+    console.log("id:" + n);
+    console.log("data:" + quiz_data);
     const quiz_back = document.getElementById("QB_back");
     const quiz_sheet = document.getElementById("Q_sheet");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
-    const answer_box = quiz_sheet.querySelector(".answer_box");
+    const answer_box = document.getElementById("answer_box");
     const magics = document.getElementById("magics");
     
     
@@ -918,13 +1236,35 @@ function kataToHira(text) {
 function checkA(){
     const quiz_data = quiz_list[quiz_id]
     const quiz_sheet = document.getElementById("Q_sheet");
-    const players_answer_box = quiz_sheet.querySelector(".answer_box");
+    const players_answer_box = document.getElementById("answer_box");
     const players_answer = players_answer_box.value;
     let pop_tl = "";
     let pop_tx = "";
     
-    collect = (players_answer == quiz_data.magics[quiz_data.involved_magic].answer || 
-               players_answer == kataToHira(quiz_data.magics[quiz_data.involved_magic].answer));
+    collect = false;
+    answers = quiz_data.magics[quiz_data.involved_magic].answer
+    
+    if(typeof(ansers)=="string") {
+        collect = (players_answer == answers || players_answer == kataToHira(answers));
+    }
+    
+    
+    else{
+        for( a in answers){
+            if(players_answer == answers[a] ){
+                collect = true;
+                break;
+            }
+            if(a == 0){
+                if(players_answer == kataToHira(answers[a]));
+                collect = true;
+                break;
+            }
+        }
+    }
+    
+    
+    
     
     if(quiz_data.magics[quiz_data.involved_magic].answered == false){
         if(collect){
@@ -1351,6 +1691,8 @@ function checkLevel(){
                 quiz_data  = quiz_list[Q];
                 now_num_ans = 1;
                 for(var magic of enable_magic_list){
+                    console.log(quiz_data);
+                    console.log(quiz_data.magics[magic]);
                     if(quiz_data.magics[magic] != null){
                         now_num_ans += 1;
                     }
@@ -1695,3 +2037,4 @@ function fail(n){
 }
 
 //ここまで所有格さん
+

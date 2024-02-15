@@ -66,12 +66,7 @@
             </div>
             
             <div id="prairie" class="stage">
-                <div id="quiz_icons">
-                    <img src="" alt="Q" onclick="openQ('Q1')" class="selectQ" id="Q1_icon">
-                    <img src="" alt="Q" onclick="openQ('Q2')" class="selectQ" id="Q2_icon">
-                    <img src="" alt="Q" onclick="openQ('Q3')" class="selectQ" id="Q3_icon">
-                    <img src="" alt="Q" onclick="openQ('Q4')" class="selectQ" id="Q4_icon">
-                    <img src="" alt="Q" onclick="openQ('Q5')" class="selectQ" id="Q5_icon">
+                <div class="quiz_icons" id="prairie_q_icons">
                 </div>
                 <img src ="images/icons/看板アイコン.png" alt = "看板" onclick="openBoard()" id="board_icon">
                 <img id='B1_icon' src="images/mobs/スライム.PNG"onclick="openBattle('B1')" class="monster_icon">
@@ -87,12 +82,7 @@
             </div>
             
             <div id="castle" class="stage" style="display: none">
-                <div id="quiz_icons">
-                    <img src="" alt="Q" onclick="openQ('Q11')" class="selectQ" id="Q11_icon">
-                    <img src="" alt="Q" onclick="openQ('Q12')" class="selectQ" id="Q12_icon">
-                    <img src="" alt="Q" onclick="openQ('Q13')" class="selectQ" id="Q13_icon">
-                    <img src="" alt="Q" onclick="openQ('Q14')" class="selectQ" id="Q14_icon">
-                    <img src="" alt="Q" onclick="openQ('Q15')" class="selectQ" id="Q15_icon">
+                <div class="quiz_icons" id="castle_q_icons">
                     
                 </div>
                 <img id='B3_icon' src="images/mobs/魔王.PNG"onclick="openBattle('B3')" class="monster_icon">
@@ -115,7 +105,7 @@
             </div>
             <div class="text_log" id="q_text_log">
                 <p class="text_log_sentence">答えを入力：</p>
-                <input type="text" class="answer_box">
+                <input type="text" id="answer_box">
                 <p onclick="hint()" class="hintButton">ヒント</p>
                 <p onclick="checkA()" class="checkButton">送信</p>
             </div>
