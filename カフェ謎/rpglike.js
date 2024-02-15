@@ -7,37 +7,6 @@
 
 
 
-var level_list = {
-    1:{needed_point:0, enable_magic:magicType.ADD_CHAR},
-    2:{needed_point:5, enable_magic:magicType.CHANGE_COLOR},
-    3:{needed_point:50, enable_magic:magicType.CHANGE_CHAR},
-    4:{needed_point:500, enable_magic:magicType.SCISSORS},
-}
-
-//本当は、0,5,50,500
-
-
-var point_list = {
-    1:2.5,
-    2:7,
-    3:8,
-    4:1
-}
-
-
-var quiz_place_list = {
-    prairie:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
-    castle:[]
-}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -141,6 +110,36 @@ let enable_magic_list = [];
 //現在使える魔法一覧
 
 
+
+
+const monster_book_list= [
+    "ブルースライム",
+    "ブルースライム",
+    "ブルースライム",
+    "ブルースライム",
+    "ブルースライム",
+    "ブルースライム",
+    "ブルースライム",
+]
+
+
+
+
+
+const magic_book_list = [
+    "色変え魔法",
+    "色変え魔法",
+    "色変え魔法",
+    "色変え魔法",
+]
+
+
+
+
+
+
+
+
 let now_status = status.TITLE;
 //今の状況が、mapなのか、quizなのか、battleなのか、とかを保管する
 
@@ -150,6 +149,30 @@ let now_place = stage.PRAIRIE;
 
 
 
+
+
+var level_list = {
+    1:{needed_point:0, enable_magic:magicType.ADD_CHAR},
+    2:{needed_point:5, enable_magic:magicType.CHANGE_COLOR},
+    3:{needed_point:50, enable_magic:magicType.CHANGE_CHAR},
+    4:{needed_point:500, enable_magic:magicType.SCISSORS},
+}
+
+//本当は、0,5,50,500
+
+
+var point_list = {
+    1:2.5,
+    2:7,
+    3:8,
+    4:1
+}
+
+
+var quiz_place_list = {
+    prairie:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+    castle:[]
+}
 
 
 
@@ -234,12 +257,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/9_剣盾_v3.png",
-                answer:"ソンラク",
+                answer:"ソフト",
                 hint:"",
             },
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/9_剣盾_v3_□.png",
-                answer:"レンラク",
+                answer:"レフト",
                 place:{
                     x: 50, y: 54,  // 座標%
                     w: 12, h: 10   // サイズ%
@@ -406,12 +429,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/29_上下文字つなぎ.png",
-                answer:"アナログ",
+                answer:"カイフク",
                 hint:"",
             },
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/29_上下文字つなぎ_□.png",
-                answer:"アクセス",
+                answer:"モザイク",
                 place:{
                     x: 68, y: 77,  // 座標%
                     w: 10, h: 10   // サイズ%
@@ -786,6 +809,8 @@ let meet_clear_condition = false;
 window.onload = function(){
     initializeMagicIcons();
     initializeQuizDataList(quiz_list);
+    initializeBookList(monster_book_list,"monster");
+    initializeBookList(magic_book_list,"magic");
 }
 
 
@@ -801,6 +826,25 @@ function make_q_icon(n,place) {
     q_icon.setAttribute('onclick', "openQ('"+ n + "')");
     parent.appendChild(q_icon);
 }
+
+
+
+function initializeBookList(book_list,bookType) {
+    var book_link_list_id = bookType + "_book_link_list";
+    var book_link_list = document.getElementById(book_link_list_id);
+    for (var n of book_list){
+        var link = document.createElement("img");
+        link.classList.add("book_link");
+        link.src = "images/book/" + bookType + "/" + n + "_bar.png";
+        link.alt = n;
+        link.setAttribute('onclick', "bookShowImg('"+ n + "','" + bookType + "')");
+        book_link_list.appendChild(link);
+    }
+    
+}
+
+
+
 
 
 
@@ -1162,8 +1206,7 @@ function removeAllStars() {
 function openQ(n){
     quiz_id = n;
     quiz_data = quiz_list[quiz_id];
-    console.log("id:" + n);
-    console.log("data:" + quiz_data);
+    console.log("quiz_id:" + n);
     const quiz_back = document.getElementById("QB_back");
     const quiz_sheet = document.getElementById("Q_sheet");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
@@ -1242,9 +1285,8 @@ function checkA(){
     let pop_tx = "";
     
     collect = false;
-    answers = quiz_data.magics[quiz_data.involved_magic].answer
-    
-    if(typeof(ansers)=="string") {
+    answers = quiz_data.magics[quiz_data.involved_magic].answer;
+    if(typeof(answers)=="string") {
         collect = (players_answer == answers || players_answer == kataToHira(answers));
     }
     
@@ -1256,9 +1298,10 @@ function checkA(){
                 break;
             }
             if(a == 0){
-                if(players_answer == kataToHira(answers[a]));
-                collect = true;
-                break;
+                if(players_answer == kataToHira(answers[a])){
+                    collect = true;
+                    break;
+                }
             }
         }
     }
@@ -1400,14 +1443,18 @@ function openMenu(nashi){
         menu_point = document.getElementById("menu_point");
         menu_point_bar = document.getElementById("menu_point_bar");
         menu_level.textContent = "Lv." + player_data.level + " 主人公";
+        let bar_percentage = 0;
+        let now_level_point = level_list[player_data.level].needed_point
         if(player_data.level == max_level){
-                menu_level.textContent = "Lv.MAX 主人公";
+            menu_level.textContent = "Lv.MAX 主人公";
+            bar_percentage = 100;
+        }else{
+            bar_percentage = 
+            (player_data.point-now_level_point)*100/(level_list[player_data.level+1].needed_point-now_level_point);
         }
         menu_point.textContent = player_data.point+"pt";
-        let now_level_point = level_list[player_data.level].needed_point
         
-        let bar_percentage = 
-            (player_data.point-now_level_point)*100/(level_list[player_data.level+1].needed_point-now_level_point);
+        
         menu_point_bar.value = bar_percentage;
     }
 }
@@ -1539,7 +1586,6 @@ function useMagic(e){
        && (square.y <= point.y && point.y <= square.y + square.h);  // 縦方向の判定
 
     
-    console.log(point);
     if (hit) {
         successMagic();
     }else{
@@ -1564,7 +1610,6 @@ function makeBook(e){
     };
     
     
-    console.log(point);
 }
 
 
@@ -1691,8 +1736,6 @@ function checkLevel(){
                 quiz_data  = quiz_list[Q];
                 now_num_ans = 1;
                 for(var magic of enable_magic_list){
-                    console.log(quiz_data);
-                    console.log(quiz_data.magics[magic]);
                     if(quiz_data.magics[magic] != null){
                         now_num_ans += 1;
                     }
@@ -1805,17 +1848,9 @@ function closeBook(n){
 
 
 
-function magicBookShowImg(n){
-    const book_img = document.getElementById("magic_book_image");
-    //book_img.src = "images/book/magic/" + n;
-    
-}
-
-
-
-function monsterBookShowImg(n){
-    const book_img = document.getElementById("monster_book_image");
-    //book_img.src = "images/book/monster/" + n;
+function bookShowImg(n,bookType){
+    const book_img = document.getElementById(bookType + "_book_image");
+    book_img.src = "images/book/" + bookType +"/" + n + ".png";
     
 }
 

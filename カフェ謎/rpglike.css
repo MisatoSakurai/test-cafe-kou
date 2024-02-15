@@ -500,19 +500,29 @@ h1 {
 
 .book_link_list {
     position:absolute;
-    width: 37.5%;
-    height: 74.5%;
-    left : 57.5%;
+    width: 36%;
+    height: 74%;
+    left : 58.6%;
     top:15.5%;
     padding: 0;
     margin: 0;
     overflow-y: scroll;
     list-style-type: none;
     z-index: 3;
+    -ms-overflow-style: none;
 }
+
+
+.book_link_list::-webkit-scrollbar{
+  display: none;
+}
+
+
+
 
 .book_link {
     margin: 10px 0;
+    width: 100%;
 }
 
 
