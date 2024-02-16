@@ -1,5 +1,5 @@
 
-
+//魔法のアイコンが選択された時に他のアイコンを白黒にする→魔法が使い終わったタイミングで元に戻す
 
 
 
@@ -82,22 +82,22 @@ const magic_info = Object.freeze({
         name:'なし'
     },
     [magicType.CHANGE_COLOR]:{
-        name:'色変え魔法',
+        name:'カラー',
         image:"images/icons/色変化.png",
         selected_image:"images/icons/色変化.png"
     },
     [magicType.ADD_CHAR]:{
-        name:'ロ足し魔法',
+        name:'スクエア',
         image:"images/icons/枠追加.png",
         selected_image:"images/icons/枠追加.png"
     },
     [magicType.CHANGE_CHAR]:{
-        name:'文字変え魔法',
+        name:'文字トランス',
         image:"images/icons/文字変化.png",
         selected_image:"images/icons/文字変化.png"
     },
     [magicType.SCISSORS]:{
-        name:'ハサミ魔法',
+        name:'ハサミ',
         image:"images/icons/カット.png",
         selected_image:"images/icons/カット.png"
     }
@@ -113,13 +113,12 @@ let enable_magic_list = [];
 
 
 const monster_book_list= [
+    "にゃげぼうし",
+    "ガーザイル",
+    "キャンサービジョン",
+    "バッドトークバット",
     "ブルースライム",
-    "ブルースライム",
-    "ブルースライム",
-    "ブルースライム",
-    "ブルースライム",
-    "ブルースライム",
-    "ブルースライム",
+    "立つ辰",
 ]
 
 
@@ -127,10 +126,11 @@ const monster_book_list= [
 
 
 const magic_book_list = [
-    "色変え魔法",
-    "色変え魔法",
-    "色変え魔法",
-    "色変え魔法",
+    
+    "スクエア",
+    "カラー",
+    "文字トランス",
+    "ハサミ",
 ]
 
 
@@ -835,9 +835,20 @@ function initializeBookList(book_list,bookType) {
     for (var n of book_list){
         var link = document.createElement("img");
         link.classList.add("book_link");
-        link.src = "images/book/" + bookType + "/" + n + "_bar.png";
+        link.id = n + "_book_link";
+        
+        link.src = "images/book/scroll_bar/" + bookType + "/" + n + ".png";
         link.alt = n;
         link.setAttribute('onclick', "bookShowImg('"+ n + "','" + bookType + "')");
+        
+        if(bookType == "magic"){
+            if(n != "スクエア"){
+                link.src = "images/book/scroll_bar/magic/none.png";
+                link.alt = "?????";
+                link.setAttribute('onclick', "bookShowImg('none','magic')");
+            }
+        }
+        
         book_link_list.appendChild(link);
     }
     
@@ -1498,11 +1509,9 @@ function closeColorMagic(){
 
 
 function selectMagic(n){
-    past_selected_magic_icon = document.querySelector("."+selected_magic);
-    if(past_selected_magic_icon != null){
-        past_selected_magic_icon.style.border = "2px solid rgba(255,255,255,0)";
-        //さっきまで選ばれていたmagicのボーダーをOFFにする
-    }
+    
+    magic_icons = document.querySelectorAll(".magic_icon");
+    color_icons = document.querySelectorAll(".color_menu li");
     
     selected_magic = n;
     //selected_magicを更新する
@@ -1510,7 +1519,24 @@ function selectMagic(n){
     selected_magic_icon = document.querySelector("."+selected_magic);
     
     if(selected_magic_icon != null){
-        selected_magic_icon.style.border = "2px solid rgba(0,0,0,1)"; 
+        magic_icons.forEach(icon => {
+            icon.style.filter = "grayscale(100%)";
+        });
+        color_icons.forEach(icon => {
+            //icon.style.filter = "grayscale(70%)";
+            icon.style.borderColor = "rgba(0, 0, 0, 0)";
+        });
+        selected_magic_icon.style.filter = "grayscale(0%)";
+        if(n == magicType.RED || n == magicType.BLUE || n == magicType.YELLOW){
+            selected_magic_icon.style.borderColor = "rgba(0, 0, 0, 1)";
+        }
+    }else{
+        magic_icons.forEach(icon => {
+            icon.style.filter = "grayscale(0%)";
+        });
+        color_icons.forEach(icon => {
+            icon.style.borderColor = "rgba(0, 0, 0, 0)";
+        });
     }
     
 }
@@ -1521,7 +1547,6 @@ function selectMagic(n){
 
 function openMagic(n) {
     selectMagic(n);
-    
     if (now_status == status.QUIZ){
         if(quiz_data.involved_magic == magicType.NONE){
             magic_canvas = document.getElementById("magic_canvas");
@@ -1532,9 +1557,11 @@ function openMagic(n) {
             popTexting("1度謎を閉じてから再度開けて技をかけてください");
 
             openPop();
+            selectMagic(null);
         }
         
     }
+
     
     else if(now_status==status.BATTLE){
         openBattleMagic(n);
@@ -1549,6 +1576,7 @@ function openMagic(n) {
             popTitling("技は追加できません");
             popTexting("この看板は修復不可能なようです");
             openPop();
+            selectMagic(null);
         }
         
     }
@@ -1722,6 +1750,16 @@ function checkLevel(){
             }else{
                 enable_magic_list.push(enableMagic);
             }
+            
+            
+            n = magic_info[enableMagic].name;
+            
+            book_link = document.getElementById(n + "_book_link");
+            book_link.src = "images/book/scroll_bar/magic/" + n + ".png";
+            book_link.alt = n;
+            book_link.setAttribute('onclick', "bookShowImg('"+ n + "','magic')");
+            
+            
 
             let pop_tl = "新しい技「" + magic_info[enableMagic].name+ "」を覚えた！";
             let pop_tx = "メニューから技を確認しよう！";
@@ -1850,7 +1888,8 @@ function closeBook(n){
 
 function bookShowImg(n,bookType){
     const book_img = document.getElementById(bookType + "_book_image");
-    book_img.src = "images/book/" + bookType +"/" + n + ".png";
+    console.log("images/book/book_image/" + bookType +"/" + n + ".png");
+    book_img.src = "images/book/book_image/" + bookType +"/" + n + ".png";
     
 }
 
