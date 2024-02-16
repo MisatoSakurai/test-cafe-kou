@@ -858,9 +858,8 @@ h1 {
     height: 60px;
     margin-left:10px;
     z-index: 10;
-    border: 2px solid rgba(0,0,0,0);
     transition: .2s;
-    background-size: contain; /* 星の画像を要素内に収める */
+    background-size: contain; 
     background-repeat: no-repeat; /* 背景画像を繰り返し無しに設定 */
     
 }
@@ -919,8 +918,8 @@ h1 {
 
 
 .color_menu li{
-    width:60px;
-    height: 60px;
+    width:55px;
+    height: 55px;
     margin-bottom:10px;
     margin-left: 0;
     border-radius: 15px;
@@ -928,7 +927,7 @@ h1 {
 
 .color_menu li{
     transition: .2s;
-    border: 2px solid rgba(255,255,255,0);
+    border: 2.5px solid rgba(0,0,0,0);
 }
 
 
