@@ -1,8 +1,6 @@
 
 //魔法のアイコンが選択された時に他のアイコンを白黒にする→魔法が使い終わったタイミングで元に戻す
 
-
-
 //--data&variable-------
 
 
@@ -15,7 +13,7 @@ var player_data = {
     level:1,
 }
 
-var max_level = 4;
+const max_level = 4;
 //maxのレベルを保管する
 
 
@@ -122,9 +120,6 @@ const monster_book_list= [
 ]
 
 
-
-
-
 const magic_book_list = [
     
     "スクエア",
@@ -151,7 +146,7 @@ let now_place = stage.PRAIRIE;
 
 
 
-var level_list = {
+const level_list = {
     1:{needed_point:0, enable_magic:magicType.ADD_CHAR},
     2:{needed_point:5, enable_magic:magicType.CHANGE_COLOR},
     3:{needed_point:50, enable_magic:magicType.CHANGE_CHAR},
@@ -161,7 +156,7 @@ var level_list = {
 //本当は、0,5,50,500
 
 
-var point_list = {
+const point_list = {
     1:2.5,
     2:7,
     3:8,
@@ -169,7 +164,7 @@ var point_list = {
 }
 
 
-var quiz_place_list = {
+const quiz_place_list = {
     prairie:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
     castle:[]
 }
@@ -630,8 +625,6 @@ const story_tutorial_list = [
     ["action",{ func: hideBack, subject: "story_sogen"}]
 ]
 
-
-
 const open_quiz_tutorial_list =[
     [speaker.G,"——それではこのゲームの進め方を説明しますね<br>謎の解き方について説明します"],
     ["action",{ func: pointOut, subject: "Q1_icon"}],
@@ -639,15 +632,10 @@ const open_quiz_tutorial_list =[
     ["action",{ func: finishPoint, subject: "なし"}]
 ]
 
-
-
-
 const tackle_quiz_tutorial_list = [
     [speaker.G,"——問題が出てきましたね、これを解き明かしていくことでレベルが上がります"],
     [speaker.G,"——答えがわかったら四角に入力して送信してみましょう<br>わからないときはヒントを活用してくださいね"]
 ]
-
-
 
 const use_magic_list = [
     [speaker.G,"——どうやらここには謎がないみたいですね"],
@@ -670,7 +658,6 @@ const got_magic_list = [
     ["action",{func: finishPoint, subject:'B1_icon'}]
 ]
 
-
 const monster_tutorial_list = [
     [speaker.G,"——次に敵と倒す際の説明をします"],
     ["action",{func: pointOut, subject:"B1_icon"}],
@@ -687,10 +674,6 @@ const monster_tutorial_list = [
     ["action",{func: closeBattle, subject:'B1'}],
     ["action",{func: finishHide, subject:"B1_command"}],
 ]
-
-
-
-
 
 const menu_tutorial_list = [
     [speaker.G,"——最後にメニューについて軽く説明しておきますね"],
@@ -759,7 +742,7 @@ const log_name = Object.freeze({
 });
 
 
-let log_list =  {
+const log_list =  {
     [log_name.CANTQUIT]:[[speaker.N,"ERROR<br>ゲームをやめることができない"]],
     [log_name.WINMONSTER]:[[speaker.N,"次のステージへ進めるようになった！"]],
     
@@ -787,31 +770,97 @@ let monster_list = {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 let meet_clear_condition = false;
 
 
 
+//-- initialize & save_data--------
 
 
-//-- initialize --------
+let save_data = {
+    player_data:player_data,
+    quiz_list:quiz_list,
+    tutorials:tutorials,
+    monster_list:monster_list,
+    meet_clear_condition:meet_clear_condition
+}
+
+
 
 window.onload = function(){
     initializeMagicIcons();
     initializeQuizDataList(quiz_list);
     initializeBookList(monster_book_list,"monster");
     initializeBookList(magic_book_list,"magic");
+    
+    string_storage_data = sessionStorage.getItem('save_data');
+    if(string_storage_data == null){
+        var string_save_data = JSON.stringify(save_data);
+        sessionStorage.setItem('save_data',string_save_data);
+        console.log("セーブデータ初期化");
+    }
+    else{
+        var storage_data = JSON.parse(string_storage_data);
+        player_data = storage_data.player_data;
+        quiz_list = storage_data.quiz_list;
+        tutorials = storage_data.tutorials;
+        monster_list = storage_data.monster_list;
+        meet_clear_condition = storage_data.meet_clear_condition;
+        console.log("セーブデータを復旧");
+    }
+    
+    
+    checkLevel(true);
+    checkRemovedMonsters();
+    reload_q_icon();
 }
+
+
+function checkRemovedMonsters(){
+    for (var mon_name in monster_list){
+       if(monster_list[mon_name].finish){
+           removeMapMonster(mon_name);
+       } 
+    }
+}
+
+
+
+
+function saveData(){
+    save_data = {
+        player_data:player_data,
+        quiz_list:quiz_list,
+        tutorials:tutorials,
+        monster_list:monster_list,
+        meet_clear_condition:meet_clear_condition
+    }
+    var string_save_data = JSON.stringify(save_data);
+    sessionStorage.setItem('save_data',string_save_data);
+    console.log("セーブしました");
+    
+}
+
+
+
+
+function reload_q_icon(){
+    for (Q in quiz_list){
+        quiz_data  = quiz_list[Q];
+        q_icon = document.getElementById(quiz_data.icon_id);
+        if(q_icon != null){
+            q_icon.style.filter = "grayscale(100%)";
+            if(quiz_data.answered_time < quiz_data.enable_num_of_quiz){
+                    q_icon.style.filter = "grayscale(0%)";
+            }
+        }
+        
+    }
+
+}
+
+
+
 
 
 
@@ -857,43 +906,40 @@ function initializeBookList(book_list,bookType) {
 
 
 
-
-
-
-
-
 function initializeQuizDataList(q_list){
     for (let n in q_list) {
-        q_list[n].origin_image = q_list[n].magics[magicType.NONE].image;
-        q_list[n].involved_magic = magicType.NONE;
-        q_list[n].number_of_quiz = Object.keys(q_list[n].magics).length;
-        q_list[n].answered_time = 0;
-        q_list[n].icon_id = "Q" + n + "_icon";
-        q_list[n].enable_num_of_quiz = 1;
+        q_data = q_list[n];
+        q_data.involved_magic = magicType.NONE;
+        q_data.number_of_quiz = Object.keys(q_data.magics).length;
+        q_data.answered_time = 0;
+        q_data.icon_id = "Q" + n + "_icon";
+        q_data.enable_num_of_quiz = 1;
         place = "";
         n = parseInt(n);
         if(quiz_place_list.prairie.includes(n)){
             place = "prairie";
-            q_list[n].field = stage.PRAIRIE;
+            q_data.field = stage.PRAIRIE;
         }
         else if(quiz_place_list.castle.includes(n)){
             place = "castle";
-            q_list[n].field = stage.CASTLE;
+            q_data.field = stage.CASTLE;
         }
         
         
         make_q_icon(n,place);
         
-        if(q_list[n].magics[magicType.NONE].hint == null || q_list[n].magics[magicType.NONE].hint == ""){
-            q_list[n].magics[magicType.NONE].hint == "ヒントはありません";
+        if(q_data.magics[magicType.NONE].hint == null || q_data.magics[magicType.NONE].hint == ""){
+            q_data.magics[magicType.NONE].hint == "ヒントはありません";
         }
         for(let m in q_list[n].magics){
-            q_list[n].magics[m].answered = false;
-            q_list[n].magics[m].point = 1;
-            if(q_list[n].magics[m].hint == null || q_list[n].magics[m].hint == ""){
-                q_list[n].magics[m].hint = q_list[n].magics[magicType.NONE].hint;
+            q_data.magics[m].answered = false;
+            q_data.magics[m].point = 1;
+            if(q_data.magics[m].hint == null || q_data.magics[m].hint == ""){
+                q_data.magics[m].hint = q_data.magics[magicType.NONE].hint;
             }
         }
+        
+
     }
 }
 
@@ -909,6 +955,29 @@ function initializeMagicIcons(){
         magic_icon.style.backgroundImage = "url(" + magic_info[magic_id].image + ")";
     }
 }
+
+
+
+
+
+function wantDelete() {
+    delete_or_not = document.getElementById("delete_or_not");
+    delete_or_not.style.display = "block";
+    
+}
+
+
+
+function deleteAllData() {
+    sessionStorage.removeItem('save_data');
+    window.location.reload();
+}
+
+function notDelete(){
+    delete_or_not = document.getElementById("delete_or_not");
+    delete_or_not.style.display = "none";
+}
+
 
 
 
@@ -1225,7 +1294,7 @@ function openQ(n){
     
     
     
-    quiz_image.src = quiz_data.origin_image;
+    quiz_image.src = quiz_data.magics[magicType.NONE].image;
     quiz_data.involved_magic=magicType.NONE;
     
     answer_box.disabled = (quiz_data.answered_time >= quiz_data.number_of_quiz);
@@ -1719,47 +1788,81 @@ function successBoardMagic(){
 
 
 
+function levelUp(new_level){
+
+    const enableMagic = level_list[new_level].enable_magic;
+    const new_magic_icon = document.querySelectorAll("." + enableMagic);
+    new_magic_icon.forEach(icon => {
+        icon.style.display = 'block';
+    });
+
+    if(enableMagic == magicType.CHANGE_COLOR){
+        enable_magic_list.push(magicType.RED);
+        enable_magic_list.push(magicType.BLUE);
+        enable_magic_list.push(magicType.YELLOW);
+
+    }else{
+        enable_magic_list.push(enableMagic);
+    }
+
+
+    n = magic_info[enableMagic].name;
+
+    book_link = document.getElementById(n + "_book_link");
+    book_link.src = "images/book/scroll_bar/magic/" + n + ".png";
+    book_link.alt = n;
+    book_link.setAttribute('onclick', "bookShowImg('"+ n + "','magic')");
+
+    for (Q in quiz_list){
+        quiz_data  = quiz_list[Q];
+        now_num_ans = 1;
+        for(var magic of enable_magic_list){
+            if(quiz_data.magics[magic] != null){
+                now_num_ans += 1;
+            }
+        }
+
+        quiz_data.enable_num_of_quiz = now_num_ans;
+
+        if(quiz_data.answered_time < quiz_data.enable_num_of_quiz){
+            q_icon = document.getElementById(quiz_data.icon_id);
+            if(q_icon != null){
+                q_icon.style.filter = "grayscale(0%)";
+            }
+        }
+    }
+
+
+}
 
 
 
 
 
 
-function checkLevel(){
+
+function checkLevel(init = false){
     player_point = player_data.point;
     player_level = player_data.level;
     
-    if(player_level<max_level){
+    
+    if(init == true){
+        for (var l in level_list){
+            next_level_point = level_list[l].needed_point;
+            if(player_point >= next_level_point){
+                levelUp(l);
+            }
+        }
+             
+    }
+    
+    else if(player_level<max_level){
         next_level_point = level_list[player_level+1].needed_point;
         if(player_point >= next_level_point){
             player_data.level += 1;
-            
+            levelUp(player_data.level);
             
             const enableMagic = level_list[player_data.level].enable_magic;
-            const new_magic_icon = document.querySelectorAll("." + enableMagic);
-            new_magic_icon.forEach(icon => {
-                icon.style.display = 'block';
-            });
-            
-            if(enableMagic == magicType.CHANGE_COLOR){
-                enable_magic_list.push(magicType.RED);
-                enable_magic_list.push(magicType.BLUE);
-                enable_magic_list.push(magicType.YELLOW);
-                
-            }else{
-                enable_magic_list.push(enableMagic);
-            }
-            
-            
-            n = magic_info[enableMagic].name;
-            
-            book_link = document.getElementById(n + "_book_link");
-            book_link.src = "images/book/scroll_bar/magic/" + n + ".png";
-            book_link.alt = n;
-            book_link.setAttribute('onclick', "bookShowImg('"+ n + "','magic')");
-            
-            
-
             let pop_tl = "新しい技「" + magic_info[enableMagic].name+ "」を覚えた！";
             let pop_tx = "メニューから技を確認しよう！";
 
@@ -1768,30 +1871,7 @@ function checkLevel(){
 
 
             openPop();
-            
-            for (Q in quiz_list){
-                quiz_data  = quiz_list[Q];
-                now_num_ans = 1;
-                for(var magic of enable_magic_list){
-                    if(quiz_data.magics[magic] != null){
-                        now_num_ans += 1;
-                    }
-                }
-                
-                quiz_data.enable_num_of_quiz = now_num_ans;
-                
-                if(quiz_data.answered_time < quiz_data.enable_num_of_quiz){
-                    q_icon = document.getElementById(quiz_data.icon_id);
-                    if(q_icon != null){
-                        q_icon.style.filter = "grayscale(0%)";
-                    }
-                }
-            }
 
-            
-            
-            
-            
             
             if(!tutorials[tutorialType.MAGIC].finish){
                 doTutorial(tutorialType.MAGIC);
@@ -1801,6 +1881,7 @@ function checkLevel(){
 
 
     }
+    saveData();
     
 }
 
