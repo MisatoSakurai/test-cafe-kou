@@ -58,8 +58,8 @@
                     <progress value="0" max="100" id="menu_point_bar"></progress>
                 </li>
                 <li id="menu_explain">説明</li>
-                <li id="menu_monster" onclick="openBook('monster_book')">図鑑</li>
-                <li id="menu_magic_list" onclick="openBook('magic_book')">技一覧</li>
+                <li id="menu_monster" onclick="openBook('monster_book')">モンスター図鑑</li>
+                <li id="menu_magic_list" onclick="openBook('magic_book')">魔法図鑑</li>
                 <li id="menu_title" onclick="moveTitle()" >タイトルに戻る</li>
             </ul>
             <div id="menu_back" style="display:none" onclick="closeMenu()">
@@ -271,10 +271,10 @@
         
         
         <div id="battle_magic" class="battle command" style="display: none;">
-            <p id="magic1" class="change_color" onclick="selectBattleMagic(1)" style="display: none">色変え魔法</p>
-            <p id="magic2" class="change_char" onclick="selectBattleMagic(2)" style="display: none">文字変え魔法</p>
-            <p id="magic3" class="add_char" onclick="selectBattleMagic(3)">文字足し魔法</p>
-            <p id="magic3" class="scissors" onclick="selectBattleMagic(4)" style="display: none">ハサミ魔法</p>
+            <p id="magic1" class="change_color" onclick="selectBattleMagic(1)" style="display: none">カラー</p>
+            <p id="magic4" class="add_char" onclick="selectBattleMagic(4)">スクエア</p>
+            <p id="magic2" class="change_char" onclick="selectBattleMagic(2)" style="display: none">文字トランス</p>
+            <p id="magic3" class="scissors" onclick="selectBattleMagic(3)" style="display: none">ハサミ</p>
             <div id="magic1_explain" class="explain" style="display: none;">
                 <p>色を変えます</p>
                 <p onclick="choiceBattleMagic1()">使う</p>

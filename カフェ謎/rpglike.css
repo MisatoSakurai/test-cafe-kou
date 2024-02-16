@@ -461,7 +461,7 @@ h1 {
 .book_content{
     position: relative;
     width : auto;
-    aspect-ratio:297/210;
+    aspect-ratio:2048/1536;
     max-height: 80%;
     left: 0;
     right: 0;
@@ -500,10 +500,10 @@ h1 {
 
 .book_link_list {
     position:absolute;
-    width: 36%;
-    height: 74%;
-    left : 58.6%;
-    top:15.5%;
+    width: 36.5%;
+    height: 74.3%;
+    left : 58.4%;
+    top:15.7%;
     padding: 0;
     margin: 0;
     overflow-y: scroll;
