@@ -9,6 +9,11 @@
         <link href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@300&display=swap" rel="stylesheet">
     </head>
     <body>
+        <div id="delete_or_not"  style="display:none">
+            <p>全てのセーブデータが消去されます。<br>また、このボタンは運営用でありゲームクリアに関係ありません。</p>
+            <p onclick="deleteAllData()" id="really_delete_button" class="checkButton">削除</p>
+            <p onclick="notDelete()" id="not_delete_button" class="checkButton">戻る</p>
+        </div>
         <div id="title_sheet" style="display:block">
             <div id="title_text_and_buttons" onclick="startGame()">
                 <h1 id="title">TITLE</h1>
@@ -16,6 +21,8 @@
                 <!--<img src="images/title/止めるボタン-1.png" onclick="quitGame()" id="quit_button" class="title_button">-->
             </div>
             <img src="images/title/止めるボタン-1.png" onclick="quitGame()" id="quit_button" class="title_button">
+            <p id="delete_data_button" onclick="wantDelete()">delete_data</p>
+            
         </div>
         <div id="tutorial" style="display:none">
             <div id="story_sogen" style="display:none"></div>
