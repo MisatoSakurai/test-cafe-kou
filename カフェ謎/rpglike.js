@@ -1217,7 +1217,6 @@ function removeAllStars() {
 function openQ(n){
     quiz_id = n;
     quiz_data = quiz_list[quiz_id];
-    console.log("quiz_id:" + n);
     const quiz_back = document.getElementById("QB_back");
     const quiz_sheet = document.getElementById("Q_sheet");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
@@ -1888,7 +1887,6 @@ function closeBook(n){
 
 function bookShowImg(n,bookType){
     const book_img = document.getElementById(bookType + "_book_image");
-    console.log("images/book/book_image/" + bookType +"/" + n + ".png");
     book_img.src = "images/book/book_image/" + bookType +"/" + n + ".png";
     
 }
