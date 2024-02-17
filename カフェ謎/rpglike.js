@@ -1945,7 +1945,7 @@ function stopBattleUsing(){
     const dialog = document.getElementById('using_magic')
     const explain = document.getElementById(using + '_explain')
     dialog.style.display = 'none'
-    if ((using === 2) || (using === 3)){
+    if ((using === 'magic2') || (using === 'magic3') || (using === 'magic4')){
         explain.style.display = 'none'
     }
     using = 0
@@ -1953,20 +1953,19 @@ function stopBattleUsing(){
 
 
 
-
+clicked_id = 0
 
 
 
 function changeName(n){
+    clicked_id = n
     if(using === 'magic2'){
-        if(n ==='B1'){
-            document.getElementById('B1_name').textContent = 'ドラゴン';
-        }
-        if(n ==='B2'){
-            document.getElementById('B2_name').textContent = '翼の折れたガーゴイル';
+        if(n === 'B2'){
+            document.getElementById('B2_name').textContent = 'ガーザイル';
             monster = document.getElementById('monster2')
             victory = document.getElementById('victory')
             runaway = document.getElementById('fall')
+            monster.src = "images\mobs\飛べない敵.png";
             monster.style.animation = 'tremble 1s ease-in-out 0s forwards, fall 0.5s ease-in-out 2s forwards'
             victory.style.display = 'block'
             runaway.style.display = 'block'
@@ -1978,8 +1977,9 @@ function changeName(n){
 }
 
 function changeColor(n){
+    clicked_id = n
     if(using === 'magic1R'){
-        if(n ==='monster1'){
+        if(n === 'monster1'){
             monster = document.getElementById('monster1')
             victory = document.getElementById('victory')
             runaway = document.getElementById('runaway')
@@ -2012,13 +2012,14 @@ function finishBattle(){
     victory.style.display = 'none'
     runaway.style.display = 'none'
     fall.style.display = 'none'
-    if((using != 2) && (using != 3)){
+    if((using != 'magic2') && (using != 'magic3') && (using != 'magic4')){
         closeBattleChoice()
     }
     stopBattleUsing()
     closeBattleMagic()
     closeBattle('B1')
     closeBattle('B2')
+    closeBattle('B3')
     
     
     //以下text_logを出すものです
@@ -2029,11 +2030,50 @@ function finishBattle(){
     
 }
 
+function soonFail(){
+    failed_message = document.getElementById('failed')
+    failed_paragraph = document.getElementById('failed_paragraph')
+    failed_message.style.display = 'block'
+    setTimeout(()=>{
+        failed_paragraph.textContent = "敵の攻撃!";
+    }, 500)
+    setTimeout(()=>{
+        failed_paragraph.textContent = "やられてしまった";
+        document.getElementById('failed_button').style.display = 'block'
+    }, 1000)
+}
 
 
+function fail(){
+    if (using != 0){
+        if ((!((using === 'magic1R') && (clicked_id === 'monster1'))) || (!((using === 'magic2') && (clicked_id === 'B2')))){
+            failed_message = document.getElementById('failed')
+            failed_paragraph = document.getElementById('failed_paragraph')
+            failed_message.style.display = 'block'
+            setTimeout(()=>{
+                failed_paragraph.textContent = "敵の攻撃!";
+            }, 500)
+            setTimeout(()=>{
+                failed_paragraph.textContent = "やられてしまった";
+                document.getElementById('failed_button').style.display = 'block'
+            }, 1000)
+        }
+    }
+}
 
-function fail(n){
-    
+function failBattle(){
+    failed_paragraph = document.getElementById('failed_paragraph')
+    failed_paragraph.textContent = "効いていないようだ";
+    document.getElementById('failed_button').style.display = 'none'
+    document.getElementById('failed').style.display = 'none'
+    if((using != 'magic2') && (using != 'magic3') && (using != 'magic4')){
+        closeBattleChoice()
+    }
+    stopBattleUsing()
+    closeBattleMagic()
+    closeBattle('B1')
+    closeBattle('B2')
+    closeBattle('B3')
 }
 
 //ここまで所有格さん
