@@ -1576,10 +1576,10 @@ function openMenu(nashi){
             bar_percentage = now_level_player_point*100/next_level_need_point;
         }
         
-        menu_point.textContent = now_level_player_point +"/" + next_level_need_point;
+        menu_point.textContent = now_level_player_point +"pt/" + next_level_need_point + "pt";
         
         
-        menu_point.textContent = (next_level_need_point - now_level_player_point) + "問";
+        //menu_point.textContent = (next_level_need_point - now_level_player_point) + "問";
         
         
         
