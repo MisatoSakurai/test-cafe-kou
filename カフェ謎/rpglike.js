@@ -157,16 +157,28 @@ const level_list = {
 
 
 const point_list = {
-    1:2.5,
-    2:7,
-    3:8,
+    1:1,
+    2:1,
+    3:1,
     4:1
 }
 
 
+let monster_list = {
+    'B1':{
+        point:10,
+        finish:false
+    },
+    'B2':{
+        point:10,
+        finish:false
+    }
+}
+
+
 const quiz_place_list = {
-    prairie:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
-    castle:[]
+    prairie:[1,2,3,6,8,12,13,16,17,19],
+    castle:[4,5,7,9,10,11,14,15,18,20]
 }
 
 
@@ -196,7 +208,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/3_ハンガー傘.png",
                 answer:"サンカク",
-                hint:"",
+                hint:"右の棒を左の三角につけたとき、何に見えるでしょうか？上につけたときと下につけたときで違うようです。",
             },
         }
         
@@ -234,7 +246,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/5_語呂ろくろ.png",
                 answer:"ゴロ",
-                hint:"",
+                hint:"それぞれの文字がいくつあるかに着目しましょう。どうやら数字と文字で言葉が作られているようです。",
             },
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/5_語呂ろくろ_□.png",
@@ -253,7 +265,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/9_剣盾_v3.png",
                 answer:"ソフト",
-                hint:"",
+                hint:"上の四角には攻撃と防御、下の四角には攻撃するものと防御するものが埋まるようです。",
             },
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/9_剣盾_v3_□.png",
@@ -271,7 +283,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/12_★迷路.png",
                 answer:"サイン",
-                hint:"",
+                hint:"はじめは下の方に行きましょう。",
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/12_★迷路_字.png",
@@ -289,7 +301,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/13_反転文字.png",
                 answer:"ニモノ",
-                hint:"",
+                hint:"右側の問題文は｢コレハナニ？｣と書かれています。これらにはどういった規則があるかを考えてみましょう。答えは3文字になります。",
             },
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/13_反転文字_□.png",
@@ -307,7 +319,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/11_26分数.png",
                 answer:"ハード",
-                hint:"",
+                hint:"26といえばアルファベットの個数が考えられます。各数字に対応したアルファベットに変換してみましょう。",
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/11_26分数_鋏.png",
@@ -325,7 +337,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/20_部首の名前.png",
                 answer:"シカク",
-                hint:"",
+                hint:"それぞれのカタカナは漢字に関するあるパーツを表しています。ウは上側、イは左側、リは右側に来ることが多いです。",
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/20_部首の名前_字.png",
@@ -343,11 +355,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/23_ピースはめ.png",
                 answer:"カタチ",
-                hint:"",
+                hint:"赤矢印が｢たに｣になるようにピースを配置し、そこからうまくはまるように考えてみましょう。",
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/23_ピースはめ_鋏.png",
                 answer:"クウキ",
+                hint:"ピースは関係ないので赤矢印が通る2マスには｢た｣と｢に｣が入るようです。どうやらとある有名な表の一部を使っているようです。",
                 place:{
                     x: 42, y: -2,  // 座標%
                     w: 5, h: 12   // サイズ%
@@ -486,8 +499,8 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/35_道路.png",
-                answer:"ウーロン",
-                hint:"",
+                answer:"ドローン",
+                hint:"赤矢印と青矢印は同じものの違う読み方を表しているようです。",
             }
         }
         
@@ -497,7 +510,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/36_v.png",
                 answer:"エール",
-                hint:"",
+                hint:"それぞれの色の矢印の形に注目してみましょう。",
             },
         }
         
@@ -507,7 +520,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/40_間.png",
                 answer:"ヤミ",
-                hint:"",
+                hint:"前後の文から、二行目の四角に入りそうな感じを推測してみましょう。",
             },
         }
         
@@ -594,69 +607,59 @@ const story_tutorial_list = [
     [speaker.N,"ゲームを始めようとボタンを押したあなたは気づくと広い草原の中にいました"],
     [speaker.G,"——ようやく目覚めたのですね"],
     [speaker.N,"突如頭の中に語りかける声が聞こえてきました<br>しかし辺りを見回しても姿は見えません"],
-    [speaker.G,"——周りにはいませんよ<br>これはあなたの頭に直接語りかけていますので"],
+    [speaker.G,"——今これはあなたの頭に直接語りかけていますよ"],
     [speaker.P,"「ど、どういうことだ！<br>そんなことはゲームの世界でしか起こらないだろ！」"],
-    [speaker.G,"——いやここゲームの世界なんだけど"],
+    [speaker.G,"——いやここゲームの世界なんですけど"],
     [speaker.P,"「え…？」"],
     [speaker.N,"ありえない事実にあなたは驚きを隠せませんでした"],
     [speaker.P,"「ゲームの世界にいる…？」"],
     [speaker.G,"——はい、その通りです"],
-    [speaker.N,"あなたはどうやらこのゲームの世界に迷いこんでしまったみたいです"],
+    [speaker.N,"あなたはどうやらこのゲームの世界に迷いこんでしまったみたいですね"],
     ["action",{ func: showImg, subject: "images/board/導入看板.png" }],
-    [speaker.G,"——このゲームの世界は、ゲームをクリアすることで抜け出せるので、抜け出したいならば看板に書かれたクリア条件を達成してください"],
+    [speaker.G,"————この世界を抜け出したいならば看板に書かれたクリア条件を達成しゲームをクリアしてください"],
     [speaker.N,"あなたは目の前に置かれた看板を見ました<br>そこには確かにゲームクリア条件のようなものが書いてありました"],
     [speaker.P,"「これを達成すれば元の世界に戻れるということか！<br>頑張るぞ～」"],
     [speaker.G,"——ちょっと待ってください<br>あなたって普通の現代人ですよね？"],
     [speaker.P,"「ああ、そうです」"],
-    [speaker.G,"——しかも謎解きとかいう机に向かってやるような趣味を普段からやられている方ですよね？"],
-    [speaker.P,"「…まあ、そうですけど」"],
-    [speaker.G,"——あなたのような貧弱な人間には力でモンスターを倒すことはできないと思いますよ"],
+    [speaker.G,"——謎解きをしているあなたのような貧弱な人間は、魔王はおろか、そこにいるモンスターでも力で倒すことはできないと思いますよ"],
     [speaker.P,"「え～そんな～」"],
     [speaker.N,"絶望的な状況にあなたは落胆してしまいました"],
     [speaker.G,"——しかしあなたにも希望はあります<br>それは、”魔法”を使って敵を倒すことです！"],
     [speaker.P,"「魔法…？」"],
-    [speaker.G,"——ゲームの世界に今入り込んだあなたはレベル1の状態ですね<br>実はレベルが1つ上がると新たな魔法を使うことができるようになります"],
+    [speaker.G,"——あなたは今レベル1の状態です<br>実はレベルが1つ上がると新たな魔法を使うことができるようになります"],
+    [speaker.G,"——ちなみに今は魔法「スクエア」だけ使うことができる状態です"],
     [speaker.G,"——魔法をうまく使うことで敵を倒すことができるかもしれません<br>特にあなたのようなひらめきで世界を変えられるような方ならば"],
-    [speaker.P,"「そうか、それで得た魔法を使って敵を倒すことはできるかもしれないのか<br>レベルを上げるにはどうしたらいいんだ？」"],
-    [speaker.G,"——それはもちろん、あなたの得意な謎解きに正解することで上げることができます"],
-    [speaker.P,"「そうしたら謎を解いて早くクリアしよう！」"],
+    [speaker.P,"「そうか、ゲットした魔法を使って敵を倒せばいいのか<br>でもどうしたらレベルを上げられるんだ？」"],
+    [speaker.G,"——それは謎解きに正解することで経験値を獲得しレベルを上げることができます"],
+    [speaker.G,"——今持っている魔法を使ってもよいですが……<br>レベルをあげて新たな魔法を手にする方がよいでしょう"],
+    [speaker.P,"「じゃあ謎を解いて早くクリアしよう！」"],
     [speaker.N,"あなたは勇んでゲームを始めることにしたのでした……"],
     ["action",{ func: hideImg, subject: "images/board/導入看板.png" }],
     ["action",{ func: hideBack, subject: "story_sogen"}]
-]
+];
 
 const open_quiz_tutorial_list =[
     [speaker.G,"——それではこのゲームの進め方を説明しますね<br>謎の解き方について説明します"],
     ["action",{ func: pointOut, subject: "Q1_icon"}],
-    [speaker.G,"——このアイコンがついている場所には謎があります。<br>試しにこのアイコンをタップしてみましょう"], 
+    [speaker.G,"——この赤いハテナのマークがある場所には謎があります。<br>試しにこのマークをタップしてみましょう"], 
     ["action",{ func: finishPoint, subject: "なし"}]
-]
+];
 
 const tackle_quiz_tutorial_list = [
-    [speaker.G,"——問題が出てきましたね、これを解き明かしていくことでレベルが上がります"],
-    [speaker.G,"——答えがわかったら四角に入力して送信してみましょう<br>わからないときはヒントを活用してくださいね"]
-]
-
-const use_magic_list = [
-    [speaker.G,"——どうやらここには謎がないみたいですね"],
-    [speaker.G,"——ああ、そうだ、ひとつ言い忘れていたことがあるんですが"],
-    [speaker.G,"——実はあなたが手に入れた魔法は謎に使うこともできるんです"],
-    [speaker.G,"——謎を解く画面で左上に表示されるアイコンをタップし、使う場所を正しく選択すると謎に対して魔法を使うことができます"],
-    [speaker.G,"——魔法が使える場所にはそれぞれルールがあるので注意してください"],
-    [speaker.G,"——魔法を使うことで導かれた新たな答えも経験値を上げるのに使うことができるのでぜひ活用してください"],
-    [speaker.G,"——それでは、健闘を祈ります"]
-    
-]
+    [speaker.G,"——謎が出てきましたね、赤いハテナマークが目印です<br>これを解き明かしていくことでレベルが上がります"],
+    [speaker.G,"——答えがわかったら解答欄にカタカナで入力して送信してみましょう<br>ただし答えはすべて一般的な単語になります"],
+    [speaker.G,"わからないときはヒントを活用してくださいね"]
+];
 
 const answered_quiz_list = [
-    [speaker.G,"——正解です！経験値が溜まりましたね<br>この調子で問題を解いていきましょう！"]
-]
+    [speaker.G,"——正解です、さすがです！<br>この調子でどんどん謎を解きましょう！"]
+];
 
 const got_magic_list = [
     ["action",{func: pointOut, subject:'B1_icon'}],
     [speaker.G,"——ついに魔法を手に入れたのですね！<br>これを使って敵と戦ってみましょう"], 
     ["action",{func: finishPoint, subject:'B1_icon'}]
-]
+];
 
 const monster_tutorial_list = [
     [speaker.G,"——次に敵と倒す際の説明をします"],
@@ -666,14 +669,16 @@ const monster_tutorial_list = [
     ["action",{func: hideObj, subject:"B1_command"}],
     ["action",{func: openBattle, subject:'B1'}],
     [speaker.G,"——こんな画面になります"],
+    [speaker.G,"——ここであなたは｢たたかう｣、｢にげる｣、｢魔法｣のいずれかを行うことができます"],
     [speaker.G,"——ここであなたは何か行動をすることができます"],
-    [speaker.G,"——直接戦うこともできますが……確実にやられてしまうでしょう"],
+    [speaker.G,"——「たたかう」で直接戦うこともできますが……<br>意味もなく次の敵からの攻撃で確実にやられてしまうでしょう"],
     [speaker.G,"——そしてあなたの行動が終わると敵からの攻撃が来ます"],
     [speaker.G,"——普通の体であるあなたはほぼ確実にやられてしまうのでこの攻撃の前に敵を倒さなければなりません"],
-    [speaker.G,"——｢魔法｣から選択して用いることで敵を倒しましょう<br>ちょっとしたひらめきで道を切り開くことができるかもしれません"],
+    [speaker.G,"——｢魔法｣を開くと現在修得している魔法が表示されるのでそこから選択して倒しましょう"],
+    [speaker.G,"——もし戦いに負けてしまったとしても、戦う前の状態に戻るのでとりあえず戦ってみるのも作戦の一つでしょう"],
     ["action",{func: closeBattle, subject:'B1'}],
     ["action",{func: finishHide, subject:"B1_command"}],
-]
+];
 
 const menu_tutorial_list = [
     [speaker.G,"——最後にメニューについて軽く説明しておきますね"],
@@ -688,47 +693,78 @@ const menu_tutorial_list = [
     [speaker.G,"——これはすでに集まっているモンスターについての情報です<br>うまく倒せないときは参考にしてみてください"],
     ["action",{func: finishPoint, subject:"なし"}],
     ["action",{func:closeMenu, subject:"なし"}],
-    [speaker.G,"——伝えることは以上です<br>この説明はメニューから再度見ることができるので必要があればそちらから参照してください"],
+    [speaker.G,"——説明は以上です<br>この説明はメニューから再度見ることができるので必要があれば参照してください"],
     [speaker.G,"——それでは、あなたが無事ゲームから抜け出せることを期待していますよ"],
-]
+];
+
+const use_magic_list = [
+    [speaker.G,"——どうやらここには謎がないみたいですね"],
+    [speaker.G,"——ああ、そうだ、ひとつ言い忘れていたことがあるんですが"],
+    [speaker.G,"——実はあなたが手に入れた魔法は謎に使うこともできるんです"],
+    [speaker.G,"——謎を解く画面で左上に表示されるアイコンをタップし、使う場所を正しく選択すると謎に対して魔法を使うことができます"],
+    [speaker.G,"——魔法が使える場所にはそれぞれルールがあるので注意してください"],
+    [speaker.G,"——また複数の魔法を同時にかけることはできません"],
+    [speaker.G,"——魔法を使って新たな問題をつくり、その謎を解くとさらに経験値が上がるのでぜひ活用してください"],
+    [speaker.G,"——また、問題の上にある星はこの問題でできる正解数を表していて、正解すると光るので参考に使ってください"],
+    [speaker.G,"——それでは、健闘を祈ります"]
+    
+];
 
 
 
 
 
-
-
-let tutorials = {
+let tutorial_finish = {
     [tutorialType.STORY]:{
-        finish:true,
+        finish:false,
+    },
+    [tutorialType.OPENQUIZ]:{
+        finish:false,
+    },
+    [tutorialType.USEMAGICTOQUIZ]:{
+        finish:false,
+    },
+    [tutorialType.TACKLEQUIZ]:{
+        finish:false,
+    },
+    [tutorialType.ANSWEREDQUIZ]:{
+        finish:false,
+    },
+    [tutorialType.MAGIC]:{
+        finish:false,
+    },
+    [tutorialType.MONSTER]:{
+        finish:false,
+    },
+    [tutorialType.MENU]:{
+        finish:false,
+    },
+}
+
+
+let tutorial_talk = {
+    [tutorialType.STORY]:{
         talk:story_tutorial_list
     },
     [tutorialType.OPENQUIZ]:{
-        finish:true,
         talk:open_quiz_tutorial_list
     },
     [tutorialType.USEMAGICTOQUIZ]:{
-        finish:true,
         talk:use_magic_list
     },
     [tutorialType.TACKLEQUIZ]:{
-        finish:true,
         talk:tackle_quiz_tutorial_list
     },
     [tutorialType.ANSWEREDQUIZ]:{
-        finish:true,
         talk:answered_quiz_list
     },
     [tutorialType.MAGIC]:{
-        finish:true,
         talk:got_magic_list
     },
     [tutorialType.MONSTER]:{
-        finish:true,
         talk:monster_tutorial_list
     },
     [tutorialType.MENU]:{
-        finish:true,
         talk:menu_tutorial_list
     },
 }
@@ -758,19 +794,7 @@ let current_tutorial = "";
 
 
 
-
-let monster_list = {
-    'B1':{
-        point:10,
-        finish:false
-    },
-    'B2':{
-        point:10,
-        finish:false
-    }
-}
-
-let meet_clear_condition = false;
+let meet_clear_condition = true;
 
 
 
@@ -780,7 +804,7 @@ let meet_clear_condition = false;
 let save_data = {
     player_data:player_data,
     quiz_list:quiz_list,
-    tutorials:tutorials,
+    tutorial_finish:tutorial_finish,
     monster_list:monster_list,
     meet_clear_condition:meet_clear_condition
 }
@@ -803,7 +827,7 @@ window.onload = function(){
         var storage_data = JSON.parse(string_storage_data);
         player_data = storage_data.player_data;
         quiz_list = storage_data.quiz_list;
-        tutorials = storage_data.tutorials;
+        tutorial_finish = storage_data.tutorial_finish;
         monster_list = storage_data.monster_list;
         meet_clear_condition = storage_data.meet_clear_condition;
         console.log("セーブデータを復旧");
@@ -831,7 +855,7 @@ function saveData(){
     save_data = {
         player_data:player_data,
         quiz_list:quiz_list,
-        tutorials:tutorials,
+        tutorial_finish:tutorial_finish,
         monster_list:monster_list,
         meet_clear_condition:meet_clear_condition
     }
@@ -988,13 +1012,23 @@ function notDelete(){
 
 function startGame(){
     title_sheet = document.getElementById("title_sheet");
-    if (tutorials[tutorialType.STORY].finish){
+    if (tutorial_finish[tutorialType.STORY].finish){
         map = document.getElementById("map");
         title_sheet.style.display = 'none';
         map.style.display = 'block';
         now_status = status.MAP;
-        if(!tutorials[tutorialType.OPENQUIZ].finish){
+        
+        
+        if(!tutorial_finish[tutorialType.OPENQUIZ].finish){
             doTutorial(tutorialType.OPENQUIZ);
+        }
+        
+        else if(!tutorial_finish[tutorialType.MONSTER].finish && tutorial_finish[tutorialType.ANSWEREDQUIZ].finish){
+            doTutorial(tutorialType.MONSTER);
+        }
+        
+        else if(!tutorial_finish[tutorialType.MENU].finish && tutorial_finish[tutorialType.MONSTER].finish){
+            doTutorial(tutorialType.MENU);
         }
         
         
@@ -1124,14 +1158,18 @@ function doTutorial(n){
     tutorial_page = document.getElementById("tutorial");
     
     
-    if (!tutorials[n].finish){
+    if (!tutorial_finish[n].finish){
         
         openGeneTextLog()
         tutorial_page.style.display="block";
         
         current_tutorial = n;
         current_dialog_num = -1;
-        current_dialog_list = tutorials[current_tutorial].talk;
+        console.log("tutorial_talk[current_tutorial].talk[0]");
+        console.log(tutorial_talk[current_tutorial].talk[0]);
+        console.log("story_tutorial_list[0]");
+        console.log(story_tutorial_list[0]);
+        current_dialog_list = tutorial_talk[current_tutorial].talk;
         displayNextDialog();
     }
     else{
@@ -1144,12 +1182,12 @@ function doTutorial(n){
         }
         
         if (n==tutorialType.ANSWEREDQUIZ){
-            if(!tutorials[tutorialType.MONSTER].finish){
+            if(!tutorial_finish[tutorialType.MONSTER].finish){
                 doTutorial(tutorialType.MONSTER);
             }
         }
         if (n==tutorialType.MONSTER){
-            if(!tutorials[tutorialType.MENU].finish){
+            if(!tutorial_finish[tutorialType.MENU].finish){
                 doTutorial(tutorialType.MENU);
             }
         }
@@ -1197,11 +1235,13 @@ function displayNextDialog(){
     
     openGeneTextLog();
     
+    console.log(current_dialog_num);
     
     
     if (current_dialog_num < current_dialog_list.length-1){
         current_dialog_num += 1;
         scene = current_dialog_list[current_dialog_num];
+        console.log(scene);
         if(scene[0] != "action") {
             
             text_log_sentence.innerHTML = scene[1];
@@ -1221,7 +1261,7 @@ function displayNextDialog(){
             } 
         }
         else{
-            
+            console.log(scene[1]);
             scene[1].func(scene[1].subject);
             displayNextDialog();
         }
@@ -1233,7 +1273,7 @@ function displayNextDialog(){
         current_dialog_list =[];
         closeGeneTextLog();
         if (current_tutorial != "") {
-            tutorials[current_tutorial].finish = true;
+            tutorial_finish[current_tutorial].finish = true;
             doTutorial(current_tutorial);
         }
         checkLevel();
@@ -1327,7 +1367,7 @@ function openQ(n){
     map.style.filter = "blur(10px)";
     
     
-    if(!tutorials[tutorialType.TACKLEQUIZ].finish){
+    if(!tutorial_finish[tutorialType.TACKLEQUIZ].finish){
         doTutorial(tutorialType.TACKLEQUIZ);
     }
 }
@@ -1406,7 +1446,7 @@ function checkA(){
                 q_icon.style.filter = "grayscale(100%)";
             }
             
-            if(!tutorials[tutorialType.ANSWEREDQUIZ].finish){
+            if(!tutorial_finish[tutorialType.ANSWEREDQUIZ].finish){
                 doTutorial(tutorialType.ANSWEREDQUIZ);
             }
 
@@ -1523,15 +1563,24 @@ function openMenu(nashi){
         menu_point_bar = document.getElementById("menu_point_bar");
         menu_level.textContent = "Lv." + player_data.level + " 主人公";
         let bar_percentage = 0;
-        let now_level_point = level_list[player_data.level].needed_point
+        let now_level_point = level_list[player_data.level].needed_point;
+        
+        next_level_need_point = level_list[player_data.level+1].needed_point-now_level_point;
+        now_level_player_point = player_data.point-now_level_point;
+        
+        
         if(player_data.level == max_level){
             menu_level.textContent = "Lv.MAX 主人公";
             bar_percentage = 100;
         }else{
-            bar_percentage = 
-            (player_data.point-now_level_point)*100/(level_list[player_data.level+1].needed_point-now_level_point);
+            bar_percentage = now_level_player_point*100/next_level_need_point;
         }
-        menu_point.textContent = player_data.point+"pt";
+        
+        menu_point.textContent = now_level_player_point +"/" + next_level_need_point;
+        
+        
+        menu_point.textContent = (next_level_need_point - now_level_player_point) + "問";
+        
         
         
         menu_point_bar.value = bar_percentage;
@@ -1873,7 +1922,7 @@ function checkLevel(init = false){
             openPop();
 
             
-            if(!tutorials[tutorialType.MAGIC].finish){
+            if(!tutorial_finish[tutorialType.MAGIC].finish){
                 doTutorial(tutorialType.MAGIC);
             }
         }
@@ -1989,7 +2038,7 @@ function moveMap(n){
     next_stage.style.display = 'block'
     
     now_place = n;
-    if(n=='rocky' && tutorials[tutorialType.USEMAGICTOQUIZ].finish == false){
+    if(n=='rocky' && tutorial_finish[tutorialType.USEMAGICTOQUIZ].finish == false){
         doTutorial(tutorialType.USEMAGICTOQUIZ);
     }
     
