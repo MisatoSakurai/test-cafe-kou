@@ -222,7 +222,7 @@
         
         <div id="B1" class="battle" style="display: none" onclick="fail()">
             <div class="enemy_info">
-                <div class="enemy_name" id="B1_name" onclick="changeName(this.id)">スライム</div>
+                <div class="enemy_name" id="B1_name" onclick="changeName(this.id)">ブルースライム</div>
                 <div class="enemy_status">
                     <ul style="list-style-type: none;">
                         <li>Lv:5</li>
@@ -234,8 +234,9 @@
             </div>
             <img src="images/mobs/スライム.PNG" class="monster" id="monster1" onclick="changeColor(this.id)">
             <div class="command" id="B1_command">
-                <p onclick="openBattleMagic()">魔法</p>
-                <p onclick="closeBattle('B1')">逃げる</p>
+                <p onclick="soonFail(1)">たたかう</p>
+                <p onclick="openBattleMagic()">まほう</p>
+                <p onclick="closeBattle('B1')">にげる</p>
             </div>
         </div>
         
@@ -254,8 +255,9 @@
             </div>
             <img src="images/mobs/飛ぶ.PNG" class="monster" id="monster2" onclick="changeColor('monster2')">
             <div class="command">
-                <p onclick="openBattleMagic()">魔法</p>
-                <p onclick="closeBattle('B2')">逃げる</p>
+                <p onclick="soonFail(2)">たたかう</p>
+                <p onclick="openBattleMagic()">まほう</p>
+                <p onclick="closeBattle('B2')">にげる</p>
             </div>
         </div>
         
@@ -274,19 +276,21 @@
             </div>
             <img src="images/mobs/魔王.PNG" class="monster" id="monster3" onclick="">
             <div class="command">
-                <p onclick="soonFail()">たたかう</p>
-                <p onclick="openBattleMagic()">魔法</p>
-                <p onclick="closeBattle('B3')">逃げる</p>
+                <p onclick="soonFail(3)">たたかう</p>
+                <p onclick="openBattleMagic()">まほう</p>
+                <p onclick="closeBattle('B3')">にげる</p>
             </div>
         </div>
         
-        
+        <div id="failed" style="display: none;">
+            <p id="failed_paragraph">効いていないようだ</p>
+        </div>
         
         <div id="battle_magic" class="battle command" style="display: none;">
             <p id="magic1" class="change_color" onclick="selectBattleMagic(1)" style="display: none">カラー</p>
-            <p id="magic4" class="add_char" onclick="selectBattleMagic(4)">スクエア</p>
             <p id="magic2" class="change_char" onclick="selectBattleMagic(2)" style="display: none">文字トランス</p>
             <p id="magic3" class="scissors" onclick="selectBattleMagic(3)" style="display: none">ハサミ</p>
+            <p id="magic4" class="add_char" onclick="selectBattleMagic(4)">スクエア</p>
             <div id="magic1_explain" class="explain" style="display: none;">
                 <p>色を変えます</p>
                 <p onclick="choiceBattleMagic1()">使う</p>
@@ -307,13 +311,13 @@
             </div>
         
             <div id="magic3_explain" class="explain" style="display: none;">
-                <p>□を足します</p>
+                <p>切ります</p>
                 <p onclick="useBattleMagic('magic3')">使う</p>
                 <p onclick="closeBattleMagicExplain(3)">やめる</p>
             </div>
 
             <div id="magic4_explain" class="explain" style="display: none;">
-                <p>切ります</p>
+                <p>□を足します</p>
                 <p onclick="useBattleMagic('magic4')">使う</p>
                 <p onclick="closeBattleMagicExplain(4)">やめる</p>
             </div>
@@ -322,16 +326,13 @@
             <div id="using_magic" style="display: none;">
                 <p>どこに使う？</p>
                 <p onclick="stopBattleUsing()">やめる</p>
-                <div id="failed" style="display: none;">
-                    <p id="failed_paragraph">効いていないようだ</p>
-                    <p id="failed_button" style="display: none;" onclick="failBattle()">確認</p>
-                </div>
-                <div id="victory" style="display: none;">
-                    <p id="runaway" style="display: none;">逃げだした！<br>経験値を43pt手に入れた！</p>
-                    <p id="fall" style="display: none;">落ちていった！<br>経験値を492pt手に入れた！</p>
-                    <p onclick="finishBattle()">確認</p>
-                </div>
+            </div>
+            <div id="victory" style="display: none;">
+                <p id="runaway" style="display: none;">逃げだした！<br>経験値を43pt手に入れた！</p>
+                <p id="fall" style="display: none;">落ちていった！<br>経験値を492pt手に入れた！</p>
+                <p onclick="finishBattle()">確認</p>
             </div>
         </div>
+        <div id="blackout" style="display: none;"></div>
     </body>
 </html>
