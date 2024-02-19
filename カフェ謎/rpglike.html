@@ -11,8 +11,11 @@
     <body>
         <div id="delete_or_not"  style="display:none">
             <p>全てのセーブデータが消去されます。<br>また、このボタンは運営用でありゲームクリアに関係ありません。</p>
-            <p onclick="deleteAllData()" id="really_delete_button" class="checkButton">削除</p>
-            <p onclick="notDelete()" id="not_delete_button" class="checkButton">戻る</p>
+            <div class="flex_buttons">
+                <p onclick="deleteAllData()" id="really_delete_button" class="flex_item_button">削除</p>
+                <p onclick="notDelete()" id="not_delete_button" class="flex_item_button">戻る</p>
+                <p onclick="debugMode()" id="debug_button" class="flex_item_button">デバッグ用</p>
+            </div>
         </div>
         <div id="title_sheet" style="display:block">
             <div id="title_text_and_buttons" onclick="startGame()">
@@ -26,19 +29,21 @@
         </div>
         <div id="tutorial" style="display:none">
             <div id="story_sogen" style="display:none"></div>
+            <div id="ending" style="display:none"></div>
             
             <img id="tutorial_image" src="">
             <img id="pointer" src ="images/icons/up_arrow.png" style="display: none">
         </div>
 
-        <div id="clear_sheet" style="display:none">
-            <div id="clear_text_and_buttons" onclick="">
-                <h1 id="clear_title">CLEAR!!</h1>
-                <!--<img src="images/title/スタートボタン-1.png" onclick="startGame()" id="start_button" class="title_button">-->
-                <!--<img src="images/title/止めるボタン-1.png" onclick="quitGame()" id="quit_button" class="title_button">-->
-            </div>
-            <!--<img src="images/title/止めるボタン-1.png" onclick="quitGame()" id="quit_button" class="title_button">-->
+        <div id="clear_back_sheet" style="display:none">
         </div>
+        
+        <div id="clear_sheet" style="display:none">
+            <div id="clear_text_and_buttons">
+                <h1 id="clear_title">CLEAR!!</h1>
+            </div>
+        </div>
+        
         
         
         <div id="text_log_back" style="display:none" onclick="displayNextDialog()">      
@@ -60,7 +65,7 @@
             </div>
             <ul class="slide_menu">
                 <li id="menu_level">Lv.主人公</li>
-                <li id="next_levet_made">次のレベルまで</li>
+                <!--</1><li id="next_levet_made">次のレベルまで</li>-->
                 <li style="display: flex">
                     <p id="menu_point">pt</p>
                     <progress value="0" max="100" id="menu_point_bar"></progress>
@@ -196,7 +201,7 @@
         
         <div id="pop_back" style="display:none" onclick="closePop()">      
         </div>
-        <div id="pop"style="display:none">
+        <div id="pop"style="display:none" onclick="closePop()">
             <p id="pop_title">popタイトル</p>
             <p id="pop_text">pop文章</p>
         </div>

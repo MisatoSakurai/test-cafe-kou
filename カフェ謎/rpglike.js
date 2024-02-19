@@ -117,6 +117,8 @@ const monster_book_list= [
     "バッドトークバット",
     "ブルースライム",
     "立つ辰",
+    "ガーゴイル",
+    "魔王"
 ]
 
 
@@ -141,36 +143,37 @@ let now_status = status.TITLE;
 
 let now_place = stage.PRAIRIE;
 //今の場所が、map上のどこなのか（prairie、rocky、castle）を保管する
-
+ 
 
 
 
 
 const level_list = {
     1:{needed_point:0, enable_magic:magicType.ADD_CHAR},
-    2:{needed_point:5, enable_magic:magicType.CHANGE_COLOR},
-    3:{needed_point:50, enable_magic:magicType.CHANGE_CHAR},
-    4:{needed_point:500, enable_magic:magicType.SCISSORS},
+    2:{needed_point:50, enable_magic:magicType.CHANGE_COLOR},
+    3:{needed_point:550, enable_magic:magicType.CHANGE_CHAR},
+    4:{needed_point:5550, enable_magic:magicType.SCISSORS},
+    5:{needed_point:55550, enable_magic:""},
 }
 
 //本当は、0,5,50,500
 
 
 const point_list = {
-    1:1,
-    2:1,
-    3:1,
-    4:1
+    1:10,
+    2:10,
+    3:10,
+    4:10
 }
 
 
 let monster_list = {
     'B1':{
-        point:10,
+        point:440,
         finish:false
     },
     'B2':{
-        point:10,
+        point:4930,
         finish:false
     }
 }
@@ -387,7 +390,7 @@ var quiz_list ={
                 }
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/4_干支_ハサミ.png",
+                image:"images/quiz/4_干支_鋏.png",
                 answer:"マリ",
                 hint:"ヒントなし",
                 place:{
@@ -406,7 +409,7 @@ var quiz_list ={
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/24_じゃんけん_鋏.png",
-                answer:"カイキ",
+                answer:"カイサ",
                 place:{
                     x: 40, y: -2,  // 座標%
                     w: 10, h: 12   // サイズ%
@@ -549,10 +552,10 @@ var quiz_list ={
 const board_data = {
     magics:{
         [magicType.NONE]:{
-            image:"images/board/導入看板.png",
+            image:"images/board/看板.png",
         },
         [magicType.SCISSORS]:{
-            image:"images/board/導入看板_ハサミ.png",
+            image:"images/board/看板_ハサミ.png",
             place:{
                     x: 56, y: 16,  // 座標%
                     w: 6, h: 10   // サイズ%
@@ -582,6 +585,7 @@ const tutorialType = Object.freeze({
     USEMAGICTOQUIZ:"let_use_magic_to_quiz",
     MONSTER:"monster_tutorial",
     MENU:"menu",
+    ENDING:"ending"
 });
 //tutorialの種類を管理
 
@@ -672,8 +676,6 @@ const monster_tutorial_list = [
     [speaker.G,"——ここであなたは｢たたかう｣、｢にげる｣、｢魔法｣のいずれかを行うことができます"],
     [speaker.G,"——ここであなたは何か行動をすることができます"],
     [speaker.G,"——「たたかう」で直接戦うこともできますが……<br>意味もなく次の敵からの攻撃で確実にやられてしまうでしょう"],
-    [speaker.G,"——そしてあなたの行動が終わると敵からの攻撃が来ます"],
-    [speaker.G,"——普通の体であるあなたはほぼ確実にやられてしまうのでこの攻撃の前に敵を倒さなければなりません"],
     [speaker.G,"——｢魔法｣を開くと現在修得している魔法が表示されるのでそこから選択して倒しましょう"],
     [speaker.G,"——もし戦いに負けてしまったとしても、戦う前の状態に戻るのでとりあえず戦ってみるのも作戦の一つでしょう"],
     ["action",{func: closeBattle, subject:'B1'}],
@@ -711,6 +713,19 @@ const use_magic_list = [
 ];
 
 
+const ending_list = [
+    ["action",{ func: showBack, subject: "ending"}],
+    [speaker.P,"「……ここは…？」"],
+    [speaker.N,"まばゆい光に包まれたあなたは、気がつくと(カフェ謎の会場名)の席に座っていました"],
+    [speaker.P,"「…そうか、自分の合わない世界だったのなら<br>自分でも戦えるように世界を変えてしまえばよかったのか」"],
+    [speaker.N,"人生というゲームを進んでいたあなたは気づかない間にこんな当たり前のことを忘れていたようです"],
+    [speaker.P,"「これからも進んで行こう、<br>時には悩み苦しむこともあるかもしれないけど大丈夫、<br>困ったときは新たな世界に行くことだってできるんだから」"],
+    [speaker.P,"「それじゃあ今日も頑張っていくぞ～！」"],
+    [speaker.N,"あなたは勇んでリアルの世界を進むことにしたのでした……"],
+    ["action",{ func: showBack, subject: "clear_sheet"}],
+];
+
+
 
 
 
@@ -737,6 +752,9 @@ let tutorial_finish = {
         finish:false,
     },
     [tutorialType.MENU]:{
+        finish:false,
+    },
+    [tutorialType.ENDING]:{
         finish:false,
     },
 }
@@ -767,6 +785,9 @@ let tutorial_talk = {
     [tutorialType.MENU]:{
         talk:menu_tutorial_list
     },
+    [tutorialType.ENDING]:{
+        talk:ending_list
+    },
 }
 //各チュートリアルを終えているかどうか、各チュートリアルの会話list
 
@@ -794,7 +815,7 @@ let current_tutorial = "";
 
 
 
-let meet_clear_condition = true;
+let meet_clear_condition = false;
 
 
 
@@ -952,8 +973,8 @@ function initializeQuizDataList(q_list){
         
         make_q_icon(n,place);
         
-        if(q_data.magics[magicType.NONE].hint == null || q_data.magics[magicType.NONE].hint == ""){
-            q_data.magics[magicType.NONE].hint == "ヒントはありません";
+        if(q_data.magics[magicType.NONE].hint == "" || q_data.magics[magicType.NONE].hint == null ){
+            q_data.magics[magicType.NONE].hint = "ヒントはありません";
         }
         for(let m in q_list[n].magics){
             q_data.magics[m].answered = false;
@@ -1001,6 +1022,51 @@ function notDelete(){
     delete_or_not = document.getElementById("delete_or_not");
     delete_or_not.style.display = "none";
 }
+
+
+function debugMode(){
+
+    player_data = {
+        point:40000,
+        level:4,
+    };
+
+    tutorial_finish = {
+        [tutorialType.STORY]:{
+            finish:true,
+        },
+        [tutorialType.OPENQUIZ]:{
+            finish:true,
+        },
+        [tutorialType.USEMAGICTOQUIZ]:{
+            finish:true,
+        },
+        [tutorialType.TACKLEQUIZ]:{
+            finish:true,
+        },
+        [tutorialType.ANSWEREDQUIZ]:{
+            finish:true,
+        },
+        [tutorialType.MAGIC]:{
+            finish:true,
+        },
+        [tutorialType.MONSTER]:{
+            finish:true,
+        },
+        [tutorialType.MENU]:{
+            finish:true,
+        },
+        [tutorialType.ENDING]:{
+            finish:false,
+        },
+    };
+    
+    saveData();
+    window.location.reload();
+}
+
+
+
 
 
 
@@ -1053,7 +1119,6 @@ function quitGame(){
         popTitling("ERROR");
         openPop();
         
-        /*showLog(log_name.CANTQUIT)*/
     }
 }
 
@@ -1064,15 +1129,73 @@ function clearGame(){
     /*popTexting("クリアの条件を満たした！");
     popTitling("CLEAR");
     openPop();*/
+    
+    white_out_time = 1.5;
+    
 
-    clear_sheet = document.getElementById("clear_sheet");
+    clear_out_sheet = document.getElementById("clear_back_sheet");
     title_sheet = document.getElementById("title_sheet");
-    clear_sheet.style.display = 'block';
-    title_sheet.style.display = 'none';
+    clear_out_sheet.style.display = 'block';
     now_status = status.CLEAR;
+    
+    setTimeout(function() {
+        clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
+        clear_out_sheet.style.opacity = '100%';
+    }, 100); 
+    
+    setTimeout(function() {
+        title_sheet.style.display = 'none';
+    }, 100 + white_out_time * 1000);
+    
+    setTimeout(function() {
+        clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
+        console.log(clear_out_sheet.style.opacity);
+        console.log(clear_out_sheet.style.transition);
+        clear_out_sheet.style.opacity = '0%';
+        showEnding();
+        closeGeneTextLog();
+
+        
+    }, 100 + white_out_time * 1000 * 1.5); 
+    
+    setTimeout(function() {
+        clear_out_sheet.style.display = 'none';
+        openGeneTextLog();
+    }, 100 + white_out_time * 1000 * 2.5); 
+    
 
 
 }
+
+
+
+
+
+
+
+function showEnding(){
+    doTutorial(tutorialType.ENDING);
+}
+
+
+
+
+
+
+function showClearImg(subject){
+    clear_sheet = document.getElementById("clear_sheet");
+    white_out_time = 2;
+    
+    clear_sheet.style.display = 'block';
+    clear_sheet.style.backgroundImage = "images/background/"
+    
+    setTimeout(function() {
+        clear_sheet.style.transition = "opacity " + white_out_time + "s";
+        clear_sheet.style.opacity = '100%';
+    }, 100); 
+    
+}
+
 
 
 
@@ -1154,6 +1277,13 @@ function finishHide(subject){
 
 
 
+
+
+
+
+
+
+
 function doTutorial(n){
     tutorial_page = document.getElementById("tutorial");
     
@@ -1165,16 +1295,12 @@ function doTutorial(n){
         
         current_tutorial = n;
         current_dialog_num = -1;
-        console.log("tutorial_talk[current_tutorial].talk[0]");
-        console.log(tutorial_talk[current_tutorial].talk[0]);
-        console.log("story_tutorial_list[0]");
-        console.log(story_tutorial_list[0]);
         current_dialog_list = tutorial_talk[current_tutorial].talk;
         displayNextDialog();
     }
     else{
         tutorial_page.style.display="none";
-        closeGeneTextLog()
+        closeGeneTextLog();
         current_tutorial ="";
         
         if (n==tutorialType.STORY){
@@ -1186,10 +1312,15 @@ function doTutorial(n){
                 doTutorial(tutorialType.MONSTER);
             }
         }
+        
         if (n==tutorialType.MONSTER){
             if(!tutorial_finish[tutorialType.MENU].finish){
                 doTutorial(tutorialType.MENU);
             }
+        }
+        
+        if (n==tutorialType.ENDING){
+            tutorial_finish[tutorialType.ENDING].finish = false;
         }
     }
     
@@ -1235,13 +1366,11 @@ function displayNextDialog(){
     
     openGeneTextLog();
     
-    console.log(current_dialog_num);
     
     
     if (current_dialog_num < current_dialog_list.length-1){
         current_dialog_num += 1;
         scene = current_dialog_list[current_dialog_num];
-        console.log(scene);
         if(scene[0] != "action") {
             
             text_log_sentence.innerHTML = scene[1];
@@ -1261,7 +1390,6 @@ function displayNextDialog(){
             } 
         }
         else{
-            console.log(scene[1]);
             scene[1].func(scene[1].subject);
             displayNextDialog();
         }
@@ -1572,14 +1700,12 @@ function openMenu(nashi){
         if(player_data.level == max_level){
             menu_level.textContent = "Lv.MAX 主人公";
             bar_percentage = 100;
+            menu_point.textContent = "MAX";
         }else{
             bar_percentage = now_level_player_point*100/next_level_need_point;
+            menu_point.innerHTML = now_level_player_point +"pt/<span style='font-size:15px'>" + next_level_need_point + "pt</span>";
         }
         
-        menu_point.textContent = now_level_player_point +"pt/" + next_level_need_point + "pt";
-        
-        
-        //menu_point.textContent = (next_level_need_point - now_level_player_point) + "問";
         
         
         
@@ -1907,6 +2033,9 @@ function checkLevel(init = false){
     
     else if(player_level<max_level){
         next_level_point = level_list[player_level+1].needed_point;
+        console.log("nextLevel:" + (player_level+1));
+        console.log("needPoint:" + level_list[player_level+1].needed_point);
+        console.log("playerPoint:" + player_point);
         if(player_point >= next_level_point){
             player_data.level += 1;
             levelUp(player_data.level);
@@ -2058,12 +2187,14 @@ function removeMapMonster(n){
         b1_icon.style.display= 'none';
         move_button = document.getElementById("button_move_to_rocky");
         move_button.style.display = 'block';
+        monster_list["B1"].finish = true;
     }
     if(n=="B2") {
         b2_icon = document.getElementById("B2_icon");
         b2_icon.style.display= 'none';
         move_button = document.getElementById("button_move_to_castle");
         move_button.style.display = 'block';
+        monster_list["B1"].finish = true;
         
     }
     
@@ -2172,7 +2303,7 @@ function changeName(n){
             victory.style.display = 'block'
             runaway.style.display = 'block'
             removeMapMonster('B2');
-            player_data.point += 492;
+            player_data.point += monster_list['B2'].point;
             
         }
     }
@@ -2190,7 +2321,7 @@ function changeColor(n){
             victory.style.display = 'block'
             runaway.style.display = 'block'
             removeMapMonster('B1');
-            player_data.point += 43;
+            player_data.point += monster_list['B1'].point;
         }
     }
     if(using === 'magic1G'){
