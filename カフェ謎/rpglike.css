@@ -88,6 +88,8 @@ h1 {
     left: 1%;
     top: 1%;
     font-size: 10px;
+    padding: 5px;
+    border: 4px solid #f0f0f0;
 }
 
 
@@ -108,7 +110,31 @@ h1 {
 }
 
 
+.flex_buttons {
+    display: flex;
+    justify-content: space-between;
+    width:70%;
+    /*height:70px;*/
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+}
 
+
+
+.flex_buttons p{
+    margin: 0;
+    padding: 0 10px;
+}
+
+
+
+
+
+/*
 #really_delete_button{
     position: absolute;
     width:20%;
@@ -127,6 +153,7 @@ h1 {
     right: 20%;
     margin: 0;
 }
+*/
 
 
 
@@ -139,6 +166,17 @@ h1 {
 
 
 
+
+#clear_back_sheet {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    opacity: 0%;
+    z-index: 11;
+}
 
 
 #clear_sheet {
@@ -148,7 +186,11 @@ h1 {
     top: 0;
     left: 0;
     background-color: white;
+    opacity: 100%;
+    z-index: 14;
 }
+
+
 
 
 
@@ -272,6 +314,21 @@ h1 {
     height: 100%;
     z-index: 1;
     background-image: url('images/background/草原_戦闘画面.jpg');
+    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-position: center;
+}
+
+
+
+
+#ending {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: url('images/background/エンディング背景.png');
     background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
     background-position: center;
 }
@@ -442,11 +499,12 @@ h1 {
     right: 5%;
     margin-left: auto;
     margin-right: auto;
+    padding: 5px;
 }
 
 
 
-.closeButton,.checkButton,.hintButton {
+.closeButton,.checkButton,.hintButton, .flex_item_button {
     background-color: black;
     border: 2px solid #f0f0f0;
     border-radius: 5px;
@@ -526,7 +584,7 @@ h1 {
     position: relative;
     width : auto;
     aspect-ratio:2048/1536;
-    max-height: 90%;
+    max-height: 85%;
     left: 0;
     right: 0;
     top:10%;
