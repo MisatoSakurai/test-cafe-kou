@@ -84,6 +84,15 @@ const magic_info = Object.freeze({
         image:"images/icons/色変化.png",
         selected_image:"images/icons/色変化.png"
     },
+    [magicType.RED]:{
+        name:'カラー(赤)',
+    },
+    [magicType.BLUE]:{
+        name:'カラー(青)',
+    },
+    [magicType.YELLOW]:{
+        name:'カラー(黄)',
+    },
     [magicType.ADD_CHAR]:{
         name:'スクエア',
         image:"images/icons/枠追加.png",
@@ -191,12 +200,13 @@ var quiz_list ={
     1:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/31_寿司.png",
+                image:"images/quiz/1_寿司.png",
                 answer:"カイロ",
-                hint:"3つのイラストはとある食べ物を表しています。<br>そして、真ん中のイラストには海苔が巻かれているようです。",
+                hint:["3つのイラストはとある食べ物を表しています。<br>真ん中は海苔が巻かれたものを表しています。","これらはお寿司のイラストを示していました。<br>右からイカ、イクラ、マグロとなります"],
             },
             [magicType.YELLOW]:{
-                image:"images/quiz/31_寿司_色.png",
+                image:"images/quiz/1_寿司_色.png",
+                hint:["カラーを使ってマグロをタマゴにすることができます。"],
                 answer:"カイゴ",
                 place:{
                     x: 16, y: 12,  // 座標%
@@ -209,9 +219,9 @@ var quiz_list ={
     2:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/3_ハンガー傘.png",
+                image:"images/quiz/2_ハンガー傘.png",
                 answer:"サンカク",
-                hint:"右の棒を左の三角につけたとき、何に見えるでしょうか？上につけたときと下につけたときで違うようです。",
+                hint:["右の図形を左の三角につけたとき、何に見えるかを考えましょう。上につけると家で使うもの、下につけると雨の日に使うものになるようです。","右の棒を三角の上につけると｢はんがー｣、下につけると｢かさ｣になります。"],
             },
         }
         
@@ -220,21 +230,23 @@ var quiz_list ={
     3:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/14_色付き英字.png",
+                image:"images/quiz/3_色付き英字.png",
                 answer:["ラック","LUCK"],
-                hint:"",
+                hint:["それぞれの文字がいくつあるかに着目しましょう。","酸味であれば｢3ミ｣、斜めであれば｢7メ｣のように、文字の数とそのカタカナで言葉になっていました。"],
             },
             [magicType.RED]:{
-                image:"images/quiz/14_色付き英字_色.png",
+                image:"images/quiz/3_色付き英字_色.png",
                 answer:["ロック","LOCK"],
+                hint:"カラーの赤色を使って2文字目を｢O｣にすることができます",
                 place:{
                     x: 41, y: 41,  // 座標%
                     w: 5, h: 5   // サイズ%
                 }
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/14_色付き英字_鋏.png",
+                image:"images/quiz/3_色付き英字_鋏.png",
                 answer:["スター","STAR"],
+                hint:"ハサミを使って｢むらさきいろ｣を｢きいろ｣にします",
                 place:{
                     x: 20, y: 0,  // 座標%
                     w: 10, h: 10   // サイズ%
@@ -247,13 +259,14 @@ var quiz_list ={
     4:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/5_語呂ろくろ.png",
+                image:"images/quiz/4_語呂ろくろ.png",
                 answer:"ゴロ",
-                hint:"それぞれの文字がいくつあるかに着目しましょう。どうやら数字と文字で言葉が作られているようです。",
+                hint:["それぞれの文字がいくつあるかに着目しましょう。","酸味であれば｢3ミ｣、斜めであれば｢7メ｣のように、文字の数とそのカタカナで言葉になっていました。"],
             },
             [magicType.ADD_CHAR]:{
-                image:"images/quiz/5_語呂ろくろ_□.png",
+                image:"images/quiz/4_語呂ろくろ_四角.png",
                 answer:"ロクロ",
+                hint:"スクエアを使って｢ロ｣を1つ増やします。",
                 place:{
                     x: 65, y: 14,  // 座標%
                     w: 25, h: 29   // サイズ%
@@ -266,13 +279,14 @@ var quiz_list ={
     5:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/9_剣盾_v3.png",
+                image:"images/quiz/5_剣盾.png",
                 answer:"ソフト",
-                hint:"上の四角には攻撃と防御、下の四角には攻撃するものと防御するものが埋まるようです。",
+                hint:["上の四角には攻撃と防御を表す言葉、下の四角には攻撃するものと防御するものが埋まるようです。","上は「ブロック」と「アタック」、下は「シールド」と「ソード」を表しています。"],
             },
             [magicType.ADD_CHAR]:{
-                image:"images/quiz/9_剣盾_v3_□.png",
+                image:"images/quiz/5_剣盾_四角.png",
                 answer:"レフト",
+                hint:"スクエアを足すことで「ソード」を「ブレード」と言い換えることができます。",
                 place:{
                     x: 50, y: 54,  // 座標%
                     w: 12, h: 10   // サイズ%
@@ -284,13 +298,14 @@ var quiz_list ={
     6:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/12_★迷路.png",
+                image:"images/quiz/6_★迷路.png",
                 answer:"サイン",
-                hint:"はじめは下の方に行きましょう。",
+                hint:["はじめは下の方に行きましょう。","下の方に行き、1つ目の曲がり角を曲がりゴールまで行きます。"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/12_★迷路_字.png",
+                image:"images/quiz/6_★迷路_字.png",
                 answer:"サイテキカイ",
+                hint:"文字トランスを使って｢ミッツ｣を｢ムッツ｣にすることで迷路の通るルートが変わります。",
                 place:{
                     x: 36, y: 9,  // 座標%
                     w: 4, h: 6   // サイズ%
@@ -302,13 +317,14 @@ var quiz_list ={
     7:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/13_反転文字.png",
+                image:"images/quiz/7_反転文字.png",
                 answer:"ニモノ",
-                hint:"右側の問題文は｢コレハナニ？｣と書かれています。これらにはどういった規則があるかを考えてみましょう。答えは3文字になります。",
+                hint:["右側の問題文は｢コレハナニ？｣と書かれています。どういった規則があるかを考えてみましょう。","不思議な図形は、半分に割った左側を見る法則でした。"],
             },
             [magicType.ADD_CHAR]:{
-                image:"images/quiz/13_反転文字_□.png",
+                image:"images/quiz/7_反転文字_四角.png",
                 answer:"エモノ",
+                hint:"スクエアを使って1文字目を｢エ｣にします。",
                 place:{
                     x: 36, y: 23,  // 座標%
                     w: 10, h: 14   // サイズ%
@@ -320,13 +336,14 @@ var quiz_list ={
     8:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/11_26分数.png",
+                image:"images/quiz/8_26分数.png",
                 answer:"ハード",
-                hint:"26といえばアルファベットの個数が考えられます。各数字に対応したアルファベットに変換してみましょう。",
+                hint:["26といえばアルファベットの個数が考えられます。各数字に対応したアルファベットに変換してみましょう。","アルファベット順でそれぞれの番目に対応するアルファベットを考えます。1文字目は8番目のアルファベットなので｢H｣のようにします。"],
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/11_26分数_鋏.png",
+                image:"images/quiz/8_26分数_鋏.png",
                 answer:"カード",
+                hint:"アルファベット順でそれぞれの番目に対応するアルファベットを考えます。1文字目は8番目のアルファベットなので｢H｣のようにすると",
                 place:{
                     x: 21, y: -2,  // 座標%
                     w: 10, h: 11   // サイズ%
@@ -338,13 +355,14 @@ var quiz_list ={
     9:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/20_部首の名前.png",
+                image:"images/quiz/9_部首.png",
                 answer:"シカク",
-                hint:"それぞれのカタカナは漢字に関するあるパーツを表しています。ウは上側、イは左側、リは右側に来ることが多いです。",
+                hint:["それぞれのカタカナは漢字に関する形が似ているパーツを表しています。ウは上側、イは左側、リは右側に来ることが多いです。","それぞれのカタカナは似た部首を表していました。ネ、サ、ロは｢しめすへん｣、｢くさかんむり｣、｢くち｣か｢くちへん｣か｢くにがまえ｣を示しています"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/20_部首の名前_字.png",
+                image:"images/quiz/9_部首_字.png",
                 answer:"シズク",
+                hint:"文字トランスを使って｢サ｣を｢シ｣にすることで｢さんずい｣に変わります。",
                 place:{
                     x: 18, y: 64,  // 座標%
                     w: 7, h: 10   // サイズ%
@@ -356,14 +374,15 @@ var quiz_list ={
     10:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/23_ピースはめ.png",
+                image:"images/quiz/10_ピースはめ.png",
                 answer:"カタチ",
-                hint:"赤矢印が｢たに｣になるようにピースを配置し、そこからうまくはまるように考えてみましょう。",
+                hint:["赤矢印が｢たに｣になるようにピースを配置し、そこからうまくはまるように考えてみましょう。","赤い矢印が｢たに｣であることをヒントに右上のピースが左上に入ります。"],
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/23_ピースはめ_鋏.png",
+                image:"images/quiz/10_ピースはめ_鋏.png",
                 answer:"クウキ",
-                hint:"ピースは関係ないので赤矢印が通る2マスには｢た｣と｢に｣が入るようです。どうやらとある有名な表の一部を使っているようです。",
+                hint:"ハサミを使い真ん中を切ることで別の問題にすることができます。｢たに｣のヒントから5×5のマス目は五十音表を示しています。",
+                afterInvolvedHint:"赤い矢印が通る2マスには｢たに｣が入ります。これはとある表の右側を切り取ったものを表しています。",
                 place:{
                     x: 42, y: -2,  // 座標%
                     w: 5, h: 12   // サイズ%
@@ -376,23 +395,23 @@ var quiz_list ={
     11:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/4_干支.png",
+                image:"images/quiz/11_干支.png",
                 answer:"マル",
-                hint:"ヒントなし",
+                hint:["これは12匹の動物の並びを使います。その上でいくつか進めてマスの中に埋めましょう。","これらは十二支を表していました。その順番で進めたり戻したりすると｢ウマ｣、｢サル｣が入ります"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/4_干支_字.png",
+                image:"images/quiz/11_干支_字.png",
                 answer:"シル",
-                hint:"ヒントなし",
+                hint:"文字トランスを使って｢トラ｣を｢トリ｣に変えます。すると｢ウシ｣に変化します。",
                 place:{
                     x: 32, y: 57,  // 座標%
                     w: 7, h: 7   // サイズ%
                 }
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/4_干支_鋏.png",
+                image:"images/quiz/11_干支_鋏.png",
                 answer:"マリ",
-                hint:"ヒントなし",
+                hint:"ハサミを使って｢イヌ｣を｢イ｣に変えます。すると｢トリ｣に変化します",
                 place:{
                     x: 79, y: -2,  // 座標%
                     w: 10, h: 12   // サイズ%
@@ -403,13 +422,15 @@ var quiz_list ={
     12:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/24_じゃんけん.png",
+                image:"images/quiz/12_じゃんけん.png",
                 answer:"マカイ",
-                hint:"",
+                hint:["左側の手と戦ったときの結果をそれぞれで考えてみましょう。","チョキと戦ったときの結果が右側に入ります。マケ、カチ、アイコとなります"],
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/24_じゃんけん_鋏.png",
+                image:"images/quiz/12_じゃんけん_鋏.png",
                 answer:"カイサ",
+                hint:"ハサミを使って真ん中を切ることで3つの手が表すものを入れる謎に変わります。順にカミ、イシ、ハサミが入ります。",
+                afterInvolvedHint:"それぞれの手そのものが何を表しているかを考えてみましょう。",
                 place:{
                     x: 40, y: -2,  // 座標%
                     w: 10, h: 12   // サイズ%
@@ -421,13 +442,15 @@ var quiz_list ={
     13:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/26_一口.png",
+                image:"images/quiz/13_一口.png",
                 answer:"ダシン",
-                hint:"",
+                hint:["漢字のパーツを足したり引いたりしているようです。","漢字のパーツで足し引きすると、上から｢間(あいだ)｣、｢古(いにしえ)｣、｢女(おんな)｣になります。"],
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/26_一口_鋏.png",
+                image:"images/quiz/13_一口_鋏.png",
                 answer:"カクチ",
+                hint:"「ハサミ」を使って一番左の漢字を切り取ります。「プラス」「マイナス」を漢数字としてみなすと、上から「十日（とおか）」「一口（ひとくち）」「一次（いちじ）」となります。",
+                afterInvolvedHint:"漢字のパーツで足し引きすると、上から｢間(あいだ)｣、｢古(いにしえ)｣、｢女(おんな)｣になります。",
                 place:{
                     x: 21, y: -2,  // 座標%
                     w: 10, h: 12   // サイズ%
@@ -439,13 +462,14 @@ var quiz_list ={
     14:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/29_上下文字つなぎ.png",
+                image:"images/quiz/14_上下文字つなぎ.png",
                 answer:"カイフク",
-                hint:"",
+                hint:["左下にある｢土｣は｢堂｣しか作れません。｢堂｣の上パーツが消えることで1通りしか結べないものがさらに見つかります。","十が立と組み合わさって｢辛｣にしかなれず、そこから考えると｢貿｣と｢替｣ができます。"],
             },
             [magicType.ADD_CHAR]:{
-                image:"images/quiz/29_上下文字つなぎ_□.png",
+                image:"images/quiz/14_上下文字つなぎ_四角.png",
                 answer:"モザイク",
+                hint:"スクエアを使って｢十｣を｢田｣にします。すると｢堂｣、｢留｣、｢賛｣、｢音｣ができます。",
                 place:{
                     x: 68, y: 77,  // 座標%
                     w: 10, h: 10   // サイズ%
@@ -457,13 +481,14 @@ var quiz_list ={
     15:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/30_サイコロ.png",
+                image:"images/quiz/15_サイコロ.png",
                 answer:"プロジェクト",
-                hint:"",
+                hint:["すごろくのように目が出たものとしてコマを進めてみましょう。","Sから3マス進み、1マス進み、…と繰り返し止まったマスを順に読みます"],
             },
             [magicType.RED]:{
-                image:"images/quiz/30_サイコロ_色.png",
+                image:"images/quiz/15_サイコロ_色.png",
                 answer:"プライド",
+                hint:"カラーを使って問題の背景を赤くすると1の目が消えます。",
                 place:{
                     x: 23, y: 33,  // 座標%
                     w: 53, h: 31   // サイズ%
@@ -475,21 +500,23 @@ var quiz_list ={
     16:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/33_オセロ.png",
+                image:"images/quiz/16_オセロ.png",
                 answer:"イノリ",
-                hint:"",
+                hint:["オセロなので、同じ色で挟まれた色はひっくり返る法則があります。どのコマがひっくり返るか考えましょう。","置いたマスから下側、右下側のコマがひっくり返ります。"],
             },
             [magicType.BLUE]:{
-                image:"images/quiz/33_オセロ_色.png",
+                image:"images/quiz/16_オセロ_色.png",
                 answer:"コイノボリ",
+                hint:"カラーを使って｢ん｣のコマを青色にします。すると左下側にもひっくり返ります",
                 place:{
                     x: 31, y: 46,  // 座標%
                     w: 7, h: 10   // サイズ%
                 }
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/33_オセロ_字.png",
+                image:"images/quiz/16_オセロ_字.png",
                 answer:"サツキ",
+                hint:"文字トランスを使って｢アオ｣を｢アカ｣にします。するとひっくり返るコマが左右方向になります",
                 place:{
                     x: 18, y: 74,  // 座標%
                     w: 5, h: 5   // サイズ%
@@ -501,9 +528,9 @@ var quiz_list ={
     17:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/35_道路.png",
+                image:"images/quiz/17_道路.png",
                 answer:"ドローン",
-                hint:"赤矢印と青矢印は同じものの違う読み方を表しているようです。",
+                hint:["赤矢印と青矢印が通る言葉はどちらも下のイラストを表しているようです。","｢道路(どうろ)｣は英語で｢ロード｣と言うことができます。赤矢印に｢どうろ｣、青矢印に｢ろーど｣を埋めてみましょう。"],
             }
         }
         
@@ -511,9 +538,9 @@ var quiz_list ={
     18:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/36_v.png",
+                image:"images/quiz/18_v.png",
                 answer:"エール",
-                hint:"それぞれの色の矢印の形に注目してみましょう。",
+                hint:["それぞれの色の矢印の形に注目してみましょう。たとえば赤矢印は真ん中に｢ン｣があって｢文意(ブンイ)｣になっており、赤矢印は｢ブイ｣を表しているようです。","各矢印はその矢印の形のアルファベットと対応しているようです。黒矢印は｢エル(L)｣に対応しているため、真ん中に｢ー｣が入ります"],
             },
         }
         
@@ -521,9 +548,9 @@ var quiz_list ={
     19:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/40_間.png",
+                image:"images/quiz/19_間.png",
                 answer:"ヤミ",
-                hint:"前後の文から、二行目の四角に入りそうな感じを推測してみましょう。",
+                hint:["前後の文から、点線がついた四角に入りそうな漢字を推測してみましょう。構成する二つの漢字のうちの一方は「門」です。","四角に｢間｣を入れると、｢間を構成する二つの漢字の間に立を入れてできる漢字は？｣という分が出来上がります。"],
             },
         }
         
@@ -531,13 +558,14 @@ var quiz_list ={
     20:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/25_数字埋め.png",
+                image:"images/quiz/20_数字埋め.png",
                 answer:["オーブン","OVEN"],
-                hint:"",
+                hint:["4つの数字は英単語にして埋めてみましょう。","文字数の関係から一番下にはONEが入り、その上にはTHREEが入ります。同様に考えていくと答えが出てきます。"],
             },
             [magicType.ADD_CHAR]:{
-                image:"images/quiz/25_数字埋め_□.png",
+                image:"images/quiz/20_数字埋め_四角.png",
                 answer:["ツリー","TREE"],
+                hint:"スクエアを使って｢1｣を｢10｣にします。一番下にはTENが入り、その上にはSEVENが入ります。",
                 place:{
                     x: 77, y: 35,  // 座標%
                     w: 8, h: 10   // サイズ%
@@ -611,16 +639,12 @@ const story_tutorial_list = [
     [speaker.N,"ゲームを始めようとボタンを押したあなたは気づくと広い草原の中にいました"],
     [speaker.G,"——ようやく目覚めたのですね"],
     [speaker.N,"突如頭の中に語りかける声が聞こえてきました<br>しかし辺りを見回しても姿は見えません"],
-    [speaker.G,"——今これはあなたの頭に直接語りかけていますよ"],
-    [speaker.P,"「ど、どういうことだ！<br>そんなことはゲームの世界でしか起こらないだろ！」"],
-    [speaker.G,"——いやここゲームの世界なんですけど"],
-    [speaker.P,"「え…？」"],
+    [speaker.G,"——これはあなたの頭に直接語りかけています<br>ここはゲームの世界ですから"],
+    [speaker.P,"「え…？<br>ゲームの世界にいる…？」"],
     [speaker.N,"ありえない事実にあなたは驚きを隠せませんでした"],
-    [speaker.P,"「ゲームの世界にいる…？」"],
-    [speaker.G,"——はい、その通りです"],
-    [speaker.N,"あなたはどうやらこのゲームの世界に迷いこんでしまったみたいですね"],
+    [speaker.G,"——あなたはどうやらこのゲームの世界に迷いこんでしまったみたいですね"],
     ["action",{ func: showImg, subject: "images/board/導入看板.png" }],
-    [speaker.G,"————この世界を抜け出したいならば看板に書かれたクリア条件を達成しゲームをクリアしてください"],
+    [speaker.G,"——この世界を抜け出したいならば看板に書かれたクリア条件を達成しゲームをクリアしてください"],
     [speaker.N,"あなたは目の前に置かれた看板を見ました<br>そこには確かにゲームクリア条件のようなものが書いてありました"],
     [speaker.P,"「これを達成すれば元の世界に戻れるということか！<br>頑張るぞ～」"],
     [speaker.G,"——ちょっと待ってください<br>あなたって普通の現代人ですよね？"],
@@ -630,8 +654,7 @@ const story_tutorial_list = [
     [speaker.N,"絶望的な状況にあなたは落胆してしまいました"],
     [speaker.G,"——しかしあなたにも希望はあります<br>それは、”魔法”を使って敵を倒すことです！"],
     [speaker.P,"「魔法…？」"],
-    [speaker.G,"——あなたは今レベル1の状態です<br>実はレベルが1つ上がると新たな魔法を使うことができるようになります"],
-    [speaker.G,"——ちなみに今は魔法「スクエア」だけ使うことができる状態です"],
+    [speaker.G,"あなたは今レベル1の状態ですが、実はレベルが1つ上がると新たな魔法を修得します<br>ちなみに今は魔法「スクエア」だけ使うことができます"],
     [speaker.G,"——魔法をうまく使うことで敵を倒すことができるかもしれません<br>特にあなたのようなひらめきで世界を変えられるような方ならば"],
     [speaker.P,"「そうか、ゲットした魔法を使って敵を倒せばいいのか<br>でもどうしたらレベルを上げられるんだ？」"],
     [speaker.G,"——それは謎解きに正解することで経験値を獲得しレベルを上げることができます"],
@@ -656,7 +679,7 @@ const tackle_quiz_tutorial_list = [
 ];
 
 const answered_quiz_list = [
-    [speaker.G,"——正解です、さすがです！<br>この調子でどんどん謎を解きましょう！"]
+    [speaker.G,"————正解です、さすがです！<br>1つ正解すると10ptの経験値がたまるので、この調子で謎を解いていきましょう！"]
 ];
 
 const got_magic_list = [
@@ -701,13 +724,11 @@ const menu_tutorial_list = [
 
 const use_magic_list = [
     [speaker.G,"——どうやらここには謎がないみたいですね"],
-    [speaker.G,"——ああ、そうだ、ひとつ言い忘れていたことがあるんですが"],
-    [speaker.G,"——実はあなたが手に入れた魔法は謎に使うこともできるんです"],
-    [speaker.G,"——謎を解く画面で左上に表示されるアイコンをタップし、使う場所を正しく選択すると謎に対して魔法を使うことができます"],
-    [speaker.G,"——魔法が使える場所にはそれぞれルールがあるので注意してください"],
-    [speaker.G,"——また複数の魔法を同時にかけることはできません"],
-    [speaker.G,"——魔法を使って新たな問題をつくり、その謎を解くとさらに経験値が上がるのでぜひ活用してください"],
-    [speaker.G,"——また、問題の上にある星はこの問題でできる正解数を表していて、正解すると光るので参考に使ってください"],
+    [speaker.G,"——ああ、ひとつ言い忘れていたことがあって、"],
+    [speaker.G,"——実はあなたが持つ魔法は謎に使えるんです"],
+    [speaker.G,"——謎を解く画面で左上のアイコンをタップし、使う場所を正しく選択すると魔法が発動します<br>複数の魔法は同時には使えず魔法のルールも残っているのでご注意ください"],
+    [speaker.G,"————魔法によってできた新たな謎を解くとさらに経験値が上がります"],
+    [speaker.G,"——また、上の星はその謎でできる正解数を表していて正解すると光ります"],
     [speaker.G,"——それでは、健闘を祈ります"]
     
 ];
@@ -717,7 +738,7 @@ const ending_list = [
     ["action",{ func: showBack, subject: "ending"}],
     [speaker.P,"「……ここは…？」"],
     [speaker.N,"まばゆい光に包まれたあなたは、気がつくと(カフェ謎の会場名)の席に座っていました"],
-    [speaker.P,"「…そうか、自分の合わない世界だったのなら<br>自分でも戦えるように世界を変えてしまえばよかったのか」"],
+    [speaker.P,"「…そうか、自分の合わない世界だったのなら<br>守らないといけないと思い込んでいた世界のルールを変えてしまえばよかったのか」"],
     [speaker.N,"人生というゲームを進んでいたあなたは気づかない間にこんな当たり前のことを忘れていたようです"],
     [speaker.P,"「これからも進んで行こう、<br>時には悩み苦しむこともあるかもしれないけど大丈夫、<br>困ったときは新たな世界に行くことだってできるんだから」"],
     [speaker.P,"「それじゃあ今日も頑張っていくぞ～！」"],
@@ -795,13 +816,19 @@ let tutorial_talk = {
 
 const log_name = Object.freeze({
     CANTQUIT:"cannot_quit_game",
-    WINMONSTER:"win_B1",
+    WINMONSTER:"win_monster",
+    LOSEMONSTER:"lose_monster"
 });
 
 
 const log_list =  {
     [log_name.CANTQUIT]:[[speaker.N,"ERROR<br>ゲームをやめることができない"]],
     [log_name.WINMONSTER]:[[speaker.N,"次のステージへ進めるようになった！"]],
+    [log_name.LOSEMONSTER]:{
+        'B1':[[speaker.P,"「負けてしまった…他の方法を考えよう」"],[speaker.P,"「敵について何か情報が得られれば…」"]],
+        'B2':[[speaker.P,"「負けてしまった…他の方法を考えよう」"]],
+        'B3':[[speaker.P,"「負けてしまった…」"]]
+    }
     
  
 }
@@ -976,12 +1003,12 @@ function initializeQuizDataList(q_list){
         if(q_data.magics[magicType.NONE].hint == "" || q_data.magics[magicType.NONE].hint == null ){
             q_data.magics[magicType.NONE].hint = "ヒントはありません";
         }
+        if(q_data.magic_hint == "" || q_data.magic_hint == null ){
+            q_data.magic_hint = "魔法に関するヒントはありません";
+        }
         for(let m in q_list[n].magics){
             q_data.magics[m].answered = false;
             q_data.magics[m].point = 1;
-            if(q_data.magics[m].hint == null || q_data.magics[m].hint == ""){
-                q_data.magics[m].hint = q_data.magics[magicType.NONE].hint;
-            }
         }
         
 
@@ -1459,6 +1486,7 @@ function openQ(n){
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
     const answer_box = document.getElementById("answer_box");
     const magics = document.getElementById("magics");
+
     
     
     
@@ -1480,6 +1508,14 @@ function openQ(n){
     
     let stars = "★".repeat(quiz_data.answered_time);
     stars += "☆".repeat(now_num_ans - quiz_data.answered_time);
+    
+    const magichint = document.querySelector(".magicHintButton");
+    
+    if(quiz_data.answered_time >= 1){
+        magichint.style.display = 'block';
+    }else{
+        magichint.style.display = 'none';
+    }
     
     createStars(quiz_data.answered_time,images.LIGHTSTAR);
     createStars(now_num_ans - quiz_data.answered_time,images.DARKSTAR);
@@ -1563,6 +1599,7 @@ function checkA(){
             pop_tl = "正解!!";
             pop_tx = "A："+quiz_data.magics[quiz_data.involved_magic].answer +"<br>"+"獲得経験値：" + point_list[player_data.level] + "pt";
             quiz_data.magics[quiz_data.involved_magic].answered = true;
+            console.log(quiz_data.magics[quiz_data.involved_magic]);
             quiz_data.answered_time += 1;
             player_data.point += point_list[player_data.level];
             
@@ -1577,6 +1614,7 @@ function checkA(){
             if(!tutorial_finish[tutorialType.ANSWEREDQUIZ].finish){
                 doTutorial(tutorialType.ANSWEREDQUIZ);
             }
+            saveData();
 
         }else{
             players_answer_box.value = "";
@@ -1604,19 +1642,106 @@ function checkA(){
 
 
 
-function hint(){
+function hint(n,magictype=null){
     const quiz_data = quiz_list[quiz_id]
     const quiz_sheet = document.getElementById("Q_sheet");
-    let pop_tl = "";
+    const pop_button = document.getElementById("pop_button");
+    let pop_tl = "ヒント";
     let pop_tx = "";
-    if(quiz_data.magics[quiz_data.involved_magic].answered == false){
-        pop_tl = "ヒント";
-        pop_tx = quiz_data.magics[quiz_data.involved_magic].hint;
-        
+    let hintText = quiz_data.magics[magicType.NONE].hint;
+    if(quiz_data.magics[quiz_data.involved_magic].afterInvolvedHint != null){
+        hintText = quiz_data.magics[quiz_data.involved_magic].afterInvolvedHint;
+        console.log(hintText);
+    }
+    closePop();
+    
+    const magichint = document.querySelector(".magicHintButton");
+    if(quiz_data.answered_time >= 1){
+        magichint.style.display = 'block';
     }else{
-        pop_tl = "ヒント";
+        magichint.style.display = 'none';
+    }
+    
+    
+    
+    if(n == "magic"){
+        pop_tl = "魔法のヒント";
+        
+        
+    //魔法のヒント、クリック時
+        if(magictype == null){
+            s = "この謎にかける魔法は<br>";
+            for(var magic of enable_magic_list){
+                if(quiz_data.magics[magic] != null){
+                    if(quiz_data.magics[magic].hint != null){
+                        s += magic_info[magic].name + "<br>";
+                        var magicAnswer = document.getElementById(magic + "_hint");
+                        if(isColorMagic(magic)){
+                            var magicAnswer = document.getElementById(magicType.CHANGE_COLOR + "_hint");
+                        }
+                        magicAnswer.style.display = 'block';
+                    }
+                }
+            }
+        }
+        
+        
+    //個別の魔法のヒント
+        else{
+            if(magictype == magicType.CHANGE_COLOR){
+                for (var magic in quiz_data.magics){
+                    if(isColorMagic(magic)){
+                        magictype = magic;
+                    }
+                }
+            }
+            s = quiz_data.magics[magictype].hint;
+
+        }
+        
+        
+        pop_tx = s;
+        
+        
+        
+    }
+    
+    
+    //普通のヒント、まだ解いていない状態
+    else if(quiz_data.magics[quiz_data.involved_magic].answered == false){
+        
+        if(typeof(hintText)=="string") {
+            pop_tx = hintText;
+            
+        }else{
+            if(n >= hintText.length){
+                pop_tx = "答えは「" + quiz_data.magics[quiz_data.involved_magic].answer + "」です。";
+            }else{
+                pop_tx = hint[n];
+
+                if(n < hint.length-1){
+                    pop_button.textContent = "次のヒント";
+                }else{
+                    pop_button.textContent = "答え";
+                }
+
+                pop_button.setAttribute('onclick', "hint(" + (n+1) + ")");
+                pop_button.style.display = 'block';
+            }
+        }
+
+        
+    }
+    
+    
+    //普通のヒント、すでに解いている
+    else{
+        /*if(quiz_data.answered_time < quiz_data.enable_num_of_quiz){
+            pop_tx = "この状態では";
+        }*/
         pop_tx = "この問題はすでに解いているようだ";
     }
+    
     
     
     popTitling(pop_tl);
@@ -1646,9 +1771,13 @@ function openPop(){
 
 function closePop(){
     const pop = document.getElementById("pop");
+    const pop_button = document.getElementById("pop_button");
     const pop_back = document.getElementById("pop_back");
     pop.style.display = 'none';
     pop_back.style.display = 'none';
+    pop_button.style.display = 'none';
+    pop_button.setAttribute('onclick', "");
+    clearPopButtons()
     checkLevel()
 }
 
@@ -1662,6 +1791,15 @@ function popTitling(t) {
     const pop = document.getElementById("pop");
     const pop_text = pop.querySelector("#pop_title");
     pop_title.textContent = t;
+}
+
+
+
+function clearPopButtons(){
+    magic_hints = document.querySelectorAll(".magic_hint_buttons")
+    magic_hints.forEach(magic_hint => {
+            magic_hint.style.display = "none";
+    });
 }
 
 
@@ -1731,6 +1869,13 @@ function closeMenu(nashi){
 //--magic-------
 
 
+
+function isColorMagic(n){
+    let r = (n == magicType.RED || n == magicType.BLUE || n == magicType.YELLOW);
+    return r
+}
+
+
 function openColorMagic(){
     const open_color_back = document.getElementById("open_color_back");
     if(open_color_back.style.display != 'block'){
@@ -1770,7 +1915,7 @@ function selectMagic(n){
             icon.style.borderColor = "rgba(0, 0, 0, 0)";
         });
         selected_magic_icon.style.filter = "grayscale(0%)";
-        if(n == magicType.RED || n == magicType.BLUE || n == magicType.YELLOW){
+        if(isColorMagic(n)){
             selected_magic_icon.style.borderColor = "rgba(0, 0, 0, 1)";
         }
     }else{
@@ -2028,6 +2173,7 @@ function checkLevel(init = false){
                 levelUp(l);
             }
         }
+        saveData();
              
     }
     
@@ -2049,6 +2195,7 @@ function checkLevel(init = false){
 
 
             openPop();
+            saveData();
 
             
             if(!tutorial_finish[tutorialType.MAGIC].finish){
@@ -2059,7 +2206,7 @@ function checkLevel(init = false){
 
 
     }
-    saveData();
+    
     
 }
 
@@ -2194,7 +2341,7 @@ function removeMapMonster(n){
         b2_icon.style.display= 'none';
         move_button = document.getElementById("button_move_to_castle");
         move_button.style.display = 'block';
-        monster_list["B1"].finish = true;
+        monster_list["B2"].finish = true;
         
     }
     
@@ -2368,9 +2515,22 @@ function finishBattle(){
     current_dialog_num = -1;
     current_dialog_list = log_list[log_name.WINMONSTER];
     displayNextDialog();
-    
-    
+    saveData();
 }
+
+
+function afterLoseMonster(n){
+    current_dialog_num = -1;
+    current_dialog_list = log_list[log_name.LOSEMONSTER]["B" + n];
+    displayNextDialog(); 
+}
+
+
+
+
+
+
+
 
 function soonFail(n){
     failed_message = document.getElementById('failed')
@@ -2405,7 +2565,8 @@ function soonFail(n){
         closeBattle('B3')
     },4000)
     setTimeout(()=>{
-        blackout.style.display = 'none'
+        blackout.style.display = 'none';
+        afterLoseMonster(n);
     },6800)
 }
 

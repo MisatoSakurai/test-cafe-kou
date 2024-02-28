@@ -491,6 +491,20 @@ h1 {
     margin-right: auto ;
 }
 
+.magicHintButton{
+    position: absolute;
+    width:fit-content;
+    min-width: 100px;
+    bottom: 5%;
+    left: 50%;
+    margin-left: auto;
+    margin-right: auto ;
+    transform: translateX(-50%);
+    padding: 0 5px;
+    -webkit- transform: translateX(-50%);
+}
+
+
 .closeButton{
     position: absolute;
     width:20%;
@@ -504,7 +518,9 @@ h1 {
 
 
 
-.closeButton,.checkButton,.hintButton, .flex_item_button {
+
+
+.closeButton,.checkButton,.hintButton, .magicHintButton, .flex_item_button, #pop_button, .magic_hint_buttons {
     background-color: black;
     border: 2px solid #f0f0f0;
     border-radius: 5px;
@@ -976,8 +992,8 @@ h1 {
 }
 
 .magic_icon {
-    width:60px;
-    height: 60px;
+    width:80px;
+    height: 80px;
     margin-left:10px;
     z-index: 10;
     transition: .2s;
@@ -1029,7 +1045,7 @@ h1 {
 .color_menu {
     position: absolute;
     list-style-type: none;
-    padding-top:64px;
+    padding-top:84px;
     padding-left: 0;
     margin-left: 10px;
     margin-top: 0;
@@ -1040,8 +1056,8 @@ h1 {
 
 
 .color_menu li{
-    width:55px;
-    height: 55px;
+    width:75px;
+    height: 75px;
     margin-bottom:10px;
     margin-left: 0;
     border-radius: 15px;
@@ -1054,19 +1070,19 @@ h1 {
 
 
 .color_menu .red{
-    transform: translateY(-64px);
+    transform: translateY(-84px);
     background-color: var(--red);
     opacity: 0%;
 }
 
 .color_menu .blue{
-    transform: translateY(-128px);
+    transform: translateY(-148px);
     opacity: 0%;
     background-color: var(--blue);
 }
 
 .color_menu .yellow{
-    transform: translateY(-192px);
+    transform: translateY(-212px);
     background-color: var(--yellow);
     opacity: 0%;
 }
@@ -1097,7 +1113,9 @@ h1 {
     top: 35%;
     left: 25%;
     width: 50%;
-    height: 30%;
+    /*height: 30%;*/
+    height: fit-content;
+    min-height: 30%;
     text-align: center;
     margin: auto;
     padding: 10px;
@@ -1110,6 +1128,45 @@ h1 {
 }
 
 
+#pop_button {
+    position: relative;
+    width:20%;
+    max-width: 100px;
+    /*bottom: 5%;*/
+    /*left: 50%;*/
+    margin-left: auto;
+    margin-right: auto;
+    /*transform: translateX(-50%);
+    -webkit- transform: translateX(-50%);*/
+}
+
+
+
+#hints_buttons{
+    position: relative;
+    width:80%;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin: 0 10%;
+}
+
+
+.magic_hint_buttons{
+    padding: 0 10px;
+    margin: auto;
+}
+
+
+
+
+
+#pop_sheet_back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 
 #pop_back {
     background-color: black;
@@ -1121,6 +1178,11 @@ h1 {
     height: 100%;
     z-index: 12;
 }
+
+
+
+
+
 
 
 
@@ -1337,9 +1399,13 @@ h1 {
     background-color: black;
     background-size: cover;
     position: fixed;
+    top:0;
+    left:0;
+    
     width: 120%;
     height: 120%;
     margin: 0;
+    z-index: 12;
 }
 
 @keyframes tremble{

@@ -119,7 +119,8 @@
             <div class="text_log" id="q_text_log">
                 <p class="text_log_sentence">答えを入力：</p>
                 <input type="text" id="answer_box">
-                <p onclick="hint()" class="hintButton">ヒント</p>
+                <p onclick="hint(0)" class="hintButton">ヒント</p>
+                <p onclick="hint('magic')" class="magicHintButton">魔法のヒント</p>
                 <p onclick="checkA()" class="checkButton">送信</p>
             </div>
             <p onclick="closeQ()" class="closeButton">▷exit</p>
@@ -201,9 +202,17 @@
         
         <div id="pop_back" style="display:none" onclick="closePop()">      
         </div>
-        <div id="pop"style="display:none" onclick="closePop()">
+        <div id="pop"style="display:none">
+            <div id= "pop_sheet_back" onclick="closePop()"></div>
             <p id="pop_title">popタイトル</p>
             <p id="pop_text">pop文章</p>
+            <p id="pop_button" style="display: none">ボタン</p>
+            <dev id="hints_buttons">
+                <p id="change_color_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','change_color')">カラー</p>
+                <p id="add_char_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','add_char')">スクエア</p>
+                <p id="change_char_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','change_char')">文字トランス</p>
+                <p id="scissors_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','scissors')">ハサミ</p>
+            </dev>
         </div>
         
         
@@ -224,7 +233,7 @@
             <div class="enemy_info">
                 <div class="enemy_name" id="B1_name" onclick="changeName(this.id)">ブルースライム</div>
                 <div class="enemy_status">
-                    <ul style="list-style-type: none;">
+                    <ul style="list-style-type: none;" onclick="fail()">
                         <li>Lv:5</li>
                         <li>HP:100</li>
                         <li>ATK:10</li>
