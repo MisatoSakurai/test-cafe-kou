@@ -1651,8 +1651,8 @@ function hint(n,magictype=null){
     let hintText = quiz_data.magics[magicType.NONE].hint;
     if(quiz_data.magics[quiz_data.involved_magic].afterInvolvedHint != null){
         hintText = quiz_data.magics[quiz_data.involved_magic].afterInvolvedHint;
-        console.log(hintText);
     }
+    console.log(hintText);
     closePop();
     
     const magichint = document.querySelector(".magicHintButton");
