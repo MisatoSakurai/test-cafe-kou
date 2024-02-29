@@ -1429,6 +1429,7 @@ function displayNextDialog(){
         closeGeneTextLog();
         if (current_tutorial != "") {
             tutorial_finish[current_tutorial].finish = true;
+            saveData();
             doTutorial(current_tutorial);
         }
         checkLevel();
