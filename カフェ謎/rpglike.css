@@ -724,7 +724,7 @@ h1 {
 
 
 #prairie{
-    background-image: url('images/background/草原_俯瞰図.png');
+    background-image: url('images/background/草原_俯瞰図.PNG');
     background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
     background-position: top;
 }
