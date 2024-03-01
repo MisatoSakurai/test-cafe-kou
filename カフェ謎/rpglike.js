@@ -2093,10 +2093,14 @@ function successBoardMagic(){
     
     meet_clear_condition = true;
     selectMagic(null);
+
     
     const board_sheet = document.getElementById("board_sheet");
     const board_image = document.getElementById("board_image");
     board_image.src = board_data.magics[magicType.SCISSORS].image;
+    
+    const quit_button = document.getElementById("quit_button");
+    quit_button.src = "images/title/ゲームやめるボタン_明.png";
 
     popTitling("成功！");
     popTexting("看板が変化した");
