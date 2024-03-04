@@ -70,7 +70,7 @@
                     <progress value="0" max="100" id="menu_point_bar"></progress>
                 </li>
                 <li id="menu_explain">説明</li>
-                <li id="menu_how_to_win">倒し方のヒント</li>
+                <li id="menu_how_to_win" onclick="monster_hint_select()">倒し方のヒント</li>
                 <li id="menu_monster" onclick="openBook('monster_book')">モンスター図鑑</li>
                 <li id="menu_magic_list" onclick="openBook('magic_book')">魔法図鑑</li>
                 <li id="menu_title" onclick="moveTitle()" >タイトルに戻る</li>
@@ -207,12 +207,18 @@
             <p id="pop_title">popタイトル</p>
             <p id="pop_text">pop文章</p>
             <p id="pop_button" style="display: none">ボタン</p>
+            <dev id="monster_hints_buttons">
+                <p id="B1_hint" class="monster_hint_buttons" style="display: none" onclick="monster_hint('B1')">ブルースライム</p>
+                <p id="B2_hint" class="monster_hint_buttons" style="display: none" onclick="monster_hint('B2')">ガーゴイル</p>
+                <p id="B3_hint" class="monster_hint_buttons" style="display: none" onclick="monster_hint('B3')">Mr.魔王</p>
+            </dev>
             <dev id="hints_buttons">
                 <p id="change_color_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','change_color')">カラー</p>
                 <p id="add_char_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','add_char')">スクエア</p>
                 <p id="change_char_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','change_char')">文字トランス</p>
                 <p id="scissors_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','scissors')">ハサミ</p>
             </dev>
+            
         </div>
         
         
