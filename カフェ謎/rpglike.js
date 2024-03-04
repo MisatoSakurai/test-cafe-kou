@@ -179,11 +179,19 @@ const point_list = {
 let monster_list = {
     'B1':{
         point:440,
-        finish:false
+        finish:false,
+        hint:["まずはモンスター図鑑を使ってブルースライムの情報を見てみましょう。何か倒すヒントになる情報があるかもしれません。","どうやら色違いのレッドスライムは出会うと逃げ出してしまうようです。ブルースライムをレッドスライムにすることでここは切り抜けられそうです。","あなたはレベルを上げることで「カラー」という魔法を手にすることができます。その魔法を使うことができないか考えてみましょう。","レッドスライムは色違いなのでブルースライムと色以外の形は同じということになります。ではブルースライムに何かをすることでレッドスライムに変えることができるのではないでしょうか。","魔法「カラー」で赤を選択し、ブルースライムに対して使ってみましょう。するとレッドスライムに変化し逃げ出してしまうので次に進むことができます。"],
+        name:"ブルースライム"
     },
     'B2':{
         point:4930,
-        finish:false
+        finish:false,
+        hint:["まずはモンスター図鑑を使ってガーゴイル(仮)の情報を見てみましょう。何か倒すヒントになる情報があるかもしれません。","ガーゴイルには弱点が見当たらないように思えます。どうにかして他のモンスターにすることで倒すことができないでしょうか。","あなたはレベルを上げて「文字トランス」を手に入れることができます。戦闘画面の説明をヒントにその魔法で戦う方法を考えてみましょう。","説明メニューの戦闘画面を見ると「左上の情報に対応したモンスターが現れる」とあります。ここの情報を変えることでモンスターも変化すると考えられそうです。","もしガーゴイル(仮)に似た名前のモンスターがいて、文字トランスを使うことでそのモンスターになれば戦況を変えることができるのではないでしょうか。","似た名前のモンスターでガーザイル(仮)というモンスターが存在します。このモンスターはガーゴイル(仮)と異なり飛ぶことができないので、いま空中にいるガーゴイル(仮)から変化すると落ちて死んでしまうと推測できます。","文字トランスを使って戦闘画面のモンスター名を変更してみましょう。"],
+        name:"ガーゴイル"
+    },
+    'B3':{
+        hint:["まずはモンスター図鑑を使って魔王 Mr.魔王の情報を見てみましょう。何か倒すヒントになる情報があるかもしれません。","図鑑には魔王の情報は特にのっていないようです。戦うことで弱点が見つかるかもしれません。何度か戦ってみましょう。","魔王に対してはどのような魔法を使っても倒すきっかけは作れないようです。魔王を倒さずに事態を進展させる方法を考えましょう。","そもそもあなたの目的は”魔王を倒す”ことだったのでしょうか…？ 正しく思い出せない方は説明メニューから再度確認してみましょう。","説明メニューを見るとあなたの目的は”ゲームをクリアすること”だとわかります。そのクリア条件が”魔王を倒すこと”であるため魔王を倒そうとしている、という状況です。<br>魔王が倒せない今、このクリア条件を満たすことは不可能と考えましょう。","一つ前のヒントからクリア条件を変える必要がありそうだとわかります。クリア条件を変えられるような魔法をあなたは手にしていないでしょうか…？ 看板もヒントに考えてみましょう。","看板に書かれたクリア条件の材質が謎の紙と一致していることに注目してみましょう。謎の紙に対して使う魔法が同様に使えるのではないでしょうか。","魔王を倒すことができないと考え、クリア条件を変えることでゲームをクリアするという発想の転換をする必要がありました。看板のクリア条件は謎の紙の材質と一致しているためハサミの魔法を使うことができます。文章ができるようにハサミを使うとクリア条件が「ゲームを止める」と変化します。<br>クリア条件を変えた上でクリア条件を実行してみましょう。"],
+        name:"Mr.魔王"
     }
 }
 
@@ -1644,6 +1652,8 @@ function checkA(){
 
 
 function hint(n,magictype=null){
+    
+    
     const quiz_data = quiz_list[quiz_id]
     const quiz_sheet = document.getElementById("Q_sheet");
     const pop_button = document.getElementById("pop_button");
@@ -1718,9 +1728,9 @@ function hint(n,magictype=null){
             if(n >= hintText.length){
                 pop_tx = "答えは「" + quiz_data.magics[quiz_data.involved_magic].answer + "」です。";
             }else{
-                pop_tx = hint[n];
+                pop_tx = hintText[n];
 
-                if(n < hint.length-1){
+                if(n < hintText.length-1){
                     pop_button.textContent = "次のヒント";
                 }else{
                     pop_button.textContent = "答え";
@@ -1752,6 +1762,59 @@ function hint(n,magictype=null){
       
      
 }
+
+
+
+
+
+
+
+
+function monster_hint_select(){
+    pop_tl = "モンスターのヒント";
+    pop_tx = "選んでね";
+    b = true;
+    for(var monster in monster_list){
+        if(b){
+            var monster_hint = document.getElementById(monster + "_hint");
+            monster_hint.style.display = 'block';
+        }
+    }
+    popTitling(pop_tl);
+    popTexting(pop_tx);
+
+    openPop();
+}
+
+
+function monster_hint(monster,n=0){
+    console.log(monster);
+    hintText = monster_list[monster].hint;
+    pop_tx = hintText[n];
+    pop_tl = monster_list[monster].name+"を倒すヒント";
+
+    closePop();
+
+    if(n < hintText.length-1){
+        pop_button.textContent = "次のヒント";
+        pop_button.setAttribute('onclick', "monster_hint('" + monster + "',"  + (n+1) + ")");
+        pop_button.style.display = 'block';
+    }
+    
+    popTitling(pop_tl);
+    popTexting(pop_tx);
+
+    openPop();
+    
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -1800,6 +1863,10 @@ function clearPopButtons(){
     magic_hints = document.querySelectorAll(".magic_hint_buttons")
     magic_hints.forEach(magic_hint => {
             magic_hint.style.display = "none";
+    });
+    monster_hints = document.querySelectorAll(".monster_hint_buttons")
+    monster_hints.forEach(monster_hint => {
+            monster_hint.style.display = "none";
     });
 }
 
@@ -2028,6 +2095,14 @@ function makeBook(e){
     
     
 }
+
+
+
+
+
+
+
+
 
 
 

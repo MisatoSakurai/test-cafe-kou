@@ -536,7 +536,7 @@ h1 {
 
 
 
-.closeButton,.checkButton,.hintButton, .magicHintButton, .flex_item_button, #pop_button, .magic_hint_buttons {
+.closeButton,.checkButton,.hintButton, .magicHintButton, .flex_item_button, #pop_button, .magic_hint_buttons, .monster_hint_buttons {
     background-color: black;
     border: 2px solid #f0f0f0;
     border-radius: 5px;
@@ -1158,7 +1158,7 @@ h1 {
 
 
 
-#hints_buttons{
+#hints_buttons, #monster_hints_buttons{
     position: relative;
     width:80%;
     display: flex;
@@ -1168,7 +1168,7 @@ h1 {
 }
 
 
-.magic_hint_buttons{
+.magic_hint_buttons, .monster_hint_buttons{
     padding: 0 10px;
     margin: auto;
 }
