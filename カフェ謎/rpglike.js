@@ -133,7 +133,7 @@ const monster_book_list= [
 
 const magic_book_list = [
     
-    "スクエア",
+    /*"スクエア",*/
     "カラー",
     "文字トランス",
     "ハサミ",
@@ -158,11 +158,11 @@ let now_place = stage.PRAIRIE;
 
 
 const level_list = {
-    1:{needed_point:0, enable_magic:magicType.ADD_CHAR},
+    1:{needed_point:0, enable_magic:"none"}, //スクエアを消しました
     2:{needed_point:50, enable_magic:magicType.CHANGE_COLOR},
     3:{needed_point:550, enable_magic:magicType.CHANGE_CHAR},
     4:{needed_point:5550, enable_magic:magicType.SCISSORS},
-    5:{needed_point:55550, enable_magic:""},
+    5:{needed_point:55550, enable_magic:"none"},
 }
 
 //本当は、0,5,50,500
@@ -2117,6 +2117,9 @@ function levelUp(new_level){
 
     const enableMagic = level_list[new_level].enable_magic;
     const new_magic_icon = document.querySelectorAll("." + enableMagic);
+    if(new_magic_icon.length == 0){
+        return;
+    }
     new_magic_icon.forEach(icon => {
         icon.style.display = 'block';
     });
