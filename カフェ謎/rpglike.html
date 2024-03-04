@@ -70,6 +70,7 @@
                     <progress value="0" max="100" id="menu_point_bar"></progress>
                 </li>
                 <li id="menu_explain">説明</li>
+                <li id="menu_how_to_win">倒し方のヒント</li>
                 <li id="menu_monster" onclick="openBook('monster_book')">モンスター図鑑</li>
                 <li id="menu_magic_list" onclick="openBook('magic_book')">魔法図鑑</li>
                 <li id="menu_title" onclick="moveTitle()" >タイトルに戻る</li>
@@ -122,7 +123,7 @@
                 <p onclick="hint('magic')" class="magicHintButton">魔法のヒント</p>
                 <p onclick="checkA()" class="checkButton">送信</p>
             </div>
-            <p onclick="closeQ()" class="closeButton">▷exit</p>
+            <p onclick="closeQ()" class="closeButton">▷戻る</p>
         </div>
         
         
@@ -132,7 +133,7 @@
                 <div id="board_magic_judge_canvas" class="judge_canvas">
                 </div>
             </div>
-            <p onclick="closeBoard()" class="closeButton">▷exit</p>
+            <p onclick="closeBoard()" class="closeButton">▷戻る</p>
             
         </div>
         
@@ -144,7 +145,7 @@
                 <ul class="book_link_list" id="monster_book_link_list">
                 </ul>
             </div>
-            <p onclick="closeBook('monster_book')" class="closeButton">▷exit</p>
+            <p onclick="closeBook('monster_book')" class="closeButton">▷戻る</p>
         </div>
         <script>
             document.getElementById("monster_book").addEventListener("click", function(e) {
@@ -155,11 +156,11 @@
         
         <div class="book_sheet" id="magic_book" style="display: none">
             <div class="book_content">
-                <img src="images/book/book_image/magic/スクエア.png" alt="魔法の説明" class="book_base_image" id="magic_book_image">
+                <img src="images/book/book_image/magic/none.png" alt="魔法の説明" class="book_base_image" id="magic_book_image">
                 <ul class="book_link_list" id="magic_book_link_list">
                 </ul>
             </div>
-            <p onclick="closeBook('magic_book')" class="closeButton">▷exit</p>
+            <p onclick="closeBook('magic_book')" class="closeButton">▷戻る</p>
         </div>
         
         
@@ -187,7 +188,7 @@
                 <li class="yellow" onclick="openMagic('yellow')"></li>
             </ul>
             
-            <div id="add_char_icon" class="add_char magic_icon" onclick="openMagic('add_char')">
+            <div id="add_char_icon" class="add_char magic_icon" style="display:none" onclick="openMagic('add_char')">
             </div>
             
 
@@ -299,7 +300,7 @@
             <p id="magic1" class="change_color" onclick="selectBattleMagic(1)" style="display: none">▷カラー</p>
             <p id="magic2" class="change_char" onclick="selectBattleMagic(2)" style="display: none">▷文字トランス</p>
             <p id="magic3" class="scissors" onclick="selectBattleMagic(3)" style="display: none">▷ハサミ</p>
-            <p id="magic4" class="add_char" onclick="selectBattleMagic(4)">▷スクエア</p>
+            <p id="magic4" class="add_char" onclick="selectBattleMagic(4)" style="display: none">▷スクエア</p>
             <div id="magic1_explain" class="explain" style="display: none;">
                 <p>色を変えます</p>
                 <p onclick="choiceBattleMagic1()">▷使う</p>
@@ -337,8 +338,8 @@
                 <p onclick="stopBattleUsing()">▷やめる</p>
             </div>
             <div id="victory" style="display: none;">
-                <p id="runaway" style="display: none;">逃げだした！<br>経験値を43pt手に入れた！</p>
-                <p id="fall" style="display: none;">落ちていった！<br>経験値を492pt手に入れた！</p>
+                <p id="runaway" style="display: none;">逃げだした！<br>経験値を430pt手に入れた！</p>
+                <p id="fall" style="display: none;">落ちていった！<br>経験値を4920pt手に入れた！</p>
                 <p onclick="finishBattle()">▷確認</p>
             </div>
         </div>
