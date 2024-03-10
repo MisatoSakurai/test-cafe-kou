@@ -69,7 +69,12 @@
                     <p id="menu_point">pt</p>
                     <progress value="0" max="100" id="menu_point_bar"></progress>
                 </li>
-                <li id="menu_explain">説明</li>
+                <li id="menu_explain" onclick="openExplains()">説明</li>
+                <span id="menu_explain_box" style="display: none">
+                    <li id="menu_story_explain" class="menu_explains" onclick="openExplainSheet('')">　ストーリー設定</li>
+                    <li id="menu_quiz_explain" class="menu_explains" onclick="openExplainSheet('謎画面の説明')">　謎画面について</li>
+                    <li id="menu_battle_explain" class="menu_explains" onclick="openExplainSheet('戦闘画面の説明')">　戦闘画面について</li>
+                </span>
                 <li id="menu_how_to_win" onclick="monster_hint_select()">倒し方のヒント</li>
                 <li id="menu_monster" onclick="openBook('monster_book')">モンスター図鑑</li>
                 <li id="menu_magic_list" onclick="openBook('magic_book')">魔法図鑑</li>
@@ -147,11 +152,11 @@
             </div>
             <p onclick="closeBook('monster_book')" class="closeButton">▷戻る</p>
         </div>
-        <script>
+        <!--<script>
             document.getElementById("monster_book").addEventListener("click", function(e) {
                 makeBook(e);
             });
-        </script>
+        </script>-->
         
         
         <div class="book_sheet" id="magic_book" style="display: none">
@@ -163,6 +168,13 @@
             <p onclick="closeBook('magic_book')" class="closeButton">▷戻る</p>
         </div>
         
+        
+        <div id="explain_sheet" style="display: none">
+            <div id="explain_content">
+                <img src="" alt="説明" id="explain_image">
+            </div>
+            <p onclick="closeExplainSheet()" class="closeButton">▷戻る</p>
+        </div>
         
     
         
