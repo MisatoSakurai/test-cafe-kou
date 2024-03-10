@@ -287,14 +287,14 @@ var quiz_list ={
     5:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/5_剣盾.png",
-                answer:"ソフト",
-                hint:["上の四角には攻撃と防御を表す言葉、下の四角には攻撃するものと防御するものが埋まるようです。","上は「ブロック」と「アタック」、下は「シールド」と「ソード」を表しています。"],
+                image:"images/quiz/5_姉妹.png",
+                answer:"ネガオ",
+                hint:["１２３＝あうとであることから上の１〜３にはあ、う、とがそれぞれ入るようです。この図の形や色と文字のヒントから何が入るか考えてみましょう。","これは家系図を表していました。文字のヒントと色の情報から右側にはあね、左側にはおとうとがあてはまります"],
             },
-            [magicType.ADD_CHAR]:{
-                image:"images/quiz/5_剣盾_四角.png",
-                answer:"レフト",
-                hint:"スクエアを足すことで「ソード」を「ブレード」と言い換えることができます。",
+            [magicType.RED]:{
+                image:"images/quiz/5_姉妹_色.png",
+                answer:"ネガイ",
+                hint:"カラーを使うことでおとうとをいもうとにすることができます。",
                 place:{
                     x: 50, y: 54,  // 座標%
                     w: 12, h: 10   // サイズ%
@@ -325,18 +325,9 @@ var quiz_list ={
     7:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/7_反転文字.png",
-                answer:"ニモノ",
-                hint:["右側の問題文は｢コレハナニ？｣と書かれています。どういった規則があるかを考えてみましょう。","不思議な図形は、半分に割った左側を見る法則でした。"],
-            },
-            [magicType.ADD_CHAR]:{
-                image:"images/quiz/7_反転文字_四角.png",
-                answer:"エモノ",
-                hint:"スクエアを使って1文字目を｢エ｣にします。",
-                place:{
-                    x: 36, y: 23,  // 座標%
-                    w: 10, h: 14   // サイズ%
-                }
+                image:"images/quiz/7_曜日.png",
+                answer:"アシタ",
+                hint:["それぞれ漢字に変換して漢字に変換してみましょう。「鏡」の左半分を＋１すると「境」になるようです。","漢字に変換して考えると、「金」に＋１で「土」、「月」に＋３で「木」となる事から、数字の分だけ曜日を進めればいいことが分かります。"],
             }
         }
         
@@ -470,14 +461,14 @@ var quiz_list ={
     14:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/14_上下文字つなぎ.png",
-                answer:"カイフク",
-                hint:["左下にある｢土｣は｢堂｣しか作れません。｢堂｣の上パーツが消えることで1通りしか結べないものがさらに見つかります。","十が立と組み合わさって｢辛｣にしかなれず、そこから考えると｢貿｣と｢替｣ができます。"],
+                image:"images/quiz/14_色の名前.png",
+                answer:"フリー",
+                hint:["三角形の印は、50音で一つ進めることを表しているようです。","一行目には「ブラウン」、二行目には「ブルー」が埋まります。"],
             },
-            [magicType.ADD_CHAR]:{
-                image:"images/quiz/14_上下文字つなぎ_四角.png",
-                answer:"モザイク",
-                hint:"スクエアを使って｢十｣を｢田｣にします。すると｢堂｣、｢留｣、｢賛｣、｢音｣ができます。",
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/14_色の名前_字.png",
+                answer:"クリー",
+                hint:"文字トランスを使うと、1行目は「グリーン」、二行目は「グレー」が埋まります。",
                 place:{
                     x: 68, y: 77,  // 座標%
                     w: 10, h: 10   // サイズ%
@@ -536,19 +527,19 @@ var quiz_list ={
     17:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/17_道路.png",
-                answer:"ドローン",
-                hint:["赤矢印と青矢印が通る言葉はどちらも下のイラストを表しているようです。","｢道路(どうろ)｣は英語で｢ロード｣と言うことができます。赤矢印に｢どうろ｣、青矢印に｢ろーど｣を埋めてみましょう。"],
-            }
+                image:"images/quiz/17_v.png",
+                answer:"エール",
+                hint:["それぞれの色の矢印の形に注目してみましょう。たとえば赤矢印は真ん中に｢ン｣があって｢文意(ブンイ)｣になっており、赤矢印は｢ブイ｣を表しているようです。","各矢印はその矢印の形のアルファベットと対応しているようです。黒矢印は｢エル(L)｣に対応しているため、真ん中に｢ー｣が入ります"],
+            },
         }
         
     },
     18:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/18_v.png",
-                answer:"エール",
-                hint:["それぞれの色の矢印の形に注目してみましょう。たとえば赤矢印は真ん中に｢ン｣があって｢文意(ブンイ)｣になっており、赤矢印は｢ブイ｣を表しているようです。","各矢印はその矢印の形のアルファベットと対応しているようです。黒矢印は｢エル(L)｣に対応しているため、真ん中に｢ー｣が入ります"],
+                image:"images/quiz/18_間.png",
+                answer:"ヤミ",
+                hint:["前後の文から、点線がついた四角に入りそうな漢字を推測してみましょう。構成する二つの漢字のうちの一方は「門」です。","四角に｢間｣を入れると、｢間を構成する二つの漢字の間に立を入れてできる漢字は？｣という分が出来上がります。"],
             },
         }
         
@@ -556,24 +547,29 @@ var quiz_list ={
     19:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/19_間.png",
-                answer:"ヤミ",
-                hint:["前後の文から、点線がついた四角に入りそうな漢字を推測してみましょう。構成する二つの漢字のうちの一方は「門」です。","四角に｢間｣を入れると、｢間を構成する二つの漢字の間に立を入れてできる漢字は？｣という分が出来上がります。"],
+                image:"images/quiz/19_方位.png",
+                answer:"ノウド",
+                hint:["4つの方向を表す言葉を考えてみましょう。","4つの単語は4方位を表します。右には「イースト」が埋まるので、そこから時計回りに「サウス」「ウエスト」「ノース」が埋まります。"],
             },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/19_方位_字.png",
+                answer:"サイド",
+                hint:"文字トランスを使うと、右には「ウエスト」が埋まるので、そこから時計回りに「ノース」「イースト」「サウス」が埋まります。",
+            }
         }
         
     },
     20:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/20_数字埋め.png",
-                answer:["オーブン","OVEN"],
-                hint:["4つの数字は英単語にして埋めてみましょう。","文字数の関係から一番下にはONEが入り、その上にはTHREEが入ります。同様に考えていくと答えが出てきます。"],
+                image:"images/quiz/20_県名.png",
+                answer:"アキス",
+                hint:["ケンをつくるとはどういうことを表しているかを考えてみましょう。どうやら47個あるものが関係しているようです。","｢ケンをつくる｣とは県名をそれぞれつくるということでした。順番にアオモリ、アキタ、シズオカができます。"],
             },
-            [magicType.ADD_CHAR]:{
-                image:"images/quiz/20_数字埋め_四角.png",
-                answer:["ツリー","TREE"],
-                hint:"スクエアを使って｢1｣を｢10｣にします。一番下にはTENが入り、その上にはSEVENが入ります。",
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/20_県名_字.png",
+                answer:"アイス",
+                hint:"文字トランスを使うと2行目にあてはまるものがアイチになります。",
                 place:{
                     x: 77, y: 35,  // 座標%
                     w: 8, h: 10   // サイズ%
@@ -1779,6 +1775,7 @@ function monster_hint_select(){
             var monster_hint = document.getElementById(monster + "_hint");
             monster_hint.style.display = 'block';
         }
+        b=monster_list[monster].finish;
     }
     popTitling(pop_tl);
     popTexting(pop_tx);
@@ -1925,6 +1922,7 @@ function closeMenu(nashi){
     document.querySelector(".menu_button").classList.toggle('active');
     const menu_back = document.getElementById("menu_back");
     menu_back.style.display = 'none';
+    closeExplains();
 }
 
 
@@ -2095,6 +2093,8 @@ function makeBook(e){
     
     
 }
+
+
 
 
 
@@ -2380,6 +2380,43 @@ function bookShowImg(n,bookType){
     
 }
 
+
+
+
+
+
+function openExplains(){
+    const menu_explain_box = document.getElementById("menu_explain_box");
+    if(menu_explain_box.style.display=="block"){
+        menu_explain_box.style.display="none";
+    }else{
+        menu_explain_box.style.display="block";
+    }
+}
+
+
+
+
+function closeExplains(){
+    const menu_explain_box = document.getElementById("menu_explain_box");
+    menu_explain_box.style.display="none";
+}
+
+
+
+function openExplainSheet(n){
+    explain_img = document.getElementById("explain_image");
+    explain_img.src = "images/explains/" + n + ".png";
+    explain_sheet = document.getElementById("explain_sheet");
+    explain_sheet.style.display = "block";
+}
+
+
+
+function closeExplainSheet(){
+    explain_sheet = document.getElementById("explain_sheet");
+    explain_sheet.style.display = "none";
+}
 
 
 

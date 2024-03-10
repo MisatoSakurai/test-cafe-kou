@@ -612,7 +612,7 @@ h1 {
 
 
 
-.book_content{
+.book_content, #explain_content{
     position: relative;
     width : auto;
     aspect-ratio:2048/1536;
@@ -626,7 +626,7 @@ h1 {
     background-color: white;
 }
 
-.book_base_image {
+.book_base_image, #explain_image {
     position:absolute;
     width: 100%; /* 画像を親要素に合わせる */
     height: 100%; /* 画像を親要素に合わせる */
@@ -682,7 +682,7 @@ h1 {
 
 
 
-.book_sheet {
+.book_sheet, #explain_sheet{
     position: fixed;
     top: 0;
     left: 10%;
@@ -774,7 +774,7 @@ h1 {
     max-width: 160px;
     height: auto;
     position: absolute;
-    top: 5%;
+    top: 2%;
     left: 50%;
     transform: translateX(-50%);
     -webkit- transform: translateX(-50%);
@@ -806,7 +806,7 @@ h1 {
 
 
 
-#button_move_to_rocky {
+#button_move_to_rocky, #button_move_to_castle {
     width:10%;
     max-width: 80px;
     height: auto;
@@ -819,42 +819,16 @@ h1 {
 
 
 
-#button_back_to_prairie {
+#button_back_to_prairie, #button_back_to_rocky {
     width:10%;
     max-width: 80px;
     height: auto;
     position: absolute;
-    bottom: 10%;
+    bottom: 5%;
     left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    -webkit- transform: translateY(-50%) translateX(-50%);
+    transform: translateX(-50%);
+    -webkit- transform: translateX(-50%);
 }
-
-
-#button_move_to_castle {
-    width:10%;
-    max-width: 80px;
-    height: auto;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    -webkit- transform: translateY(-50%) translateX(-50%);
-}
-
-#button_back_to_rocky {
-    width:10%;
-    max-width: 80px;
-    height: auto;
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    -webkit- transform: translateY(-50%) translateX(-50%);
-}
-
-
-
 
 
 
@@ -1363,7 +1337,7 @@ h1 {
 
 
 #B3{
-    background-image: url('images/background/祭壇_戦闘画面.jpg');
+    background-image: url('images/background/祭壇_戦闘画面.png');
     background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
     background-position: bottom;
     position: fixed;
