@@ -61,28 +61,25 @@ h1 {
 
 
 #start_button{
-    position: fixed;
-    width: 200px;
-    height: auto;
+    width: 300px;
     bottom: 10%;
     left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    -webkit- transform: translateY(-50%) translateX(-50%);
+    transform:  translateX(-50%);
+    -webkit- transform:  translateX(-50%);
 }
 
+
 .title_button {
-    width:20% ;
-    max-width: 200px;
     display: block;
     margin: 20px auto;
+    position: fixed;
+    height: auto;
 }
 
 
 
 #quit_button {
-    position: fixed;
-    width: 60px;
-    height: 60px;
+    width: 200px;
     left: 5%;
     bottom: 5%;
 }
@@ -201,7 +198,8 @@ h1 {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: white;
+    background-image: url('images/title/クリア画像.png');
+    background-size: 100% 100%;
     opacity: 100%;
     z-index: 14;
 }
@@ -874,6 +872,12 @@ h1 {
     -webkit- transform: translateY(-50%) translateX(-50%);
     text-align: center;
 }
+
+
+#castle_q_icons{
+    top: 67%;
+}
+
 
 
 .selectQ{
