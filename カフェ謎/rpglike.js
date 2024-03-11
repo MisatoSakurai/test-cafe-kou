@@ -196,10 +196,13 @@ let monster_list = {
 }
 
 
+
+
 const quiz_place_list = {
     prairie:[1,2,3,6,8,12,13,16,17,19],
     castle:[4,5,7,9,10,11,14,15,18,20]
 }
+
 
 
 
@@ -217,7 +220,7 @@ var quiz_list ={
                 hint:["カラーを使ってマグロをタマゴにすることができます。"],
                 answer:"カイゴ",
                 place:{
-                    x: 16, y: 12,  // 座標%
+                    x: 66, y: 14,  // 座標%
                     w: 16, h: 5   // サイズ%
                 }
             }
@@ -296,8 +299,8 @@ var quiz_list ={
                 answer:"ネガイ",
                 hint:"カラーを使うことでおとうとをいもうとにすることができます。",
                 place:{
-                    x: 50, y: 54,  // 座標%
-                    w: 12, h: 10   // サイズ%
+                    x: 29, y: 32,  // 座標%
+                    w: 5, h: 28   // サイズ%
                 }
             },
         }
@@ -470,8 +473,8 @@ var quiz_list ={
                 answer:"クリー",
                 hint:"文字トランスを使うと、1行目は「グリーン」、二行目は「グレー」が埋まります。",
                 place:{
-                    x: 68, y: 77,  // 座標%
-                    w: 10, h: 10   // サイズ%
+                    x: 23, y: 13,  // 座標%
+                    w: 8, h: 5   // サイズ%
                 }
             }
         }
@@ -489,8 +492,8 @@ var quiz_list ={
                 answer:"プライド",
                 hint:"カラーを使って問題の背景を赤くすると1の目が消えます。",
                 place:{
-                    x: 23, y: 33,  // 座標%
-                    w: 53, h: 31   // サイズ%
+                    x: 26, y: 31,  // 座標%
+                    w: 48, h: 35   // サイズ%
                 }
             }
         }
@@ -555,6 +558,10 @@ var quiz_list ={
                 image:"images/quiz/19_方位_字.png",
                 answer:"サイド",
                 hint:"文字トランスを使うと、右には「ウエスト」が埋まるので、そこから時計回りに「ノース」「イースト」「サウス」が埋まります。",
+                place:{
+                    x: 61, y: 35,  // 座標%
+                    w: 5, h: 5   // サイズ%
+                }
             }
         }
         
@@ -571,8 +578,8 @@ var quiz_list ={
                 answer:"アイス",
                 hint:"文字トランスを使うと2行目にあてはまるものがアイチになります。",
                 place:{
-                    x: 77, y: 35,  // 座標%
-                    w: 8, h: 10   // サイズ%
+                    x: 55, y: 33,  // 座標%
+                    w: 10, h: 10   // サイズ%
                 }
             }
         }
@@ -1272,7 +1279,7 @@ function hideImg(subject){
     image.style.display = "none";
 }
 
-function pointOut(subject){
+function pointOut(subject,pointer_name="pointer"){
     target = document.getElementById(subject);
     if (target == null) {
         target = document.querySelector(subject);
@@ -1280,15 +1287,15 @@ function pointOut(subject){
     rect = target.getBoundingClientRect();
     style = window.getComputedStyle(target);
     marginbottom= parseInt(style.getPropertyValue("margin-bottom"), 10);
-    pointer = document.getElementById("pointer");
+    pointer = document.getElementById(pointer_name);
     pointer.style.top = rect.top + rect.height + marginbottom + 5 +  "px";
     pointer.style.left = rect.left + rect.width/2 + "px";
     pointer.style.display = "block";
 }
 
 
-function finishPoint(subject) {
-    pointer = document.getElementById("pointer");
+function finishPoint(subject,pointer_name="pointer") {
+    pointer = document.getElementById(pointer_name);
     pointer.style.display = "none";
 }
 
@@ -1482,15 +1489,16 @@ function removeAllStars() {
 }
 
 
-
 function openQ(n){
     quiz_id = n;
+    console.log(n);
     quiz_data = quiz_list[quiz_id];
     const quiz_back = document.getElementById("QB_back");
     const quiz_sheet = document.getElementById("Q_sheet");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
     const answer_box = document.getElementById("answer_box");
     const magics = document.getElementById("magics");
+    pointOut(quiz_data.icon_id,pointer = "player_icon");
 
     
     
@@ -1516,7 +1524,7 @@ function openQ(n){
     
     const magichint = document.querySelector(".magicHintButton");
     
-    if(quiz_data.answered_time >= 1){
+    if(quiz_data.answered_time >= 1 && now_num_ans > quiz_data.answered_time){
         magichint.style.display = 'block';
     }else{
         magichint.style.display = 'none';
@@ -1673,22 +1681,29 @@ function hint(n,magictype=null){
     
     if(n == "magic"){
         pop_tl = "魔法のヒント";
+        count = 0;
         
         
     //魔法のヒント、クリック時
         if(magictype == null){
-            s = "この謎にかける魔法は<br>";
+            s = "この謎に今かけられる魔法は<br>";
             for(var magic of enable_magic_list){
                 if(quiz_data.magics[magic] != null){
                     if(quiz_data.magics[magic].hint != null){
-                        s += magic_info[magic].name + "<br>";
-                        var magicAnswer = document.getElementById(magic + "_hint");
-                        if(isColorMagic(magic)){
-                            var magicAnswer = document.getElementById(magicType.CHANGE_COLOR + "_hint");
+                        if(enable_magic_list.includes(magic)){
+                            s += magic_info[magic].name + "<br>";
+                            count += 1;
+                            var magicAnswer = document.getElementById(magic + "_hint");
+                            if(isColorMagic(magic)){
+                                var magicAnswer = document.getElementById(magicType.CHANGE_COLOR + "_hint");
+                            }
+                            magicAnswer.style.display = 'block';
                         }
-                        magicAnswer.style.display = 'block';
                     }
                 }
+            }
+            if(count == 0){
+                s = "この謎に今かけられる魔法はありません";
             }
         }
         
@@ -2066,6 +2081,7 @@ function useMagic(e){
     const hit =
           (square.x <= point.x && point.x <= square.x + square.w)  // 横方向の判定
        && (square.y <= point.y && point.y <= square.y + square.h);  // 縦方向の判定
+    console.log(point);
 
     
     if (hit) {
@@ -2389,6 +2405,7 @@ function openExplains(){
     const menu_explain_box = document.getElementById("menu_explain_box");
     if(menu_explain_box.style.display=="block"){
         menu_explain_box.style.display="none";
+        
     }else{
         menu_explain_box.style.display="block";
     }
@@ -2405,17 +2422,27 @@ function closeExplains(){
 
 
 function openExplainSheet(n){
+    const back = document.getElementById("QB_back");
     explain_img = document.getElementById("explain_image");
     explain_img.src = "images/explains/" + n + ".png";
     explain_sheet = document.getElementById("explain_sheet");
     explain_sheet.style.display = "block";
+    now_status = status.BOOK;
+    back.style.display = 'block';
+    const map = document.getElementById("map");
+    map.style.filter = "blur(10px)";
 }
 
 
 
 function closeExplainSheet(){
+    const back = document.getElementById("QB_back");
     explain_sheet = document.getElementById("explain_sheet");
     explain_sheet.style.display = "none";
+    now_status = status.MAP;
+    back.style.display = 'none';
+    const map = document.getElementById("map");
+    map.style.filter = "none";
 }
 
 
@@ -2437,6 +2464,12 @@ function moveMap(n){
     if(n=='rocky' && tutorial_finish[tutorialType.USEMAGICTOQUIZ].finish == false){
         doTutorial(tutorialType.USEMAGICTOQUIZ);
     }
+    
+    pointer = document.getElementById("player_icon");
+    pointer.style.top = "70%";
+    pointer.style.left = "50%";
+    
+    
     
 }
 

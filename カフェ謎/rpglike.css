@@ -486,6 +486,28 @@ h1 {
 }
 
 
+
+
+#send_and_hint_buttons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    grid-row-gap: 50px;
+    width:80%;
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    text-align: center;
+}
+
+.checkButton, .hintButton, .magicHintButton{
+    width:fit-content;
+    padding: 0 10px;
+    margin: 0;
+}
+
+
+/*
 .checkButton{
     position: absolute;
     width:20%;
@@ -519,6 +541,7 @@ h1 {
     padding: 0 5px;
     -webkit- transform: translateX(-50%);
 }
+*/
 
 
 .closeButton{
@@ -854,6 +877,18 @@ h1 {
 }
 
 
+
+#player_icon {
+    position: absolute;
+    width:10%;
+    max-width: 50px;
+    height: auto;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit- transform: translateX(-50%);
+    z-index: 10;
+}
 
 
 
