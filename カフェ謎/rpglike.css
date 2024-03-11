@@ -646,8 +646,13 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     z-index: 10;
-    background-color: white;
 }
+
+#explain_content{
+    aspect-ratio:1960/1233;
+}
+
+
 
 .book_base_image, #explain_image {
     position:absolute;
