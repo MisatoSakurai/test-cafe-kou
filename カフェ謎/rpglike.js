@@ -242,12 +242,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/3_色付き英字.png",
-                answer:["ラック","LUCK"],
+                answer:["ラック","LUCK","luck","Luck"],
                 hint:["それぞれの文字がいくつあるかに着目しましょう。","酸味であれば｢3ミ｣、斜めであれば｢7メ｣のように、文字の数とそのカタカナで言葉になっていました。"],
             },
             [magicType.RED]:{
                 image:"images/quiz/3_色付き英字_色.png",
-                answer:["ロック","LOCK"],
+                answer:["ロック","LOCK","Lock","lock"],
                 hint:"カラーの赤色を使って2文字目を｢O｣にすることができます",
                 place:{
                     x: 41, y: 41,  // 座標%
@@ -256,7 +256,7 @@ var quiz_list ={
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/3_色付き英字_鋏.png",
-                answer:["スター","STAR"],
+                answer:["スター","STAR","star","Star"],
                 hint:"ハサミを使って｢むらさきいろ｣を｢きいろ｣にします",
                 place:{
                     x: 20, y: 0,  // 座標%
@@ -270,17 +270,17 @@ var quiz_list ={
     4:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/4_語呂ろくろ.png",
-                answer:"ゴロ",
-                hint:["それぞれの文字がいくつあるかに着目しましょう。","酸味であれば｢3ミ｣、斜めであれば｢7メ｣のように、文字の数とそのカタカナで言葉になっていました。"],
+                image:"images/quiz/4_国旗_色.png",
+                answer:"コアラ",
+                hint:["上の国旗はイタリア、下の国旗はドイツを表しています。イタリアがあきないになる法則を上の盤面から探してみましょう。","盤面について国旗の名前の点対象にある位置を読むと言葉となる法則でした。ドイツの点対称の位置を読んでみましょう。"],
             },
-            [magicType.ADD_CHAR]:{
-                image:"images/quiz/4_語呂ろくろ_四角.png",
-                answer:"ロクロ",
-                hint:"スクエアを使って｢ロ｣を1つ増やします。",
+            [magicType.BLUE]:{
+                image:"images/quiz/4_国旗_色多分.png",
+                answer:"フトン",
+                hint:"カラーでイタリアをフランスにすると、国旗の名前のひとつ下の文字を読む法則に変わります。",
                 place:{
-                    x: 65, y: 14,  // 座標%
-                    w: 25, h: 29   // サイズ%
+                    x: 23, y: 59,  // 座標%
+                    w: 5, h: 12   // サイズ%
                 }
             }
         }
@@ -1610,7 +1610,11 @@ function checkA(){
             
             quiz_data.answered = true;
             pop_tl = "正解!!";
-            pop_tx = "A："+quiz_data.magics[quiz_data.involved_magic].answer +"<br>"+"獲得経験値：" + point_list[player_data.level] + "pt";
+            var answer = quiz_data.magics[quiz_data.involved_magic].answer
+            if(typeof(answer)!="string"){
+                answer = answer[0] + "," + answer[1];
+            }
+            pop_tx = "A："+ answer +"<br>"+"獲得経験値：" + point_list[player_data.level] + "pt";
             quiz_data.magics[quiz_data.involved_magic].answered = true;
             console.log(quiz_data.magics[quiz_data.involved_magic]);
             quiz_data.answered_time += 1;
@@ -1736,8 +1740,12 @@ function hint(n,magictype=null){
             pop_tx = hintText;
             
         }else{
+            var answer = quiz_data.magics[quiz_data.involved_magic].answer
+            if(typeof(answer)!="string"){
+                answer = answer[0] + "," + answer[1];
+            }
             if(n >= hintText.length){
-                pop_tx = "答えは「" + quiz_data.magics[quiz_data.involved_magic].answer + "」です。";
+                pop_tx = "答えは「" + answer + "」です。";
             }else{
                 pop_tx = hintText[n];
 
@@ -2466,8 +2474,13 @@ function moveMap(n){
     }
     
     pointer = document.getElementById("player_icon");
-    pointer.style.top = "70%";
+    pointer.style.top = "80%";
+    if(now_place == stage.PRAIRIE){
+        pointer.style.top = "70%";
+    }
     pointer.style.left = "50%";
+    
+    
     
     
     
