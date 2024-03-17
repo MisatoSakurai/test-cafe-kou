@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 :root {
     --red: #E60033;
     --blue: #0072EF;
@@ -764,7 +766,7 @@ h1 {
 
 #castle{
     background-image: url('images/background/祭壇_俯瞰図.png');
-    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-size: 100% 100%;
     background-position: top;
 }
 
@@ -796,9 +798,11 @@ h1 {
 }
 
 #B3_icon {
-    width:20%;
-    max-width: 160px;
-    height: auto;
+    /*width:20%;*/
+    height:20%;
+    width:auto;
+    max-height: 300px;
+    /*max-width: 160px;*/
     position: absolute;
     top: 2%;
     left: 50%;
@@ -1164,7 +1168,7 @@ h1 {
 
 #pop_button {
     position: relative;
-    width:20%;
+    width:fit-content;
     max-width: 100px;
     /*bottom: 5%;*/
     /*left: 50%;*/
@@ -1174,6 +1178,15 @@ h1 {
     -webkit- transform: translateX(-50%);*/
 }
 
+#pop_close{
+    position: absolute;
+    width:30px;
+    aspect-ratio: 1/1;
+    top:0;
+    right:0;
+    margin: 10px;
+    background-color: black;
+}
 
 
 #hints_buttons, #monster_hints_buttons{
@@ -1318,10 +1331,9 @@ h1 {
 
 #monster3{
     position: absolute;
-    width:40%;
-    max-width: 400px;
-    height: auto;
-    bottom: 20%;
+    height: 65%;
+    aspect-ratio:1883/3042;
+    bottom: 33%;
     left: 50%;
     transform:translateX(-50%);
     -webkit- transform:translateX(-50%);
@@ -1382,8 +1394,9 @@ h1 {
 
 #B3{
     background-image: url('images/background/祭壇_戦闘画面.png');
-    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
-    background-position: bottom;
+    /*background-size: cover;  背景画像を要素のサイズに合わせて表示 */
+    background-size:100% 100%;
+    background-position: top;
     position: fixed;
     top: 0;
     left: 0;

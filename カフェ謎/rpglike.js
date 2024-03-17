@@ -470,7 +470,7 @@ var quiz_list ={
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/14_色の名前_字.png",
-                answer:"クリー",
+                answer:"クルー",
                 hint:"文字トランスを使うと、1行目は「グリーン」、二行目は「グレー」が埋まります。",
                 place:{
                     x: 23, y: 13,  // 座標%
@@ -489,7 +489,7 @@ var quiz_list ={
             },
             [magicType.RED]:{
                 image:"images/quiz/15_サイコロ_色.png",
-                answer:"プライド",
+                answer:"ポスター",
                 hint:"カラーを使って問題の背景を赤くすると1の目が消えます。",
                 place:{
                     x: 26, y: 31,  // 座標%
