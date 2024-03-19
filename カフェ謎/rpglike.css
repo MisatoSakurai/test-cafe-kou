@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 :root {
     --red: #E60033;
     --blue: #0072EF;
@@ -591,7 +593,7 @@ h1 {
 #board_content{
     position: relative;
     width : auto;
-    aspect-ratio:297/210;
+    aspect-ratio:1806/1914 ;
     max-height: 80%;
     max-width:90%;
     left: 0;
@@ -764,7 +766,7 @@ h1 {
 
 #castle{
     background-image: url('images/background/祭壇_俯瞰図.png');
-    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
+    background-size: 100% 100%;
     background-position: top;
 }
 
@@ -790,15 +792,17 @@ h1 {
     height: auto;
     position: absolute;
     top: 10%;
-    left: 50%;
+    left: 38%;
     transform: translateY(-50%) translateX(-50%);
     -webkit- transform: translateY(-50%) translateX(-50%);
 }
 
 #B3_icon {
-    width:20%;
-    max-width: 160px;
-    height: auto;
+    /*width:20%;*/
+    height:20%;
+    width:auto;
+    max-height: 300px;
+    /*max-width: 160px;*/
     position: absolute;
     top: 2%;
     left: 50%;
@@ -875,7 +879,7 @@ h1 {
 
 
 #castle_q_icons{
-    top: 67%;
+    top: 62%;
 }
 
 
@@ -887,15 +891,14 @@ h1 {
 
 
 
-#player_icon {
+#quiz_select_icon {
     position: absolute;
-    width:10%;
-    max-width: 50px;
-    height: auto;
+    width:90px;
+    height:90px
     top: 70%;
     left: 50%;
-    transform: translateX(-50%);
-    -webkit- transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-87px);
+    -webkit- transform: translateX(-50%) translateY(-87px);
     z-index: 10;
 }
 
@@ -1164,7 +1167,7 @@ h1 {
 
 #pop_button {
     position: relative;
-    width:20%;
+    width:fit-content;
     max-width: 100px;
     /*bottom: 5%;*/
     /*left: 50%;*/
@@ -1174,6 +1177,15 @@ h1 {
     -webkit- transform: translateX(-50%);*/
 }
 
+#pop_close{
+    position: absolute;
+    width:30px;
+    aspect-ratio: 1/1;
+    top:0;
+    right:0;
+    margin: 10px;
+    background-color: black;
+}
 
 
 #hints_buttons, #monster_hints_buttons{
@@ -1318,10 +1330,9 @@ h1 {
 
 #monster3{
     position: absolute;
-    width:40%;
-    max-width: 400px;
-    height: auto;
-    bottom: 20%;
+    height: 65%;
+    aspect-ratio:1883/3042;
+    bottom: 33%;
     left: 50%;
     transform:translateX(-50%);
     -webkit- transform:translateX(-50%);
@@ -1382,8 +1393,9 @@ h1 {
 
 #B3{
     background-image: url('images/background/祭壇_戦闘画面.png');
-    background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
-    background-position: bottom;
+    /*background-size: cover;  背景画像を要素のサイズに合わせて表示 */
+    background-size:100% 100%;
+    background-position: top;
     position: fixed;
     top: 0;
     left: 0;
