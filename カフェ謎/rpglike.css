@@ -593,7 +593,7 @@ h1 {
 #board_content{
     position: relative;
     width : auto;
-    aspect-ratio:297/210;
+    aspect-ratio:1806/1914 ;
     max-height: 80%;
     max-width:90%;
     left: 0;
@@ -792,7 +792,7 @@ h1 {
     height: auto;
     position: absolute;
     top: 10%;
-    left: 50%;
+    left: 38%;
     transform: translateY(-50%) translateX(-50%);
     -webkit- transform: translateY(-50%) translateX(-50%);
 }
@@ -879,7 +879,7 @@ h1 {
 
 
 #castle_q_icons{
-    top: 67%;
+    top: 62%;
 }
 
 
@@ -891,15 +891,14 @@ h1 {
 
 
 
-#player_icon {
+#quiz_select_icon {
     position: absolute;
-    width:10%;
-    max-width: 50px;
-    height: auto;
+    width:90px;
+    height:90px
     top: 70%;
     left: 50%;
-    transform: translateX(-50%);
-    -webkit- transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-87px);
+    -webkit- transform: translateX(-50%) translateY(-87px);
     z-index: 10;
 }
 

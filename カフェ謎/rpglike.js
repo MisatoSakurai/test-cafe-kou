@@ -270,12 +270,12 @@ var quiz_list ={
     4:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/4_国旗_色.png",
+                image:"images/quiz/4_国旗.png",
                 answer:"コアラ",
                 hint:["上の国旗はイタリア、下の国旗はドイツを表しています。イタリアがあきないになる法則を上の盤面から探してみましょう。","盤面について国旗の名前の点対象にある位置を読むと言葉となる法則でした。ドイツの点対称の位置を読んでみましょう。"],
             },
             [magicType.BLUE]:{
-                image:"images/quiz/4_国旗_色多分.png",
+                image:"images/quiz/4_国旗_色.png",
                 answer:"フトン",
                 hint:"カラーでイタリアをフランスにすると、国旗の名前のひとつ下の文字を読む法則に変わります。",
                 place:{
@@ -290,17 +290,17 @@ var quiz_list ={
     5:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/5_姉妹.png",
-                answer:"ネガオ",
-                hint:["１２３＝あうとであることから上の１〜３にはあ、う、とがそれぞれ入るようです。この図の形や色と文字のヒントから何が入るか考えてみましょう。","これは家系図を表していました。文字のヒントと色の情報から右側にはあね、左側にはおとうとがあてはまります"],
+                image:"images/quiz/5_りんごなし.png",
+                answer:["アニ","兄"],
+                hint:["上のイラストである魚、しおり、なしをそれぞれの丸に入るように表記を変えてみましょう。","イラストをローマ字で表記すると丸にピッタリ入ります。NASHIと入れて線で結ばれた文字を順に読んでみましょう"],
             },
             [magicType.RED]:{
-                image:"images/quiz/5_姉妹_色.png",
-                answer:"ネガイ",
-                hint:"カラーを使うことでおとうとをいもうとにすることができます。",
+                image:"images/quiz/5_りんごなし_色.png",
+                answer:["イロ","色"],
+                hint:"カラーの赤色を用いるとなしがりんごに変わります。RINGOと埋めてみましょう",
                 place:{
-                    x: 29, y: 32,  // 座標%
-                    w: 5, h: 28   // サイズ%
+                    x: 68, y: 18,  // 座標%
+                    w: 10, h: 10   // サイズ%
                 }
             },
         }
@@ -492,8 +492,8 @@ var quiz_list ={
                 answer:"ポスター",
                 hint:"カラーを使って問題の背景を赤くすると1の目が消えます。",
                 place:{
-                    x: 26, y: 31,  // 座標%
-                    w: 48, h: 35   // サイズ%
+                    x: 25, y: 42,  // 座標%
+                    w: 48, h: 10   // サイズ%
                 }
             }
         }
@@ -541,7 +541,7 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/18_間.png",
-                answer:"ヤミ",
+                answer:["ヤミ", "闇"],
                 hint:["前後の文から、点線がついた四角に入りそうな漢字を推測してみましょう。構成する二つの漢字のうちの一方は「門」です。","四角に｢間｣を入れると、｢間を構成する二つの漢字の間に立を入れてできる漢字は？｣という分が出来上がります。"],
             },
         }
@@ -596,8 +596,8 @@ const board_data = {
         [magicType.SCISSORS]:{
             image:"images/board/看板_ハサミ.png",
             place:{
-                    x: 56, y: 16,  // 座標%
-                    w: 6, h: 10   // サイズ%
+                    x: 64, y: 6,  // 座標%
+                    w: 10, h: 12   // サイズ%
                 },
         }
     }
@@ -657,15 +657,15 @@ const story_tutorial_list = [
     ["action",{ func: showImg, subject: "images/board/導入看板.png" }],
     [speaker.G,"——この世界を抜け出したいならば看板に書かれたクリア条件を達成しゲームをクリアしてください"],
     [speaker.N,"あなたは目の前に置かれた看板を見ました<br>そこには確かにゲームクリア条件のようなものが書いてありました"],
-    [speaker.P,"「これを達成すれば元の世界に戻れるということか！<br>頑張るぞ～」"],
+    [speaker.P,"「魔王を倒し暴虐な絶対王政を食い止める——これを達成すれば元の世界に戻れるということか！<br>頑張るぞ～」"],
     [speaker.G,"——ちょっと待ってください<br>あなたって普通の現代人ですよね？"],
     [speaker.P,"「ああ、そうです」"],
-    [speaker.G,"——謎解きをしているあなたのような貧弱な人間は、魔王はおろか、そこにいるモンスターでも力で倒すことはできないと思いますよ"],
+    [speaker.G,"——謎解きをしているあなたのような貧弱な人間には魔王は倒せないでしょう<br>そこらへんのモンスターでさえ力では倒せないと思います"],
     [speaker.P,"「え～そんな～」"],
     [speaker.N,"絶望的な状況にあなたは落胆してしまいました"],
     [speaker.G,"——しかしあなたにも希望はあります<br>それは、”魔法”を使って敵を倒すことです！"],
     [speaker.P,"「魔法…？」"],
-    [speaker.G,"あなたは今レベル1の状態ですが、実はレベルが1つ上がると新たな魔法を修得します"],
+    [speaker.G,"——あなたは今レベル1の状態ですが、実はレベルが1つ上がると新たな魔法を修得します"],
     [speaker.G,"——魔法をうまく使うことで敵を倒すことができるかもしれません<br>特にあなたのようなひらめきで世界を変えられるような方ならば"],
     [speaker.P,"「そうか、ゲットした魔法を使って敵を倒せばいいのか<br>でもどうしたらレベルを上げられるんだ？」"],
     [speaker.G,"——それは謎解きに正解することで経験値を獲得しレベルを上げることができます"],
@@ -684,8 +684,8 @@ const open_quiz_tutorial_list =[
 ];
 
 const tackle_quiz_tutorial_list = [
-    [speaker.G,"——謎が出てきましたね、赤いハテナマークが目印です<br>これを解き明かしていくことでレベルが上がります"],
-    [speaker.G,"——答えがわかったら解答欄にカタカナで入力して送信してみましょう<br>ただし答えはすべて一般的な単語になります"],
+    [speaker.G,"——謎が出てきましたね、赤いハテナマークが謎の目印です<br>これを解き明かしていくことでレベルが上がります"],
+    [speaker.G,"——答えがわかったら解答欄に入力してみましょう<br>ただし答えは存在する単語になります"],
     [speaker.G,"わからないときはヒントを活用してくださいね"]
 ];
 
@@ -708,10 +708,9 @@ const monster_tutorial_list = [
     ["action",{func: openBattle, subject:'B1'}],
     [speaker.G,"——こんな画面になります"],
     [speaker.G,"——ここであなたは｢たたかう｣、｢にげる｣、｢魔法｣のいずれかを行うことができます"],
-    [speaker.G,"——ここであなたは何か行動をすることができます"],
     [speaker.G,"——「たたかう」で直接戦うこともできますが……<br>意味もなく次の敵からの攻撃で確実にやられてしまうでしょう"],
-    [speaker.G,"——｢魔法｣を開くと現在修得している魔法が表示されるのでそこから選択して倒しましょう"],
-    [speaker.G,"——もし戦いに負けてしまったとしても、戦う前の状態に戻るのでとりあえず戦ってみるのも作戦の一つでしょう"],
+    [speaker.G,"——｢まほう｣を開くと現在修得している魔法が表示されるのでそこから選択して倒しましょう"],
+    [speaker.G,"——戦いに負けると戦う前の状態に戻るので、とりあえず戦ってみるのも作戦の一つでしょう"],
     ["action",{func: closeBattle, subject:'B1'}],
     ["action",{func: finishHide, subject:"B1_command"}],
 ];
@@ -722,26 +721,18 @@ const menu_tutorial_list = [
     [speaker.G,"——右上のアイコンをタップすることでメニューを開くことができます"],
     ["action",{func:finishPoint, subject:"なし"}],
     ["action",{func:openMenu, subject:"なし"}],
-    [speaker.G,"——ここには現在のレベルや魔法の説明など情報が載っています"],
-    [speaker.G,"——次のレベルに行くには何問の謎に答える必要があるのかなども知ることができるのでぜひ活用してください"],
-    ["action",{func: pointOut, subject:"menu_monster"}],
-    [speaker.G,"——また、重要なのが「モンスター図鑑」というもの"],
-    [speaker.G,"——これはすでに集まっているモンスターについての情報です<br>うまく倒せないときは参考にしてみてください"],
-    ["action",{func: finishPoint, subject:"なし"}],
+    [speaker.G,"——ここには様々な情報が載っているので困ったら開いてみましょう"],
     ["action",{func:closeMenu, subject:"なし"}],
-    [speaker.G,"——説明は以上です<br>この説明はメニューから再度見ることができるので必要があれば参照してください"],
-    [speaker.G,"——それでは、あなたが無事ゲームから抜け出せることを期待していますよ"],
+    [speaker.G,"——説明は以上です<br>それでは、あなたが無事ゲームから抜け出せることを期待していますよ"],
 ];
 
 const use_magic_list = [
     [speaker.G,"——どうやらここには謎がないみたいですね"],
     [speaker.G,"——ああ、ひとつ言い忘れていたことがあって、"],
-    [speaker.G,"——実はあなたが持つ魔法は謎に使えるんです"],
+    [speaker.G,"——実はあなたが持つ魔法は謎にも使えるんです"],
     [speaker.G,"——謎を解く画面で左上のアイコンをタップし、使う場所を正しく選択すると魔法が発動します<br>複数の魔法は同時には使えず魔法のルールも残っているのでご注意ください"],
     [speaker.G,"————魔法によってできた新たな謎を解くとさらに経験値が上がります"],
-    [speaker.G,"——また、上の星はその謎でできる正解数を表していて正解すると光ります"],
-    [speaker.G,"——それでは、健闘を祈ります"]
-    
+    [speaker.G,"——また、上の星はその謎でできる正解数を表しています"],
 ];
 
 
@@ -750,7 +741,7 @@ const ending_list = [
     [speaker.P,"「……ここは…？」"],
     [speaker.N,"まばゆい光に包まれたあなたは、気がつくと(カフェ謎の会場名)の席に座っていました"],
     [speaker.P,"「…そうか、自分の合わない世界だったのなら<br>守らないといけないと思い込んでいた世界のルールを変えてしまえばよかったのか」"],
-    [speaker.N,"人生というゲームを進んでいたあなたは気づかない間にこんな当たり前のことを忘れていたようです"],
+    [speaker.N,"人生というゲームを進んでいたあなたは気づかない間にこんなことを忘れていたようです"],
     [speaker.P,"「これからも進んで行こう、<br>時には悩み苦しむこともあるかもしれないけど大丈夫、<br>困ったときは新たな世界に行くことだってできるんだから」"],
     [speaker.P,"「それじゃあ今日も頑張っていくぞ～！」"],
     [speaker.N,"あなたは勇んでリアルの世界を進むことにしたのでした……"],
@@ -1013,9 +1004,6 @@ function initializeQuizDataList(q_list){
         
         if(q_data.magics[magicType.NONE].hint == "" || q_data.magics[magicType.NONE].hint == null ){
             q_data.magics[magicType.NONE].hint = "ヒントはありません";
-        }
-        if(q_data.magic_hint == "" || q_data.magic_hint == null ){
-            q_data.magic_hint = "魔法に関するヒントはありません";
         }
         for(let m in q_list[n].magics){
             q_data.magics[m].answered = false;
@@ -1498,7 +1486,7 @@ function openQ(n){
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
     const answer_box = document.getElementById("answer_box");
     const magics = document.getElementById("magics");
-    pointOut(quiz_data.icon_id,pointer = "player_icon");
+    pointOut(quiz_data.icon_id,pointer = "quiz_select_icon");
 
     
     
@@ -2473,12 +2461,13 @@ function moveMap(n){
         doTutorial(tutorialType.USEMAGICTOQUIZ);
     }
     
-    pointer = document.getElementById("player_icon");
-    pointer.style.top = "80%";
-    if(now_place == stage.PRAIRIE){
-        pointer.style.top = "70%";
-    }
-    pointer.style.left = "50%";
+    pointer = document.getElementById("quiz_select_icon");
+    pointer.style.display = "none";//ここだ
+//    pointer.style.top = "80%";
+//    if(now_place == stage.PRAIRIE){
+//        pointer.style.top = "70%";
+//    }
+//    pointer.style.left = "50%";
     
     
     
