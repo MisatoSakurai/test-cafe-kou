@@ -206,7 +206,6 @@ const quiz_place_list = {
 
 
 
-
 var quiz_list ={
     1:{
         magics:{
