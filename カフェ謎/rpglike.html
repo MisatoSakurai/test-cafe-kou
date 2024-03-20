@@ -70,13 +70,18 @@
                     <p id="menu_point">pt</p>
                     <progress value="0" max="100" id="menu_point_bar"></progress>
                 </li>
-                <li id="menu_explain" onclick="openExplains()">説明</li>
-                <span id="menu_explain_box" style="display: none">
+                <li id="menu_explain" onclick="openExplain()">説明</li>
+                <span id="menu_explain_box"  class="acodion_list" style="display: none">
                     <li id="menu_story_explain" class="menu_explains" onclick="openExplainSheet('世界観の説明')">　ストーリー設定</li>
-                    <li id="menu_quiz_explain" class="menu_explains" onclick="openExplainSheet('謎画面の説明')">　謎画面について</li>
+                    <li id="menu_quiz_explain" class="menu_explains" onclick="openExplainSheet('謎画面の説明_1')">　謎画面について</li>
                     <li id="menu_battle_explain" class="menu_explains" onclick="openExplainSheet('戦闘画面の説明')">　戦闘画面について</li>
                 </span>
-                <li id="menu_how_to_win" onclick="monster_hint_select()">倒し方のヒント</li>
+                <li id="menu_how_to_win" onclick="openMonsterHint()">倒し方のヒント</li>
+                <span id="menu_monster_hint_box" style="display: none" class="acodion_list">
+                    <li id="B1_hint" class="menu_explains" style="display: none" onclick="monster_hint('B1')">　ブルースライム</li>
+                    <li id="B2_hint" class="menu_explains" style="display: none" onclick="monster_hint('B2')">　ガーゴイル</li>
+                    <li id="B3_hint" class="menu_explains" style="display: none" onclick="monster_hint('B3')">　Mr.魔王</li>
+                </span>
                 <li id="menu_monster" onclick="openBook('monster_book')">モンスター図鑑</li>
                 <li id="menu_magic_list" onclick="openBook('magic_book')">魔法図鑑</li>
                 <li id="menu_title" onclick="moveTitle()" >タイトルに戻る</li>
@@ -127,11 +132,14 @@
                 <input type="text" id="answer_box">
                 <div id = "send_and_hint_buttons">
                     <p onclick="hint(0)" class="hintButton">ヒント</p>
-                    <p onclick="hint('magic')" class="magicHintButton">魔法のヒント</p>
+                    <p onclick="hint(0,null,true)" class="magicHintButton">魔法のヒント</p>
                     <p onclick="checkA()" class="checkButton">送信</p>
                 </div>
             </div>
-            <p onclick="closeQ()" class="closeButton">▷戻る</p>
+            <div class="closeButtons">
+                <p onclick="colorVision()" id="colorVisionButton" display="none">色がわかりにくい場合</p>
+                <p onclick="closeQ()" class="closeButton">▷戻る</p>
+            </div>
         </div>
         
         
@@ -141,8 +149,9 @@
                 <div id="board_magic_judge_canvas" class="judge_canvas">
                 </div>
             </div>
-            <p onclick="closeBoard()" class="closeButton">▷戻る</p>
-            
+            <div class="closeButtons">
+                <p onclick="closeBoard()" class="closeButton">▷戻る</p>
+            </div>
         </div>
         
         
@@ -153,7 +162,9 @@
                 <ul class="book_link_list" id="monster_book_link_list">
                 </ul>
             </div>
-            <p onclick="closeBook('monster_book')" class="closeButton">▷戻る</p>
+            <div class="closeButtons">
+                <p onclick="closeBook('monster_book')" class="closeButton">▷戻る</p>
+            </div>
         </div>
         <!--<script>
             document.getElementById("monster_book").addEventListener("click", function(e) {
@@ -168,7 +179,9 @@
                 <ul class="book_link_list" id="magic_book_link_list">
                 </ul>
             </div>
-            <p onclick="closeBook('magic_book')" class="closeButton">▷戻る</p>
+            <div class="closeButtons">
+                <p onclick="closeBook('magic_book')" class="closeButton">▷戻る</p>
+            </div>
         </div>
         
         
@@ -176,7 +189,9 @@
             <div id="explain_content">
                 <img src="" alt="説明" id="explain_image">
             </div>
-            <p onclick="closeExplainSheet()" class="closeButton">▷戻る</p>
+            <div class="closeButtons">
+                <p onclick="closeExplainSheet()" class="closeButton">▷戻る</p>
+            </div>
         </div>
         
     
@@ -223,16 +238,11 @@
             <p id="pop_text">pop文章</p>
             <p id="pop_close" onclick="closePop()">×</p>
             <p id="pop_button" style="display: none" >ボタン</p>
-            <dev id="monster_hints_buttons">
-                <p id="B1_hint" class="monster_hint_buttons" style="display: none" onclick="monster_hint('B1')">ブルースライム</p>
-                <p id="B2_hint" class="monster_hint_buttons" style="display: none" onclick="monster_hint('B2')">ガーゴイル</p>
-                <p id="B3_hint" class="monster_hint_buttons" style="display: none" onclick="monster_hint('B3')">Mr.魔王</p>
-            </dev>
             <dev id="hints_buttons">
-                <p id="change_color_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','change_color')">カラー</p>
-                <p id="add_char_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','add_char')">スクエア</p>
-                <p id="change_char_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','change_char')">文字トランス</p>
-                <p id="scissors_hint" class="magic_hint_buttons" style="display: none" onclick="hint('magic','scissors')">ハサミ</p>
+                <p id="change_color_hint" class="magic_hint_buttons" style="display: none" onclick="hint(0,'change_color',true)">カラーの答え</p>
+                <p id="add_char_hint" class="magic_hint_buttons" style="display: none" onclick="hint(0,'add_char',true)">スクエアの答え</p>
+                <p id="change_char_hint" class="magic_hint_buttons" style="display: none" onclick="hint(0,'change_char',true)">文字トランスの答え</p>
+                <p id="scissors_hint" class="magic_hint_buttons" style="display: none" onclick="hint(0,'scissors',true)">ハサミの答え</p>
             </dev>
             
         </div>
