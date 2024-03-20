@@ -220,7 +220,7 @@ var quiz_list ={
                 answer:"カイゴ",
                 place:{
                     x: 66, y: 14,  // 座標%
-                    w: 16, h: 5   // サイズ%
+                    w: 16, h: 8   // サイズ%
                 }
             }
         }
@@ -241,11 +241,13 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/3_色付き英字.png",
+                color_image:"images/quiz/3_色付き英字_色覚特性.png",
                 answer:["ラック","LUCK","luck","Luck"],
                 hint:["それぞれの文字がいくつあるかに着目しましょう。","酸味であれば｢3ミ｣、斜めであれば｢7メ｣のように、文字の数とそのカタカナで言葉になっていました。"],
             },
             [magicType.RED]:{
                 image:"images/quiz/3_色付き英字_色.png",
+                color_image:"images/quiz/3_色付き英字_色_色覚特性.png",
                 answer:["ロック","LOCK","Lock","lock"],
                 hint:"カラーの赤色を使って2文字目を｢O｣にすることができます",
                 place:{
@@ -255,6 +257,7 @@ var quiz_list ={
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/3_色付き英字_鋏.png",
+                color_image:"images/quiz/3_色付き英字_鋏_色覚特性.png",
                 answer:["スター","STAR","star","Star"],
                 hint:"ハサミを使って｢むらさきいろ｣を｢きいろ｣にします",
                 place:{
@@ -267,6 +270,7 @@ var quiz_list ={
     },
     
     4:{
+        color_vision: false,
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/4_国旗.png",
@@ -328,7 +332,7 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/7_曜日.png",
-                answer:"アシタ",
+                answer:["アシタ","明日","ミョウニチ","アス"],
                 hint:["それぞれ漢字に変換して漢字に変換してみましょう。「鏡」の左半分を＋１すると「境」になるようです。","漢字に変換して考えると、「金」に＋１で「土」、「月」に＋３で「木」となる事から、数字の分だけ曜日を進めればいいことが分かります。"],
             }
         }
@@ -411,7 +415,7 @@ var quiz_list ={
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/11_干支_鋏.png",
-                answer:"マリ",
+                answer:["マリ","鞠"],
                 hint:"ハサミを使って｢イヌ｣を｢イ｣に変えます。すると｢トリ｣に変化します",
                 place:{
                     x: 79, y: -2,  // 座標%
@@ -473,7 +477,7 @@ var quiz_list ={
                 hint:"文字トランスを使うと、1行目は「グリーン」、二行目は「グレー」が埋まります。",
                 place:{
                     x: 23, y: 13,  // 座標%
-                    w: 8, h: 5   // サイズ%
+                    w: 10, h: 10   // サイズ%
                 }
             }
         }
@@ -653,7 +657,7 @@ const story_tutorial_list = [
     [speaker.P,"「え…？<br>ゲームの世界にいる…？」"],
     [speaker.N,"ありえない事実にあなたは驚きを隠せませんでした"],
     [speaker.G,"——あなたはどうやらこのゲームの世界に迷いこんでしまったみたいですね"],
-    ["action",{ func: showImg, subject: "images/board/導入看板.png" }],
+    ["action",{ func: showImg, subject: "images/board/看板.png" }],
     [speaker.G,"——この世界を抜け出したいならば看板に書かれたクリア条件を達成しゲームをクリアしてください"],
     [speaker.N,"あなたは目の前に置かれた看板を見ました<br>そこには確かにゲームクリア条件のようなものが書いてありました"],
     [speaker.P,"「魔王を倒し暴虐な絶対王政を食い止める——これを達成すれば元の世界に戻れるということか！<br>頑張るぞ～」"],
@@ -671,7 +675,7 @@ const story_tutorial_list = [
     [speaker.G,"——今持っている魔法を使ってもよいですが……<br>レベルをあげて新たな魔法を手にする方がよいでしょう"],
     [speaker.P,"「じゃあ謎を解いて早くクリアしよう！」"],
     [speaker.N,"あなたは勇んでゲームを始めることにしたのでした……"],
-    ["action",{ func: hideImg, subject: "images/board/導入看板.png" }],
+    ["action",{ func: hideImg, subject: "images/board/看板.png" }],
     ["action",{ func: hideBack, subject: "story_sogen"}]
 ];
 
@@ -1124,9 +1128,32 @@ function startGame(){
         
         
     }else{
-        title_sheet.style.display = 'none';
-        now_status = status.STORY;
-        doTutorial(tutorialType.STORY);
+        clear_out_sheet = document.getElementById("clear_back_sheet");
+        clear_out_sheet.style.display = 'block';
+        white_out_time = 1.5;
+        setTimeout(function() {
+            clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
+            clear_out_sheet.style.opacity = '100%';
+        }, 100); 
+
+        setTimeout(function() {
+            title_sheet.style.display = 'none';
+        }, 100 + white_out_time * 1000);
+
+        setTimeout(function() {
+            clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
+            clear_out_sheet.style.opacity = '0%';
+            title_sheet.style.display = 'none';
+            now_status = status.STORY;
+            doTutorial(tutorialType.STORY);
+            closeGeneTextLog();
+
+        }, 100 + white_out_time * 1000 * 1.5); 
+
+        setTimeout(function() {
+            clear_out_sheet.style.display = 'none';
+            openGeneTextLog();
+        }, 100 + white_out_time * 1000 * 2.5) + 100; 
     }
 }
 
@@ -1174,8 +1201,6 @@ function clearGame(){
     
     setTimeout(function() {
         clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
-        console.log(clear_out_sheet.style.opacity);
-        console.log(clear_out_sheet.style.transition);
         clear_out_sheet.style.opacity = '0%';
         showEnding();
         closeGeneTextLog();
@@ -1187,10 +1212,10 @@ function clearGame(){
         clear_out_sheet.style.display = 'none';
         openGeneTextLog();
     }, 100 + white_out_time * 1000 * 2.5); 
-    
-
 
 }
+
+
 
 
 
@@ -1278,6 +1303,16 @@ function pointOut(subject,pointer_name="pointer"){
     pointer.style.top = rect.top + rect.height + marginbottom + 5 +  "px";
     pointer.style.left = rect.left + rect.width/2 + "px";
     pointer.style.display = "block";
+    
+    
+    if(pointer_name = "quiz_select_icon"){
+        pointer.addEventListener('click', function() {
+            // 下の要素をクリックしたことにします
+            target.click();
+        });
+    }
+        
+    
 }
 
 
@@ -1478,7 +1513,6 @@ function removeAllStars() {
 
 function openQ(n){
     quiz_id = n;
-    console.log(n);
     quiz_data = quiz_list[quiz_id];
     const quiz_back = document.getElementById("QB_back");
     const quiz_sheet = document.getElementById("Q_sheet");
@@ -1501,6 +1535,8 @@ function openQ(n){
         answer_box.value = "";
     }
     
+    
+    //星について
     removeAllStars();
     
     
@@ -1520,6 +1556,25 @@ function openQ(n){
     createStars(quiz_data.answered_time,images.LIGHTSTAR);
     createStars(now_num_ans - quiz_data.answered_time,images.DARKSTAR);
     
+    
+    //色覚特性について
+    colorVisionButton = document.getElementById("colorVisionButton");
+    
+    if(quiz_data.magics[magicType.NONE].color_image){
+        colorVisionButton.style.display = "block";
+        if(quiz_data.color_vision){
+            quiz_image.src = quiz_data.magics[quiz_data.involved_magic].color_image;
+        }
+        
+        colorVisionButton = document.getElementById("colorVisionButton");
+        if(quiz_data.color_vision){
+            colorVisionButton.textContent = "元に戻す";
+        }else{
+            colorVisionButton.textContent = "色がわかりにくい場合";
+        }
+    }else{
+        colorVisionButton.style.display = "none";
+    }
     
     
     now_status = status.QUIZ;
@@ -1603,7 +1658,6 @@ function checkA(){
             }
             pop_tx = "A："+ answer +"<br>"+"獲得経験値：" + point_list[player_data.level] + "pt";
             quiz_data.magics[quiz_data.involved_magic].answered = true;
-            console.log(quiz_data.magics[quiz_data.involved_magic]);
             quiz_data.answered_time += 1;
             player_data.point += point_list[player_data.level];
             
@@ -1646,7 +1700,7 @@ function checkA(){
 
 
 
-function hint(n,magictype=null){
+function hint(n,magictype=null,is_magic_hint=false){
     
     
     const quiz_data = quiz_list[quiz_id]
@@ -1654,11 +1708,10 @@ function hint(n,magictype=null){
     const pop_button = document.getElementById("pop_button");
     let pop_tl = "ヒント";
     let pop_tx = "";
-    let hintText = quiz_data.magics[magicType.NONE].hint;
+    let hintText = quiz_data.magics[quiz_data.involved_magic].hint;
     if(quiz_data.magics[quiz_data.involved_magic].afterInvolvedHint != null){
         hintText = quiz_data.magics[quiz_data.involved_magic].afterInvolvedHint;
     }
-    console.log(hintText);
     closePop();
     
     const magichint = document.querySelector(".magicHintButton");
@@ -1669,8 +1722,8 @@ function hint(n,magictype=null){
     }
     
     
-    
-    if(n == "magic"){
+    console.log(is_magic_hint);
+    if(is_magic_hint){
         pop_tl = "魔法のヒント";
         count = 0;
         
@@ -1696,6 +1749,7 @@ function hint(n,magictype=null){
             if(count == 0){
                 s = "この謎に今かけられる魔法はありません";
             }
+            pop_tx = s;
         }
         
         
@@ -1708,21 +1762,55 @@ function hint(n,magictype=null){
                     }
                 }
             }
-            s = quiz_data.magics[magictype].hint;
+            hintText = quiz_data.magics[magictype].hint;
+            
+            var answer = quiz_data.magics[magictype].answer
+            if(typeof(answer)!="string"){
+                answer = answer[0] + "," + answer[1];
+            }
+            
+            
+            if(typeof(hintText)=="string") {
+                pop_tx = hintText + "<br>答えは「" + answer + "」です。";
+
+            }else{
+                var answer = quiz_data.magics[quiz_data.involved_magic].answer
+                console.log(hintText);
+                console.log(hintText.length,n);
+                if(typeof(answer)!="string"){
+                    answer = answer[0] + "," + answer[1];
+                }
+                if(n >= hintText.length-1){
+                    pop_tx = hintText[n] + "<br>答えは「" + answer + "」です。";
+                }else{
+                    pop_tx = hintText[n];
+
+                    if(n < hintText.length-2){
+                        pop_button.textContent = "次のヒント";
+                    }else{
+                        pop_button.textContent = "答え";
+                    }
+
+                    pop_button.setAttribute('onclick', "hint(" + (n+1) + ","+ magictype + ",true)");
+                    console.log("hint(" + (n+1) + ","+ magictype + ",true)");
+                    pop_button.style.display = 'block';
+                }
+            }
+            
 
         }
-        
-        
-        pop_tx = s;
         
         
         
     }
     
     
-    //普通のヒント、まだ解いていない状態
-    else if(quiz_data.magics[quiz_data.involved_magic].answered == false){
-        
+    //普通のヒント if(quiz_data.magics[quiz_data.involved_magic].answered == false)
+    else {
+        var answer = quiz_data.magics[quiz_data.involved_magic].answer
+        if(typeof(answer)!="string"){
+            answer = answer[0] + "," + answer[1];
+        }
         if(typeof(hintText)=="string") {
             pop_tx = hintText;
             
@@ -1731,12 +1819,12 @@ function hint(n,magictype=null){
             if(typeof(answer)!="string"){
                 answer = answer[0] + "," + answer[1];
             }
-            if(n >= hintText.length){
-                pop_tx = "答えは「" + answer + "」です。";
+            if(n >= hintText.length-1){
+                pop_tx = hintText[n] + "<br>答えは「" + answer + "」です。";
             }else{
                 pop_tx = hintText[n];
 
-                if(n < hintText.length-1){
+                if(n < hintText.length-2){
                     pop_button.textContent = "次のヒント";
                 }else{
                     pop_button.textContent = "答え";
@@ -1751,13 +1839,13 @@ function hint(n,magictype=null){
     }
     
     
-    //普通のヒント、すでに解いている
-    else{
-        /*if(quiz_data.answered_time < quiz_data.enable_num_of_quiz){
-            pop_tx = "この状態では";
-        }*/
-        pop_tx = "この問題はすでに解いているようだ";
-    }
+//    //普通のヒント、すでに解いている
+//    else{
+//        /*if(quiz_data.answered_time < quiz_data.enable_num_of_quiz){
+//            pop_tx = "この状態では";
+//        }*/
+//        pop_tx = "この問題はすでに解いているようだ";
+//    }
     
     
     
@@ -1776,26 +1864,7 @@ function hint(n,magictype=null){
 
 
 
-function monster_hint_select(){
-    pop_tl = "モンスターのヒント";
-    pop_tx = "選んでね";
-    b = true;
-    for(var monster in monster_list){
-        if(b){
-            var monster_hint = document.getElementById(monster + "_hint");
-            monster_hint.style.display = 'block';
-        }
-        b=monster_list[monster].finish;
-    }
-    popTitling(pop_tl);
-    popTexting(pop_tx);
-
-    openPop();
-}
-
-
 function monster_hint(monster,n=0){
-    console.log(monster);
     hintText = monster_list[monster].hint;
     pop_tx = hintText[n];
     pop_tl = monster_list[monster].name+"を倒すヒント";
@@ -1817,6 +1886,21 @@ function monster_hint(monster,n=0){
 
 
 
+
+function colorVision() {
+    colorVisionButton = document.getElementById("colorVisionButton");
+    const quiz_sheet = document.getElementById("Q_sheet");
+    const quiz_image = quiz_sheet.querySelector(".quiz_image");
+    if(quiz_data.color_vision){
+        quiz_data.color_vision = false;
+        colorVisionButton.textContent = "色がわかりにくい場合";
+        quiz_image.src = quiz_data.magics[quiz_data.involved_magic].image;
+    }else{
+        quiz_data.color_vision = true;
+        colorVisionButton.textContent = "元に戻す";
+        quiz_image.src = quiz_data.magics[quiz_data.involved_magic].color_image;
+    }
+}
 
 
 
@@ -1933,6 +2017,7 @@ function closeMenu(nashi){
     const menu_back = document.getElementById("menu_back");
     menu_back.style.display = 'none';
     closeExplains();
+    closeMonsterHint();
 }
 
 
@@ -2164,7 +2249,9 @@ function successQuizMagic(){
     const quiz_sheet = document.getElementById("Q_sheet");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
     quiz_image.src = quiz_data.magics[quiz_data.involved_magic].image;
-
+    if(quiz_data.color_vision){
+        quiz_image.src = quiz_data.magics[quiz_data.involved_magic].color_image;
+    }
     popTitling("成功！");
     popTexting("謎が変化した");
     
@@ -2273,9 +2360,6 @@ function checkLevel(init = false){
     
     else if(player_level<max_level){
         next_level_point = level_list[player_level+1].needed_point;
-        console.log("nextLevel:" + (player_level+1));
-        console.log("needPoint:" + level_list[player_level+1].needed_point);
-        console.log("playerPoint:" + player_point);
         if(player_point >= next_level_point){
             player_data.level += 1;
             levelUp(player_data.level);
@@ -2396,13 +2480,40 @@ function bookShowImg(n,bookType){
 
 
 
-function openExplains(){
-    const menu_explain_box = document.getElementById("menu_explain_box");
+function openExplain(){
+    const menu_explain_box = document.getElementById('menu_explain_box');
+    if(tutorial_finish[tutorialType.USEMAGICTOQUIZ].finish){
+        menu_quiz_explain = document.getElementById("menu_quiz_explain");
+        menu_quiz_explain.setAttribute('onclick',  "openExplainSheet('謎画面の説明_2')");
+    }
     if(menu_explain_box.style.display=="block"){
         menu_explain_box.style.display="none";
         
     }else{
         menu_explain_box.style.display="block";
+        closeMonsterHint();
+    }
+}
+
+
+
+
+function openMonsterHint(){
+    const menu_monster_hint_box = document.getElementById('menu_monster_hint_box');
+    if(menu_monster_hint_box.style.display=="block"){
+        menu_monster_hint_box.style.display="none";
+        
+    }else{
+        menu_monster_hint_box.style.display="block";
+        b=true;
+        for(var monster in monster_list){
+            if(b){
+                var monster_hint = document.getElementById(monster + "_hint");
+                monster_hint.style.display = 'block';
+            }
+            b=monster_list[monster].finish;
+        }
+        closeExplains();
     }
 }
 
@@ -2412,6 +2523,11 @@ function openExplains(){
 function closeExplains(){
     const menu_explain_box = document.getElementById("menu_explain_box");
     menu_explain_box.style.display="none";
+}
+
+function closeMonsterHint(){
+    const menu_monster_hint_box = document.getElementById("menu_monster_hint_box");
+    menu_monster_hint_box.style.display="none";
 }
 
 
@@ -2459,15 +2575,13 @@ function moveMap(n){
     if(n=='rocky' && tutorial_finish[tutorialType.USEMAGICTOQUIZ].finish == false){
         doTutorial(tutorialType.USEMAGICTOQUIZ);
     }
+    if(n == 'rocky'){
+        menu_quiz_explain = document.getElementById("menu_quiz_explain");
+        menu_quiz_explain.setAttribute('onclick',  "openExplainSheet('謎画面の説明_2')");
+    }
     
     pointer = document.getElementById("quiz_select_icon");
-    pointer.style.display = "none";//ここだ
-//    pointer.style.top = "80%";
-//    if(now_place == stage.PRAIRIE){
-//        pointer.style.top = "70%";
-//    }
-//    pointer.style.left = "50%";
-    
+    pointer.style.display = "none";
     
     
     
