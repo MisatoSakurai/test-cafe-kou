@@ -396,7 +396,6 @@ var quiz_list ={
         }
         
     },
-    
     11:{
         magics:{
             [magicType.NONE]:{
@@ -589,6 +588,9 @@ var quiz_list ={
         
     }
 }
+
+
+
 
 
 const board_data = {
