@@ -15,15 +15,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 body {
     overflow-x: hidden;
     font-size: 20px;
@@ -244,7 +235,7 @@ h1 {
     text-align: center;
     border: 4px solid #f0f0f0;
     border-radius: 20px;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 
@@ -264,9 +255,17 @@ h1 {
 
 
 .text_log_speaker {
-    width:fit-content;
+    position: fixed;
+    left: 21%;
+    bottom: 24%;
+    width:70px;
     margin: 0;
     margin-right: 5px;
+    background-color: black;
+    text-align: center;
+    border: 3px solid #f0f0f0;
+    border-radius: 10px;
+    padding: 3px 10px;
 }
 
 
@@ -714,10 +713,12 @@ h1 {
     -ms-overflow-style: none;
 }
 
+/*
 
 .book_link_list::-webkit-scrollbar{
   display: none;
 }
+*/
 
 
 
@@ -904,19 +905,19 @@ h1 {
 
 
 .selectQ{
-    width:90px;
-    margin: 0 calc(calc(100% - 90 * 5px) / 10);
+    width:80px;
+    margin: 0 calc(calc(100% - 80 * 5px) / 10);
 }
 
 
 #quiz_select_icon {
     position: absolute;
-    width:140px;
-    height:140px;
+    width:130px;
+    height:130px;
     top: 70%;
     left: 50%;
-    transform: translateX(-50%) translateY(-120px);
-    -webkit- transform: translateX(-50%) translateY(-120px);
+    transform: translateX(-50%) translateY(-110px);
+    -webkit- transform: translateX(-50%) translateY(-110px);
     z-index: 10;
 }
 

@@ -1,12 +1,28 @@
-#main-content {
-    width:400px;
-    margin: 0 auto;
-    padding :5%;
-    background-color: azure;
+
+
+body {
+    
 }
 
+#background {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    filter: blur(5px);
+}
 
-
+#background_image {
+    width: 100%;
+    height: 100%;
+    background-image: url(images/complete/背景.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 画像を固定する */
+}
 
 
 .Qs {
@@ -47,6 +63,7 @@
     overflow: hidden;
     transition: all 0.5s;
     text-align: center;
+    background-color: beige;
 }
 
 
@@ -86,4 +103,33 @@
 
 .answer {
     
+}
+
+#main-content {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width:400px;
+    height:95%;
+    margin: 0;
+    padding :5%;
+    overflow-y: scroll;
+    z-index: 10;
+    transform: translateX(-50%);
+}
+
+
+@media screen and (max-width: 959px) {
+	/* 959px以下に適用されるCSS（タブレット用） */
+    
+
+
+}
+@media screen and (max-width: 480px) {
+	/* 480px以下に適用されるCSS（スマホ用） */
+    #main-content {
+        width:90%;
+        padding :5%;
+        
+    }
 }

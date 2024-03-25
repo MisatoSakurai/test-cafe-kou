@@ -440,12 +440,20 @@ var quiz_list ={
 
 
 
+const quiz_place_list = {
+    prairie:[1,2,3,6,8,12,13,16,17,19],
+    castle:[4,5,7,9,10,11,14,15,18,20]
+}
 
 
 window.onload = function (){
-    for(const key in quiz_list){
-        make_quiz(key);
+    for(const v of quiz_place_list.prairie){
+        make_quiz(v,"prairie");
     }
+    for(const v of quiz_place_list.castle){
+        make_quiz(v,"castle");
+    }
+    
     const buttons = document.querySelectorAll('.Q_button');
     buttons.forEach((button) => {
         button.addEventListener('click', (e) => {
@@ -474,7 +482,7 @@ window.onload = function (){
 }
 
 
-function make_quiz(n){
+function make_quiz(n,place){
     quiz_data = quiz_list[n];
     
     var parentElement = document.getElementById('main-content');
@@ -483,20 +491,23 @@ function make_quiz(n){
     Q_div.id = 'Q' + n;
     Q_div.className = 'Qs'; 
     
-    var Q_button = document.createElement('button');
-    Q_button.id = 'Q'+n+'_button';
-    Q_button.className = 'Q_button';
-    Q_button.textContent = 'No.' + n;
+//    var Q_button = document.createElement('button');
+//    Q_button.id = 'Q'+n+'_button';
+//    Q_button.className = 'Q_button '+place;
+//    Q_button.textContent = 'No.' + n;
     
-    var acodion_body = document.createElement('div');
-    acodion_body.className = 'acodion_body';
+//    var acodion_body = document.createElement('div');
+//    acodion_body.className = 'acodion_body';
     
-    var nomal_answer = newQuizAndAnswer(magicType.NONE);
-    acodion_body.appendChild(nomal_answer);
+//    var nomal_answer = newQuizAndAnswer(magicType.NONE);
+//    acodion_body.appendChild(nomal_answer);
+    
+    
+    var quiz_image = document.createElement('img');
+    quiz_image.className = 'quiz_image';
+    quiz_image.src = quiz_data.magics[magicType.NONE].image;
+
     for(const magictype in quiz_data.magics){
-        if(magictype == magicType.NONE){
-            continue;
-        }
         
         var new_acodion_body = document.createElement('div');
         new_acodion_body.className = 'acodion_body';
@@ -507,12 +518,14 @@ function make_quiz(n){
         magic_Q_button.textContent = magic_info[magictype].name + 'の答え';
         var quiz_and_answer = newQuizAndAnswer(magictype);
         new_acodion_body.appendChild(quiz_and_answer);
-        acodion_body.appendChild(magic_Q_button);
-        acodion_body.appendChild(new_acodion_body);
+        Q_div.appendChild(magic_Q_button);
+        Q_div.appendChild(new_acodion_body);
         
     }
-    Q_div.appendChild(Q_button);
-    Q_div.appendChild(acodion_body);
+    
+//    Q_div.appendChild(Q_button);
+//    Q_div.appendChild(acodion_body);
+    parentElement.appendChild(quiz_image);
     parentElement.appendChild(Q_div);
 }
 
@@ -524,12 +537,14 @@ function newQuizAndAnswer(magictype){
     quiz_and_answer.className = 'quiz_and_answer';
     if(magictype == magicType.NONE){
         quiz_and_answer.classList.toggle('nomal_answer');
+    }else{
+        var quiz_image = document.createElement('img');
+        quiz_image.className = 'quiz_image';
+        quiz_image.src = quiz_data.magics[magictype].image;
+        quiz_and_answer.appendChild(quiz_image);
+
     }
-    
-    var quiz_image = document.createElement('img');
-    quiz_image.className = 'quiz_image';
-    quiz_image.src = quiz_data.magics[magictype].image;
-    
+
     var explain_and_answer = document.createElement('div');
     explain_and_answer.className = 'explain_and_answer';
     
@@ -552,7 +567,6 @@ function newQuizAndAnswer(magictype){
     
     explain_and_answer.appendChild(explain_p);
     explain_and_answer.appendChild(answer_p);
-    quiz_and_answer.appendChild(quiz_image);
     quiz_and_answer.appendChild(explain_and_answer);
     
     return(quiz_and_answer);
