@@ -20,7 +20,7 @@ const magicType = Object.freeze({
 
 const magic_info = Object.freeze({
     [magicType.NONE]:{
-        name:'なし'
+        name:'通常'
     },
     [magicType.CHANGE_COLOR]:{
         name:'カラー',
@@ -506,6 +506,10 @@ function make_quiz(n,place){
     var quiz_image = document.createElement('img');
     quiz_image.className = 'quiz_image';
     quiz_image.src = quiz_data.magics[magicType.NONE].image;
+    
+    var hr = document.createElement('hr');
+    hr.style.color = "black";
+    hr.setAttribute('noshade', 'noshade');
 
     for(const magictype in quiz_data.magics){
         
@@ -523,11 +527,94 @@ function make_quiz(n,place){
         
     }
     
+    
 //    Q_div.appendChild(Q_button);
 //    Q_div.appendChild(acodion_body);
     parentElement.appendChild(quiz_image);
     parentElement.appendChild(Q_div);
+    parentElement.appendChild(hr)
 }
+
+
+
+
+function make_quiz_2(n,place){
+    quiz_data = quiz_list[n];
+    
+    var parentElement = document.getElementById('main-content');
+    
+    var Q_div = document.createElement('div');
+    Q_div.id = 'Q' + n;
+    Q_div.className = 'Qs'; 
+    
+//    var Q_button = document.createElement('button');
+//    Q_button.id = 'Q'+n+'_button';
+//    Q_button.className = 'Q_button '+place;
+//    Q_button.textContent = 'No.' + n;
+    
+//    var acodion_body = document.createElement('div');
+//    acodion_body.className = 'acodion_body';
+    
+//    var nomal_answer = newQuizAndAnswer(magicType.NONE);
+//    acodion_body.appendChild(nomal_answer);
+    
+    
+    var quiz_image = document.createElement('img');
+    quiz_image.className = 'quiz_image';
+    quiz_image.src = quiz_data.magics[magicType.NONE].image;
+    
+    var hr = document.createElement('hr');
+    hr.style.color = "black";
+    hr.setAttribute('noshade', 'noshade');
+    
+    var open_magic_Q_button = document.createElement('button');
+    open_magic_Q_button.id = 'Q' + n + '_open_magic_button';
+    open_magic_Q_button.className = 'Q_button open_magic_button';
+    open_magic_Q_button.textContent = '魔法の答え';
+    var open_magic_acodion_body = document.createElement('div');
+    open_magic_acodion_body.className = 'acodion_body';
+    
+    let need_magic_button = false;
+
+    for(const magictype in quiz_data.magics){
+        
+        var new_acodion_body = document.createElement('div');
+        new_acodion_body.className = 'acodion_body';
+    
+        var magic_Q_button = document.createElement('button');
+        magic_Q_button.id = 'Q' + n + '_' + magictype + '_button';
+        magic_Q_button.textContent = magic_info[magictype].name + 'の答え';
+        var quiz_and_answer = newQuizAndAnswer(magictype);
+        new_acodion_body.appendChild(quiz_and_answer);
+        
+        if(magictype == magicType.NONE){
+            
+            magic_Q_button.className = 'Q_button';
+            Q_div.appendChild(magic_Q_button);
+            Q_div.appendChild(new_acodion_body);
+        }else{
+            
+            magic_Q_button.className = 'Q_button magic_button';
+            need_magic_button = true;
+            open_magic_acodion_body.appendChild(magic_Q_button);
+            open_magic_acodion_body.appendChild(new_acodion_body);
+        }
+        
+    }
+    
+    
+//    Q_div.appendChild(Q_button);
+//    Q_div.appendChild(acodion_body);
+    if(need_magic_button){
+        Q_div.appendChild(open_magic_Q_button);
+        Q_div.appendChild(open_magic_acodion_body);
+    }
+    parentElement.appendChild(quiz_image);
+    parentElement.appendChild(Q_div);
+    parentElement.appendChild(hr)
+}
+
+
 
 
 
