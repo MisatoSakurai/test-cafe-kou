@@ -1,8 +1,25 @@
+@charset "UTF-8";
+
+:root {
+    --red: #E60033;
+    --blue: #0072EF;
+    --yellow: #F4E21D;
+    --green: #00C917;
+    --purple: #884898;
+    --orange: #FF9123;
+    --gray: #666;
+    --dark_gray: #525252;
+    --pink: #FF7BAC;
+}
+
+
 
 
 body {
-    
+    font-size: 20px;
+    font-family: 'M PLUS 2', sans-serif;
 }
+
 
 #background {
     position: fixed;
@@ -36,14 +53,18 @@ hr {
 .Q_button {
     appearance: none;
     text-align: center;
+    background-color: black;
+    border: 2px solid #f0f0f0;
+    border-radius: 5px;
+    color :white;
     width: 100%;
-    background-color: #223a70;
-    color: #fff;
     padding: 30px;
+    margin: 2px 0;
 }
 
 
 
+/*
 
 .Q_button.magic_button {
     background-color: #b33e5c;
@@ -51,6 +72,7 @@ hr {
 }
 
 
+*/
 
 
 .acodion_body {
