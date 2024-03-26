@@ -16,7 +16,7 @@
 
 
 body {
-    font-size: 20px;
+    font-size: 16px;
     font-family: 'M PLUS 2', sans-serif;
 }
 
@@ -60,6 +60,13 @@ hr {
     width: 100%;
     padding: 30px;
     margin: 2px 0;
+}
+
+.Q_button:active {
+    appearance: none;
+    text-align: center;
+    border-radius: 5px;
+    color :rgb(157, 157, 157);
 }
 
 
@@ -115,13 +122,15 @@ hr {
     width: 80%;
     margin: 0 5%;
     padding: 10px 5%;
-    background-color: lightgray;
-    color: black;
+    background-color: black;
+    border: 2px solid #f0f0f0;
+    border-radius: 5px;
+    color :white;
 }
 
 
 .explain {
-    
+    text-align: left;
 }
 
 
@@ -152,8 +161,13 @@ hr {
 @media screen and (max-width: 480px) {
 	/* 480px以下に適用されるCSS（スマホ用） */
     #main-content {
-        width:90%;
+        width:90vmin;
         padding :5%;
         
+    }
+
+    .Q_button {
+        padding: 3vmin;
+        margin: 2px 0;
     }
 }
