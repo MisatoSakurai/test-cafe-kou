@@ -24,6 +24,7 @@
             </div>
         </div>
         <div id="title_sheet" style="display:block">
+            <img class="back_image_fit" src ='images/title/ゲームタイトル画面.png'/>
             <div id="title_text_and_buttons" onclick="startGame()">
                 <img src="images/title/スタートボタン.png" onclick="startGame()" id="start_button" class="title_button">
                 <!--<img src="images/title/止めるボタン-1.png" onclick="quitGame()" id="quit_button" class="title_button">-->
@@ -33,7 +34,7 @@
             
         </div>
         <div id="tutorial" style="display:none">
-            <div id="story_sogen" style="display:none"></div>
+            <img src = 'images/background/草原_戦闘画面.jpg' id="story_sogen" class="back_image_fit" style="display:none"/>
             <div id="ending" style="display:none"></div>
             
             <img id="tutorial_image" src="">
@@ -97,6 +98,7 @@
             </div>
             
             <div id="prairie" class="stage">
+                <img class="back_image_cover" src ='images/background/草原_俯瞰図.png'/>
                 <div class="quiz_icons" id="prairie_q_icons">
                 </div>
                 <img src ="images/icons/看板アイコン.png" alt = "看板" onclick="openBoard()" id="board_icon">
@@ -105,6 +107,7 @@
             </div>
             
             <div id="rocky" class="stage" style="display: none">
+                <img class="back_image_cover" src ='images/background/岩場_俯瞰図.png'/>
                 <div id="quiz_icons">
                 </div>
                 <img id='B2_icon' src="images/mobs/飛ぶ.png"onclick="openBattle('B2')" class="monster_icon">
@@ -113,6 +116,7 @@
             </div>
             
             <div id="castle" class="stage" style="display: none">
+                <img class="back_image_cover" src ='images/background/祭壇_俯瞰図.png'/>
                 <div class="quiz_icons" id="castle_q_icons">
                     
                 </div>
@@ -269,6 +273,7 @@
         
         
         <div id="B1" class="battle" style="display: none" onclick="fail()">
+            <img class="back_image_fit" src='images/background/草原_戦闘画面.jpg'/>
             <div class="enemy_info">
                 <div class="enemy_name" id="B1_name" onclick="changeName(this.id)">ブルースライム</div>
                 <div class="enemy_status">
@@ -290,6 +295,7 @@
         
         
         <div id="B2" class="battle" style="display: none" onclick="fail()">
+            <img class="back_image_fit" src='images/background/岩場_戦闘画面.png'/>
             <img src="images/mobs/飛ぶ.png" class="monster" id="monster2" onclick="changeColor('monster2')">
             <img src="images/background/つり橋.png" id="tsuribashi">
             <div class="enemy_info">
@@ -312,6 +318,7 @@
         
         
         <div id="B3" class="battle" style="display: none" onclick="fail()">
+            <img class="back_image_fit" src='images/background/祭壇_戦闘画面.png'/>
             <div class="enemy_info">
                 <div class="enemy_name" id="B3_name" onclick="changeName('B3')">魔王Mr.魔王</div>
                 <div class="enemy_status">
