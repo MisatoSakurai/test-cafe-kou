@@ -211,13 +211,13 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/1_寿司.png",
-                answer:"カイロ",
+                answer:["カイロ","海路","回路","懐炉"],
                 hint:["3つのイラストはとある食べ物を表しています。<br>真ん中は海苔が巻かれたものを表しています。","これらはお寿司のイラストを示していました。<br>右からイカ、イクラ、マグロとなります"],
             },
             [magicType.YELLOW]:{
                 image:"images/quiz/1_寿司_色.png",
                 hint:["カラーを使ってマグロをタマゴにすることができます。"],
-                answer:"カイゴ",
+                answer:["カイゴ","介護"],
                 place:{
                     x: 64, y: 12,  // 座標%
                     w: 20, h: 12   // サイズ%
@@ -230,7 +230,7 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/2_ハンガー傘.png",
-                answer:"サンカク",
+                answer:["サンカク","三角"],
                 hint:["右の図形を左の三角につけたとき、何に見えるかを考えましょう。上につけると家で使うもの、下につけると雨の日に使うものになるようです。","右の棒を三角の上につけると｢はんがー｣、下につけると｢かさ｣になります。"],
             },
         }
@@ -274,7 +274,7 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/4_国旗.png",
-                answer:"スミカ",
+                answer:["スミカ","住処","栖","棲家"],
                 hint:["2つの国旗のうち、上側はイタリアを表しています。表でイタリアがミツバチになる法則を考えてみましょう。","上の表で国旗の国名の一つ下のマスを読む法則になっていました。ドイツの一つ下を読んでみましょう"],
             },
             [magicType.BLUE]:{
@@ -318,7 +318,7 @@ var quiz_list ={
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/6_★迷路_字.png",
-                answer:"サイテキカイ",
+                answer:["サイテキカイ","最適解"],
                 hint:"文字トランスを使って｢ミッツ｣を｢ムッツ｣にすることで迷路の通るルートが変わります。",
                 place:{
                     x: 34, y: 7,  // 座標%
@@ -361,12 +361,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/9_部首.png",
-                answer:"シカク",
+                answer:["シカク","四角","資格","視覚","死角","刺客"],
                 hint:["それぞれのカタカナは漢字に関する形が似ているパーツを表しています。ウは上側、イは左側、リは右側に来ることが多いです。","それぞれのカタカナは似た部首を表していました。ネ、サ、ロは｢しめすへん｣、｢くさかんむり｣、｢くち｣か｢くちへん｣か｢くにがまえ｣を示しています"],
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/9_部首_字.png",
-                answer:"シズク",
+                answer:["シズク","雫","滴"],
                 hint:"文字トランスを使って｢サ｣を｢シ｣にすることで｢さんずい｣に変わります。",
                 place:{
                     x: 16, y: 62,  // 座標%
@@ -380,12 +380,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/10_ピースはめ.png",
-                answer:"カタチ",
+                answer:["カタチ","形"],
                 hint:["赤矢印が｢たに｣になるようにピースを配置し、そこからうまくはまるように考えてみましょう。","赤い矢印が｢たに｣であることをヒントに右上のピースが左上に入ります。"],
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/10_ピースはめ_鋏.png",
-                answer:"クウキ",
+                answer:["クウキ","空気"],
                 hint:"ハサミを使い真ん中を切ることで別の問題にすることができます。｢たに｣のヒントから5×5のマス目は五十音表を示しています。",
                 afterInvolvedHint:"赤い矢印が通る2マスには｢たに｣が入ります。これはとある表の右側を切り取ったものを表しています。",
                 place:{
@@ -400,12 +400,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/11_干支.png",
-                answer:"マル",
+                answer:["マル","丸"],
                 hint:["これは12匹の動物の並びを使います。その上でいくつか進めてマスの中に埋めましょう。","これらは十二支を表していました。その順番で進めたり戻したりすると｢ウマ｣、｢サル｣が入ります"],
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/11_干支_字.png",
-                answer:"シル",
+                answer:["シル","汁","知る"],
                 hint:"文字トランスを使って｢トラ｣を｢トリ｣に変えます。すると｢ウシ｣に変化します。",
                 place:{
                     x: 30, y: 55,  // 座標%
@@ -427,12 +427,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/12_じゃんけん.png",
-                answer:"マカイ",
+                answer:["マカイ","魔界"],
                 hint:["左側の手と戦ったときの結果をそれぞれで考えてみましょう。","チョキと戦ったときの結果が右側に入ります。マケ、カチ、アイコとなります"],
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/12_じゃんけん_鋏.png",
-                answer:"カイサ",
+                answer:["カイサ","階差","海砂"],
                 hint:"ハサミを使って真ん中を切ることで3つの手が表すものを入れる謎に変わります。順にカミ、イシ、ハサミが入ります。",
                 afterInvolvedHint:"それぞれの手そのものが何を表しているかを考えてみましょう。",
                 place:{
@@ -447,12 +447,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/13_一口.png",
-                answer:"ダシン",
+                answer:["ダシン","打診"],
                 hint:["漢字のパーツを足したり引いたりしているようです。","漢字のパーツで足し引きすると、上から｢間(あいだ)｣、｢古(いにしえ)｣、｢女(おんな)｣になります。"],
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/13_一口_鋏.png",
-                answer:"カクチ",
+                answer:["カクチ","各地"],
                 hint:"「ハサミ」を使って一番左の漢字を切り取ります。「プラス」「マイナス」を漢数字としてみなすと、上から「十日（とおか）」「一口（ひとくち）」「一次（いちじ）」となります。",
                 afterInvolvedHint:"漢字のパーツで足し引きすると、上から｢間(あいだ)｣、｢古(いにしえ)｣、｢女(おんな)｣になります。",
                 place:{
@@ -505,12 +505,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/16_オセロ.png",
-                answer:"イノリ",
+                answer:["イノリ","祈り"],
                 hint:["オセロなので、同じ色で挟まれた色はひっくり返る法則があります。どのコマがひっくり返るか考えましょう。","置いたマスから下側、右下側のコマがひっくり返ります。"],
             },
             [magicType.BLUE]:{
                 image:"images/quiz/16_オセロ_色.png",
-                answer:"コイノボリ",
+                answer:["コイノボリ","鯉のぼり"],
                 hint:"カラーを使って｢ん｣のコマを青色にします。すると左下側にもひっくり返ります",
                 place:{
                     x: 29, y: 44,  // 座標%
@@ -519,7 +519,7 @@ var quiz_list ={
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/16_オセロ_字.png",
-                answer:"サツキ",
+                answer:["サツキ","皐月"],
                 hint:"文字トランスを使って｢アオ｣を｢アカ｣にします。するとひっくり返るコマが左右方向になります",
                 place:{
                     x: 16, y: 72,  // 座標%
@@ -553,12 +553,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/19_方位.png",
-                answer:"ノウド",
+                answer:["ノウド","濃度"],
                 hint:["4つの方向を表す言葉を考えてみましょう。","4つの単語は4方位を表します。右には「イースト」が埋まるので、そこから時計回りに「サウス」「ウエスト」「ノース」が埋まります。"],
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/19_方位_字.png",
-                answer:"サイド",
+                answer:["サイド","彩度","再度"],
                 hint:"文字トランスを使うと、右には「ウエスト」が埋まるので、そこから時計回りに「ノース」「イースト」「サウス」が埋まります。",
                 place:{
                     x: 59, y: 33,  // 座標%
