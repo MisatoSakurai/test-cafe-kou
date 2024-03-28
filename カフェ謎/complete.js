@@ -530,9 +530,9 @@ function make_quiz(n,place){
     
 //    Q_div.appendChild(Q_button);
 //    Q_div.appendChild(acodion_body);
+    parentElement.appendChild(hr);
     parentElement.appendChild(quiz_image);
     parentElement.appendChild(Q_div);
-    parentElement.appendChild(hr)
 }
 
 
