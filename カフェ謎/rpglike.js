@@ -602,7 +602,7 @@ const board_data = {
             image:"images/board/看板_ハサミ.png",
             place:{
                     x: 64, y: 6,  // 座標%
-                    w: 10, h: 12   // サイズ%
+                    w: 14, h: 14   // サイズ%
                 },
         }
     }
@@ -1132,10 +1132,10 @@ function startGame(){
     }else{
         clear_out_sheet = document.getElementById("clear_back_sheet");
         clear_out_sheet.style.display = 'block';
-        white_out_time = 1.5;
+        white_out_time = 1.5;//ここだ。モンスターに負けたところ(こっちは動く)を参考に作り変える。
         setTimeout(function() {
             clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
-            clear_out_sheet.style.opacity = '100%';
+            clear_out_sheet.style.opacity = '1';
         }, 100); 
 
         setTimeout(function() {
@@ -1144,7 +1144,7 @@ function startGame(){
 
         setTimeout(function() {
             clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
-            clear_out_sheet.style.opacity = '0%';
+            clear_out_sheet.style.opacity = '0';
             title_sheet.style.display = 'none';
             now_status = status.STORY;
             doTutorial(tutorialType.STORY);
@@ -1312,6 +1312,7 @@ function pointOut(subject,pointer_name="pointer"){
             // 下の要素をクリックしたことにします
             target.click();
         });
+        pointer.style.top = rect.top + rect.width/2 +  "px";
     }
         
     
@@ -2172,7 +2173,7 @@ function useMagic(e){
     if (hit) {
         successMagic();
     }else{
-        failedMagic();
+        failedMagic(e,rect);
     }
     closeColorMagic();
 }
@@ -2213,7 +2214,7 @@ function makeBook(e){
 
 
 
-function failedMagic(){
+function failedMagic(e,rect){
     magic_canvas = document.getElementById("magic_canvas");
     magic_canvas.style.display = 'none';
     
@@ -2221,7 +2222,7 @@ function failedMagic(){
 
 
     popTitling("失敗");
-    popTexting("そこには使えないようだ");
+    popTexting("そこには使えないようだ<br>" + e.clientX + "/" + e.clientY + "<br>" + rect.left + "/" + rect.top + "<br>" + rect.width + "/" + rect.height);
 
     openPop();
     

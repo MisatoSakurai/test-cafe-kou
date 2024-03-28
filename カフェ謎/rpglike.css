@@ -4,6 +4,9 @@
     --red: #E60033;
     --blue: #0072EF;
     --yellow: #F4E21D;
+    --red-op: #e6003200;
+    --blue-op: #0073ef00;
+    --yellow-op: #f4e21d00;
     --green: #00C917;
     --purple: #884898;
     --orange: #FF9123;
@@ -193,8 +196,8 @@ h1 {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: white;
-    opacity: 0%;
+    background-color: rgb(255, 255, 255);
+    opacity: 0;
     z-index: 11;
 }
 
@@ -207,7 +210,7 @@ h1 {
     left: 0;
     background-image: url('images/title/クリア画像.png');
     background-size: 100% 100%;
-    opacity: 100%;
+    opacity: 1;
     z-index: 14;
 }
 
@@ -250,6 +253,7 @@ h1 {
     border: 4px solid #f0f0f0;
     border-radius: 20px;
     padding: 10px 20px;
+    z-index: 12;
 }
 
 
@@ -307,8 +311,8 @@ h1 {
 
 
 #text_log_back {
-    background-color: white;
-    opacity: 0%;
+    background-color: rgba(12, 33, 140, 0);
+    opacity: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -430,13 +434,12 @@ h1 {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    
 }
 
 .star {
     aspect-ratio:1/1;
-    height: 100%; /* 星の高さ */
-    width:auto;
+    height: 6vmin; /* 星の高さ */
+    width:6vmin;
     background-size: contain; /* 星の画像を要素内に収める */
     background-repeat: no-repeat; /* 背景画像を繰り返し無しに設定 */
 }
@@ -456,15 +459,20 @@ h1 {
 
 .quiz_content{
     position: relative;
+    display: block;
+    /* position: fixed; */
+    width: calc(297/210 * 60vh);
+    height: calc(60vh);
     aspect-ratio:297/210;
-    max-height: 55%;
+    /* max-height: 55%; */
     left: 0;
     right: 0;
-    top:20px;
+    top:0;
     margin-left: auto;
     margin-right: auto;
     z-index: 10;
 }
+
 
 
 
@@ -485,6 +493,7 @@ h1 {
     top: 45%;
     left: 10%;
     right: 10%;
+    width: calc(80% - 6px);
     padding: 3px;
     margin-left: auto;
     margin-right: auto ;
@@ -601,8 +610,8 @@ h1 {
 
 
 #QB_back{
-    background-color: black;
-    opacity: 30%;
+    background-color: rgba(0, 0, 0, 0.327);
+    /* opacity: 0.3; */
     position: fixed;
     top: 0;
     left: 0;
@@ -625,10 +634,11 @@ h1 {
 
 #board_content{
     position: relative;
-    width : auto;
+    width : 40vw;
     aspect-ratio:1806/1914 ;
     max-height: 80%;
     max-width:90%;
+    height: calc(1914/1806 * 40vw) ;
     left: 0;
     right: 0;
     top:20px;
@@ -670,9 +680,10 @@ h1 {
 
 .book_content, #explain_content{
     position: relative;
-    width : auto;
+    width : calc(2048/1536 * 75vh);
+    height : 75vh;
     aspect-ratio:2048/1536;
-    max-height: 75%;
+    /* max-height: 75%; */
     left: 0;
     right: 0;
     top:50%;
@@ -903,7 +914,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    grid-row-gap: 5vmin;
+    /* grid-row-gap: 5vmin; */
     width:70%;
     /*height:70px;*/
     position: absolute;
@@ -922,18 +933,19 @@ h1 {
 
 .selectQ{
     width:12vmin;
-    margin: 0 calc(calc(100% - 12 * 5vmin) / 10);
+    height: 12vmin;
+    margin: 5vmin calc(calc(100% - 12 * 5vmin) / 10);
 }
 
 
 #quiz_select_icon {
     position: absolute;
-    width:130px;
-    height:130px;
+    width:17vmin;
+    height:17vmin;
     top: 70%;
     left: 50%;
-    transform: translateX(-50%) translateY(-110px);
-    -webkit- transform: translateX(-50%) translateY(-110px);
+    transform: translateX(-50%) translateY(-50%);
+    -webkit- transform: translateX(-50%) translateY(-50%);
     z-index: 10;
 }
 
@@ -947,7 +959,8 @@ h1 {
 .menu_button {
     position: absolute;
     aspect-ratio:1/1;
-    height:10%;
+    height:10vmin;
+    width: 10vmin;
     max-height: 40px;
     top: 20px;
     right: 20px;
@@ -961,6 +974,7 @@ h1 {
   width: 100%;
   height: 3px;
   background-color: white;
+  opacity: 1;
 }
 .menu_button span:first-of-type{/* ハンバーガーメニューの1番目の線 */
   top: 10%;
@@ -1013,8 +1027,8 @@ h1 {
 }
 
 #menu_back {
-    background-color: black;
-    opacity: 30%;
+    background-color: rgba(0, 0, 0, 0.352);
+    /* opacity: 0.3; */
     position: fixed;
     top: 0;
     left: 0;
@@ -1085,8 +1099,7 @@ h1 {
     height: 100%;
     width: 100%;
     top:0;
-    left:0;
-    
+    left:0;   
 }
 
 
@@ -1105,8 +1118,8 @@ h1 {
 
 
 #open_color_back{
-    background-color: black;
-    opacity: 0%;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -1148,34 +1161,37 @@ h1 {
 
 .color_menu .red{
     transform: translateY(-84px);
-    background-color: var(--red);
-    opacity: 0%;
+    background-color: var(--red-op);
+    /* opacity: 0; */
 }
 
 .color_menu .blue{
     transform: translateY(-148px);
-    opacity: 0%;
-    background-color: var(--blue);
+    /* opacity: 0; */
+    background-color: var(--blue-op);
 }
 
 .color_menu .yellow{
     transform: translateY(-212px);
-    background-color: var(--yellow);
-    opacity: 0%;
+    background-color: var(--yellow-op);
+    /* opacity: 0; */
 }
 
 
 .color_menu.open .red{
     transform: translateY(0); 
-    opacity: 100%;
+    background-color: var(--red);
+    opacity: 1;
 }
 .color_menu.open .blue{
     transform: translateY(0);
-    opacity: 100%;
+    background-color: var(--blue);
+    opacity: 1;
 }
 .color_menu.open .yellow{
     transform: translateY(0); 
-    opacity: 100%;
+    background-color: var(--yellow);
+    opacity: 1;
 }
 
 
@@ -1213,6 +1229,7 @@ h1 {
     /*left: 50%;*/
     margin-left: auto;
     margin-right: auto;
+    padding: 0 10px;
     /*transform: translateX(-50%);
     -webkit- transform: translateX(-50%);*/
 }
@@ -1255,8 +1272,8 @@ h1 {
 
 
 #pop_back {
-    background-color: black;
-    opacity: 30%;
+    background-color: rgba(0, 0, 0, 0.31);
+    /* opacity: 0.3; */
     position: fixed;
     top: 0;
     left: 0;
@@ -1463,7 +1480,8 @@ h1 {
     left: 10%;
     bottom: 2%;
     width: 80%;
-    min-height: 217px;
+    /* min-height: 217px; */
+    min-height: 28vmin;
     height: 25%;
     text-align: left;
     border: 4px solid #f0f0f0;
@@ -1592,3 +1610,5 @@ h1 {
         opacity: 0;
     }
 }
+
+
