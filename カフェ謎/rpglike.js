@@ -1194,7 +1194,7 @@ function clearGame(){
     
     setTimeout(function() {
         clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
-        clear_out_sheet.style.opacity = '100%';
+        clear_out_sheet.style.opacity = '1';
     }, 100); 
     
     setTimeout(function() {
@@ -1203,7 +1203,7 @@ function clearGame(){
     
     setTimeout(function() {
         clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
-        clear_out_sheet.style.opacity = '0%';
+        clear_out_sheet.style.opacity = '0';
         showEnding();
         closeGeneTextLog();
 
@@ -2222,7 +2222,7 @@ function failedMagic(e,rect){
 
 
     popTitling("失敗");
-    popTexting("そこには使えないようだ<br>" + e.clientX + "/" + e.clientY + "<br>" + rect.left + "/" + rect.top + "<br>" + rect.width + "/" + rect.height);
+    popTexting("そこには使えないようだ");
 
     openPop();
     
