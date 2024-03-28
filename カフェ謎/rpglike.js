@@ -369,8 +369,8 @@ var quiz_list ={
                 answer:["シズク","雫","滴"],
                 hint:"文字トランスを使って｢サ｣を｢シ｣にすることで｢さんずい｣に変わります。",
                 place:{
-                    x: 16, y: 62,  // 座標%
-                    w: 5, h: 12   // サイズ%
+                    x: 19, y: 62,  // 座標%
+                    w: 10, h: 12   // サイズ%
                 }
             }
         }
@@ -726,7 +726,7 @@ const menu_tutorial_list = [
     [speaker.G,"——右上のアイコンをタップすることでメニューを開くことができます"],
     ["action",{func:finishPoint, subject:"なし"}],
     ["action",{func:openMenu, subject:"なし"}],
-    [speaker.G,"——ここには様々な情報が載っているので困ったら開いてみましょう"],
+    [speaker.G,"——モンスターの情報がわかる「モンスター図鑑」や魔法の情報がわかる「魔法図鑑」など、様々な情報が載っているので困ったら開いてみましょう"],
     ["action",{func:closeMenu, subject:"なし"}],
     [speaker.G,"——説明は以上です<br>それでは、あなたが無事ゲームから抜け出せることを期待していますよ"],
 ];
@@ -824,7 +824,8 @@ let tutorial_talk = {
 const log_name = Object.freeze({
     CANTQUIT:"cannot_quit_game",
     WINMONSTER:"win_monster",
-    LOSEMONSTER:"lose_monster"
+    LOSEMONSTER:"lose_monster",
+    MAXLEVEL:"max_level"
 });
 
 
@@ -835,9 +836,9 @@ const log_list =  {
         'B1':[[speaker.P,"「負けてしまった…他の方法を考えよう」"],[speaker.P,"「敵について何か情報が得られれば…」"]],
         'B2':[[speaker.P,"「負けてしまった…他の方法を考えよう」"]],
         'B3':[[speaker.P,"「負けてしまった…」"]]
-    }
-    
- 
+    },
+    [log_name.MAXLEVEL]:[[speaker.N,"レベルがMaxになった。もうこれ以上獲得できる魔法はないようだ。"]]
+
 }
 
 
@@ -1058,8 +1059,8 @@ function notDelete(){
 function debugMode(){
 
     player_data = {
-        point:40000,
-        level:4,
+        point:5540,
+        level:3,
     };
 
     tutorial_finish = {
@@ -2384,6 +2385,12 @@ function checkLevel(init = false){
             
             if(!tutorial_finish[tutorialType.MAGIC].finish){
                 doTutorial(tutorialType.MAGIC);
+            }
+
+            if(player_data.level == max_level){
+                current_dialog_num = -1;
+                current_dialog_list = log_list[log_name.MAXLEVEL];
+                displayNextDialog();
             }
         }
 

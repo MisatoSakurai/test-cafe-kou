@@ -42,6 +42,40 @@ body {
 }
 
 
+
+#top {
+    height : fit-content;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+
+#top h1 {
+    position: relative;
+    font-size: 26px;
+    margin-top: 5vh;
+}
+
+#top-ps {
+    position: relative;
+    text-align: left;
+    margin-top: 5vh;
+
+}
+
+#form-link-button {
+    position: relative;
+    text-align: center;
+    width: fit-content;
+    padding: 10px 5%;
+    margin: 5vh 0;
+    background-color: black;
+    border: 2px solid #f0f0f0;
+    border-radius: 5px;
+    color :white;
+}
+
+
 .Qs {
 }
 
@@ -118,7 +152,7 @@ hr {
 
 
 
-.explain_and_answer {
+.explain_and_answer{
     width: 80%;
     margin: 0 5%;
     padding: 10px 5%;
@@ -127,6 +161,7 @@ hr {
     border-radius: 5px;
     color :white;
 }
+
 
 
 .explain {
@@ -171,3 +206,4 @@ hr {
         margin: 2px 0;
     }
 }
+

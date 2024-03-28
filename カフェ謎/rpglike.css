@@ -853,7 +853,7 @@ h1 {
     /*max-width: 160px;*/
     position: absolute;
     top: 2%;
-    left: 50%;
+    left: 50.5%;
     transform: translateX(-50%);
     -webkit- transform: translateX(-50%);
 }
@@ -926,7 +926,7 @@ h1 {
 }
 
 #castle_q_icons{
-    top: 62%;
+    top: 70vh;
 }
 
 
@@ -935,6 +935,12 @@ h1 {
     width:12vmin;
     height: 12vmin;
     margin: 5vmin calc(calc(100% - 12 * 5vmin) / 10);
+}
+
+
+#castle_q_icons .selectQ{
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
 }
 
 
