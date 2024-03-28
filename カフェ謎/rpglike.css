@@ -680,9 +680,10 @@ h1 {
 
 .book_content, #explain_content{
     position: relative;
-    width : auto;
+    width : calc(2048/1536 * 75vh);
+    height : 75vh;
     aspect-ratio:2048/1536;
-    max-height: 75%;
+    /* max-height: 75%; */
     left: 0;
     right: 0;
     top:50%;
