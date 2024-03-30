@@ -169,8 +169,27 @@ hr {
 }
 
 
-.answer {
-    
+.answer_button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background-color: black;
+    border: 2px solid #f0f0f0;
+    border-radius: 5px;
+    color :white;
+    width: fit-content;
+    padding: 10px;
+}
+
+.answer_p {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color :white;
+    width: fit-content;
+    padding: 10px;
 }
 
 #main-content {
