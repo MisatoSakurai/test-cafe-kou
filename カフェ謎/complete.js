@@ -443,7 +443,6 @@ var quiz_list ={
 
 
 
-
 const quiz_place_list = {
     prairie:[1,2,3,6,8,12,13,16,17,19],
     castle:[4,5,7,9,10,11,14,15,18,20]
@@ -482,6 +481,7 @@ window.onload = function (){
     });
     
     var quiz_data = null;
+    
 
 }
 
@@ -648,12 +648,15 @@ function newQuizAndAnswer(magictype){
     }
     
     var answer_p = document.createElement('p');
-    answer_p.className = 'answer';
+    answer_p.className = 'answer_button';
     var answer = quiz_data.magics[magictype].answer;
     if(typeof(answer) != 'string'){
         answer = answer[0] + "," + answer[1];
     }
-    answer_p.textContent = '答え：' + answer;
+    answer_p.textContent = '答えを表示';
+    answer_p.addEventListener('click', (e) => {
+        showAnswer(e.target,answer,true);
+    })
     
     
     explain_and_answer.appendChild(explain_p);
@@ -665,3 +668,16 @@ function newQuizAndAnswer(magictype){
 
 
 
+
+
+
+function showAnswer(answer_p,answer,show){
+    if(show){
+        answer_p.textContent = '答え：' + answer;
+        console.log(answer_p);
+        answer_p.className = 'answer_p';
+        answer_p.removeEventListener('click', (e) => {
+            showAnswer(e.target,answer,true);
+        })
+    }
+}
