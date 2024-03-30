@@ -41,11 +41,11 @@ const stage = Object.freeze({
 
 
 const images = Object.freeze({
-    QICON: 'images/icons/謎アイコン.png',
-    DARKSTAR: 'images/icons/正解数アイコン（暗）.png',
-    LIGHTSTAR: 'images/icons/正解数アイコン（明）.png',
-    UP: 'images/icons/up_arrow.png',
-    UNDER: 'images/icons/under_arrow.png',
+    QICON: 'images/icons/謎アイコン.webp',
+    DARKSTAR: 'images/icons/正解数アイコン（暗）.webp',
+    LIGHTSTAR: 'images/icons/正解数アイコン（明）.webp',
+    UP: 'images/icons/up_arrow.webp',
+    UNDER: 'images/icons/under_arrow.webp',
     
 });
 //iconのimageを管理
@@ -81,8 +81,8 @@ const magic_info = Object.freeze({
     },
     [magicType.CHANGE_COLOR]:{
         name:'カラー',
-        image:"images/icons/色変化.png",
-        selected_image:"images/icons/色変化.png"
+        image:"images/icons/色変化.webp",
+        selected_image:"images/icons/色変化.webp"
     },
     [magicType.RED]:{
         name:'カラー(赤)',
@@ -95,18 +95,18 @@ const magic_info = Object.freeze({
     },
     [magicType.ADD_CHAR]:{
         name:'スクエア',
-        image:"images/icons/枠追加.png",
-        selected_image:"images/icons/枠追加.png"
+        image:"images/icons/枠追加.webp",
+        selected_image:"images/icons/枠追加.webp"
     },
     [magicType.CHANGE_CHAR]:{
         name:'文字トランス',
-        image:"images/icons/文字変化.png",
-        selected_image:"images/icons/文字変化.png"
+        image:"images/icons/文字変化.webp",
+        selected_image:"images/icons/文字変化.webp"
     },
     [magicType.SCISSORS]:{
         name:'ハサミ',
-        image:"images/icons/カット.png",
-        selected_image:"images/icons/カット.png"
+        image:"images/icons/カット.webp",
+        selected_image:"images/icons/カット.webp"
     }
 });
 
@@ -210,12 +210,12 @@ var quiz_list ={
     1:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/1_寿司.png",
+                image:"images/quiz/1_寿司.webp",
                 answer:["カイロ","海路","回路","懐炉"],
                 hint:["3つのイラストはとある食べ物を表しています。<br>真ん中は海苔が巻かれたものを表しています。","これらはお寿司のイラストを示していました。<br>右からイカ、イクラ、マグロとなります"],
             },
             [magicType.YELLOW]:{
-                image:"images/quiz/1_寿司_色.png",
+                image:"images/quiz/1_寿司_色.webp",
                 hint:["カラーを使ってマグロをタマゴにすることができます。"],
                 answer:["カイゴ","介護"],
                 place:{
@@ -229,7 +229,7 @@ var quiz_list ={
     2:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/2_ハンガー傘.png",
+                image:"images/quiz/2_ハンガー傘.webp",
                 answer:["サンカク","三角"],
                 hint:["右の図形を左の三角につけたとき、何に見えるかを考えましょう。上につけると家で使うもの、下につけると雨の日に使うものになるようです。","右の棒を三角の上につけると｢はんがー｣、下につけると｢かさ｣になります。"],
             },
@@ -240,14 +240,14 @@ var quiz_list ={
     3:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/3_色付き英字.png",
-                color_image:"images/quiz/3_色付き英字_色覚特性.png",
+                image:"images/quiz/3_色付き英字.webp",
+                color_image:"images/quiz/3_色付き英字_色覚特性.webp",
                 answer:["ラック","LUCK","luck","Luck"],
                 hint:["指示に従って3つの色以外を無視して現れる文字を考えてみましょう。4文字の英単語が出てきます。","紫、赤、緑の色だけを拾うと一番左はLのように考えられます。同様に行うとU、C、Kとなります。"],
             },
             [magicType.RED]:{
-                image:"images/quiz/3_色付き英字_色.png",
-                color_image:"images/quiz/3_色付き英字_色_色覚特性.png",
+                image:"images/quiz/3_色付き英字_色.webp",
+                color_image:"images/quiz/3_色付き英字_色_色覚特性.webp",
                 answer:["ロック","LOCK","Lock","lock"],
                 hint:"カラーの赤色を使って2文字目を｢O｣にすることができます。",
                 place:{
@@ -256,8 +256,8 @@ var quiz_list ={
                 }
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/3_色付き英字_鋏.png",
-                color_image:"images/quiz/3_色付き英字_鋏_色覚特性.png",
+                image:"images/quiz/3_色付き英字_鋏.webp",
+                color_image:"images/quiz/3_色付き英字_鋏_色覚特性.webp",
                 answer:["スター","STAR","star","Star"],
                 hint:"ハサミを使って｢むらさきいろ｣を｢きいろ｣にします。",
                 place:{
@@ -273,12 +273,12 @@ var quiz_list ={
         color_vision: false,
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/4_国旗.png",
+                image:"images/quiz/4_国旗.webp",
                 answer:["スミカ","住処","栖","棲家"],
                 hint:["2つの国旗のうち、上側はイタリアを表しています。表でイタリアがミツバチになる法則を考えてみましょう。","上の表で国旗の国名の一つ下のマスを読む法則になっていました。ドイツの一つ下を読んでみましょう"],
             },
             [magicType.BLUE]:{
-                image:"images/quiz/4_国旗_色.png",
+                image:"images/quiz/4_国旗_色.webp",
                 answer:"コアラ",
                 hint:"カラーの青色を使ってイタリアをフランス国旗にしましょう。すると法則が国名と点対称の位置にある文字を拾う法則になります。",
                 place:{
@@ -293,12 +293,12 @@ var quiz_list ={
     5:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/5_りんごなし.png",
+                image:"images/quiz/5_りんごなし.webp",
                 answer:["アニ","兄"],
                 hint:["上のイラストである魚、しおり、なしをそれぞれの丸に入るように表記を変えてみましょう。","イラストをローマ字で表記すると丸にピッタリ入ります。NASHIと入れて線で結ばれた文字を順に読んでみましょう"],
             },
             [magicType.RED]:{
-                image:"images/quiz/5_りんごなし_色.png",
+                image:"images/quiz/5_りんごなし_色.webp",
                 answer:["イロ","色"],
                 hint:"カラーの赤色を用いるとなしがりんごに変わります。RINGOと埋めてみましょう",
                 place:{
@@ -312,12 +312,12 @@ var quiz_list ={
     6:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/6_★迷路.png",
+                image:"images/quiz/6_★迷路.webp",
                 answer:"サイン",
                 hint:["はじめは下の方に行きましょう。","下の方に行き、1つ目の曲がり角を曲がりゴールまで行きます。"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/6_★迷路_字.png",
+                image:"images/quiz/6_★迷路_字.webp",
                 answer:["サイテキカイ","最適解"],
                 hint:"文字トランスを使って｢ミッツ｣を｢ムッツ｣にすることで迷路の通るルートが変わります。",
                 place:{
@@ -331,7 +331,7 @@ var quiz_list ={
     7:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/7_曜日.png",
+                image:"images/quiz/7_曜日.webp",
                 answer:["アシタ","明日","ミョウニチ","みょうにち","アス","あす"],
                 hint:["それぞれ漢字に変換して漢字に変換してみましょう。「鏡」の左半分を＋１すると「境」になるようです。","漢字に変換して考えると、「金」に＋１で「土」、「月」に＋３で「木」となる事から、数字の分だけ曜日を進めればいいことが分かります。"],
             }
@@ -341,12 +341,12 @@ var quiz_list ={
     8:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/8_26分数.png",
+                image:"images/quiz/8_26分数.webp",
                 answer:"ハード",
                 hint:["26といえばアルファベットの個数が考えられます。各数字に対応したアルファベットに変換してみましょう。","アルファベット順でそれぞれの番目に対応するアルファベットを考えます。1文字目は8番目のアルファベットなので｢H｣のようにします。"],
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/8_26分数_鋏.png",
+                image:"images/quiz/8_26分数_鋏.webp",
                 answer:"カード",
                 hint:"ハサミを使い左端を切ると8を3にすることができます。",
                 place:{
@@ -360,12 +360,12 @@ var quiz_list ={
     9:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/9_部首.png",
+                image:"images/quiz/9_部首.webp",
                 answer:["シカク","四角","資格","視覚","死角","刺客"],
                 hint:["それぞれのカタカナは漢字に関する形が似ているパーツを表しています。ウは上側、イは左側、リは右側に来ることが多いです。","それぞれのカタカナは似た部首を表していました。ネ、サ、ロは｢しめすへん｣、｢くさかんむり｣、｢くち｣か｢くちへん｣か｢くにがまえ｣を示しています"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/9_部首_字.png",
+                image:"images/quiz/9_部首_字.webp",
                 answer:["シズク","雫","滴"],
                 hint:"文字トランスを使って｢サ｣を｢シ｣にすることで｢さんずい｣に変わります。",
                 place:{
@@ -379,12 +379,12 @@ var quiz_list ={
     10:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/10_ピースはめ.png",
+                image:"images/quiz/10_ピースはめ.webp",
                 answer:["カタチ","形"],
                 hint:["赤矢印が｢たに｣になるようにピースを配置し、そこからうまくはまるように考えてみましょう。","赤い矢印が｢たに｣であることをヒントに右上のピースが左上に入ります。"],
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/10_ピースはめ_鋏.png",
+                image:"images/quiz/10_ピースはめ_鋏.webp",
                 answer:["クウキ","空気"],
                 hint:"ハサミを使い真ん中を切ることで別の問題にすることができます。｢たに｣のヒントから5×5のマス目は五十音表を示しています。",
                 afterInvolvedHint:"赤い矢印が通る2マスには｢たに｣が入ります。これはとある表の右側を切り取ったものを表しています。",
@@ -399,12 +399,12 @@ var quiz_list ={
     11:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/11_干支.png",
+                image:"images/quiz/11_干支.webp",
                 answer:["マル","丸"],
                 hint:["これは12匹の動物の並びを使います。その上でいくつか進めてマスの中に埋めましょう。","これらは十二支を表していました。その順番で進めたり戻したりすると｢ウマ｣、｢サル｣が入ります"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/11_干支_字.png",
+                image:"images/quiz/11_干支_字.webp",
                 answer:["シル","汁","知る"],
                 hint:"文字トランスを使って｢トラ｣を｢トリ｣に変えます。すると｢ウシ｣に変化します。",
                 place:{
@@ -413,7 +413,7 @@ var quiz_list ={
                 }
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/11_干支_鋏.png",
+                image:"images/quiz/11_干支_鋏.webp",
                 answer:["マリ","鞠"],
                 hint:"ハサミを使って｢イヌ｣を｢イ｣に変えます。すると｢トリ｣に変化します",
                 place:{
@@ -426,12 +426,12 @@ var quiz_list ={
     12:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/12_じゃんけん.png",
+                image:"images/quiz/12_じゃんけん.webp",
                 answer:["マカイ","魔界"],
                 hint:["左側の手と戦ったときの結果をそれぞれで考えてみましょう。","チョキと戦ったときの結果が右側に入ります。マケ、カチ、アイコとなります"],
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/12_じゃんけん_鋏.png",
+                image:"images/quiz/12_じゃんけん_鋏.webp",
                 answer:["カイサ","階差","海砂"],
                 hint:"ハサミを使って真ん中を切ることで3つの手が表すものを入れる謎に変わります。順にカミ、イシ、ハサミが入ります。",
                 afterInvolvedHint:"それぞれの手そのものが何を表しているかを考えてみましょう。",
@@ -446,12 +446,12 @@ var quiz_list ={
     13:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/13_一口.png",
+                image:"images/quiz/13_一口.webp",
                 answer:["ダシン","打診"],
                 hint:["漢字のパーツを足したり引いたりしているようです。","漢字のパーツで足し引きすると、上から｢間(あいだ)｣、｢古(いにしえ)｣、｢女(おんな)｣になります。"],
             },
             [magicType.SCISSORS]:{
-                image:"images/quiz/13_一口_鋏.png",
+                image:"images/quiz/13_一口_鋏.webp",
                 answer:["カクチ","各地"],
                 hint:"「ハサミ」を使って一番左の漢字を切り取ります。「プラス」「マイナス」を漢数字としてみなすと、上から「十日（とおか）」「一口（ひとくち）」「一次（いちじ）」となります。",
                 afterInvolvedHint:"漢字のパーツで足し引きすると、上から｢間(あいだ)｣、｢古(いにしえ)｣、｢女(おんな)｣になります。",
@@ -466,12 +466,12 @@ var quiz_list ={
     14:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/14_色の名前.png",
+                image:"images/quiz/14_色の名前.webp",
                 answer:"フリー",
                 hint:["三角形の印は、50音で一つ進めることを表しているようです。","一行目には「ブラウン」、二行目には「ブルー」が埋まります。"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/14_色の名前_字.png",
+                image:"images/quiz/14_色の名前_字.webp",
                 answer:"クルー",
                 hint:"文字トランスを使うと、1行目は「グリーン」、二行目は「グレー」が埋まります。",
                 place:{
@@ -485,12 +485,12 @@ var quiz_list ={
     15:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/15_サイコロ.png",
+                image:"images/quiz/15_サイコロ.webp",
                 answer:"プロジェクト",
                 hint:["すごろくのように目が出たものとしてコマを進めてみましょう。","Sから3マス進み、1マス進み、…と繰り返し止まったマスを順に読みます"],
             },
             [magicType.RED]:{
-                image:"images/quiz/15_サイコロ_色.png",
+                image:"images/quiz/15_サイコロ_色.webp",
                 answer:"ポスター",
                 hint:"カラーを使ってサイコロの背景を赤くすると１の目が消えます。",
                 place:{
@@ -504,12 +504,12 @@ var quiz_list ={
     16:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/16_オセロ.png",
+                image:"images/quiz/16_オセロ.webp",
                 answer:["イノリ","祈り"],
                 hint:["オセロなので、同じ色で挟まれた色はひっくり返る法則があります。どのコマがひっくり返るか考えましょう。","置いたマスから下側、右下側のコマがひっくり返ります。"],
             },
             [magicType.BLUE]:{
-                image:"images/quiz/16_オセロ_色.png",
+                image:"images/quiz/16_オセロ_色.webp",
                 answer:["コイノボリ","鯉のぼり"],
                 hint:"カラーを使って｢ん｣のコマを青色にします。すると左下側にもひっくり返ります",
                 place:{
@@ -518,7 +518,7 @@ var quiz_list ={
                 }
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/16_オセロ_字.png",
+                image:"images/quiz/16_オセロ_字.webp",
                 answer:["サツキ","皐月"],
                 hint:"文字トランスを使って｢アオ｣を｢アカ｣にします。するとひっくり返るコマが左右方向になります",
                 place:{
@@ -532,7 +532,7 @@ var quiz_list ={
     17:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/17_v.png",
+                image:"images/quiz/17_v.webp",
                 answer:"エール",
                 hint:["それぞれの色の矢印の形に注目してみましょう。たとえば赤矢印は真ん中に｢ン｣があって｢文意(ブンイ)｣になっており、赤矢印は｢ブイ｣を表しているようです。","各矢印はその矢印の形のアルファベットと対応しているようです。黒矢印は｢エル(L)｣に対応しているため、真ん中に｢ー｣が入ります"],
             },
@@ -542,7 +542,7 @@ var quiz_list ={
     18:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/18_間.png",
+                image:"images/quiz/18_間.webp",
                 answer:["ヤミ", "闇"],
                 hint:["前後の文から、点線がついた四角に入りそうな漢字を推測してみましょう。構成する二つの漢字のうちの一方は「門」です。","四角に｢間｣を入れると、｢間を構成する二つの漢字の間に立を入れてできる漢字は？｣という分が出来上がります。"],
             },
@@ -552,12 +552,12 @@ var quiz_list ={
     19:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/19_方位.png",
+                image:"images/quiz/19_方位.webp",
                 answer:["ノウド","濃度"],
                 hint:["4つの方向を表す言葉を考えてみましょう。","4つの単語は4方位を表します。右には「イースト」が埋まるので、そこから時計回りに「サウス」「ウエスト」「ノース」が埋まります。"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/19_方位_字.png",
+                image:"images/quiz/19_方位_字.webp",
                 answer:["サイド","彩度","再度"],
                 hint:"文字トランスを使うと、右には「ウエスト」が埋まるので、そこから時計回りに「ノース」「イースト」「サウス」が埋まります。",
                 place:{
@@ -571,12 +571,12 @@ var quiz_list ={
     20:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/20_県名.png",
+                image:"images/quiz/20_県名.webp",
                 answer:["アキス","空き巣"],
                 hint:["まずは赤い波線の共通点が何か考えてみましょう。どうやら47個あるもののようです。","赤い波線はすべて都道府県名になっているという法則がありました。上から青森、秋田、静岡となります。"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/20_県名_字.png",
+                image:"images/quiz/20_県名_字.webp",
                 answer:"アイス",
                 hint:"文字トランスを使ってタをチに変えると、2行目が表す都道府県が愛知に変わります。",
                 place:{
@@ -596,10 +596,10 @@ var quiz_list ={
 const board_data = {
     magics:{
         [magicType.NONE]:{
-            image:"images/board/看板.png",
+            image:"images/board/看板.webp",
         },
         [magicType.SCISSORS]:{
-            image:"images/board/看板_ハサミ.png",
+            image:"images/board/看板_ハサミ.webp",
             place:{
                     x: 64, y: 6,  // 座標%
                     w: 14, h: 14   // サイズ%
@@ -659,7 +659,7 @@ const story_tutorial_list = [
     [speaker.P,"「え…？<br>ゲームの世界にいる…？」"],
     [speaker.N,"ありえない事実にあなたは驚きを隠せませんでした"],
     [speaker.G,"——あなたはどうやらこのゲームの世界に迷いこんでしまったみたいですね"],
-    ["action",{ func: showImg, subject: "images/board/看板.png" }],
+    ["action",{ func: showImg, subject: "images/board/看板.webp" }],
     [speaker.G,"——この世界を抜け出したいならば看板に書かれたクリア条件を達成しゲームをクリアしてください"],
     [speaker.N,"あなたは目の前に置かれた看板を見ました<br>そこには確かにゲームクリア条件のようなものが書いてありました"],
     [speaker.P,"「間違って転生してしまったゲームから抜けるために魔王を倒してバッドエンドを食い止める——これを達成すれば元の世界に戻れるということか！<br>頑張るぞ～」"],
@@ -677,7 +677,7 @@ const story_tutorial_list = [
     [speaker.G,"——今持っている魔法を使ってもよいですが……<br>レベルをあげて新たな魔法を手にする方がよいでしょう"],
     [speaker.P,"「じゃあ謎を解いて早くクリアしよう！」"],
     [speaker.N,"あなたは勇んでゲームを始めることにしたのでした……"],
-    ["action",{ func: hideImg, subject: "images/board/看板.png" }],
+    ["action",{ func: hideImg, subject: "images/board/看板.webp" }],
     ["action",{ func: hideBack, subject: "story_sogen"}]
 ];
 
@@ -877,7 +877,6 @@ window.onload = function(){
     if(string_storage_data == null){
         var string_save_data = JSON.stringify(save_data);
         sessionStorage.setItem('save_data',string_save_data);
-        console.log("セーブデータ初期化");
     }
     else{
         var storage_data = JSON.parse(string_storage_data);
@@ -886,7 +885,6 @@ window.onload = function(){
         tutorial_finish = storage_data.tutorial_finish;
         monster_list = storage_data.monster_list;
         meet_clear_condition = storage_data.meet_clear_condition;
-        console.log("セーブデータを復旧");
     }
     
     
@@ -917,7 +915,6 @@ function saveData(){
     }
     var string_save_data = JSON.stringify(save_data);
     sessionStorage.setItem('save_data',string_save_data);
-    console.log("セーブしました");
     
 }
 
@@ -966,13 +963,13 @@ function initializeBookList(book_list,bookType) {
         link.classList.add("book_link");
         link.id = n + "_book_link";
         
-        link.src = "images/book/scroll_bar/" + bookType + "/" + n + ".png";
+        link.src = "images/book/scroll_bar/" + bookType + "/" + n + ".webp";
         link.alt = n;
         link.setAttribute('onclick', "bookShowImg('"+ n + "','" + bookType + "')");
         
         if(bookType == "magic"){
             if(n != "スクエア"){
-                link.src = "images/book/scroll_bar/magic/none.png";
+                link.src = "images/book/scroll_bar/magic/none.webp";
                 link.alt = "?????";
                 link.setAttribute('onclick', "bookShowImg('none','magic')");
             }
@@ -1729,7 +1726,6 @@ function hint(n,magictype=null,is_magic_hint=false){
     }
     
     
-    console.log(is_magic_hint);
     if(is_magic_hint){
         pop_tl = "魔法のヒント";
         count = 0;
@@ -1781,9 +1777,7 @@ function hint(n,magictype=null,is_magic_hint=false){
                 pop_tx = hintText + "<br>答えは「" + answer + "」です。";
 
             }else{
-                var answer = quiz_data.magics[quiz_data.involved_magic].answer
-                console.log(hintText);
-                console.log(hintText.length,n);
+                var answer = quiz_data.magics[quiz_data.involved_magic].answer;
                 if(typeof(answer)!="string"){
                     answer = answer[0] + "," + answer[1];
                 }
@@ -1799,7 +1793,6 @@ function hint(n,magictype=null,is_magic_hint=false){
                     }
 
                     pop_button.setAttribute('onclick', "hint(" + (n+1) + ","+ magictype + ",true)");
-                    console.log("hint(" + (n+1) + ","+ magictype + ",true)");
                     pop_button.style.display = 'block';
                 }
             }
@@ -2168,13 +2161,12 @@ function useMagic(e){
     const hit =
           (square.x <= point.x && point.x <= square.x + square.w)  // 横方向の判定
        && (square.y <= point.y && point.y <= square.y + square.h);  // 縦方向の判定
-    console.log(point);
 
     
     if (hit) {
         successMagic();
     }else{
-        failedMagic(e,rect);
+        failedMagic();
     }
     closeColorMagic();
 }
@@ -2215,7 +2207,7 @@ function makeBook(e){
 
 
 
-function failedMagic(e,rect){
+function failedMagic(){
     magic_canvas = document.getElementById("magic_canvas");
     magic_canvas.style.display = 'none';
     
@@ -2280,7 +2272,7 @@ function successBoardMagic(){
     board_image.src = board_data.magics[magicType.SCISSORS].image;
     
     const quit_button = document.getElementById("quit_button");
-    quit_button.src = "images/title/ゲームやめるボタン_明.png";
+    quit_button.src = "images/title/ゲームやめるボタン_明.webp";
 
     popTitling("成功！");
     popTexting("看板が変化した");
@@ -2317,7 +2309,7 @@ function levelUp(new_level){
     n = magic_info[enableMagic].name;
 
     book_link = document.getElementById(n + "_book_link");
-    book_link.src = "images/book/scroll_bar/magic/" + n + ".png";
+    book_link.src = "images/book/scroll_bar/magic/" + n + ".webp";
     book_link.alt = n;
     book_link.setAttribute('onclick', "bookShowImg('"+ n + "','magic')");
 
@@ -2484,7 +2476,7 @@ function closeBook(n){
 
 function bookShowImg(n,bookType){
     const book_img = document.getElementById(bookType + "_book_image");
-    book_img.src = "images/book/book_image/" + bookType +"/" + n + ".png";
+    book_img.src = "images/book/book_image/" + bookType +"/" + n + ".webp";
     
 }
 
@@ -2548,7 +2540,7 @@ function closeMonsterHint(){
 function openExplainSheet(n){
     const back = document.getElementById("QB_back");
     explain_img = document.getElementById("explain_image");
-    explain_img.src = "images/explains/" + n + ".png";
+    explain_img.src = "images/explains/" + n + ".webp";
     explain_sheet = document.getElementById("explain_sheet");
     explain_sheet.style.display = "block";
     now_status = status.BOOK;
@@ -2654,45 +2646,45 @@ function showLog(n){
 var now_on = 0
 
 function openBattle(n){
-    const battle = document.getElementById(n)
+    const battle = document.getElementById(n);
     battle.style.display = 'block';
-    now_on = n
+    now_on = n;
 }
 
 function closeBattle(n){
-    const battle = document.getElementById(n)
+    const battle = document.getElementById(n);
     battle.style.display = 'none';
-    now_on = 0
+    now_on = 0;
 }
 
 function openBattleMagic(){
-    const magic = document.getElementById('battle_magic')
+    const magic = document.getElementById('battle_magic');
     magic.style.display = 'block';
 }
 
 function closeBattleMagic(){
-    const magic = document.getElementById('battle_magic')
+    const magic = document.getElementById('battle_magic');
     magic.style.display = 'none';
 }
 
 function selectBattleMagic(n){
-    const magic = document.getElementById("magic" + n + "_explain")
+    const magic = document.getElementById("magic" + n + "_explain");
     magic.style.display = 'block';
 }
 
 function closeBattleMagicExplain(n){
-    const magic = document.getElementById("magic" + n + "_explain")
+    const magic = document.getElementById("magic" + n + "_explain");
     magic.style.display = 'none';
 }
 
 function choiceBattleMagic1(){
-    const magic = document.getElementById('magic1_colorchoice')
+    const magic = document.getElementById('magic1_colorchoice');
     magic.style.display = 'block';
 }
 
 function closeBattleChoice(){
-    const magic = document.getElementById('magic1_colorchoice')
-    const explain = magic.parentElement
+    const magic = document.getElementById('magic1_colorchoice');
+    const explain = magic.parentElement;
     magic.style.display = 'none';
     explain.style.display = 'none';
 }
@@ -2700,45 +2692,45 @@ function closeBattleChoice(){
 var using = 0
 
 function useBattleMagic(n){
-    const dialog = document.getElementById('using_magic')
-    dialog.style.display = 'block'
-    using = n
+    const dialog = document.getElementById('using_magic');
+    dialog.style.display = 'block';
+    using = n;
 }
 
 function stopBattleUsing(){
-    const dialog = document.getElementById('using_magic')
-    const explain = document.getElementById(using + '_explain')
-    dialog.style.display = 'none'
+    const dialog = document.getElementById('using_magic');
+    const explain = document.getElementById(using + '_explain');
+    dialog.style.display = 'none';
     if ((using === 'magic2') || (using === 'magic3') || (using === 'magic4')){
-        explain.style.display = 'none'
+        explain.style.display = 'none';
     }
-    using = 0
+    using = 0;
 }
 
 
 
-clicked_id = 0
+clicked_id = 0;
 
 
 
 function changeName(n){
-    clicked_id = n
+    clicked_id = n;
     if(using === 'magic2'){
         if(n === 'B2'){
             document.getElementById('B2_name').textContent = 'ガーザイル';
-            monster = document.getElementById('monster2')
-            victory = document.getElementById('victory')
-            runaway = document.getElementById('fall')
-            monster.src = "images/mobs/飛べない敵.png";
-            monster.style.animation = 'tremble 0.7s ease-in-out 0s forwards, fall 0.5s ease-in-out 1.8s forwards'
-            victory.style.display = 'block'
-            runaway.style.display = 'block'
+            monster = document.getElementById('monster2');
+            victory = document.getElementById('victory');
+            runaway = document.getElementById('fall');
+            monster.src = "images/mobs/飛べない敵.webp";
+            monster.style.animation = 'tremble 0.7s ease-in-out 0s forwards, fall 0.5s ease-in-out 1.8s forwards';
+            victory.style.display = 'block';
+            runaway.style.display = 'block';
             removeMapMonster('B2');
             player_data.point += monster_list['B2'].point;
             if((using != 'magic2') && (using != 'magic3') && (using != 'magic4')){
-                closeBattleChoice()
+                closeBattleChoice();
             }
-            stopBattleUsing()
+            stopBattleUsing();
 
         }
     }
@@ -2748,48 +2740,46 @@ function changeColor(n){
     clicked_id = n
     if(using === 'magic1R'){
         if(n === 'monster1'){
-            monster = document.getElementById('monster1')
-            victory = document.getElementById('victory')
-            runaway = document.getElementById('runaway')
-            document.getElementById('B1_name').textContent = 'レッドスライム'
-            monster.src = "images/mobs/スライム_赤.png";
-            monster.style.animation = 'tremble 1s ease-in-out 0s forwards, runaway 0.5s ease-in-out 1s forwards'
-            victory.style.display = 'block'
-            runaway.style.display = 'block'
+            monster = document.getElementById('monster1');
+            victory = document.getElementById('victory');
+            runaway = document.getElementById('runaway');
+            document.getElementById('B1_name').textContent = 'レッドスライム';
+            monster.src = "images/mobs/スライム_赤.webp";
+            monster.style.animation = 'tremble 1s ease-in-out 0s forwards, runaway 0.5s ease-in-out 1s forwards';
+            victory.style.display = 'block';
+            runaway.style.display = 'block';
             removeMapMonster('B1');
              player_data.point += monster_list['B1'].point;
             if((using != 'magic2') && (using != 'magic3') && (using != 'magic4')){
-                closeBattleChoice()
+                closeBattleChoice();
             }
-            stopBattleUsing()
+            stopBattleUsing();
 
         }
     }
     if(using === 'magic1G'){
         if(n ==='monster1'){
-            monster = document.getElementById('monster1')
-            //monster.style.color = 'green'
+            monster = document.getElementById('monster1');
         }
     }
     if(using === 'magic1B'){
         if(n ==='monster1'){
-            monster = document.getElementById('monster1')
-            //monster.style.color = 'blue'
+            monster = document.getElementById('monster1');
         }
     }
 }
 
 function finishBattle(){
-    const victory = document.getElementById('victory')
-    const runaway = document.getElementById('runaway')
-    const fall = document.getElementById('fall')
-    victory.style.display = 'none'
-    runaway.style.display = 'none'
-    fall.style.display = 'none'
-    closeBattleMagic()
-    closeBattle('B1')
-    closeBattle('B2')
-    closeBattle('B3')
+    const victory = document.getElementById('victory');
+    const runaway = document.getElementById('runaway');
+    const fall = document.getElementById('fall');
+    victory.style.display = 'none';
+    runaway.style.display = 'none';
+    fall.style.display = 'none';
+    closeBattleMagic();
+    closeBattle('B1');
+    closeBattle('B2');
+    closeBattle('B3');
     
     
     //以下text_logを出すものです
@@ -2814,12 +2804,12 @@ function afterLoseMonster(n){
 
 
 function soonFail(n){
-    failed_message = document.getElementById('failed')
-    failed_paragraph = document.getElementById('failed_paragraph')
-    blackout = document.getElementById('blackout')
-    blackout.style.display = 'block'
-    failed_message.style.display = 'block'
-    blackout.style.animation = 'darkerlighter 5s ease-in-out 1.8s forwards'
+    failed_message = document.getElementById('failed');
+    failed_paragraph = document.getElementById('failed_paragraph');
+    blackout = document.getElementById('blackout');
+    blackout.style.display = 'block';
+    failed_message.style.display = 'block';
+    blackout.style.animation = 'darkerlighter 5s ease-in-out 1.8s forwards';
     setTimeout(()=>{
         if (n === 1){
             failed_paragraph.textContent = "ブルースライムの体当たり!";
@@ -2833,17 +2823,17 @@ function soonFail(n){
         failed_paragraph.textContent = "あなたは力尽きてしまった";
     }, 1800)
     setTimeout(()=>{
-        failed_paragraph = document.getElementById('failed_paragraph')
+        failed_paragraph = document.getElementById('failed_paragraph');
         failed_paragraph.textContent = "効いていないようだ";
-        document.getElementById('failed').style.display = 'none'
+        document.getElementById('failed').style.display = 'none';
         if((using != 'magic2') && (using != 'magic3') && (using != 'magic4')){
-            closeBattleChoice()
+            closeBattleChoice();
         }
-        stopBattleUsing()
-        closeBattleMagic()
-        closeBattle('B1')
-        closeBattle('B2')
-        closeBattle('B3')
+        stopBattleUsing();
+        closeBattleMagic();
+        closeBattle('B1');
+        closeBattle('B2');
+        closeBattle('B3');
     },4000)
     setTimeout(()=>{
         blackout.style.display = 'none';
@@ -2856,16 +2846,13 @@ function fail(){
     if (using != 0){
         if ((!((using === 'magic1R') && (clicked_id === 'monster1'))) && (!((using === 'magic2') && (clicked_id === 'B2')))){
             if(now_on === 'B1'){
-                soonFail(1)
+                soonFail(1);
             }else if(now_on === 'B2'){
-                soonFail(2)
+                soonFail(2);
             }else if(now_on === 'B3'){
-                soonFail(3)
+                soonFail(3);
             }
         }
     }
 }
-
-
-//ここまで所有格さん
 

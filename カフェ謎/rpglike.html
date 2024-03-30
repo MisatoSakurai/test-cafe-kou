@@ -25,21 +25,21 @@
             </div>
         </div>
         <div id="title_sheet" style="display:block">
-            <img class="back_image_fit" src ='images/title/ゲームタイトル画面.png'/>
+            <img class="back_image_fit" src ='images/title/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E7%94%BB%E9%9D%A2.webp'/>
             <div id="title_text_and_buttons" onclick="startGame()">
-                <img src="images/title/スタートボタン.png" onclick="startGame()" id="start_button" class="title_button">
-                <!--<img src="images/title/止めるボタン-1.png" onclick="quitGame()" id="quit_button" class="title_button">-->
+                <img src="images/title/%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%9C%E3%82%BF%E3%83%B3.webp" onclick="startGame()" id="start_button" class="title_button">
+                <!--<img src="images/title/止めるボタン-1.webp" onclick="quitGame()" id="quit_button" class="title_button">-->
             </div>
-            <img src="images/title/ゲームやめるボタン_暗.png" onclick="quitGame()" id="quit_button" class="title_button">
+            <img src="images/title/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%84%E3%82%81%E3%82%8B%E3%83%9C%E3%82%BF%E3%83%B3_%E6%9A%97.webp" onclick="quitGame()" id="quit_button" class="title_button">
             <p id="delete_data_button" onclick="wantDelete()">delete_data</p>
             
         </div>
         <div id="tutorial" style="display:none">
-            <img src = 'images/background/草原_戦闘画面.jpg' id="story_sogen" class="back_image_fit" style="display:none"/>
+            <img src = 'images/background/%E8%8D%89%E5%8E%9F_%E6%88%A6%E9%97%98%E7%94%BB%E9%9D%A2.webp' id="story_sogen" class="back_image_fit" style="display:none"/>
             <div id="ending" style="display:none"></div>
             
             <img id="tutorial_image" src="">
-            <img id="pointer" src ="images/icons/up_arrow.png" style="display: none">
+            <img id="pointer" src ="images/icons/up_arrow.webp" style="display: none">
         </div>
 
         <div id="clear_back_sheet" style="display:none">
@@ -58,7 +58,7 @@
         <div class="text_log" id="gene_text_log" style="display: none" onclick="displayNextDialog()">
             <p class="text_log_speaker">＊</p>
             <p class="text_log_sentence">文章が入るところ</p>
-            <img src="images/icons/under_arrow.png" alt="↓" class="text_log_next_button"> 
+            <img src="images/icons/under_arrow.webp" alt="↓" class="text_log_next_button"> 
         </div>
         
         
@@ -69,7 +69,7 @@
                 <span></span>
                 <span></span>
             </div>
-            <img id="quiz_select_icon" src = "images/icons/謎選択アイコン.png" style="display: none">
+            <img id="quiz_select_icon" src = "images/icons/%E8%AC%8E%E9%81%B8%E6%8A%9E%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.webp" style="display: none">
             <ul class="slide_menu">
                 <li id="menu_level">Lv.主人公</li>
                 <!--</1><li id="next_levet_made">次のレベルまで</li>-->
@@ -98,30 +98,30 @@
             </div>
             
             <div id="prairie" class="stage">
-                <img class="back_image_cover" src ='images/background/草原_俯瞰図.png'/>
+                <img class="back_image_cover" src ='images/background/%E8%8D%89%E5%8E%9F_%E4%BF%AF%E7%9E%B0%E5%9B%B3.webp'/>
                 <div class="quiz_icons" id="prairie_q_icons">
                 </div>
-                <img src ="images/icons/看板アイコン.png" alt = "看板" onclick="openBoard()" id="board_icon">
-                <img id='B1_icon' src="images/mobs/スライム.PNG"onclick="openBattle('B1')" class="monster_icon">
-                <img src="images/icons/up_arrow.png" alt="↑" class="move_map_button" id="button_move_to_rocky" onclick="moveMap('rocky')" style="display: none">
+                <img src ="images/icons/%E7%9C%8B%E6%9D%BF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.webp" alt = "看板" onclick="openBoard()" id="board_icon">
+                <img id='B1_icon' src="images/mobs/スライム.webp"onclick="openBattle('B1')" class="monster_icon">
+                <img src="images/icons/up_arrow.webp" alt="↑" class="move_map_button" id="button_move_to_rocky" onclick="moveMap('rocky')" style="display: none">
             </div>
             
             <div id="rocky" class="stage" style="display: none">
-                <img class="back_image_cover" src ='images/background/岩場_俯瞰図.png'/>
+                <img class="back_image_cover" src ='images/background/%E5%B2%A9%E5%A0%B4_%E4%BF%AF%E7%9E%B0%E5%9B%B3.webp'/>
                 <div id="quiz_icons">
                 </div>
-                <img id='B2_icon' src="images/mobs/飛ぶ.png"onclick="openBattle('B2')" class="monster_icon">
-                <img src="images/icons/up_arrow.png" alt="↑" class="move_map_button" id="button_move_to_castle" onclick="moveMap('castle')" style="display: none">
-                <img src="images/icons/under_arrow.png" alt="↓" class="move_map_button" id="button_back_to_prairie" onclick="moveMap('prairie')">
+                <img id='B2_icon' src="images/mobs/%E9%A3%9B%E3%81%B6.webp"onclick="openBattle('B2')" class="monster_icon">
+                <img src="images/icons/up_arrow.webp" alt="↑" class="move_map_button" id="button_move_to_castle" onclick="moveMap('castle')" style="display: none">
+                <img src="images/icons/under_arrow.webp" alt="↓" class="move_map_button" id="button_back_to_prairie" onclick="moveMap('prairie')">
             </div>
             
             <div id="castle" class="stage" style="display: none">
-                <img class="back_image_cover" src ='images/background/祭壇_俯瞰図.png'/>
+                <img class="back_image_cover" src ='images/background/%E7%A5%AD%E5%A3%87_%E4%BF%AF%E7%9E%B0%E5%9B%B3.webp'/>
                 <div class="quiz_icons" id="castle_q_icons">
                     
                 </div>
-                <img id='B3_icon' src="images/mobs/魔王.png"onclick="openBattle('B3')" class="monster_icon">
-                <img src="images/icons/under_arrow.png" alt="↓" class="move_map_button" id="button_back_to_rocky" onclick="moveMap('rocky')">
+                <img id='B3_icon' src="images/mobs/%E9%AD%94%E7%8E%8B.webp"onclick="openBattle('B3')" class="monster_icon">
+                <img src="images/icons/under_arrow.webp" alt="↓" class="move_map_button" id="button_back_to_rocky" onclick="moveMap('rocky')">
             </div>
         </div>
         
@@ -168,7 +168,7 @@
         
         <div class="book_sheet" id="monster_book" style="display: none">
             <div class="book_content">
-                <img src="images/book/book_image/monster/にゃげぼうし.png" alt="モンスター" class="book_base_image" id="monster_book_image">
+                <img src="images/book/book_image/monster/%E3%81%AB%E3%82%83%E3%81%92%E3%81%BC%E3%81%86%E3%81%97.webp" alt="モンスター" class="book_base_image" id="monster_book_image">
                 <ul class="book_link_list" id="monster_book_link_list">
                 </ul>
             </div>
@@ -185,7 +185,7 @@
         
         <div class="book_sheet" id="magic_book" style="display: none">
             <div class="book_content">
-                <img src="images/book/book_image/magic/none.png" alt="魔法の説明" class="book_base_image" id="magic_book_image">
+                <img src="images/book/book_image/magic/none.webp" alt="魔法の説明" class="book_base_image" id="magic_book_image">
                 <ul class="book_link_list" id="magic_book_link_list">
                 </ul>
             </div>
@@ -272,7 +272,7 @@
         
         
         <div id="B1" class="battle" style="display: none" onclick="fail()">
-            <img class="back_image_fit" src='images/background/草原_戦闘画面.jpg'/>
+            <img class="back_image_fit" src='images/background/%E8%8D%89%E5%8E%9F_%E6%88%A6%E9%97%98%E7%94%BB%E9%9D%A2.webp'/>
             <div class="enemy_info">
                 <div class="enemy_name" id="B1_name" onclick="changeName(this.id)">ブルースライム</div>
                 <div class="enemy_status">
@@ -284,7 +284,7 @@
                     </ul>
                 </div>
             </div>
-            <img src="images/mobs/スライム.PNG" class="monster" id="monster1" onclick="changeColor(this.id)">
+            <img src="images/mobs/%E3%82%B9%E3%83%A9%E3%82%A4%E3%83%A0.webp" class="monster" id="monster1" onclick="changeColor(this.id)">
             <div class="command" id="B1_command">
                 <p onclick="soonFail(1)">▷たたかう</p>
                 <p onclick="openBattleMagic()">▷まほう</p>
@@ -294,9 +294,9 @@
         
         
         <div id="B2" class="battle" style="display: none" onclick="fail()">
-            <img class="back_image_fit" src='images/background/岩場_戦闘画面.png'/>
-            <img src="images/mobs/飛ぶ.png" class="monster" id="monster2" onclick="changeColor('monster2')">
-            <img src="images/background/つり橋.png" id="tsuribashi">
+            <img class="back_image_fit" src='images/background/%E5%B2%A9%E5%A0%B4_%E6%88%A6%E9%97%98%E7%94%BB%E9%9D%A2.webp'/>
+            <img src="images/mobs/%E9%A3%9B%E3%81%B6.webp" class="monster" id="monster2" onclick="changeColor('monster2')">
+            <img src="images/background/%E3%81%A4%E3%82%8A%E6%A9%8B.webp" id="tsuribashi">
             <div class="enemy_info">
                 <div class="enemy_name" id="B2_name" onclick="changeName('B2')">ガーゴイル</div>
                 <div class="enemy_status">
@@ -317,7 +317,7 @@
         
         
         <div id="B3" class="battle" style="display: none" onclick="fail()">
-            <img class="back_image_fit" src='images/background/祭壇_戦闘画面.png'/>
+            <img class="back_image_fit" src='images/background/%E7%A5%AD%E5%A3%87_%E6%88%A6%E9%97%98%E7%94%BB%E9%9D%A2.webp'/>
             <div class="enemy_info">
                 <div class="enemy_name" id="B3_name" onclick="changeName('B3')">魔王Mr.魔王</div>
                 <div class="enemy_status">
@@ -329,7 +329,7 @@
                     </ul>
                 </div>
             </div>
-            <img src="images/mobs/魔王.png" class="monster" id="monster3" onclick="">
+            <img src="images/mobs/%E9%AD%94%E7%8E%8B.webp" class="monster" id="monster3" onclick="">
             <div class="command">
                 <p onclick="soonFail(3)">▷たたかう</p>
                 <p onclick="openBattleMagic()">▷まほう</p>

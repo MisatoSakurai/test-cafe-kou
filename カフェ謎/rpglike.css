@@ -7,12 +7,8 @@
     --red-op: #e6003200;
     --blue-op: #0073ef00;
     --yellow-op: #f4e21d00;
-    --green: #00C917;
-    --purple: #884898;
-    --orange: #FF9123;
     --gray: #666;
     --dark_gray: #525252;
-    --pink: #FF7BAC;
 }
 
 
@@ -208,7 +204,7 @@ h1 {
     width: 100%;
     top: 0;
     left: 0;
-    background-image: url('images/title/クリア画像.png');
+    background-image: url('images/title/クリア画像.webp');
     background-size: 100% 100%;
     opacity: 1;
     z-index: 14;
@@ -361,7 +357,7 @@ h1 {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-image: url('images/background/エンディング背景.jpg');
+    background-image: url('images/background/エンディング背景.webp');
     background-size: cover; /* 背景画像を要素のサイズに合わせて表示 */
     background-position: center;
 }
@@ -445,11 +441,11 @@ h1 {
 }
 
 .light_star {
-    background-image: url("images/icons/正解数アイコン（明）.png"); /* 明るい星の画像 */
+    background-image: url("images/icons/正解数アイコン（明）.webp"); /* 明るい星の画像 */
 }
 
 .dark_star {
-    background-image: url('images/icons/正解数アイコン（暗）.png'); /* 暗い星の画像 */
+    background-image: url('images/icons/正解数アイコン（暗）.webp'); /* 暗い星の画像 */
 }
 
 
@@ -800,20 +796,20 @@ h1 {
 /* 
 
 #prairie{
-    background-image: url('images/background/草原_俯瞰図.PNG');
+    background-image: url('images/background/草原_俯瞰図.webp');
     background-size: cover; 
     background-position: top;
 }
 
 
 #rocky{
-    background-image: url('images/background/岩場_俯瞰図.png');
+    background-image: url('images/background/岩場_俯瞰図.webp');
     background-size: cover;
     background-position: top;
 }
 
 #castle{
-    background-image: url('images/background/祭壇_俯瞰図.png');
+    background-image: url('images/background/祭壇_俯瞰図.webp');
     background-size: cover;
     background-position: top;
 }  */
@@ -1423,7 +1419,7 @@ h1 {
 
 /* 
 #B1{
-    background-image: url('images/background/草原_戦闘画面.jpg');
+    background-image: url('images/background/草原_戦闘画面.webp');
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -1434,7 +1430,7 @@ h1 {
 }
 
 #B2{
-    background-image: url('images/background/岩場_戦闘画面.png');
+    background-image: url('images/background/岩場_戦闘画面.webp');
     background-size: cover; 
     background-position: center;
     position: fixed;
@@ -1456,7 +1452,7 @@ h1 {
 /* 
 
 #B3{
-    background-image: url('images/background/祭壇_戦闘画面.png');
+    background-image: url('images/background/祭壇_戦闘画面.webp');
     background-size: cover;
     background-size:100% 100%;
     background-position: top;
