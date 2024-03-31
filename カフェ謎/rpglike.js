@@ -1059,6 +1059,9 @@ function debugMode(){
         point:55400,
         level:4,
     };
+    monster_list['B1'].finish = true;
+    monster_list['B2'].finish = true;
+
 
     tutorial_finish = {
         [tutorialType.STORY]:{
