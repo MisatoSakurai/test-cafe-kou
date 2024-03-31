@@ -1056,8 +1056,8 @@ function notDelete(){
 function debugMode(){
 
     player_data = {
-        point:5540,
-        level:3,
+        point:55400,
+        level:4,
     };
 
     tutorial_finish = {
