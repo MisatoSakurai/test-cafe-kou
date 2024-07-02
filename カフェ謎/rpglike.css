@@ -211,20 +211,26 @@ h1 {
 }
 
 
-
-
-
+#clearScores {
+    border: 2px solid black; /* 幅: 2px、スタイル: solid（実線）、色: 黒 */
+    padding: 10px 20px;
+}
+#clearScores li {
+    list-style:none;
+}
 
 
 
 #clear_text_and_buttons {
+    position: fixed;
+    left: 50%;
+    top:65%;
+    transform: translateX(-50%);
     text-align: center;
-    width: 100%;
-    padding: 20% 0;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
 }
+
+
+
 
 
 
@@ -928,9 +934,9 @@ h1 {
 
 
 .selectQ{
-    width:12vmin;
-    height: 12vmin;
-    margin: 5vmin calc(calc(100% - 12 * 5vmin) / 10);
+    width:8vmin;
+    height: 8vmin;
+    margin: 5vmin calc(calc(100% - 8 * 5vmin) / 10);
 }
 
 

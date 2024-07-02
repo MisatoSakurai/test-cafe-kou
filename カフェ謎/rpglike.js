@@ -3,18 +3,16 @@
 
 //--data&variable-------
 
+let timeLimit = 5.25
 
-
-
+let clearTime = timeLimit*60;
 
 
 var player_data = {
     point:0,
-    level:1,
+    level:1
 }
 
-const max_level = 4;
-//maxのレベルを保管する
 
 
 const status = Object.freeze({
@@ -132,8 +130,7 @@ const monster_book_list= [
 
 
 const magic_book_list = [
-    
-    /*"スクエア",*/
+    "スクエア",
     "カラー",
     "文字トランス",
     "ハサミ",
@@ -155,43 +152,64 @@ let now_place = stage.PRAIRIE;
  
 
 
-
+const max_level = 15;
+let limited_level = 3;
+//現在のmaxのレベルを保管する
 
 const level_list = {
-    1:{needed_point:0, enable_magic:"none"}, //スクエアを消しました
-    2:{needed_point:50, enable_magic:magicType.CHANGE_COLOR},
-    3:{needed_point:550, enable_magic:magicType.CHANGE_CHAR},
-    4:{needed_point:5550, enable_magic:magicType.SCISSORS},
-    5:{needed_point:55550, enable_magic:"none"},
+    1:{needed_point:0, enable_magic:null}, 
+    2:{needed_point:30, enable_magic:magicType.CHANGE_COLOR},
+    3:{needed_point:70, enable_magic:null},
+    4:{needed_point:110, enable_magic:magicType.CHANGE_CHAR},
+    5:{needed_point:160, enable_magic:null},
+    6:{needed_point:200, enable_magic:magicType.ADD_CHAR},
+    7:{needed_point:240, enable_magic:magicType.SCISSORS},
+    8:{needed_point:300, enable_magic:null},
+    9:{needed_point:360, enable_magic:null},
+    10:{needed_point:420, enable_magic:null},
+    11:{needed_point:490, enable_magic:null},
+    12:{needed_point:560, enable_magic:null},
+    13:{needed_point:630, enable_magic:null},
+    14:{needed_point:710, enable_magic:null},
+    15:{needed_point:800, enable_magic:null},
+
 }
 
-//本当は、0,5,50,500
 
 
-const point_list = {
-    1:10,
-    2:10,
-    3:10,
-    4:10
-}
+
+
+
+// const point_list = {
+//     1:10,
+//     2:10,
+//     3:10,
+//     4:10
+// }
+
+const quiz_point = 10;
 
 
 let monster_list = {
     'B1':{
-        point:440,
+        point:0,
         finish:false,
         hint:["まずはモンスター図鑑を使ってブルースライムの情報を見てみましょう。何か倒すヒントになる情報があるかもしれません。","どうやら色違いのレッドスライムは出会うと逃げ出してしまうようです。ブルースライムをレッドスライムにすることでここは切り抜けられそうです。","あなたはレベルを上げることで「カラー」という魔法を手にすることができます。その魔法を使うことができないか考えてみましょう。","レッドスライムは色違いなのでブルースライムと色以外の形は同じということになります。ではブルースライムに何かをすることでレッドスライムに変えることができるのではないでしょうか。","魔法「カラー」で赤を選択し、ブルースライムに対して使ってみましょう。するとレッドスライムに変化し逃げ出してしまうので次に進むことができます。"],
-        name:"ブルースライム"
+        name:"ブルースライム",
+        next_limited_level:5
     },
     'B2':{
-        point:4930,
+        point:0,
         finish:false,
         hint:["まずはモンスター図鑑を使ってガーゴイル(仮)の情報を見てみましょう。何か倒すヒントになる情報があるかもしれません。","ガーゴイルには弱点が見当たらないように思えます。どうにかして他のモンスターにすることで倒すことができないでしょうか。","あなたはレベルを上げて「文字トランス」を手に入れることができます。戦闘画面の説明をヒントにその魔法で戦う方法を考えてみましょう。","説明メニューの戦闘画面を見ると「左上の情報に対応したモンスターが現れる」とあります。ここの情報を変えることでモンスターも変化すると考えられそうです。","もしガーゴイル(仮)に似た名前のモンスターがいて、文字トランスを使うことでそのモンスターになれば戦況を変えることができるのではないでしょうか。","似た名前のモンスターでガーザイル(仮)というモンスターが存在します。このモンスターはガーゴイル(仮)と異なり飛ぶことができないので、いま空中にいるガーゴイル(仮)から変化すると落ちて死んでしまうと推測できます。","文字トランスを使って戦闘画面のモンスター名を変更してみましょう。"],
-        name:"ガーゴイル"
+        name:"ガーゴイル",
+        next_limited_level:8
+
     },
     'B3':{
         hint:["魔王に対してはどのような魔法を使っても倒すきっかけは作れないようです。魔王を倒さずに進めるためにもあなたの目的を改めて確認してみましょう。","説明メニューからあなたの目的は｢ゲームをクリアすること｣だとわかります。クリア条件である｢魔王を倒すこと｣が不可能だとわかった今、何をすべきか考えてみましょう。","クリア条件が達成できないのであれば、クリア条件を変えてしまえばゲームをクリアすることができるかもしれません。クリア条件ははじめのマップの看板にありましたね。","看板に書かれたクリア条件の材質が謎の紙と一致していることに注目してみましょう。謎の紙に対して使う魔法が同様に使えるのではないでしょうか。","魔王を倒すことができないと考え、クリア条件を変えることでゲームをクリアするという発想の転換をする必要がありました。看板のクリア条件は謎の紙の材質と一致しているためハサミの魔法を使うことができます。文章ができるようにハサミを使うとクリア条件が「ゲームを止める」と変化します。クリア条件を変えた上でクリア条件を実行してみましょう。"],
-        name:"Mr.魔王"
+        name:"Mr.魔王",
+        next_level_limit:5
     }
 }
 
@@ -629,7 +647,8 @@ const tutorialType = Object.freeze({
     USEMAGICTOQUIZ:"let_use_magic_to_quiz",
     MONSTER:"monster_tutorial",
     MENU:"menu",
-    ENDING:"ending"
+    ENDING:"ending",
+    FIVEMINLEFT:"five_min_left",
 });
 //tutorialの種類を管理
 
@@ -678,7 +697,7 @@ const story_tutorial_list = [
     [speaker.P,"「じゃあ謎を解いて早くクリアしよう！」"],
     [speaker.N,"あなたは勇んでゲームを始めることにしたのでした……"],
     ["action",{ func: hideImg, subject: "images/board/看板.webp" }],
-    ["action",{ func: hideBack, subject: "story_sogen"}]
+    ["action",{ func: hideBack, subject: "story_sogen"}],
 ];
 
 const open_quiz_tutorial_list =[
@@ -751,7 +770,13 @@ const ending_list = [
     [speaker.P,"「それじゃあ今日も頑張っていくぞ～！」"],
     [speaker.N,"あなたは勇んでリアルの世界を進むことにしたのでした……"],
     ["action",{ func: showBack, subject: "clear_sheet"}],
+    ["action",{ func: setClearScreen, subject: "nashi"}]
 ];
+
+
+const five_min_left_list = [
+    [speaker.N,"制限時間残り5分です"]
+]
 
 
 
@@ -785,6 +810,9 @@ let tutorial_finish = {
     [tutorialType.ENDING]:{
         finish:false,
     },
+    [tutorialType.FIVEMINLEFT]:{
+        finish:false,
+    },
 }
 
 
@@ -816,6 +844,9 @@ let tutorial_talk = {
     [tutorialType.ENDING]:{
         talk:ending_list
     },
+    [tutorialType.FIVEMINLEFT]:{
+        talk:five_min_left_list
+    },
 }
 //各チュートリアルを終えているかどうか、各チュートリアルの会話list
 
@@ -823,21 +854,31 @@ let tutorial_talk = {
 
 const log_name = Object.freeze({
     CANTQUIT:"cannot_quit_game",
-    WINMONSTER:"win_monster",
+    WINSLIME:"win_slime",
+    WINGARGOYLE:"win_gargoyle",
     LOSEMONSTER:"lose_monster",
-    MAXLEVEL:"max_level"
+    MAXLEVEL:"max_level",
+    CANNOTANSWERQ:"cannot_answer_quiz",
+    CANNOTBATTLESLIME:"cannot_battle_slime",
+    CANNOTBATTLEGARGOYLE:"cannot_battle_gargoyle",
+    NOMORELIMIT:"no_more_limit",
 });
 
 
-const log_list =  {
+const log_list = {
     [log_name.CANTQUIT]:[[speaker.N,"ERROR<br>ゲームをやめることができない"]],
-    [log_name.WINMONSTER]:[[speaker.N,"次のステージへ進めるようになった！"]],
+    [log_name.WINSLIME]:[[speaker.N,`レベルの最大値が${monster_list.B1.next_limited_level}になった！`],[speaker.N,"次のステージへ進めるようになった！"]],
+    [log_name.WINGARGOYLE]:[[speaker.N,`レベルの最大値が${monster_list.B2.next_limited_level}になった！`],[speaker.N,"次のステージへ進めるようになった！"]],
     [log_name.LOSEMONSTER]:{
         'B1':[[speaker.P,"「負けてしまった…他の方法を考えよう」"],[speaker.P,"「敵について何か情報が得られれば…」"]],
         'B2':[[speaker.P,"「負けてしまった…他の方法を考えよう」"]],
         'B3':[[speaker.P,"「負けてしまった…」"]]
     },
-    [log_name.MAXLEVEL]:[[speaker.N,"レベルがMaxになった。もうこれ以上獲得できる魔法はないようだ。"]]
+    [log_name.MAXLEVEL]:[[speaker.N,"レベルがMaxになった。もうこれ以上獲得できる魔法はないようだ。"]],
+    [log_name.CANNOTANSWERQ]:[[speaker.N,"すでに現在のレベル上限に達しています。"]],
+    [log_name.CANNOTBATTLESLIME]:[[speaker.N,`Lv.${limited_level}に達していないため戦闘に挑むことができません`]],
+    [log_name.CANNOTBATTLEGARGOYLE]:[[speaker.N,`Lv.${monster_list.B1.next_limited_level}に達していないため戦闘に挑むことができません`]],
+    [log_name.NOMORELIMIT]:[[speaker.N,"ゲームクリアによりレベル上限が無くなりました"]],
 
 }
 
@@ -853,6 +894,46 @@ let current_tutorial = "";
 let meet_clear_condition = false;
 
 
+//-- timer -------
+
+let timer;
+let timeLeft = timeLimit * 60; // 分数を秒に変換
+
+function startTimer() {
+    console.log("timerstart");
+    clearInterval(timer); // 複数のタイマーが作動するのを防ぐ
+    timer = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    if (timeLeft <= 0) {
+        clearInterval(timer);
+        sessionStorage.removeItem('timeLeft'); // ゲームオーバー時にsessionStorageをクリア
+        console.log("ゲームオーバー");
+        gameOver();
+    } else {
+        timeLeft--;
+        sessionStorage.setItem('timeLeft', timeLeft); // 残り時間をsessionStorageに保存
+        if (menuOpen){
+            updateTimerDisplay();
+        }
+        if(timeLeft == 5 * 60) {
+            doTutorial(tutorialType.FIVEMINLEFT);
+        }
+    }
+}
+
+function updateTimerDisplay() {
+    document.getElementById('timer').textContent = `${TimeForDisplay(timeLeft)}`;
+}
+
+
+function TimeForDisplay(time) {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    return  `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
 
 //-- initialize & save_data--------
 
@@ -862,7 +943,8 @@ let save_data = {
     quiz_list:quiz_list,
     tutorial_finish:tutorial_finish,
     monster_list:monster_list,
-    meet_clear_condition:meet_clear_condition
+    meet_clear_condition:meet_clear_condition,
+    limited_level:limited_level
 }
 
 
@@ -885,6 +967,15 @@ window.onload = function(){
         tutorial_finish = storage_data.tutorial_finish;
         monster_list = storage_data.monster_list;
         meet_clear_condition = storage_data.meet_clear_condition;
+        clearTime = storage_data.clearTime;
+        limited_level = storage_data.limited_level;
+    }
+
+    const savedTime = sessionStorage.getItem('timeLeft');
+    if (savedTime !== null && tutorial_finish[tutorialType.STORY]) {
+        timeLeft = parseInt(savedTime, 10);
+        updateTimerDisplay();
+        startTimer(); // 自動的にタイマーを再開する
     }
     
     
@@ -911,7 +1002,9 @@ function saveData(){
         quiz_list:quiz_list,
         tutorial_finish:tutorial_finish,
         monster_list:monster_list,
-        meet_clear_condition:meet_clear_condition
+        meet_clear_condition:meet_clear_condition,
+        clearTime:clearTime,
+        limited_level:limited_level,
     }
     var string_save_data = JSON.stringify(save_data);
     sessionStorage.setItem('save_data',string_save_data);
@@ -1037,13 +1130,13 @@ function initializeMagicIcons(){
 function wantDelete() {
     delete_or_not = document.getElementById("delete_or_not");
     delete_or_not.style.display = "block";
-    
 }
 
 
 
 function deleteAllData() {
     sessionStorage.removeItem('save_data');
+    sessionStorage.removeItem('timeLeft');
     window.location.reload();
 }
 
@@ -1056,11 +1149,13 @@ function notDelete(){
 function debugMode(){
 
     player_data = {
-        point:55400,
-        level:4,
+        point:300,
+        level:8
     };
     monster_list['B1'].finish = true;
     monster_list['B2'].finish = true;
+
+    limited_level = 8;
 
 
     tutorial_finish = {
@@ -1091,6 +1186,9 @@ function debugMode(){
         [tutorialType.ENDING]:{
             finish:false,
         },
+        [tutorialType.FIVEMINLEFT]:{
+            finish:false,
+        },
     };
     
     saveData();
@@ -1109,12 +1207,18 @@ function debugMode(){
 //-- title & tutorial ------
 
 function startGame(){
+    startTimer();
     title_sheet = document.getElementById("title_sheet");
     if (tutorial_finish[tutorialType.STORY].finish){
         map = document.getElementById("map");
         title_sheet.style.display = 'none';
         map.style.display = 'block';
         now_status = status.MAP;
+
+        if(tutorial_finish[tutorialType.ENDING].finish){
+            current_dialog_list = log_list[log_name.NOMORELIMIT];
+            displayNextDialog();
+        }
         
         
         if(!tutorial_finish[tutorialType.OPENQUIZ].finish){
@@ -1133,7 +1237,7 @@ function startGame(){
     }else{
         clear_out_sheet = document.getElementById("clear_back_sheet");
         clear_out_sheet.style.display = 'block';
-        white_out_time = 1.5;//ここだ。モンスターに負けたところ(こっちは動く)を参考に作り変える。
+        white_out_time = 1.5;//モンスターに負けたところ(こっちは動く)を参考に作り変える。
         setTimeout(function() {
             clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
             clear_out_sheet.style.opacity = '1';
@@ -1165,6 +1269,8 @@ function startGame(){
 
 function quitGame(){
     if(meet_clear_condition){
+        clearInterval(timer);
+        clearTime = timeLeft;
         clearGame();
     }
     else{
@@ -1179,11 +1285,24 @@ function quitGame(){
 
 
 
+function gameOver() {
+    console.log("ゲームオーバーの関数の内容");
+}
+
+
 
 function clearGame(){
     /*popTexting("クリアの条件を満たした！");
     popTitling("CLEAR");
     openPop();*/
+    limited_level = max_level;//レベルの最大値
+    saveData()
+
+    if(tutorial_finish[tutorialType.ENDING].finish){
+        showBack("clear_sheet");
+        setClearScreen("nashi");
+        return;
+    }
     
     white_out_time = 1.5;
     
@@ -1230,24 +1349,27 @@ function showEnding(){
     doTutorial(tutorialType.ENDING);
 }
 
-
-
-
-
-
-function showClearImg(subject){
-    clear_sheet = document.getElementById("clear_sheet");
-    white_out_time = 2;
-    
-    clear_sheet.style.display = 'block';
-    clear_sheet.style.backgroundImage = "images/background/"
-    
-    setTimeout(function() {
-        clear_sheet.style.transition = "opacity " + white_out_time + "s";
-        clear_sheet.style.opacity = '100%';
-    }, 100); 
-    
+function setClearScreen(nashi) {
+    document.getElementById("clearTime").textContent = `クリアタイム；${TimeForDisplay(timeLimit - clearTime)}`;
+    document.getElementById("clearLevel").textContent = `レベル：${player_data.level}`;
+    document.getElementById("gameScore").textContent = `スコア：${player_data.point}`;
 }
+
+
+
+// function showClearImg(subject){
+//     clear_sheet = document.getElementById("clear_sheet");
+//     white_out_time = 2;
+    
+//     clear_sheet.style.display = 'block';
+//     clear_sheet.style.backgroundImage = "images/background/"
+    
+//     setTimeout(function() {
+//         clear_sheet.style.transition = "opacity " + white_out_time + "s";
+//         clear_sheet.style.opacity = '100%';
+//     }, 100); 
+    
+// }
 
 
 
@@ -1519,6 +1641,12 @@ function removeAllStars() {
 
 
 function openQ(n){
+    if(player_data.level >= limited_level){
+        current_dialog_list = log_list[log_name.CANNOTANSWERQ];
+        displayNextDialog();
+        return;
+    }
+
     quiz_id = n;
     quiz_data = quiz_list[quiz_id];
     const quiz_back = document.getElementById("QB_back");
@@ -1663,10 +1791,10 @@ function checkA(){
             if(typeof(answer)!="string"){
                 answer = answer[0] + "," + answer[1];
             }
-            pop_tx = "A："+ answer +"<br>"+"獲得経験値：" + point_list[player_data.level] + "pt";
+            pop_tx = "A："+ answer +"<br>"+"獲得経験値：" + quiz_point + "pt";
             quiz_data.magics[quiz_data.involved_magic].answered = true;
             quiz_data.answered_time += 1;
-            player_data.point += point_list[player_data.level];
+            player_data.point += quiz_point;
             
             players_answer_box.value = "";
             closeQ();
@@ -1975,6 +2103,9 @@ function clearPopButtons(){
 //-- menu ------
 
 
+
+var menuOpen = false;
+
 function openMenu(nashi){
     const menu_back = document.getElementById("menu_back");
     
@@ -1982,6 +2113,8 @@ function openMenu(nashi){
         closeMenu();
     }
     else{
+        menuOpen = true;
+        updateTimerDisplay();
         document.querySelector(".slide_menu").classList.toggle('active');
         document.querySelector(".menu_button").classList.toggle('active');
 
@@ -1990,6 +2123,7 @@ function openMenu(nashi){
         menu_point = document.getElementById("menu_point");
         menu_point_bar = document.getElementById("menu_point_bar");
         menu_level.textContent = "Lv." + player_data.level + " 主人公";
+        
         let bar_percentage = 0;
         let now_level_point = level_list[player_data.level].needed_point;
         
@@ -2015,6 +2149,7 @@ function openMenu(nashi){
 
 
 function closeMenu(nashi){
+    menuOpen = false;
     document.querySelector(".slide_menu").classList.toggle('active');
     document.querySelector(".menu_button").classList.toggle('active');
     const menu_back = document.getElementById("menu_back");
@@ -2367,14 +2502,19 @@ function checkLevel(init = false){
             levelUp(player_data.level);
             
             const enableMagic = level_list[player_data.level].enable_magic;
-            let pop_tl = "新しい技「" + magic_info[enableMagic].name+ "」を覚えた！";
-            let pop_tx = "メニューから技を確認しよう！";
 
+
+            let pop_tl = "レベルが" + player_data.level + "になった！" 
+            let pop_tx = ""
+            if(enableMagic!=null){
+                pop_tx = "新しい技「" + magic_info[enableMagic].name+ "」を覚えた！\nメニューから技を確認しよう！";
+            }
             popTitling(pop_tl);
             popTexting(pop_tx);
 
 
             openPop();
+            
             saveData();
 
             
@@ -2649,6 +2789,16 @@ function showLog(n){
 var now_on = 0
 
 function openBattle(n){
+    if(player_data.level < limited_level){
+        if(n == "B1"){
+            current_dialog_list = log_list[log_name.CANNOTBATTLESLIME];
+        }else{
+            current_dialog_list = log_list[log_name.CANNOTBATTLEGARGOYLE];
+        }
+        displayNextDialog();
+        return;
+    }
+
     const battle = document.getElementById(n);
     battle.style.display = 'block';
     now_on = n;
@@ -2729,6 +2879,7 @@ function changeName(n){
             victory.style.display = 'block';
             runaway.style.display = 'block';
             removeMapMonster('B2');
+            limited_level = Math.max(limited_level,monster_list.B2.next_limited_level);
             player_data.point += monster_list['B2'].point;
             if((using != 'magic2') && (using != 'magic3') && (using != 'magic4')){
                 closeBattleChoice();
@@ -2752,6 +2903,7 @@ function changeColor(n){
             victory.style.display = 'block';
             runaway.style.display = 'block';
             removeMapMonster('B1');
+            limited_level = Math.max(limited_level,monster_list.B1.next_limited_level);
              player_data.point += monster_list['B1'].point;
             if((using != 'magic2') && (using != 'magic3') && (using != 'magic4')){
                 closeBattleChoice();
@@ -2787,7 +2939,12 @@ function finishBattle(){
     
     //以下text_logを出すものです
     current_dialog_num = -1;
-    current_dialog_list = log_list[log_name.WINMONSTER];
+
+    if(clicked_id == 'monster1'){
+        current_dialog_list = log_list[log_name.WINSLIME];
+    }else{
+        current_dialog_list = log_list[log_name.WINGARGOYLE];
+    }
     displayNextDialog();
     saveData();
 }
