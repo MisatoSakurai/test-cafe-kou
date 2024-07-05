@@ -886,7 +886,7 @@ h1 {
 
 
 
-#button_move_to_rocky, #button_move_to_castle {
+#button_move_to_rocky, #button_move_to_castle, #button_move_to_extra {
     width:10%;
     max-width: 80px;
     height: auto;
@@ -899,7 +899,7 @@ h1 {
 
 
 
-#button_back_to_prairie, #button_back_to_rocky {
+#button_back_to_prairie, #button_back_to_rocky, #button_back_to_castle {
     width:10%;
     max-width: 80px;
     height: auto;
@@ -936,7 +936,7 @@ h1 {
 .selectQ{
     width:8vmin;
     height: 8vmin;
-    margin: 5vmin calc(calc(100% - 8 * 5vmin) / 10);
+    margin: 5vmin calc(calc(100% - 8 * 7vmin) / 14);
 }
 
 
