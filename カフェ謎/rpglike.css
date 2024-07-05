@@ -1604,6 +1604,7 @@ h1 {
     100%{
         transform: translateY(10000px) translateX(-50%);
         transform: -webkit-translateY(10000px) -webkit-translateX(-50%);
+        display: none;
     }
 }
 

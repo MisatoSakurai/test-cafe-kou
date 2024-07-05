@@ -425,7 +425,7 @@ var quiz_list ={
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/10_魚類_字.webp",
-                answer:["メンマ"],
+                answer:"メンマ",
                 hint:"",//未記入
                 place:{
                     x: 49, y: 29,  // 座標%
@@ -498,7 +498,7 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/14_九九.webp",
-                answer:["イシン","維新","以心","威神","威信"],
+                answer:["インシ","印紙","院試","因子"],
                 hint:["右のイラストは｢しし｣、｢にく｣を表しています。小学校で習う知識を使い図形を言い表してみましょう。","左の図形を九九で言ったものを表していました。上は4×4なので｢しし｣、真ん中は2×9なので｢にく｣となります。"],
             },
             [magicType.ADD_CHAR]:{
@@ -672,12 +672,12 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/23_鏡もじ.webp",
-                answer:["ボット"],
+                answer:"ボット",
                 hint:["それぞれ漢字に変換して漢字に変換してみましょう。「鏡」の左半分を＋１すると「境」になるようです。","漢字に変換して考えると、「金」に＋１で「土」、「月」に＋３で「木」となる事から、数字の分だけ曜日を進めればいいことが分かります。"],
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/23_鏡もじ_鋏.webp",
-                answer:["エイト"],
+                answer:"エイト",
                 hint:"",//未記入
                 place:{
                     x: 39, y: -5,  // 座標%
@@ -706,11 +706,20 @@ var quiz_list ={
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/25_しりとり_鋏.webp",
-                answer:["イコウ","威光","以降","移行","意向","遺構","偉功"],
+                answer:["ヒオケ","火桶"],
                 hint:"",//未記入
                 place:{
                     x: 66, y: -5,  // 座標%
                     w: 10, h: 20   // サイズ%
+                }//魔法変更済み
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/25_しりとり_四角.webp",
+                answer:["イコウ","威光","以降","移行","意向","遺構","偉功"],
+                hint:"",//未記入
+                place:{
+                    x: 20, y: 20,  // 座標%
+                    w: 10, h: 10   // サイズ%
                 }//魔法変更済み
             },
         }
@@ -924,7 +933,7 @@ var quiz_list ={
         magics:{
             [magicType.NONE]:{
                 image:"images/quiz/37_トランプ.webp",
-                answer:["ジンクス"],
+                answer:"ジンクス",
                 hint:[""],//未記入
             },
             [magicType.CHANGE_CHAR]:{
@@ -1551,9 +1560,9 @@ function debugMode(){
         level:8
     };
     monster_list['B1'].finish = true;
-    monster_list['B2'].finish = true;
+    monster_list['B2'].finish = false;
 
-    limited_level = 15;
+    limited_level = 8;
 
 
     tutorial_finish = {
