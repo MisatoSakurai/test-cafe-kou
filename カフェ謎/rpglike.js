@@ -3,7 +3,7 @@
 
 //--data&variable-------
 
-let timeLimit = 5.25
+let timeLimit = 50;
 
 let clearTime = timeLimit*60;
 
@@ -32,7 +32,8 @@ const status = Object.freeze({
 const stage = Object.freeze({
     PRAIRIE: 'prairie',
     ROCKY: 'rocky',
-    CASTLE: 'castle'
+    CASTLE: 'castle',
+    EXTRA:"extra"
 });
 //存在するステージの名前を管理
 
@@ -148,7 +149,7 @@ let now_status = status.TITLE;
 
 
 let now_place = stage.PRAIRIE;
-//今の場所が、map上のどこなのか（prairie、rocky、castle）を保管する
+//今の場所が、map上のどこなのか（prairie、rocky、castle、extra）を保管する
  
 
 
@@ -217,8 +218,9 @@ let monster_list = {
 
 
 const quiz_place_list = {
-    prairie:[1,2,3,6,8,12,13,16,17,19],
-    castle:[4,5,7,9,10,11,14,15,18,20]
+    prairie:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    castle:[15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28],
+    extra:[29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
 }
 
 
@@ -288,41 +290,48 @@ var quiz_list ={
     },
     
     4:{
-        color_vision: false,
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/4_国旗.webp",
-                answer:["スミカ","住処","栖","棲家"],
-                hint:["2つの国旗のうち、上側はイタリアを表しています。表でイタリアがミツバチになる法則を考えてみましょう。","上の表で国旗の国名の一つ下のマスを読む法則になっていました。ドイツの一つ下を読んでみましょう"],
+                image:"images/quiz/4_オセロ.webp",
+                answer:["イノリ","祈り"],
+                hint:["オセロなので、同じ色で挟まれた色はひっくり返る法則があります。どのコマがひっくり返るか考えましょう。","置いたマスから下側、右下側のコマがひっくり返ります。"],
             },
             [magicType.BLUE]:{
-                image:"images/quiz/4_国旗_色.webp",
-                answer:"コアラ",
-                hint:"カラーの青色を使ってイタリアをフランス国旗にしましょう。すると法則が国名と点対称の位置にある文字を拾う法則になります。",
+                image:"images/quiz/4_オセロ_色.webp",
+                answer:["コイノボリ","鯉のぼり"],
+                hint:"カラーを使って｢ん｣のコマを青色にします。すると左下側にもひっくり返ります",
                 place:{
-                    x: 21, y: 57,  // 座標%
-                    w: 7, h: 14   // サイズ%
+                    x: 29, y: 44,  // 座標%
+                    w: 11, h: 14   // サイズ%
+                }
+            },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/4_オセロ_字.webp",
+                answer:["サツキ","皐月"],
+                hint:"文字トランスを使って｢アオ｣を｢アカ｣にします。するとひっくり返るコマが左右方向になります",
+                place:{
+                    x: 16, y: 72,  // 座標%
+                    w: 9, h: 9   // サイズ%
                 }
             }
         }
         
     },
-    
     5:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/5_りんごなし.webp",
-                answer:["アニ","兄"],
-                hint:["上のイラストである魚、しおり、なしをそれぞれの丸に入るように表記を変えてみましょう。","イラストをローマ字で表記すると丸にピッタリ入ります。NASHIと入れて線で結ばれた文字を順に読んでみましょう"],
+                image:"images/quiz/5_語呂ろくろ.webp",
+                answer:["ゴロ","語呂"],
+                hint:["それぞれの文字がいくつあるかに着目しましょう。","酸味であれば｢3ミ｣、斜めであれば｢7メ｣のように、文字の数とそのカタカナで言葉になっています。"],
             },
-            [magicType.RED]:{
-                image:"images/quiz/5_りんごなし_色.webp",
-                answer:["イロ","色"],
-                hint:"カラーの赤色を用いるとなしがりんごに変わります。RINGOと埋めてみましょう",
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/5_語呂ろくろ_四角.webp",
+                answer:["ロクロ","鹿路","轆轤"],
+                hint:"",//未記入
                 place:{
-                    x: 66, y: 16,  // 座標%
-                    w: 14, h: 14   // サイズ%
-                }
+                    x: 72, y: 7,  // 座標%
+                    w: 15, h: 15   // サイズ%
+                }//魔法変更済み
             },
         }
         
@@ -330,12 +339,12 @@ var quiz_list ={
     6:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/6_★迷路.webp",
+                image:"images/quiz/6_星迷路.webp",
                 answer:"サイン",
                 hint:["はじめは下の方に行きましょう。","下の方に行き、1つ目の曲がり角を曲がりゴールまで行きます。"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/6_★迷路_字.webp",
+                image:"images/quiz/6_星迷路_字.webp",
                 answer:["サイテキカイ","最適解"],
                 hint:"文字トランスを使って｢ミッツ｣を｢ムッツ｣にすることで迷路の通るルートが変わります。",
                 place:{
@@ -346,16 +355,28 @@ var quiz_list ={
         }
         
     },
+    
+    
     7:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/7_曜日.webp",
-                answer:["アシタ","明日","ミョウニチ","みょうにち","アス","あす"],
-                hint:["それぞれ漢字に変換して漢字に変換してみましょう。「鏡」の左半分を＋１すると「境」になるようです。","漢字に変換して考えると、「金」に＋１で「土」、「月」に＋３で「木」となる事から、数字の分だけ曜日を進めればいいことが分かります。"],
+                image:"images/quiz/7_方位.webp",
+                answer:["ノウド","濃度"],
+                hint:["4つの方向を表す言葉を考えてみましょう。","4つの単語は4方位を表します。右には「イースト」が埋まるので、そこから時計回りに「サウス」「ウエスト」「ノース」が埋まります。"],
+            },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/7_方位_字.webp",
+                answer:["サイド","彩度","再度"],
+                hint:"文字トランスを使うと、右には「ウエスト」が埋まるので、そこから時計回りに「ノース」「イースト」「サウス」が埋まります。",
+                place:{
+                    x: 59, y: 33,  // 座標%
+                    w: 9, h: 9   // サイズ%
+                }
             }
         }
         
     },
+    
     8:{
         magics:{
             [magicType.NONE]:{
@@ -375,71 +396,63 @@ var quiz_list ={
         }
         
     },
+    
     9:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/9_部首.webp",
-                answer:["シカク","四角","資格","視覚","死角","刺客"],
-                hint:["それぞれのカタカナは漢字に関する形が似ているパーツを表しています。ウは上側、イは左側、リは右側に来ることが多いです。","それぞれのカタカナは似た部首を表していました。ネ、サ、ロは｢しめすへん｣、｢くさかんむり｣、｢くち｣か｢くちへん｣か｢くにがまえ｣を示しています"],
+                image:"images/quiz/9_りんごなし.webp",
+                answer:["アニ","兄","ani","ANI","Ani"],
+                hint:["上のイラストである魚、しおり、なしをそれぞれの丸に入るように表記を変えてみましょう。","イラストをローマ字で表記すると丸にピッタリ入ります。NASHIと入れて線で結ばれた文字を順に読んでみましょう"],
             },
-            [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/9_部首_字.webp",
-                answer:["シズク","雫","滴"],
-                hint:"文字トランスを使って｢サ｣を｢シ｣にすることで｢さんずい｣に変わります。",
+            [magicType.RED]:{
+                image:"images/quiz/9_りんごなし_色.webp",
+                answer:["イロ","色","IRO","Iro","iro"],
+                hint:"カラーの赤色を用いるとなしがりんごに変わります。RINGOと埋めてみましょう",
                 place:{
-                    x: 19, y: 62,  // 座標%
-                    w: 10, h: 12   // サイズ%
+                    x: 66, y: 16,  // 座標%
+                    w: 14, h: 14   // サイズ%
                 }
-            }
+            },
         }
         
     },
     10:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/10_ピースはめ.webp",
-                answer:["カタチ","形"],
-                hint:["赤矢印が｢たに｣になるようにピースを配置し、そこからうまくはまるように考えてみましょう。","赤い矢印が｢たに｣であることをヒントに右上のピースが左上に入ります。"],
+                image:"images/quiz/10_魚類.webp",
+                answer:["ケンマ","研磨"],
+                hint:[""],//未記入
             },
-            [magicType.SCISSORS]:{
-                image:"images/quiz/10_ピースはめ_鋏.webp",
-                answer:["クウキ","空気"],
-                hint:"ハサミを使い真ん中を切ることで別の問題にすることができます。｢たに｣のヒントから5×5のマス目は五十音表を示しています。",
-                afterInvolvedHint:"赤い矢印が通る2マスには｢たに｣が入ります。これはとある表の右側を切り取ったものを表しています。",
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/10_魚類_字.webp",
+                answer:["メンマ"],
+                hint:"",//未記入
                 place:{
-                    x: 40, y: -2,  // 座標%
-                    w: 7, h: 14   // サイズ%
-                }
-            }
+                    x: 49, y: 29,  // 座標%
+                    w: 10, h: 10   // サイズ%
+                }//魔法変更済み
+            },
         }
         
     },
     11:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/11_干支.webp",
-                answer:["マル","丸"],
-                hint:["これは12匹の動物の並びを使います。その上でいくつか進めてマスの中に埋めましょう。","これらは十二支を表していました。その順番で進めたり戻したりすると｢ウマ｣、｢サル｣が入ります"],
+                image:"images/quiz/11_色境界.webp",
+                answer:["ヨケイ","余計"],
+                hint:["一見カラフルなただの図形のようですが、カタカナが隠されています。","色の境目を見てみるとカタカナになっています。"],
             },
-            [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/11_干支_字.webp",
-                answer:["シル","汁","知る"],
-                hint:"文字トランスを使って｢トラ｣を｢トリ｣に変えます。すると｢ウシ｣に変化します。",
+            [magicType.BLUE]:{
+                image:"images/quiz/11_色境界_色.webp",
+                answer:["コケイ","固形","古形","湖系","固型"],
+                hint:"カラーを使って1文字目の図形の色を変えましょう。ヨがコに変化します。",
                 place:{
-                    x: 30, y: 55,  // 座標%
-                    w: 9, h: 9   // サイズ%
-                }
+                    x: 13, y: 34,  // 座標%
+                    w: 20, h: 10   // サイズ%
+                }//魔法変更済み
             },
-            [magicType.SCISSORS]:{
-                image:"images/quiz/11_干支_鋏.webp",
-                answer:["マリ","鞠"],
-                hint:"ハサミを使って｢イヌ｣を｢イ｣に変えます。すると｢トリ｣に変化します",
-                place:{
-                    x: 77, y: -2,  // 座標%
-                    w: 14, h: 14   // サイズ%
-                }
-            }
         }
+        
     },
     12:{
         magics:{
@@ -484,12 +497,31 @@ var quiz_list ={
     14:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/14_色の名前.webp",
+                image:"images/quiz/14_九九.webp",
+                answer:["イシン","維新","以心","威神","威信"],
+                hint:["右のイラストは｢しし｣、｢にく｣を表しています。小学校で習う知識を使い図形を言い表してみましょう。","左の図形を九九で言ったものを表していました。上は4×4なので｢しし｣、真ん中は2×9なので｢にく｣となります。"],
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/14_九九_四角.webp",
+                answer:["インゴ","隠語","イン語"],
+                hint:"",//未記入
+                place:{
+                    x: 30, y: 74,  // 座標%
+                    w: 10, h: 15   // サイズ%
+                }//魔法変更済み
+            },
+        }
+        
+    },
+    15:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/15_色の名前.webp",
                 answer:"フリー",
                 hint:["三角形の印は、50音で一つ進めることを表しているようです。","一行目には「ブラウン」、二行目には「ブルー」が埋まります。"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/14_色の名前_字.webp",
+                image:"images/quiz/15_色の名前_字.webp",
                 answer:"クルー",
                 hint:"文字トランスを使うと、1行目は「グリーン」、二行目は「グレー」が埋まります。",
                 place:{
@@ -500,89 +532,72 @@ var quiz_list ={
         }
         
     },
-    15:{
-        magics:{
-            [magicType.NONE]:{
-                image:"images/quiz/15_サイコロ.webp",
-                answer:"プロジェクト",
-                hint:["すごろくのように目が出たものとしてコマを進めてみましょう。","Sから3マス進み、1マス進み、…と繰り返し止まったマスを順に読みます"],
-            },
-            [magicType.RED]:{
-                image:"images/quiz/15_サイコロ_色.webp",
-                answer:"ポスター",
-                hint:"カラーを使ってサイコロの背景を赤くすると１の目が消えます。",
-                place:{
-                    x: 23, y: 40,  // 座標%
-                    w: 52, h: 14   // サイズ%
-                }
-            }
-        }
-        
-    },
+    
     16:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/16_オセロ.webp",
-                answer:["イノリ","祈り"],
-                hint:["オセロなので、同じ色で挟まれた色はひっくり返る法則があります。どのコマがひっくり返るか考えましょう。","置いたマスから下側、右下側のコマがひっくり返ります。"],
-            },
-            [magicType.BLUE]:{
-                image:"images/quiz/16_オセロ_色.webp",
-                answer:["コイノボリ","鯉のぼり"],
-                hint:"カラーを使って｢ん｣のコマを青色にします。すると左下側にもひっくり返ります",
-                place:{
-                    x: 29, y: 44,  // 座標%
-                    w: 11, h: 14   // サイズ%
-                }
-            },
-            [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/16_オセロ_字.webp",
-                answer:["サツキ","皐月"],
-                hint:"文字トランスを使って｢アオ｣を｢アカ｣にします。するとひっくり返るコマが左右方向になります",
-                place:{
-                    x: 16, y: 72,  // 座標%
-                    w: 9, h: 9   // サイズ%
-                }
+                image:"images/quiz/16_灰.webp",
+                answer:["イロ","色"],
+                hint:[""],//未記入
             }
         }
         
     },
+    
     17:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/17_v.webp",
-                answer:"エール",
-                hint:["それぞれの色の矢印の形に注目してみましょう。たとえば赤矢印は真ん中に｢ン｣があって｢文意(ブンイ)｣になっており、赤矢印は｢ブイ｣を表しているようです。","各矢印はその矢印の形のアルファベットと対応しているようです。黒矢印は｢エル(L)｣に対応しているため、真ん中に｢ー｣が入ります"],
+                image:"images/quiz/17_反転文字.webp",
+                answer:["ニモノ","煮物"],
+                hint:["右側の問題文は｢コレハナニ？｣と書かれています。どういった規則があるかを考えてみましょう。","不思議な図形は、半分に割った左側を見る法則です。"],
             },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/17_反転文字_四角.webp",
+                answer:["エモノ","獲物"],
+                hint:"",//未記入
+                place:{
+                    x: 38, y: 23,  // 座標%
+                    w: 15, h: 15   // サイズ%
+                }//魔法変更済み
+            }
         }
-        
     },
+    
     18:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/18_間.webp",
-                answer:["ヤミ", "闇"],
-                hint:["前後の文から、点線がついた四角に入りそうな漢字を推測してみましょう。構成する二つの漢字のうちの一方は「門」です。","四角に｢間｣を入れると、｢間を構成する二つの漢字の間に立を入れてできる漢字は？｣という分が出来上がります。"],
+                image:"images/quiz/18_柿.webp",
+                answer:["ツチ","土"],
+                hint:["これは、とある表の一部を示しています。赤い規則をヒントに考えてみましょう。","これは、五十音表の一部を表していました。赤い矢印は｢カキ｣となり植物の名前となります。"],
             },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/18_柿_字.webp",
+                answer:["テツ","鉄"],
+                hint:"文字トランスを使って｢シ｣を｢ス｣にしましょう。赤い矢印が｢キク｣となり成立します。",
+                place:{
+                    x: 44, y: 31,  // 座標%
+                    w: 15, h: 15   // サイズ%
+                }//魔法変更済み
+            }
         }
-        
     },
+    
     19:{
         magics:{
             [magicType.NONE]:{
-                image:"images/quiz/19_方位.webp",
-                answer:["ノウド","濃度"],
-                hint:["4つの方向を表す言葉を考えてみましょう。","4つの単語は4方位を表します。右には「イースト」が埋まるので、そこから時計回りに「サウス」「ウエスト」「ノース」が埋まります。"],
+                image:"images/quiz/19_栗.webp",
+                answer:["スナ","砂"],
+                hint:["右のイラストはハコ、クリを表しています。例から下線部に薄い部分と濃い部分がある法則を読み解きましょう。","下線部の濃淡はカタカナの画数のうち、何画目を拾うかを表していました。ネの2, 4画目を見るとス、チの2, 3画目を見るとナになります。"],
             },
             [magicType.CHANGE_CHAR]:{
-                image:"images/quiz/19_方位_字.webp",
-                answer:["サイド","彩度","再度"],
-                hint:"文字トランスを使うと、右には「ウエスト」が埋まるので、そこから時計回りに「ノース」「イースト」「サウス」が埋まります。",
+                image:"images/quiz/19_栗_字.webp",
+                answer:["スソ","裾"],
+                hint:"文字トランスを用いて｢チ｣を｢ツ｣にすると2, 3画目を見ると｢ソ｣になります。",
                 place:{
-                    x: 59, y: 33,  // 座標%
-                    w: 9, h: 9   // サイズ%
-                }
-            }
+                    x: 33, y: 65,  // 座標%
+                    w: 10, h: 15   // サイズ%
+                }//魔法変更済み
+            },
         }
         
     },
@@ -604,7 +619,383 @@ var quiz_list ={
             }
         }
         
-    }
+    },
+    
+    
+    21:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/21_干支.webp",
+                answer:["マル","丸"],
+                hint:["これは12匹の動物の並びを使います。その上でいくつか進めてマスの中に埋めましょう。","これらは十二支を表していました。その順番で進めたり戻したりすると｢ウマ｣、｢サル｣が入ります"],
+            },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/21_干支_字.webp",
+                answer:["シル","汁","知る"],
+                hint:"文字トランスを使って｢トラ｣を｢トリ｣に変えます。すると｢ウシ｣に変化します。",
+                place:{
+                    x: 30, y: 55,  // 座標%
+                    w: 9, h: 9   // サイズ%
+                }
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/21_干支_鋏.webp",
+                answer:["マリ","鞠"],
+                hint:"ハサミを使って｢イヌ｣を｢イ｣に変えます。すると｢トリ｣に変化します",
+                place:{
+                    x: 77, y: -2,  // 座標%
+                    w: 14, h: 14   // サイズ%
+                }
+            }
+        }
+    },
+    22:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/22_ア行.webp",
+                answer:["ヤカラ","輩"],
+                hint:[""],//未記入
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/22_ア行_四角.webp",
+                answer:["タカラ","宝"],
+                hint:"",//未記入
+                place:{
+                    x: 15, y: 71,  // 座標%
+                    w: 10, h: 15   // サイズ%
+                }//魔法変更済み
+            },
+        }
+        
+    },
+    23:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/23_鏡もじ.webp",
+                answer:["ボット"],
+                hint:["それぞれ漢字に変換して漢字に変換してみましょう。「鏡」の左半分を＋１すると「境」になるようです。","漢字に変換して考えると、「金」に＋１で「土」、「月」に＋３で「木」となる事から、数字の分だけ曜日を進めればいいことが分かります。"],
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/23_鏡もじ_鋏.webp",
+                answer:["エイト"],
+                hint:"",//未記入
+                place:{
+                    x: 39, y: -5,  // 座標%
+                    w: 10, h: 20   // サイズ%
+                }//魔法変更済み
+            },
+        }
+        
+    },
+    24:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/24_曜日.webp",
+                answer:["アシタ","明日","ミョウニチ","みょうにち","アス","あす"],
+                hint:["それぞれ漢字に変換して漢字に変換してみましょう。「鏡」の左半分を＋１すると「境」になるようです。","漢字に変換して考えると、「金」に＋１で「土」、「月」に＋３で「木」となる事から、数字の分だけ曜日を進めればいいことが分かります。"],
+            }
+        }
+        
+    },
+    25:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/25_しりとり.webp",
+                answer:["シコウ","思考","志向","指向","試行","嗜好","至高","施行","歯垢","施工"],
+                hint:[""],//未記入
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/25_しりとり_鋏.webp",
+                answer:["イコウ","威光","以降","移行","意向","遺構","偉功"],
+                hint:"",//未記入
+                place:{
+                    x: 66, y: -5,  // 座標%
+                    w: 10, h: 20   // サイズ%
+                }//魔法変更済み
+            },
+        }
+        
+    },
+    26:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/26_サイコロ.webp",
+                answer:"プロジェクト",
+                hint:["すごろくのように目が出たものとしてコマを進めてみましょう。","Sから3マス進み、1マス進み、…と繰り返し止まったマスを順に読みます"],
+            },
+            [magicType.RED]:{
+                image:"images/quiz/26_サイコロ_色.webp",
+                answer:"ポスター",
+                hint:"カラーを使ってサイコロの背景を赤くすると１の目が消えます。",
+                place:{
+                    x: 23, y: 40,  // 座標%
+                    w: 52, h: 14   // サイズ%
+                }
+            }
+        }
+        
+    },
+    27:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/27_色あみだ.webp",
+                answer:["キカク","企画","規格"],
+                hint:[""],//未記入
+            },
+            [magicType.BLUE]:{
+                image:"images/quiz/27_色あみだ_色.webp",
+                answer:["キオク","記憶"],
+                hint:"",//未記入
+                place:{
+                    x: 16, y: 65,  // 座標%
+                    w: 15, h: 10   // サイズ%
+                }//魔法変更済
+            },
+        }
+        
+    },
+    
+    
+    28:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/28_ピースはめ.webp",
+                answer:["カタチ","形"],
+                hint:["赤矢印が｢たに｣になるようにピースを配置し、そこからうまくはまるように考えてみましょう。","赤い矢印が｢たに｣であることをヒントに右上のピースが左上に入ります。"],
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/28_ピースはめ_鋏.webp",
+                answer:["クウキ","空気"],
+                hint:"ハサミを使い真ん中を切ることで別の問題にすることができます。｢たに｣のヒントから5×5のマス目は五十音表を示しています。",
+                afterInvolvedHint:"赤い矢印が通る2マスには｢たに｣が入ります。これはとある表の右側を切り取ったものを表しています。",
+                place:{
+                    x: 40, y: -2,  // 座標%
+                    w: 7, h: 14   // サイズ%
+                }
+            }
+        }
+        
+    },
+    29:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/29_覆面算.webp",
+                answer:["クウハク","空白"],
+                hint:[""],//未記入
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/29_覆面算_鋏.webp",
+                answer:["タナバタ","七夕"],
+                hint:"",//未記入
+                place:{
+                    x: 66, y: -5,  // 座標%
+                    w: 14, h: 20   // サイズ%
+                }//魔法変更済
+            },
+        }
+        
+    },
+    30:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/30_プリクラ.webp",
+                answer:["セイリ","整理","正理","生理"],
+                hint:[""],//未記入
+            },
+            [magicType.YELLOW]:{
+                image:"images/quiz/30_プリクラ_色.webp",
+                answer:["ギモン","疑問"],
+                hint:"",//未記入
+                place:{
+                    x: 70, y: 20,  // 座標%
+                    w: 15, h: 20   // サイズ%
+                }//魔法変更済
+            },
+        }
+        
+    },
+    31:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/31_月.webp",
+                answer:["ゲカ","外科"],
+                hint:[""],//未記入
+            },
+            [magicType.RED]:{
+                image:"images/quiz/31_月_色.webp",
+                answer:["ヨカ","余暇"],
+                hint:"",//未記入
+                place:{
+                    x: 15, y: 21,  // 座標%
+                    w: 20, h: 25   // サイズ%
+                }//魔法変更済
+            },
+            [magicType.SCISSORS]:{
+                image:"images/quiz/31_月_鋏.webp",
+                answer:["ゲン","弦","限","源","元"],
+                hint:"",//未記入
+                place:{
+                    x: 20, y: -5,  // 座標%
+                    w: 12, h: 20   // サイズ%
+                }//魔法変更済
+            },
+        }
+        
+    },
+    32:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/32_eat.webp",
+                answer:["ダンク","dunk","Dunk","DUNK"],
+                hint:[""],//未記入
+            },
+        }
+        
+    },
+    33:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/33_部首.webp",
+                answer:["シカク","四角","資格","視覚","死角","刺客"],
+                hint:["それぞれのカタカナは漢字に関する形が似ているパーツを表しています。ウは上側、イは左側、リは右側に来ることが多いです。","それぞれのカタカナは似た部首を表していました。ネ、サ、ロは｢しめすへん｣、｢くさかんむり｣、｢くち｣か｢くちへん｣か｢くにがまえ｣を示しています"],
+            },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/33_部首_字.webp",
+                answer:["シズク","雫","滴"],
+                hint:"文字トランスを使って｢サ｣を｢シ｣にすることで｢さんずい｣に変わります。",
+                place:{
+                    x: 19, y: 62,  // 座標%
+                    w: 10, h: 12   // サイズ%
+                }
+            }
+        }
+        
+    },
+    34:{
+        color_vision: false,
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/34_国旗.webp",
+                answer:["スミカ","住処","栖","棲家"],
+                hint:["2つの国旗のうち、上側はイタリアを表しています。表でイタリアがミツバチになる法則を考えてみましょう。","上の表で国旗の国名の一つ下のマスを読む法則になっていました。ドイツの一つ下を読んでみましょう"],
+            },
+            [magicType.BLUE]:{
+                image:"images/quiz/34_国旗_色.webp",
+                answer:"コアラ",
+                hint:"カラーの青色を使ってイタリアをフランス国旗にしましょう。すると法則が国名と点対称の位置にある文字を拾う法則になります。",
+                place:{
+                    x: 21, y: 57,  // 座標%
+                    w: 7, h: 14   // サイズ%
+                }
+            }
+        }
+        
+    },
+    35:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/35_間.webp",
+                answer:["ヤミ","闇"],
+                hint:["前後の文から、点線がついた四角に入りそうな漢字を推測してみましょう。構成する二つの漢字のうちの一方は「門」です。","四角に｢間｣を入れると、｢間を構成する二つの漢字の間に立を入れてできる漢字は？｣という分が出来上がります。"],//未記入
+            },
+        }
+        
+    },
+    36:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/36_数字埋め.webp",
+                answer:["オーブン","OVEN","Oven","oven"],
+                hint:["4つの数字は英単語にして埋めてみましょう。","文字数の関係から一番下にはONEが入り、その上にはTHREEが入ります。他についても同様に考えてみましょう。"],
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/36_数字埋め_四角.webp",
+                answer:["ツリー","TREE","Tree","tree"],
+                hint:"",//未記入
+                place:{
+                    x: 78, y: 32,  // 座標%
+                    w: 10, h: 15   // サイズ%
+                }//魔法変更済
+            },
+        }
+        
+    },
+    37:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/37_トランプ.webp",
+                answer:["ジンクス"],
+                hint:[""],//未記入
+            },
+            [magicType.CHANGE_CHAR]:{
+                image:"images/quiz/37_トランプ_字.webp",
+                answer:["ダスト"],
+                hint:"",//未記入
+                place:{
+                    x: 38, y: 73,  // 座標%
+                    w: 10, h: 15   // サイズ%
+                }//魔法変更済
+            },
+        }
+        
+    },
+    38:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/38_ワープ迷路.webp",
+                answer:["ナガサキ","長崎"],
+                hint:[""],//未記入
+            },
+            [magicType.BLUE]:{
+                image:"images/quiz/38_ワープ迷路_色.webp",
+                answer:["ナゴヤ","名古屋"],
+                hint:"",//未記入
+                place:{
+                    x: 35, y: 61,  // 座標%
+                    w: 10, h: 14   // サイズ%
+                }//魔法変更済
+            },
+            [magicType.ADD_CHAR]:{
+                image:"images/quiz/38_ワープ迷路_四角.webp",
+                answer:["ナハ","那覇"],
+                hint:"",//未記入
+                place:{
+                    x: 26, y: 62,  // 座標%
+                    w: 10, h: 12   // サイズ%
+                }//魔法変更済
+            },
+        }
+        
+    },
+    39:{
+        magics:{
+            [magicType.NONE]:{
+                image:"images/quiz/39_色紙.webp",
+                answer:["キン","金","菌"],
+                hint:[""],//未記入
+            },
+            [magicType.ADD_CHAR]:2,
+            [magicType.ADD_CHAR+1]:{
+                image:"images/quiz/39_色紙_四角1.webp",
+                answer:["トロ","吐露"],
+                hint:"",//未記入
+                place:{
+                    x: 22, y: 37,  // 座標%
+                    w: 10, h: 14   // サイズ%
+                }//魔法変更済
+            },
+            [magicType.ADD_CHAR+2]:{
+                image:"images/quiz/39_色紙_四角2.webp",
+                answer:["ロン","論"],
+                hint:"",//未記入
+                place:{
+                    x: 78, y: 44,  // 座標%
+                    w: 10, h: 12   // サイズ%
+                }//魔法変更済
+            },
+        }
+        
+    },
 }
 
 
@@ -729,7 +1120,10 @@ const monster_tutorial_list = [
     [speaker.G,"——敵のアイコンをタップすると…"],
     ["action",{func: finishPoint, subject:'B1_icon'}],
     ["action",{func: hideObj, subject:"B1_command"}],
+    ["action",{func: setLevel, subject: 3}],
     ["action",{func: openBattle, subject:'B1'}],
+    ["action",{func: setLevel, subject: 1}],
+    ["action",{func: checkLevel, subject: true}],
     [speaker.G,"——こんな画面になります"],
     [speaker.G,"——ここであなたは｢たたかう｣、｢にげる｣、｢魔法｣のいずれかを行うことができます"],
     [speaker.G,"——「たたかう」で直接戦うこともできますが……あなた程度の攻撃はスライムにすら通用せずそのまま敵からの攻撃で確実にやられてしまうでしょう"],
@@ -1094,6 +1488,10 @@ function initializeQuizDataList(q_list){
             place = "castle";
             q_data.field = stage.CASTLE;
         }
+        else if(quiz_place_list.extra.includes(n)){
+            place = "extra";
+            q_data.field = stage.EXTRA;
+        }
         
         
         make_q_icon(n,place);
@@ -1155,7 +1553,7 @@ function debugMode(){
     monster_list['B1'].finish = true;
     monster_list['B2'].finish = true;
 
-    limited_level = 8;
+    limited_level = 15;
 
 
     tutorial_finish = {
@@ -1386,6 +1784,10 @@ function moveTitle(){
 }
 
 
+
+function setLevel(l) {
+    player_data.level = l;
+}
 
 
 
@@ -2278,16 +2680,44 @@ function useMagic(e){
         x: 0, y: 0,  // 座標%
         w: -50, h: -50   // サイズ%
     }
-    if(now_status == status.QUIZ){
-        rect = document.getElementById("quiz_magic_judge_canvas").getBoundingClientRect(); 
-        if (quiz_data.magics[selected_magic]!= null){
-            square = quiz_data.magics[selected_magic].place;
-        }
-    }
-    else if(now_status == status.BOARD){
+    
+    if(now_status == status.BOARD){
         rect = document.getElementById("board_magic_judge_canvas").getBoundingClientRect();
         if (board_data.magics[selected_magic]!=null){
             square = board_data.magics[selected_magic].place;
+        }
+    }
+    else if(now_status == status.QUIZ){
+        rect = document.getElementById("quiz_magic_judge_canvas").getBoundingClientRect(); 
+        if (quiz_data.magics[selected_magic]!= null){
+            
+            if(quiz_data.magics[selected_magic].place != null){
+                square = quiz_data.magics[selected_magic].place;
+            }
+            else{//39番用の使用
+                num_of_answer = quiz_data.magics[selected_magic];
+                const point = {
+                    x: (e.clientX - rect.left)*100/rect.width,
+                    y: (e.clientY - rect.top)*100/rect.height
+                };
+                for(let i = 1; i <= num_of_answer; i++ ){
+                    square = quiz_data.magics[selected_magic+i].place
+                    console.log(selected_magic+i,square);
+                    let hit =
+                          (square.x <= point.x && point.x <= square.x + square.w)  // 横方向の判定
+                       && (square.y <= point.y && point.y <= square.y + square.h);  // 縦方向の判定
+                    console.log(hit);
+                    if (hit) {
+                        selected_magic = selected_magic+i
+                        successMagic();
+                        closeColorMagic();
+                        return;
+                    }
+                }
+                failedMagic();
+                closeColorMagic();
+                return;
+            }
         }
     }
     
@@ -2295,6 +2725,10 @@ function useMagic(e){
         x: (e.clientX - rect.left)*100/rect.width,
         y: (e.clientY - rect.top)*100/rect.height
     };
+
+    console.log("座標");
+    console.log("x:", Math.round(point.x));
+    console.log("y:", Math.round(point.y));
     
     const hit =
           (square.x <= point.x && point.x <= square.x + square.w)  // 横方向の判定
@@ -2456,7 +2890,12 @@ function levelUp(new_level){
         now_num_ans = 1;
         for(var magic of enable_magic_list){
             if(quiz_data.magics[magic] != null){
-                now_num_ans += 1;
+                if(Number.isInteger(quiz_data.magics[magic])) {
+                    now_num_ans += quiz_data.magics[magic];
+                }
+                else{
+                    now_num_ans += 1;
+                }
             }
         }
 
