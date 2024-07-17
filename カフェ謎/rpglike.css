@@ -17,8 +17,22 @@
 body {
     overflow-x: hidden;
     font-size: 2.5vmin;
-    font-family: 'M PLUS 2', sans-serif;
+    
+    font-family: "a-otf-ud-shin-go-pr6n", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
+
+
+
+.clear_font {
+    font-family: vdl-logojr, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
 
 
 h1 {
@@ -50,7 +64,23 @@ h1 {
     top: 0%;
     left: 50%;
     transform: translateX(-50%);
+}
 
+
+#castle_back_image_cover {
+    height: fit-content;
+    width: fit-content;
+}
+
+
+#castle_back_image {
+    position: fixed;
+    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #title_text_and_buttons {
@@ -105,10 +135,23 @@ h1 {
 #delete_data_button {
     position: fixed;
     left: 1%;
-    top: 1%;
+    top: 0%;
     font-size: 10px;
     padding: 5px;
+    color: rgba(0, 0, 0, 0.31)
     /*border: 4px solid #f0f0f0;*/
+}
+
+#delete_data_button_score{
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    width: 50px;
+    height: 50px;
+    font-size: 10px;
+    padding: 5px;
+    color: #ffc77a0c;
+    /* border: 4px solid #f0f0f0; */
 }
 
 
@@ -174,15 +217,62 @@ h1 {
 }
 */
 
+#name_form {
+    background-color: #000000;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+
+#name_container {
+    background-color: black;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    width: 55%;
+    height: fit-content;
+    transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+    border: 4px solid #f0f0f0;
+    border-radius: 20px;
+    padding: 10px 20px;
+    z-index: 12;
+    color: white;
+}
 
 
 
+#name_box {
+    width: calc(80% - 6px);
+    padding: 3px;
+    margin-left: auto;
+    margin-right: auto ;
+    background-color: black;
+    color: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 3px;
+    font-size: 20px;
+    text-align: left;
+}
 
 
+#name_send_button {
+    margin-left: auto;
+    margin-right: auto ;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
 
 
-
-
+#name_alert{
+    color: var(--yellow);
+}
 
 
 
@@ -211,14 +301,6 @@ h1 {
 }
 
 
-#clearScores {
-    border: 2px solid black; /* 幅: 2px、スタイル: solid（実線）、色: 黒 */
-    padding: 10px 20px;
-}
-#clearScores li {
-    list-style:none;
-}
-
 
 
 #clear_text_and_buttons {
@@ -232,10 +314,79 @@ h1 {
 
 
 
+.score_sheet {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-image: url('images/score/スコア画面_Not clear_withoutnumber_v2.webp');
+    background-size: 100% 100%;
+    opacity: 1;
+    z-index: 14;
+}
+
+.score_sheet.clear {
+    background-image: url('images/score/スコア画面_withoutnumber_v2.webp');
+}
 
 
+#clearScores li {
+    list-style:none;
+    position: fixed;
+}
+
+.numContainer{
+    display: flex;
+    height: fit-content;
+}
 
 
+#playerName {
+    font-size: clamp(10px, calc(20vw / 3), 74px);
+    font-weight: bold;
+    fill: url(#grad1); /* グラデーションのIDを指定 */
+    width:100%;
+    stroke: #AF6C14;
+    stroke-linecap: round;
+    stroke-width: 10px;
+    text-anchor: middle; /* 水平中央揃え */
+    paint-order: stroke fill;
+}
+
+#playerNameSvg {
+    position: fixed;
+    max-width: 300px;
+    width: 30vw;
+    left: 60vw;
+    bottom: 50vh;
+    transform: translateX(-50%);
+
+}
+
+
+#gameScore{
+    width:20vw;
+    max-width: 190px;
+    right: 36vw;
+    bottom: 37vh;
+}
+
+#clearTime{
+    width:25vw;
+    max-width: 270px;
+    left: 50vw;
+    bottom: 23vh;
+}
+
+#gameScore img{
+    width: calc(100% /3);
+}
+
+#clearTime img{
+    max-width: calc(100% /5);
+    height: auto;
+}
 
 
 
@@ -885,8 +1036,20 @@ h1 {
 }
 
 
+#button_move_to_extra{
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    bottom: 0;
+    left: 50%;
+    background-color: #F4E21D;
+    transform: translateX(-50%);
+    -webkit- transform: translateX(-50%);
+}
 
-#button_move_to_rocky, #button_move_to_castle, #button_move_to_extra {
+
+
+#button_move_to_rocky, #button_move_to_castle {
     width:10%;
     max-width: 80px;
     height: auto;
