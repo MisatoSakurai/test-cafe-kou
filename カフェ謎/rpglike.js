@@ -423,12 +423,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/10_魚類.webp",
                 answer:["ケンマ","研磨"],
-                hint:[""],//未記入
+                hint:["左のシルエットに対応したものを右に入れましょう。｢日｣は日本語、｢英｣は英語を表しています。","2つのシルエットは｢サケ/サーモン｣、｢ヒト/ヒューマン｣を表していました。数字の順に拾ってみましょう"],
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/10_魚類_字.webp",
                 answer:"メンマ",
-                hint:"",//未記入
+                hint:"文字トランスを使って2行目の｢サ｣を｢シ｣にしましょう。｢サメ/シャーク｣となります。",
                 place:{
                     x: 49, y: 29,  // 座標%
                     w: 10, h: 10   // サイズ%
@@ -540,7 +540,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/16_灰.webp",
                 answer:["イロ","色"],
-                hint:[""],//未記入
+                hint:["それぞれの色の名前を考えてみましょう。ひとつは少し読み方を工夫して入れる必要があるようです。","縦向き、横向きに読んで色の名前になるように文字を入れます。ハイ、クロ、ハクと入れると成立します。"],
             }
         }
         
@@ -656,12 +656,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/22_ア行.webp",
                 answer:["ヤカラ","輩"],
-                hint:[""],//未記入
+                hint:["1行目は｢あたま｣、2行目は｢さかな｣を表しています。数字と文字を対応させて法則を考えてみましょう。","この漢数字はア行の何番目の文字かを表していました。一が｢あ｣と対応させていきましょう"],
             },
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/22_ア行_四角.webp",
                 answer:["タカラ","宝"],
-                hint:"",//未記入
+                hint:"スクエアを使って八を四にすると｢や｣が｢た｣に変化します。",
                 place:{
                     x: 15, y: 71,  // 座標%
                     w: 10, h: 15   // サイズ%
@@ -675,12 +675,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/23_鏡もじ.webp",
                 answer:"ボット",
-                hint:["それぞれ漢字に変換して漢字に変換してみましょう。「鏡」の左半分を＋１すると「境」になるようです。","漢字に変換して考えると、「金」に＋１で「土」、「月」に＋３で「木」となる事から、数字の分だけ曜日を進めればいいことが分かります。"],
+                hint:["すべての赤い線には共通の法則が成り立っています。それぞれが文字になるにはどういった法則になればよいか考えてみましょう。","赤い線で線対称となるように折り返すという法則がありました。その法則を適用すると｢BOX｣｢TOUCH｣となり右側には｢ボックス｣｢タッチ｣が入り矢印も｢口｣で成立します。"],
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/23_鏡もじ_鋏.webp",
                 answer:"エイト",
-                hint:"",//未記入
+                hint:"ハサミを使って左側をXとHだけ残すと｢エックス｣｢エイチ｣が入ります。",
                 place:{
                     x: 39, y: -5,  // 座標%
                     w: 10, h: 20   // サイズ%
@@ -704,12 +704,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/25_しりとり.webp",
                 answer:["シコウ","思考","志向","指向","試行","嗜好","至高","施行","歯垢","施工"],
-                hint:[""],//未記入
+                hint:["6つの単語がひとつながりになるようにしりとりをしましょう。初めは｢こうどう｣からになります。","こうどう→うけつけ→けいかい→いしばし→しょうひ→ひとくち とするとしりとりが成立します。"],
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/25_しりとり_鋏.webp",
                 answer:["ヒオケ","火桶"],
-                hint:"",//未記入
+                hint:"ハサミを使って公道を公にして受付を無くすと順番が変化します。",
                 place:{
                     x: 66, y: -5,  // 座標%
                     w: 10, h: 20   // サイズ%
@@ -718,7 +718,7 @@ var quiz_list ={
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/25_しりとり_四角.webp",
                 answer:["イコウ","威光","以降","移行","意向","遺構","偉功"],
-                hint:"",//未記入
+                hint:"スクエアを使って口を回にすると｢ひとくち｣が｢いっかい｣になりしりとりが変わります。",
                 place:{
                     x: 20, y: 20,  // 座標%
                     w: 10, h: 10   // サイズ%
@@ -751,12 +751,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/27_色あみだ.webp",
                 answer:["キカク","企画","規格"],
-                hint:[""],//未記入
+                hint:["この図は左右で何かが共通していることを表しています。色をそのまま色の名前で捉えて考えてみましょう。","左のカラフルな四角形を色の名前で変換すると、左右で使われている文字が似ていることがわかります。過不足なく共通しているとすると答えがわかります。"],
             },
             [magicType.BLUE]:{
                 image:"images/quiz/27_色あみだ_色.webp",
                 answer:["キオク","記憶"],
-                hint:"",//未記入
+                hint:"カラーで赤を青にすると使われる文字が変わります。",
                 place:{
                     x: 16, y: 65,  // 座標%
                     w: 15, h: 10   // サイズ%
@@ -792,12 +792,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/29_覆面算.webp",
                 answer:["クウハク","空白"],
-                hint:[""],//未記入
+                hint:["まずは一番下の49となる数字を考えましょう。そこから真ん中、一番上と考えていくとわかりやすいと思います。","丸＝7、六角＝9、四角＝8となります"],
             },
             [magicType.SCISSORS]:{
                 image:"images/quiz/29_覆面算_鋏.webp",
                 answer:["タナバタ","七夕"],
-                hint:"",//未記入
+                hint:"ハサミを使って49を4にすると、丸＝2、六角＝4、四角＝3となります。",
                 place:{
                     x: 66, y: -5,  // 座標%
                     w: 14, h: 20   // サイズ%
@@ -811,12 +811,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/30_プリクラ.webp",
                 answer:["セイリ","整理","正理","生理"],
-                hint:[""],//未記入
+                hint:["左下のイラストは｢キントレ｣、右下のイラストは｢プリクラ｣を示しています。","左端からプリクラ、ライム、オムスビ、オンセン、キントレが入ります。"],
             },
             [magicType.YELLOW]:{
                 image:"images/quiz/30_プリクラ_色.webp",
                 answer:["ギモン","疑問"],
-                hint:"",//未記入
+                hint:"カラーを使ってライムをレモンにすると、左端からキントレ、レモン、オンセン、オニギリ、プリクラが入ります。",
                 place:{
                     x: 70, y: 20,  // 座標%
                     w: 15, h: 20   // サイズ%
@@ -830,12 +830,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/31_月.webp",
                 answer:["ゲカ","外科"],
-                hint:[""],//未記入
+                hint:["左のイラストは空に浮かぶアレを表しています。","2つとも状態の違う月を表していました。｢まんげつ｣｢みかづき｣と入れます。"],
             },
             [magicType.RED]:{
                 image:"images/quiz/31_月_色.webp",
                 answer:["ヨカ","余暇"],
-                hint:"",//未記入
+                hint:"カラーの赤を使って｢まんげつ｣を｢たいよう｣に変えることができます。",
                 place:{
                     x: 15, y: 21,  // 座標%
                     w: 20, h: 25   // サイズ%
@@ -844,7 +844,7 @@ var quiz_list ={
             [magicType.SCISSORS]:{
                 image:"images/quiz/31_月_鋏.webp",
                 answer:["ゲン","弦","限","源","元"],
-                hint:"",//未記入
+                hint:"ハサミを使って左側を切ると｢ハンゲツ｣と｢シンゲツ｣になります。",
                 place:{
                     x: 20, y: -5,  // 座標%
                     w: 12, h: 20   // サイズ%
@@ -858,7 +858,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/32_eat.webp",
                 answer:["ダンク","dunk","Dunk","DUNK"],
-                hint:[""],//未記入
+                hint:["橙、緑の矢印はそれぞれのものを口へ運ぶ際の動作を表しています。","2本の矢印はそれぞれを口へ運ぶ動作を示していました。上はDRINK、下はEATであり、イラストがTEAとRICEであるとわかります。"],
             },
         }
         
@@ -907,7 +907,7 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/35_間.webp",
                 answer:["ヤミ","闇"],
-                hint:["前後の文から、点線がついた四角に入りそうな漢字を推測してみましょう。構成する二つの漢字のうちの一方は「門」です。","四角に｢間｣を入れると、｢間を構成する二つの漢字の間に立を入れてできる漢字は？｣という分が出来上がります。"],//未記入
+                hint:["前後の文から、点線がついた四角に入りそうな漢字を推測してみましょう。構成する二つの漢字のうちの一方は「門」です。","四角に｢間｣を入れると、｢間を構成する二つの漢字の間に立を入れてできる漢字は？｣という分が出来上がります。"],
             },
         }
         
@@ -936,12 +936,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/37_トランプ.webp",
                 answer:"ジンクス",
-                hint:[""],//未記入
+                hint:["デザインなどから推測して、カードに関する4種類の単語を下に入れていきましょう。","カードと既に出ているものからトランプのAJQKが入ると推測されます。上からエース、ジャック、クイーン、キングと入れます"],
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/37_トランプ_字.webp",
                 answer:["ダスト"],
-                hint:"",//未記入
+                hint:"文字トランスを使って｢キ｣を｢ク｣にすると、トランプのスートが入ります。上からハート、スペード、ダイヤ、クラブが入ります",
                 place:{
                     x: 38, y: 73,  // 座標%
                     w: 10, h: 15   // サイズ%
@@ -955,12 +955,12 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/38_ワープ迷路.webp",
                 answer:["ナガサキ","長崎"],
-                hint:[""],//未記入
+                hint:["ワープしながらゴールを目指しましょう。まずは下に進み｢な｣を通ります。","緑、黄を使ってSからGへ行くことができます。"],
             },
             [magicType.BLUE]:{
                 image:"images/quiz/38_ワープ迷路_色.webp",
                 answer:["ナゴヤ","名古屋"],
-                hint:"",//未記入
+                hint:"カラーを使って緑の四角を青色にしましょう。ルートが変わります。",
                 place:{
                     x: 35, y: 61,  // 座標%
                     w: 10, h: 14   // サイズ%
@@ -969,7 +969,7 @@ var quiz_list ={
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/38_ワープ迷路_四角.webp",
                 answer:["ナハ","那覇"],
-                hint:"",//未記入
+                hint:"スクエアを使って｢な｣の下に四角を配置すると下の白い四角へワープできます。そこから上にあるGへ進みましょう",
                 place:{
                     x: 26, y: 62,  // 座標%
                     w: 10, h: 12   // サイズ%
@@ -983,13 +983,13 @@ var quiz_list ={
             [magicType.NONE]:{
                 image:"images/quiz/39_色紙.webp",
                 answer:["キン","金","菌"],
-                hint:[""],//未記入
+                hint:["人と口、色と紙で熟語のペアができます。それぞれ何という熟語になるか考えてみましょう。","人と口で人口、色と紙で色紙となります。上に｢しきし｣、下に｢じんこう｣と入れます。"],
             },
             [magicType.ADD_CHAR]:2,
             [magicType.ADD_CHAR+1]:{
                 image:"images/quiz/39_色紙_四角1.webp",
                 answer:["トロ","吐露"],
-                hint:"",//未記入
+                hint:"スクエアを使って口に重なるように配置すると｢じんこう｣が｢ひとめ｣になります。下に｢いろがみ｣を入れます。",
                 place:{
                     x: 22, y: 37,  // 座標%
                     w: 10, h: 14   // サイズ%
@@ -998,7 +998,7 @@ var quiz_list ={
             [magicType.ADD_CHAR+2]:{
                 image:"images/quiz/39_色紙_四角2.webp",
                 answer:["ロン","論"],
-                hint:"",//未記入
+                hint:"スクエアを使って右のマスを一つ増やすと｢しきし｣が｢いろがみ｣になって入ります。",
                 place:{
                     x: 78, y: 44,  // 座標%
                     w: 10, h: 12   // サイズ%
@@ -2379,6 +2379,22 @@ function hint(n,magictype=null,is_magic_hint=false){
                                 var magicAnswer = document.getElementById(magicType.CHANGE_COLOR + "_hint");
                             }
                             magicAnswer.style.display = 'block';
+                        }
+                    }
+                    if(typeof quiz_data.magics[magic] == "number"){
+                        s += magic_info[magic].name + "<br>";
+                        for (let i=1; i< quiz_data.magics[magic]+1; i++){
+                            if(quiz_data.magics[magic+i].hint != null){
+                                if(enable_magic_list.includes(magic)){
+                                    count += 1;
+                                    var magicAnswer = document.getElementById(magic+i + "_hint");
+                                    console.log(magic+i + "_hint");
+                                    if(isColorMagic(magic)){
+                                        var magicAnswer = document.getElementById(magicType.CHANGE_COLOR + "_hint");
+                                    }
+                                    magicAnswer.style.display = 'block';
+                                }
+                            }
                         }
                     }
                 }
