@@ -5,12 +5,14 @@
 
 let timeLimit = 50;
 
-let clearTime = timeLimit*60;
+let clearTime = null;
 
 
 var player_data = {
     point:0,
-    level:1
+    level:1,
+    name:undefined,
+    clear:false
 }
 
 
@@ -1173,7 +1175,7 @@ const ending_list = [
     [speaker.P,"「それじゃあ今日も頑張っていくぞ～！」"],
     [speaker.N,"あなたは勇んでリアルの世界を進むことにしたのでした……"],
     ["action",{ func: showBack, subject: "clear_sheet"}],
-    ["action",{ func: setClearScreen, subject: "nashi"}]
+    // ["action",{ func: setClearScreen, subject: "nashi"}]
 ];
 
 
@@ -1264,7 +1266,9 @@ const log_name = Object.freeze({
     CANNOTANSWERQ:"cannot_answer_quiz",
     CANNOTBATTLESLIME:"cannot_battle_slime",
     CANNOTBATTLEGARGOYLE:"cannot_battle_gargoyle",
+    CANNOTBATTLEMAOU:"cannot_battle_maou",
     NOMORELIMIT:"no_more_limit",
+    GAMEOVER:"game over"
 });
 
 
@@ -1281,7 +1285,9 @@ const log_list = {
     [log_name.CANNOTANSWERQ]:[[speaker.N,"すでに現在のレベル上限に達しています。"]],
     [log_name.CANNOTBATTLESLIME]:[[speaker.N,`Lv.${limited_level}に達していないため戦闘に挑むことができません`]],
     [log_name.CANNOTBATTLEGARGOYLE]:[[speaker.N,`Lv.${monster_list.B1.next_limited_level}に達していないため戦闘に挑むことができません`]],
-    [log_name.NOMORELIMIT]:[[speaker.N,"ゲームクリアによりレベル上限が無くなりました"]],
+    [log_name.CANNOTBATTLEMAOU]:[[speaker.N,`Lv.${monster_list.B2.next_limited_level}に達していないため戦闘に挑むことができません`]],
+    [log_name.NOMORELIMIT]:[[speaker.N,"ゲームクリアによりレベル上限が無くなりました。<br>エクストラステージが出現しました。"]],
+    [log_name.GAMEOVER]:[[speaker.N,"タイムアップ！"],["action",{ func: askName, subject: "nashi"}],],
 
 }
 
@@ -1311,7 +1317,7 @@ function startTimer() {
 function updateTimer() {
     if (timeLeft <= 0) {
         clearInterval(timer);
-        sessionStorage.removeItem('timeLeft'); // ゲームオーバー時にsessionStorageをクリア
+        //sessionStorage.removeItem('timeLeft'); // ゲームオーバー時にsessionStorageをクリア
         console.log("ゲームオーバー");
         gameOver();
     } else {
@@ -1332,8 +1338,8 @@ function updateTimerDisplay() {
 
 
 function TimeForDisplay(time) {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
     return  `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
@@ -1353,6 +1359,7 @@ let save_data = {
 
 
 window.onload = function(){
+
     initializeMagicIcons();
     initializeQuizDataList(quiz_list);
     initializeBookList(monster_book_list,"monster");
@@ -1375,12 +1382,23 @@ window.onload = function(){
     }
 
     const savedTime = sessionStorage.getItem('timeLeft');
-    if (savedTime !== null && tutorial_finish[tutorialType.STORY]) {
+    console.log("timeLeft:",savedTime);
+    
+
+
+    if(savedTime !== null && savedTime <= 0){
+        if(player_data.name != undefined){
+            moveToScoreSheet();
+        }else{
+            askName();
+        }
+    }
+    else if (savedTime !== null && tutorial_finish[tutorialType.STORY]) {
         timeLeft = parseInt(savedTime, 10);
         updateTimerDisplay();
         startTimer(); // 自動的にタイマーを再開する
     }
-    
+
     
     checkLevel(true);
     checkRemovedMonsters();
@@ -1411,6 +1429,7 @@ function saveData(){
     }
     var string_save_data = JSON.stringify(save_data);
     sessionStorage.setItem('save_data',string_save_data);
+    sessionStorage.setItem('timeLeft',timeLeft);
     
 }
 
@@ -1535,6 +1554,7 @@ function initializeMagicIcons(){
 
 
 function wantDelete() {
+    console.log("wantDelete");
     delete_or_not = document.getElementById("delete_or_not");
     delete_or_not.style.display = "block";
 }
@@ -1554,10 +1574,14 @@ function notDelete(){
 
 
 function debugMode(){
+    timeLeft = 3*60;
+
 
     player_data = {
-        point:300,
-        level:8
+        point:280,
+        level:7,
+        name:undefined,
+        clear:false
     };
     monster_list['B1'].finish = true;
     monster_list['B2'].finish = false;
@@ -1614,6 +1638,18 @@ function debugMode(){
 //-- title & tutorial ------
 
 function startGame(){
+    console.log("ゲームスタート");
+    const savedTime = sessionStorage.getItem('timeLeft');
+    if(savedTime !== null && savedTime <= 0){
+        if(player_data.name != undefined){
+            moveToScoreSheet();
+        }else{
+            askName();
+        }
+        return;
+    }
+
+    
     startTimer();
     title_sheet = document.getElementById("title_sheet");
     if (tutorial_finish[tutorialType.STORY].finish){
@@ -1676,8 +1712,7 @@ function startGame(){
 
 function quitGame(){
     if(meet_clear_condition){
-        clearInterval(timer);
-        clearTime = timeLeft;
+        
         clearGame();
     }
     else{
@@ -1694,20 +1729,24 @@ function quitGame(){
 
 function gameOver() {
     console.log("ゲームオーバーの関数の内容");
+    current_dialog_list = log_list[log_name.GAMEOVER];
+    displayNextDialog();
 }
 
 
 
 function clearGame(){
-    /*popTexting("クリアの条件を満たした！");
-    popTitling("CLEAR");
-    openPop();*/
+    clearInterval(timer);
+    if(!clearTime){
+        clearTime = timeLeft;  
+    }
+    player_data.clear = true;
     limited_level = max_level;//レベルの最大値
-    saveData()
+    saveData();
 
     if(tutorial_finish[tutorialType.ENDING].finish){
         showBack("clear_sheet");
-        setClearScreen("nashi");
+        // setClearScreen("nashi");
         return;
     }
     
@@ -1718,6 +1757,8 @@ function clearGame(){
     title_sheet = document.getElementById("title_sheet");
     clear_out_sheet.style.display = 'block';
     now_status = status.CLEAR;
+    
+    
     
     setTimeout(function() {
         clear_out_sheet.style.transition = "opacity " + white_out_time + "s";
@@ -1756,29 +1797,78 @@ function showEnding(){
     doTutorial(tutorialType.ENDING);
 }
 
-function setClearScreen(nashi) {
-    document.getElementById("clearTime").textContent = `クリアタイム；${TimeForDisplay(timeLimit - clearTime)}`;
-    document.getElementById("clearLevel").textContent = `レベル：${player_data.level}`;
-    document.getElementById("gameScore").textContent = `スコア：${player_data.point}`;
+
+function setScoreScreen(nashi = "") {
+    document.getElementById("playerName").textContent = `${player_data.name}`;
+    createNums(`${player_data.point}`,"gameScore");
+    if(player_data.clear){
+        //クリア時間をスコア画面で表示するように設定
+        document.getElementById("score_sheet").classList.add("clear");
+        document.getElementById("clearTime").style.display = "block";
+        createNums(`${TimeForDisplay(timeLimit*60 - clearTime)}`,"clearTime");
+    }
 }
 
 
+function createNumElement(n) {
+    var number = document.createElement("img");
+    console.log(n);
+    if(n == ":"){
+        n = "colon";
+    }
+    number.src = `images/score/${n}.webp`;
+    number.classList.add("score_num")
+    number.classList.add(`score_num_${n}`);
+    return number;
+}
 
-// function showClearImg(subject){
-//     clear_sheet = document.getElementById("clear_sheet");
-//     white_out_time = 2;
-    
-//     clear_sheet.style.display = 'block';
-//     clear_sheet.style.backgroundImage = "images/background/"
-    
-//     setTimeout(function() {
-//         clear_sheet.style.transition = "opacity " + white_out_time + "s";
-//         clear_sheet.style.opacity = '100%';
-//     }, 100); 
-    
-// }
+function createNums(numString,boxId) {
+    console.log(numString);
+    removeAllNum(boxId);
+    var numContainer = document.getElementById(boxId);
+    for (let i = 0; i < numString.length; i++) {
+        let n = numString[i];
+        var num = createNumElement(n);
+        numContainer.appendChild(num);
+    }
+}
+
+function removeAllNum(boxId) {
+    var numContainer = document.getElementById(boxId);
+    numContainer.innerHTML = ""; // 子要素をすべて削除
+}
 
 
+function askName(nashi = ""){
+    hideBack("clear_sheet");
+    hideBack("map");
+    hideBack("title_sheet");
+    showBack("name_form");
+}
+
+function sendName(nashi  = ""){
+    const name_box = document.getElementById("name_box");
+    const players_name = name_box.value;
+    if(players_name.length > 4){
+        document.getElementById("name_alert").style.display = "block";
+        return
+    }
+    console.log(players_name);
+    player_data.name = players_name;
+    saveData();
+    moveToScoreSheet();
+}
+
+
+function moveToScoreSheet(nashi = ""){
+    hideBack("name_form");
+    hideBack("clear_sheet");
+    hideBack("map");
+    hideBack("title_sheet");
+    showBack("score_sheet");
+    console.log("moveToScoreSheet")
+    setScoreScreen();
+}
 
 
 
@@ -1828,6 +1918,7 @@ function hideImg(subject){
 }
 
 function pointOut(subject,pointer_name="pointer"){
+    console.log(subject);
     target = document.getElementById(subject);
     if (target == null) {
         target = document.querySelector(subject);
@@ -2060,6 +2151,7 @@ function openQ(n){
 
     quiz_id = n;
     quiz_data = quiz_list[quiz_id];
+    console.log(quiz_data);
     const quiz_back = document.getElementById("QB_back");
     const quiz_sheet = document.getElementById("Q_sheet");
     const quiz_image = quiz_sheet.querySelector(".quiz_image");
@@ -3175,6 +3267,13 @@ function moveMap(n){
         menu_quiz_explain = document.getElementById("menu_quiz_explain");
         menu_quiz_explain.setAttribute('onclick',  "openExplainSheet('謎画面の説明_2')");
     }
+
+    if(n == "castle"){
+        if(tutorial_finish[tutorialType.ENDING].finish){
+            const castle_img = document.getElementById("castle_back_image");
+            castle_img.src = "images/background/祭壇背景(クリア後).webp";
+        }
+    }
     
     pointer = document.getElementById("quiz_select_icon");
     pointer.style.display = "none";
@@ -3184,6 +3283,35 @@ function moveMap(n){
     
 }
 
+
+function isInClickableArea(x, y) {
+    // ここで特定の領域の座標や条件を定義し、判定を行う
+    // 例えば、画像の中央部分などに対する判定を行うロジックを書く
+    // 仮の例として、画像の中央部分をクリックしたかどうかの判定を行う
+    const imageWidth = document.querySelector('#castle_back_image').clientWidth;
+    const imageHeight = document.querySelector('#castle_back_image').clientHeight;
+
+    // 画像の中央部分の範囲を定義
+    const X = 0.45;
+    const Y = 0.23;
+    const width = 0.1; 
+    const height = 0.2; 
+    console.log(x/imageWidth,y/imageHeight);
+
+    // 中央部分にクリックされたかどうかを判定
+    if (x/imageWidth >= X && x/imageWidth <= X + width &&
+        y/imageHeight >= Y && y/imageHeight <= Y + height) {
+        return true;
+    }
+    return false;
+}
+
+// クリックした場所に応じて実行する関数
+function checkExtraEntrance() {
+    // ここにクリックしたときに実行したい処理を記述する
+    console.log("extraに入場します");
+    moveMap('extra');
+}
 
 
 
@@ -3237,14 +3365,25 @@ function showLog(n){
 var now_on = 0
 
 function openBattle(n){
-    if(player_data.level < limited_level){
-        if(n == "B1"){
+    if(n == "B1"){
+        if(player_data.level < 3){
             current_dialog_list = log_list[log_name.CANNOTBATTLESLIME];
-        }else{
-            current_dialog_list = log_list[log_name.CANNOTBATTLEGARGOYLE];
+            displayNextDialog();
+            return;
+
         }
-        displayNextDialog();
-        return;
+    }else if(n == "B2"){
+        if(player_data.level < monster_list.B1.next_limited_level){
+            current_dialog_list = log_list[log_name.CANNOTBATTLEGARGOYLE];
+            displayNextDialog();
+            return;
+        }
+    }else{
+        if(player_data.level < monster_list.B2.next_limited_level){
+            current_dialog_list = log_list[log_name.CANNOTBATTLEMAOU];
+            displayNextDialog();
+            return;
+        }
     }
 
     const battle = document.getElementById(n);

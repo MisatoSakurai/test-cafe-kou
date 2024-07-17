@@ -7,6 +7,32 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@300&display=swap" rel="stylesheet">
+        
+
+        <script>
+            (function(d) {
+              var config = {
+                kitId: 'dno5bbm',
+                scriptTimeout: 3000,
+                async: true
+              },
+              h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+            })(document);
+        </script>
+        
+        <script>
+            (function(d) {
+              var config = {
+                kitId: 'dno5bbm',
+                scriptTimeout: 3000,
+                async: true
+              },
+              h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+            })(document);
+        </script>
+        
+        
+        
         <!-- iOS用 -->
         <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -16,6 +42,28 @@
 
     </head>
     <body>
+        
+        <div id="score_sheet" class = "score_sheet" style="display:none">
+            <p id="delete_data_button_score" onclick="wantDelete()">dd</p>
+            <ul id="clearScores">
+                <!-- <li id="playerName" class="clear_font"></li> -->
+                <svg id="playerNameSvg" class="clear_font" xmlns="http://www.w3.org/2000/svg">
+                    <!-- グラデーションの定義 -->
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgb(255,245,175);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgb(255,233,77);stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- 縁取りのある文字 -->
+                    <text id="playerName" x="50%" y="90%">
+                        Outlined Text
+                    </text>
+                </svg>
+                <li id="gameScore" class="numContainer"></li>
+                <li id="clearTime" class="numContainer" style="display: none;"></li>
+            </ul>
+        </div>
         <div id="delete_or_not"  style="display:none">
             <p>全てのセーブデータが消去されます。<br>また、このボタンは運営用でありゲームクリアに関係ありません。</p>
             <div class="flex_buttons">
@@ -46,15 +94,25 @@
         
         <div id="clear_sheet" style="display:none">
             <div id="clear_text_and_buttons">
-                <ul id="clearScores">
-                    <li id="clearTime">経過時間</li>
-                    <li id="clearLevel">レベル
-                    </li>
-                    <li id="gameScore">スコア</li>
-                </ul>
                 <button onclick="window.location.reload();" id="back_title">タイトルへ戻る</button>
+                <!-- <button onclick="moveToScoreSheet()" id="move_to_score_sheet">スコア画面へ</button> -->
             </div>
         </div>
+
+
+        <div id="name_form" style="display: none">
+            <div id="name_container">
+                <p>名前を入力してください</p>
+                <input  type="text" id="name_box" value="ななし">
+                <p id = "name_alert" style="display: none">名前は4文字以内にしてください</p>
+                <p onclick="sendName()" class="checkButton" id="name_send_button">送信</p>
+            </div>
+        </div>
+
+        <div id="write_name" style="display: none;">
+            <input type="text" id="name_box">
+        </div>
+        
         
         
         
@@ -122,17 +180,18 @@
             </div>
             
             <div id="castle" class="stage" style="display: none">
-                <img class="back_image_cover" src ='images/background/%E7%A5%AD%E5%A3%87_%E4%BF%AF%E7%9E%B0%E5%9B%B3.webp'/>
+                <img id="castle_back_image"  src ='images/background/%E7%A5%AD%E5%A3%87_%E4%BF%AF%E7%9E%B0%E5%9B%B3.webp'>
                 <div class="quiz_icons" id="castle_q_icons">
                     
                 </div>
                 <img id='B3_icon' src="images/mobs/%E9%AD%94%E7%8E%8B.webp"onclick="openBattle('B3')" class="monster_icon">
                 <img src="images/icons/under_arrow.webp" alt="↓" class="move_map_button" id="button_back_to_rocky" onclick="moveMap('rocky')">
-                <img src="images/icons/正解数アイコン（明）.webp" alt="⭐︎" class="move_map_button" id="button_move_to_extra" onclick="moveMap('extra')">
+                
             </div>
+            
 
             <div id="extra" class="stage" style="display: none">
-                <img class="back_image_cover" src ='images/background/%E7%A5%AD%E5%A3%87_%E4%BF%AF%E7%9E%B0%E5%9B%B3.webp'/>
+                <img class="back_image_cover" src ='images/background/エクストラ背景.webp'/>
                 <div class="quiz_icons" id="extra_q_icons">
                     
                 </div>
@@ -141,6 +200,20 @@
 
 
         </div>
+        <script>
+            // JavaScriptでクリックイベントを処理する
+            document.querySelector('#castle_back_image').addEventListener('click', function(event) {
+                // クリックされた位置を取得する
+                const clickedX = event.clientX;
+                const clickedY = event.clientY;
+                
+                // ここで特定の領域や条件を判定し、条件に応じた処理を実行する
+                if (isInClickableArea(clickedX, clickedY)) {
+                    // クリックした場所が特定の領域に該当する場合の処理
+                    checkExtraEntrance();
+                }
+            });
+        </script>
         
         
         
