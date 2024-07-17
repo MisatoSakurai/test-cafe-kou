@@ -1338,8 +1338,8 @@ function updateTimerDisplay() {
 
 
 function TimeForDisplay(time) {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
     return  `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
@@ -1805,7 +1805,7 @@ function setScoreScreen(nashi = "") {
         //クリア時間をスコア画面で表示するように設定
         document.getElementById("score_sheet").classList.add("clear");
         document.getElementById("clearTime").style.display = "block";
-        createNums(`${TimeForDisplay(timeLimit - clearTime)}`,"clearTime");
+        createNums(`${TimeForDisplay(timeLimit*60 - clearTime)}`,"clearTime");
     }
 }
 
