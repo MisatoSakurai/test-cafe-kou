@@ -301,8 +301,6 @@ h1 {
 }
 
 
-
-
 #clear_text_and_buttons {
     position: fixed;
     left: 50%;
@@ -311,6 +309,36 @@ h1 {
     text-align: center;
 }
 
+
+
+#clear_pop {
+    position: fixed;
+    background-color: black;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 55%;
+    height: fit-content;
+    text-align: center;
+    border: 4px solid #f0f0f0;
+    border-radius: 20px;
+    padding: 30px 20px;
+    z-index: 12;
+    color: #ffffff;
+}
+
+#clear_pop_back {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: #0000002c;
+}
+
+#close_clear_pop {
+    margin: 10px;
+}
 
 
 
@@ -754,7 +782,7 @@ h1 {
 
 
 
-.closeButton,.checkButton,.hintButton, .magicHintButton, .flex_item_button, #pop_button, .magic_hint_buttons, .monster_hint_buttons, #colorVisionButton {
+.closeButton,.checkButton,.hintButton, .magicHintButton, .flex_item_button, #pop_button, .magic_hint_buttons, .monster_hint_buttons, #colorVisionButton, #close_clear_pop {
     background-color: black;
     border: 2px solid #f0f0f0;
     border-radius: 5px;

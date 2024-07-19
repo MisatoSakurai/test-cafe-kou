@@ -96,8 +96,8 @@ const magic_info = Object.freeze({
     },
     [magicType.ADD_CHAR]:{
         name:'スクエア',
-        image:"images/icons/枠追加.webp",
-        selected_image:"images/icons/枠追加.webp"
+        image:"images/icons/スクエア.webp",
+        selected_image:"images/icons/スクエア.webp"
     },
     [magicType.CHANGE_CHAR]:{
         name:'文字トランス',
@@ -178,6 +178,10 @@ const level_list = {
 
 }
 
+
+const final_level = Object.keys(level_list).reduce((max, key) => 
+    level_list[key].needed_point > level_list[max].needed_point ? key : max
+);
 
 
 
@@ -940,7 +944,7 @@ var quiz_list ={
             },
             [magicType.CHANGE_CHAR]:{
                 image:"images/quiz/37_トランプ_字.webp",
-                answer:["ダスト"],
+                answer:"ダスト",
                 hint:"文字トランスを使って｢キ｣を｢ク｣にすると、トランプのスートが入ります。上からハート、スペード、ダイヤ、クラブが入ります",
                 place:{
                     x: 38, y: 73,  // 座標%
@@ -1080,23 +1084,25 @@ const story_tutorial_list = [
     [speaker.P,"「え…？<br>ゲームの世界にいる…？」"],
     [speaker.N,"ありえない事実にあなたは驚きを隠せませんでした"],
     [speaker.G,"——あなたはどうやらこのゲームの世界に迷いこんでしまったみたいですね"],
+    [speaker.G,"——この世界から抜け出したいならばあと45分ほどしかないこのゲームをクリアするしかありません"],
     ["action",{ func: showImg, subject: "images/board/看板.webp" }],
-    [speaker.G,"——この世界を抜け出したいならば看板に書かれたクリア条件を達成しゲームをクリアしてください"],
+    [speaker.G,"——クリア条件はそこの看板に記されています"],
     [speaker.N,"あなたは目の前に置かれた看板を見ました<br>そこには確かにゲームクリア条件のようなものが書いてありました"],
     [speaker.P,"「間違って転生してしまったゲームから抜けるために魔王を倒してバッドエンドを食い止める——これを達成すれば元の世界に戻れるということか！<br>頑張るぞ～」"],
     [speaker.G,"——ちょっと待ってください<br>あなたって普通の現代人ですよね？"],
     [speaker.P,"「ああ、そうです」"],
-    [speaker.G,"——謎解きをしているあなたのような貧弱な人間には魔王は倒せないでしょう<br>そこらへんのモンスターでさえ力では倒せないと思います"],
+    [speaker.G,"————謎解きをしているあなたのような貧弱な人間には魔王は倒せないでしょう。そもそもあなたはモンスターと戦うことができないでしょう"],
     [speaker.P,"「え～そんな～」"],
     [speaker.N,"絶望的な状況にあなたは落胆してしまいました"],
     [speaker.G,"——しかしあなたにも希望はあります<br>それは、”魔法”を使って敵を倒すことです！"],
     [speaker.P,"「魔法…？」"],
-    [speaker.G,"——あなたは今レベル1の状態ですが、実はレベルが1つ上がると新たな魔法を修得します"],
+    [speaker.G,"——あなたは今レベル1の状態ですが、実は一定のレベルに達しないとモンスターと戦うことができません"],
+    [speaker.G,"——ただ、レベルを上げる中で新たな魔法が修得できます"],
     [speaker.G,"——魔法をうまく使うことで敵を倒すことができるかもしれません<br>特にあなたのようなひらめきで世界を変えられるような方ならば"],
     [speaker.P,"「そうか、レベルを上げて手に入れた魔法を使って敵を倒せばいいのか<br>でもレベルを上げるにはどうしたらいいんだ？」"],
     [speaker.G,"——謎解きに正解し経験値をためることで、レベルを上げることができますよ"],
     [speaker.G,"——今持っている魔法を使ってもよいですが……<br>レベルをあげて新たな魔法を手にする方がよいでしょう"],
-    [speaker.P,"「じゃあ謎を解いて早くクリアしよう！」"],
+    [speaker.P,"「じゃあ謎を解いて制限時間内にクリアしよう！」"],
     [speaker.N,"あなたは勇んでゲームを始めることにしたのでした……"],
     ["action",{ func: hideImg, subject: "images/board/看板.webp" }],
     ["action",{ func: hideBack, subject: "story_sogen"}],
@@ -1159,9 +1165,9 @@ const use_magic_list = [
     [speaker.G,"——どうやらここには謎がないみたいですね"],
     [speaker.G,"——ああ、ひとつ言い忘れていたことがあって、"],
     [speaker.G,"——実はあなたが持つ魔法はモンスター以外の謎などにも使えるんです"],
-    [speaker.G,"——謎を解く画面で左上のアイコンをタップし、使う場所を正しく選択すると魔法が発動します<br>複数の魔法は同時には使えず魔法のルールも残っているのでご注意ください"],
+    [speaker.G,"——謎を解く画面で左上のアイコンをタップし、使う場所を正しく選択すると魔法が発動します<br>複数の魔法は同時には使えないのでご注意ください"],
     [speaker.G,"——魔法によってできた新たな謎を解くとさらに経験値が上がります"],
-    [speaker.G,"——また、上の星はその謎でできる正解数を表しています"],
+    [speaker.G,"——また、謎の上にある星はその謎でできる正解数を表しています"],
 ];
 
 
@@ -1268,7 +1274,8 @@ const log_name = Object.freeze({
     CANNOTBATTLEGARGOYLE:"cannot_battle_gargoyle",
     CANNOTBATTLEMAOU:"cannot_battle_maou",
     NOMORELIMIT:"no_more_limit",
-    GAMEOVER:"game over"
+    GAMEOVER:"game over",
+    ALLCLEAR:"all_clear",
 });
 
 
@@ -1286,9 +1293,9 @@ const log_list = {
     [log_name.CANNOTBATTLESLIME]:[[speaker.N,`Lv.${limited_level}に達していないため戦闘に挑むことができません`]],
     [log_name.CANNOTBATTLEGARGOYLE]:[[speaker.N,`Lv.${monster_list.B1.next_limited_level}に達していないため戦闘に挑むことができません`]],
     [log_name.CANNOTBATTLEMAOU]:[[speaker.N,`Lv.${monster_list.B2.next_limited_level}に達していないため戦闘に挑むことができません`]],
-    [log_name.NOMORELIMIT]:[[speaker.N,"ゲームクリアによりレベル上限が無くなりました。<br>エクストラステージが出現しました。"]],
-    [log_name.GAMEOVER]:[[speaker.N,"タイムアップ！"],["action",{ func: askName, subject: "nashi"}],],
-
+    [log_name.NOMORELIMIT]:[[speaker.N,"ゲームクリアによりレベル上限が無くなりました。"],[speaker.N,"魔王の階段から地下へ進めるようになった！<br>行って確認してみよう！"],],
+    [log_name.GAMEOVER]:[[speaker.N,"タイムアップ！"],["action",{ func: finishGameAndMoveToScore, subject: "nashi"}],],
+    [log_name.ALLCLEAR]:[[speaker.N,"全ての謎を解き明かした！！！"],["action",{ func: finishGameAndMoveToScore, subject: "nashi"}],],
 }
 
 
@@ -1387,11 +1394,7 @@ window.onload = function(){
 
 
     if(savedTime !== null && savedTime <= 0){
-        if(player_data.name != undefined){
-            moveToScoreSheet();
-        }else{
-            askName();
-        }
+        finishGameAndMoveToScore();
     }
     else if (savedTime !== null && tutorial_finish[tutorialType.STORY]) {
         timeLeft = parseInt(savedTime, 10);
@@ -1483,11 +1486,9 @@ function initializeBookList(book_list,bookType) {
         link.setAttribute('onclick', "bookShowImg('"+ n + "','" + bookType + "')");
         
         if(bookType == "magic"){
-            if(n != "スクエア"){
-                link.src = "images/book/scroll_bar/magic/none.webp";
-                link.alt = "?????";
-                link.setAttribute('onclick', "bookShowImg('none','magic')");
-            }
+            link.src = "images/book/scroll_bar/magic/none.webp";
+            link.alt = "?????";
+            link.setAttribute('onclick', "bookShowImg('none','magic')");
         }
         
         book_link_list.appendChild(link);
@@ -1578,8 +1579,8 @@ function debugMode(){
 
 
     player_data = {
-        point:280,
-        level:7,
+        point:780,
+        level:14,
         name:undefined,
         clear:false
     };
@@ -1641,11 +1642,7 @@ function startGame(){
     console.log("ゲームスタート");
     const savedTime = sessionStorage.getItem('timeLeft');
     if(savedTime !== null && savedTime <= 0){
-        if(player_data.name != undefined){
-            moveToScoreSheet();
-        }else{
-            askName();
-        }
+        finishGameAndMoveToScore();
         return;
     }
 
@@ -1838,6 +1835,14 @@ function removeAllNum(boxId) {
     numContainer.innerHTML = ""; // 子要素をすべて削除
 }
 
+
+function finishGameAndMoveToScore(nashi){
+    if(player_data.name != undefined){
+        moveToScoreSheet();
+    }else{
+        askName();
+    }
+}
 
 function askName(nashi = ""){
     hideBack("clear_sheet");
@@ -3041,11 +3046,13 @@ function checkLevel(init = false){
     
     
     if(init == true){
+        console.log("set level");
         for (var l in level_list){
             next_level_point = level_list[l].needed_point;
             if(player_point >= next_level_point){
                 levelUp(l);
             }
+            console.log(l,player_point,":",next_level_point,player_point >= next_level_point);
         }
         saveData();
              
@@ -3075,17 +3082,26 @@ function checkLevel(init = false){
 
             
             if(!tutorial_finish[tutorialType.MAGIC].finish){
-                doTutorial(tutorialType.MAGIC);
+                //doTutorial(tutorialType.MAGIC);
+                //ついに魔法を手に入れたのですね！を消した
             }
 
             if(player_data.level == max_level){
-                current_dialog_num = -1;
-                current_dialog_list = log_list[log_name.MAXLEVEL];
-                displayNextDialog();
+                if(player_data.level == final_level){
+                    console.log("全部といた！");
+                    current_dialog_num = -1;
+                    current_dialog_list = log_list[log_name.ALLCLEAR];
+                    displayNextDialog();
+                }
+                else{
+                    current_dialog_num = -1;
+                    current_dialog_list = log_list[log_name.MAXLEVEL];
+                    displayNextDialog();
+                }
+                
             }
+            
         }
-
-
 
     }
     
