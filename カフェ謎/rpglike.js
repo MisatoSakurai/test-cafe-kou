@@ -1575,7 +1575,7 @@ function notDelete(){
 
 
 function debugMode(){
-    timeLeft = 3*60;
+    timeLeft = 20;
 
 
     player_data = {
