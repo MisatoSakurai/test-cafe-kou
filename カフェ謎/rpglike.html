@@ -97,6 +97,13 @@
                 <button onclick="window.location.reload();" id="back_title">タイトルへ戻る</button>
                 <!-- <button onclick="moveToScoreSheet()" id="move_to_score_sheet">スコア画面へ</button> -->
             </div>
+            <div id="clear_pop_and_back">
+                <div id="clear_pop_back" onclick="hideBack('clear_pop_and_back');"></div>
+                <div id="clear_pop">
+                    <p>ゲームをクリアしたことでレベルの上限が解放された！<br>残りの時間を使って経験値をさらに上げよう！</p>
+                    <button id="close_clear_pop" onclick="hideBack('clear_pop_and_back');">閉じる</button>
+                </div>
+            </div>
         </div>
 
 
