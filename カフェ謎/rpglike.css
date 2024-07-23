@@ -356,14 +356,14 @@ h1 {
     width: 100%;
     top: 0;
     left: 0;
-    background-image: url('images/score/スコア画面_Not clear_withoutnumber_v2.webp');
+    background-image: url('images/score/スコア画面_Not clear_withoutnumber.webp');
     background-size: 100% 100%;
     opacity: 1;
     z-index: 14;
 }
 
 .score_sheet.clear {
-    background-image: url('images/score/スコア画面_withoutnumber_v2.webp');
+    background-image: url('images/score/スコア画面_withoutnumber.webp');
 }
 
 
