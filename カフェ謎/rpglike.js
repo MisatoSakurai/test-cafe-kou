@@ -333,7 +333,7 @@ var quiz_list ={
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/5_語呂ろくろ_四角.webp",
                 answer:["ロクロ","鹿路","轆轤"],
-                hint:"",//未記入
+                hint:"スクエアを使って｢ロ｣の数をひとつ増やし、6つにしましょう。",
                 place:{
                     x: 72, y: 7,  // 座標%
                     w: 15, h: 15   // サイズ%
@@ -510,7 +510,7 @@ var quiz_list ={
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/14_九九_四角.webp",
                 answer:["インゴ","隠語","イン語"],
-                hint:"",//未記入
+                hint:"スクエアを使ってマスの数をひとつ増やしましょう。1×4が1×5になります。",
                 place:{
                     x: 30, y: 74,  // 座標%
                     w: 10, h: 15   // サイズ%
@@ -560,7 +560,7 @@ var quiz_list ={
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/17_反転文字_四角.webp",
                 answer:["エモノ","獲物"],
-                hint:"",//未記入
+                hint:"スクエアを使って一文字目につけ足すと｢ニ｣が｢エ｣になります。",
                 place:{
                     x: 38, y: 23,  // 座標%
                     w: 15, h: 15   // サイズ%
@@ -926,7 +926,7 @@ var quiz_list ={
             [magicType.ADD_CHAR]:{
                 image:"images/quiz/36_数字埋め_四角.webp",
                 answer:["ツリー","TREE","Tree","tree"],
-                hint:"",//未記入
+                hint:"スクエアを使って1を10にしましょう。一番下にTENが入るとその上にSEVEN、THREE、NINEと入っていきます。",
                 place:{
                     x: 78, y: 32,  // 座標%
                     w: 10, h: 15   // サイズ%
@@ -1793,7 +1793,6 @@ function clearGame(){
 function showEnding(){
     doTutorial(tutorialType.ENDING);
 }
-
 
 function setScoreScreen(nashi = "") {
     document.getElementById("playerName").textContent = `${player_data.name}`;
