@@ -1118,7 +1118,7 @@ const open_quiz_tutorial_list =[
 const tackle_quiz_tutorial_list = [
     [speaker.G,"——謎が出てきましたね、赤いハテナマークが謎の目印です<br>これを解き明かしていくことでレベルが上がります"],
     [speaker.G,"——答えがわかったら解答欄に入力してみましょう<br>ただし答えは存在する単語になります"],
-    [speaker.G,"わからないときはヒントを活用してくださいね"]
+    // [speaker.G,"わからないときはヒントを活用してくださいね"]
 ];
 
 const answered_quiz_list = [
@@ -2187,13 +2187,15 @@ function openQ(n){
     let stars = "★".repeat(quiz_data.answered_time);
     stars += "☆".repeat(now_num_ans - quiz_data.answered_time);
     
-    const magichint = document.querySelector(".magicHintButton");
-    
-    if(quiz_data.answered_time >= 1 && now_num_ans > quiz_data.answered_time){
-        magichint.style.display = 'block';
-    }else{
-        magichint.style.display = 'none';
-    }
+
+    //ヒント削除
+    // const magichint = document.querySelector(".magicHintButton");
+    // if(quiz_data.answered_time >= 1 && now_num_ans > quiz_data.answered_time){
+    //     magichint.style.display = 'block';
+    // }else{
+    //     magichint.style.display = 'none';
+    // }
+
     
     createStars(quiz_data.answered_time,images.LIGHTSTAR);
     createStars(now_num_ans - quiz_data.answered_time,images.DARKSTAR);
@@ -2356,12 +2358,12 @@ function hint(n,magictype=null,is_magic_hint=false){
     }
     closePop();
     
-    const magichint = document.querySelector(".magicHintButton");
-    if(quiz_data.answered_time >= 1){
-        magichint.style.display = 'block';
-    }else{
-        magichint.style.display = 'none';
-    }
+    // const magichint = document.querySelector(".magicHintButton");
+    // if(quiz_data.answered_time >= 1){
+    //     magichint.style.display = 'block';
+    // }else{
+    //     magichint.style.display = 'none';
+    // }
     
     
     if(is_magic_hint){

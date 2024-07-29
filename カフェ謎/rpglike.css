@@ -702,7 +702,7 @@ h1 {
 #send_and_hint_buttons{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     grid-row-gap: 50px;
     width:80%;
     position: absolute;
